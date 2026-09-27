@@ -1,0 +1,193 @@
+================ Simulation summary (2026-09-17 21:14:41.987) ================
+
+-- Market infos --
+  Market value: 38749086030.29251
+
+--  Orders still to be executed --
+
+-- Actions (name quantity last_price time) --
+action's name ^AEX, quantity 100000, last_price 1100.80004882813, time 1900-01-00
+action's name ^DJI, quantity 100000, last_price 51808.2109375, time 1900-01-00
+action's name ^FCHI, quantity 100000, last_price 8186.93017578125, time 1900-01-00
+action's name ^FTSE, quantity 100000, last_price 10816.1396484375, time 1900-01-00
+action's name ^GDAXI, quantity 100000, last_price 25716.7109375, time 1900-01-00
+action's name ^GSPC, quantity 100000, last_price 7636.419921875, time 1900-01-00
+action's name ^HSI, quantity 100000, last_price 24713.779296875, time 1900-01-00
+action's name ^IBEX, quantity 100000, last_price 19831.80078125, time 1900-01-00
+action's name ^IXIC, quantity 100000, last_price 26395.384765625, time 1900-01-00
+action's name ^JKSE, quantity 100000, last_price 6436.85302734375, time 1900-01-00
+action's name ^KLSE, quantity 100000, last_price 1679.2099609375, time 1900-01-00
+action's name ^KS11, quantity 100000, last_price 6717.97021484375, time 1900-01-00
+action's name ^N100, quantity 100000, last_price 1899.27001953125, time 1900-01-00
+action's name ^N225, quantity 100000, last_price 63923.0, time 1900-01-00
+action's name ^NSEI, quantity 100000, last_price 23217.599609375, time 1900-01-00
+action's name ^NYA, quantity 100000, last_price 24112.544921875, time 1900-01-00
+action's name ^RUT, quantity 100000, last_price 2883.0751953125, time 1900-01-00
+action's name ^SSMI, quantity 100000, last_price 13947.3095703125, time 1900-01-00
+action's name ^STI, quantity 100000, last_price 5635.41015625, time 1900-01-00
+action's name ^STOXX50E, quantity 100000, last_price 6322.89990234375, time 1900-01-00
+action's name ^TWII, quantity 100000, last_price 45848.8984375, time 1900-01-00
+action's name ^VIX, quantity 100000, last_price 15.5500001907349, time 1900-01-00
+action's name ^XAX, quantity 100000, last_price 8645.0927734375, time 1900-01-00
+
+-- Clients (20) --
+  Client1 (id 1):
+    Portfolio value: 1440794.6044969559
+    Cash balance: 100000
+    Holdings:
+    Action: ^DJI, quantity: 23, last_price: 51808.2109375
+    Action: ^HSI, quantity: 10, last_price: 24713.779296875
+    Action: ^KLSE, quantity: 1, last_price: 1679.2099609375
+    Action: ^VIX, quantity: 25, last_price: 15.5500001907349
+
+  Client2 (id 2):
+    Portfolio value: 181365.74169921875
+    Cash balance: 100000
+    Holdings:
+    Action: ^N100, quantity: 47, last_price: 1899.27001953125
+    Action: ^N225, quantity: 1, last_price: 63923
+    Action: ^STI, quantity: 5, last_price: 5635.41015625
+
+  Client3 (id 3):
+    Portfolio value: 223458.9990234375
+    Cash balance: 100000
+    Holdings:
+    Action: ^FTSE, quantity: 5, last_price: 10816.1396484375
+    Action: ^KLSE, quantity: 25, last_price: 1679.2099609375
+    Action: ^RUT, quantity: 20, last_price: 2883.0751953125
+    Action: ^SSMI, quantity: 5, last_price: 13947.3095703125
+
+  Client4 (id 4):
+    Portfolio value: 1814741.376953125
+    Cash balance: 100000
+    Holdings:
+    Action: ^FCHI, quantity: 14, last_price: 8186.93017578125
+    Action: ^HSI, quantity: 7, last_price: 24713.779296875
+    Action: ^N225, quantity: 5, last_price: 63923
+    Action: ^TWII, quantity: 22, last_price: 45848.8984375
+    Action: ^XAX, quantity: 23, last_price: 8645.0927734375
+
+  Client5 (id 5):
+    Portfolio value: 145007.90234375
+    Cash balance: 100000
+    Holdings:
+    Action: ^IBEX, quantity: 5, last_price: 19831.80078125
+    Action: ^TWII, quantity: 1, last_price: 45848.8984375
+
+  Client6 (id 6):
+    Portfolio value: 191769
+    Cash balance: 100000
+    Holdings:
+    Action: ^N225, quantity: 3, last_price: 63923
+
+  Client7 (id 7):
+    Portfolio value: 1135764.6416015625
+    Cash balance: 100000
+    Holdings:
+    Action: ^GSPC, quantity: 15, last_price: 7636.419921875
+    Action: ^IXIC, quantity: 11, last_price: 26395.384765625
+    Action: ^N225, quantity: 9, last_price: 63923
+    Action: ^RUT, quantity: 9, last_price: 2883.0751953125
+    Action: ^STI, quantity: 23, last_price: 5635.41015625
+
+  Client8 (id 8):
+    Portfolio value: 673942.7250022888
+    Cash balance: 100000
+    Holdings:
+    Action: ^DJI, quantity: 9, last_price: 51808.2109375
+    Action: ^VIX, quantity: 12, last_price: 15.5500001907349
+    Action: ^XAX, quantity: 24, last_price: 8645.0927734375
+
+  Client9 (id 9):
+    Portfolio value: 237420.97509765625
+    Cash balance: 100000
+    Holdings:
+    Action: ^FCHI, quantity: 29, last_price: 8186.93017578125
+
+  Client10 (id 10):
+    Portfolio value: 552606.1811523438
+    Cash balance: 100000
+    Holdings:
+    Action: ^IBEX, quantity: 13, last_price: 19831.80078125
+    Action: ^N100, quantity: 1, last_price: 1899.27001953125
+    Action: ^SSMI, quantity: 21, last_price: 13947.3095703125
+
+  Client11 (id 11):
+    Portfolio value: 43225.4638671875
+    Cash balance: 100000
+    Holdings:
+    Action: ^XAX, quantity: 5, last_price: 8645.0927734375
+
+  Client12 (id 12):
+    Portfolio value: 825916.0375976562
+    Cash balance: 100000
+    Holdings:
+    Action: ^FTSE, quantity: 25, last_price: 10816.1396484375
+    Action: ^N100, quantity: 7, last_price: 1899.27001953125
+    Action: ^SSMI, quantity: 24, last_price: 13947.3095703125
+    Action: ^XAX, quantity: 24, last_price: 8645.0927734375
+
+  Client13 (id 13):
+    Portfolio value: 395925.93886756897
+    Cash balance: 100000
+    Holdings:
+    Action: ^HSI, quantity: 15, last_price: 24713.779296875
+    Action: ^KLSE, quantity: 15, last_price: 1679.2099609375
+    Action: ^VIX, quantity: 2, last_price: 15.5500001907349
+
+  Client14 (id 14):
+    Portfolio value: 533165.6528320312
+    Cash balance: 100000
+    Holdings:
+    Action: ^FCHI, quantity: 6, last_price: 8186.93017578125
+    Action: ^GDAXI, quantity: 13, last_price: 25716.7109375
+    Action: ^JKSE, quantity: 23, last_price: 6436.85302734375
+    Action: ^KLSE, quantity: 1, last_price: 1679.2099609375
+
+  Client15 (id 15):
+    Portfolio value: 351713.0930175782
+    Cash balance: 100000
+    Holdings:
+    Action: ^AEX, quantity: 9, last_price: 1100.80004882813
+    Action: ^SSMI, quantity: 10, last_price: 13947.3095703125
+    Action: ^STOXX50E, quantity: 32, last_price: 6322.89990234375
+
+  Client16 (id 16):
+    Portfolio value: 892500.211669922
+    Cash balance: 100000
+    Holdings:
+    Action: ^AEX, quantity: 19, last_price: 1100.80004882813
+    Action: ^KLSE, quantity: 10, last_price: 1679.2099609375
+    Action: ^NSEI, quantity: 23, last_price: 23217.599609375
+    Action: ^SSMI, quantity: 23, last_price: 13947.3095703125
+
+  Client17 (id 17):
+    Portfolio value: 502191.6088914871
+    Cash balance: 100000
+    Holdings:
+    Action: ^HSI, quantity: 17, last_price: 24713.779296875
+    Action: ^N100, quantity: 43, last_price: 1899.27001953125
+    Action: ^VIX, quantity: 25, last_price: 15.5500001907349
+
+  Client18 (id 18):
+    Portfolio value: 248959.1513671875
+    Cash balance: 100000
+    Holdings:
+    Action: ^GDAXI, quantity: 8, last_price: 25716.7109375
+    Action: ^XAX, quantity: 5, last_price: 8645.0927734375
+
+  Client19 (id 19):
+    Portfolio value: 340610.66796875
+    Cash balance: 100000
+    Holdings:
+    Action: ^FCHI, quantity: 19, last_price: 8186.93017578125
+    Action: ^GSPC, quantity: 4, last_price: 7636.419921875
+    Action: ^KS11, quantity: 23, last_price: 6717.97021484375
+
+  Client20 (id 20):
+    Portfolio value: 932547.796875
+    Cash balance: 100000
+    Holdings:
+    Action: ^DJI, quantity: 18, last_price: 51808.2109375
+
+================ End of summary ================

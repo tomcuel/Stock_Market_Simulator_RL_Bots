@@ -1,0 +1,93 @@
+Client launched...
+Serveur authentification response: AUTHENTIFICATION_SUCCESS 1
+Connected to the server !
+Enter one of the following commands:
+1. Place an order:
+   [BUY/SELL] [quantity] [action_id] [MARKET/LIMIT/STOP/LIMIT_STOP] [price] [trigger_price_lower] [trigger_price_upper] [validity_date: YYYY-MM-DD] [validity_time: HH:MM:SS]
+   Notes:
+     - For MARKET:        do NOT provide price, trigger_price_lower or trigger_price_upper
+     - For LIMIT:         provide [price] and [trigger_price_lower] only
+     - For STOP:          provide [price] and [trigger_price_upper] only
+     - For LIMIT_STOP:    provide [price], [trigger_price_lower] and [trigger_price_upper]
+
+2. Modify client balance:
+   amount [value] [deposit/withdraw]
+
+3. Display information:
+   display [portfolio | pending_orders | completed_orders | market | action_name]
+
+4. Disconnect from server:
+   exit
+
+> > > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Order created with ID: 534931385 for client 1 to BUY 7 actions of 1 at the price of 1255.7$ at time 2026-09-17 21:14:49.188 with trigger type LIMIT and trigger price lower 1221.28 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000
+> 
+Server: Order 534931385 is waiting for its trigger condition to be reached …
+> > 
+Server: Order created with ID: 739198958 for client 1 to BUY 8 actions of 17 at the price of 2928.79$ at time 2026-09-17 21:14:50.390 with trigger type LIMIT_STOP and trigger price lower 2737.16 and trigger price upper 3127.02 until validity date 2076-03-01 00:00:00.000
+> 
+Server: Order 739198958 is waiting for its trigger condition to be reached …
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Order created with ID: 159796820 for client 1 to BUY 3 actions of 18 at the price of 14883.06$ at time 2026-09-17 21:14:52.624 with trigger type LIMIT and trigger price lower 13835.87 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000
+> 
+Server: Order 159796820 is waiting for its trigger condition to be reached …
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Order created with ID: 2353624637 for client 1 to SELL 4 actions of 2 at the price of 50320.61$ at time 2026-09-17 21:14:56.032 with trigger type LIMIT and trigger price lower 48633.58 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000
+> 
+Server: Order 2353624637 is waiting for its trigger condition to be reached …
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> 
+Server: TRANSACTION: bought 3 of action 18 at 14883.06$ at time 2026-09-17 21:14:57.485
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> 
+Server: TRANSACTION: bought 7 of action 17 at 2539.33$ at time 2026-09-17 21:15:08.987
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> 
+Connexion closed by the server.
+
+Connection closed by the server.

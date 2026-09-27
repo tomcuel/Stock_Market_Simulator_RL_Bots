@@ -1,0 +1,432 @@
+================ Simulation summary (2026-09-17 21:15:15.995) ================
+
+-- Market infos --
+  Market value: 38806420174.82376
+  
+-- Orders still to be executed --
+date 2026-09-17, client's name 21:14:56.720, type Client20, quantity BUY, action's name 5, trigger type ^FCHI, trigger price LIMIT, trigger price lower 7655.12, trigger price upper 7418.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:53.702, type Client7, quantity BUY, action's name 2, trigger type ^VIX, trigger price LIMIT, trigger price lower 16.2, trigger price upper 15.18, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:56.690, type Client6, quantity BUY, action's name 2, trigger type ^RUT, trigger price LIMIT, trigger price lower 2682.31, trigger price upper 2606.94, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:05.264, type Client9, quantity BUY, action's name 6, trigger type ^RUT, trigger price STOP, trigger price lower 2902.15, trigger price upper 0.0, expiration date 3066.19, 
+date 2026-09-17, client's name 21:15:12.657, type Client12, quantity BUY, action's name 4, trigger type ^AEX, trigger price LIMIT, trigger price lower 1260.58, trigger price upper 1260.39, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:47.745, type Client10, quantity BUY, action's name 8, trigger type ^AEX, trigger price STOP, trigger price lower 1207.66, trigger price upper 0.0, expiration date 1286.58, 
+date 2026-09-17, client's name 21:14:47.876, type Client5, quantity BUY, action's name 6, trigger type ^GSPC, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:13.527, type Client15, quantity BUY, action's name 3, trigger type ^RUT, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:50.390, type Client1, quantity BUY, action's name 1, trigger type ^RUT, trigger price LIMIT_STOP, trigger price lower 2928.79, trigger price upper 2737.16, expiration date 3127.02, 
+date 2026-09-17, client's name 21:14:49.188, type Client1, quantity BUY, action's name 7, trigger type ^AEX, trigger price LIMIT, trigger price lower 1255.7, trigger price upper 1221.28, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:52.030, type Client19, quantity BUY, action's name 2, trigger type ^AEX, trigger price LIMIT_STOP, trigger price lower 973.29, trigger price upper 920.3, expiration date 1057.59, 
+date 2026-09-17, client's name 21:14:57.834, type Client4, quantity BUY, action's name 2, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:46.689, type Client5, quantity BUY, action's name 8, trigger type ^RUT, trigger price LIMIT, trigger price lower 2666.03, trigger price upper 2413.25, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:52.460, type Client8, quantity BUY, action's name 6, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:05.773, type Client19, quantity BUY, action's name 2, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:06.607, type Client6, quantity BUY, action's name 1, trigger type ^GSPC, trigger price LIMIT, trigger price lower 7066.29, trigger price upper 6926.22, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:48.222, type Client8, quantity BUY, action's name 7, trigger type ^RUT, trigger price LIMIT, trigger price lower 2847.73, trigger price upper 2692.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:07.303, type Client18, quantity BUY, action's name 7, trigger type ^N100, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:57.650, type Client3, quantity BUY, action's name 5, trigger type ^KLSE, trigger price LIMIT_STOP, trigger price lower 1765.49, trigger price upper 1617.74, expiration date 1917.43, 
+date 2026-09-17, client's name 21:14:58.010, type Client11, quantity BUY, action's name 4, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:06.800, type Client16, quantity BUY, action's name 6, trigger type ^XAX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:08.637, type Client2, quantity BUY, action's name 1, trigger type ^AEX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:01.546, type Client7, quantity BUY, action's name 8, trigger type ^KLSE, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:54.510, type Client15, quantity BUY, action's name 8, trigger type ^N100, trigger price LIMIT_STOP, trigger price lower 2092.32, trigger price upper 1924.04, expiration date 2204.04, 
+date 2026-09-17, client's name 21:15:03.211, type Client3, quantity BUY, action's name 5, trigger type ^STOXX50E, trigger price LIMIT, trigger price lower 6002.24, trigger price upper 5930.76, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:05.237, type Client2, quantity BUY, action's name 5, trigger type ^FTSE, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:49.112, type Client6, quantity BUY, action's name 3, trigger type ^SSMI, trigger price LIMIT, trigger price lower 14782.16, trigger price upper 14381.4, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:09.115, type Client16, quantity BUY, action's name 5, trigger type ^N100, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:50.717, type Client14, quantity BUY, action's name 3, trigger type ^KS11, trigger price LIMIT, trigger price lower 7048.49, trigger price upper 6459.9, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:51.768, type Client14, quantity BUY, action's name 2, trigger type ^TWII, trigger price LIMIT, trigger price lower 39353.77, trigger price upper 36496.9, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:57.933, type Client20, quantity BUY, action's name 1, trigger type ^GSPC, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:50.760, type Client13, quantity BUY, action's name 5, trigger type ^VIX, trigger price STOP, trigger price lower 13.61, trigger price upper 0.0, expiration date 14.69, 
+date 2026-09-17, client's name 21:14:47.390, type Client9, quantity BUY, action's name 6, trigger type ^VIX, trigger price LIMIT, trigger price lower 17.41, trigger price upper 15.81, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:02.987, type Client9, quantity BUY, action's name 5, trigger type ^VIX, trigger price LIMIT, trigger price lower 15.9, trigger price upper 14.36, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:05.677, type Client20, quantity BUY, action's name 2, trigger type ^GSPC, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:49.466, type Client3, quantity BUY, action's name 3, trigger type ^VIX, trigger price LIMIT, trigger price lower 15.97, trigger price upper 14.85, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:48.943, type Client15, quantity BUY, action's name 3, trigger type ^AEX, trigger price STOP, trigger price lower 1265.86, trigger price upper 0.0, expiration date 1296.2, 
+date 2026-09-17, client's name 21:15:12.150, type Client3, quantity BUY, action's name 7, trigger type ^KLSE, trigger price LIMIT_STOP, trigger price lower 1585.95, trigger price upper 1487.07, expiration date 1679.39, 
+date 2026-09-17, client's name 21:14:48.761, type Client10, quantity BUY, action's name 9, trigger type ^GSPC, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:49.006, type Client11, quantity BUY, action's name 10, trigger type ^FCHI, trigger price LIMIT_STOP, trigger price lower 9328.41, trigger price upper 9005.57, expiration date 9902.63, 
+date 2026-09-17, client's name 21:15:05.704, type Client16, quantity BUY, action's name 4, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:13.695, type Client12, quantity BUY, action's name 1, trigger type ^RUT, trigger price LIMIT_STOP, trigger price lower 3213.45, trigger price upper 3106.95, expiration date 3303.25, 
+date 2026-09-17, client's name 21:14:47.049, type Client7, quantity BUY, action's name 9, trigger type ^KS11, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:54.290, type Client9, quantity BUY, action's name 4, trigger type ^KLSE, trigger price LIMIT, trigger price lower 1429.98, trigger price upper 1345.78, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:15.447, type Client20, quantity BUY, action's name 2, trigger type ^N100, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:56.306, type Client18, quantity BUY, action's name 7, trigger type ^N100, trigger price LIMIT, trigger price lower 1952.52, trigger price upper 1860.11, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:01.408, type Client12, quantity BUY, action's name 1, trigger type ^STI, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:01.426, type Client17, quantity BUY, action's name 10, trigger type ^KLSE, trigger price LIMIT, trigger price lower 1564.64, trigger price upper 1409.7, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:55.712, type Client15, quantity BUY, action's name 5, trigger type ^STOXX50E, trigger price LIMIT, trigger price lower 5662.2, trigger price upper 5580.41, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:12.173, type Client20, quantity BUY, action's name 5, trigger type ^VIX, trigger price STOP, trigger price lower 15.17, trigger price upper 0.0, expiration date 15.34, 
+date 2026-09-17, client's name 21:15:01.118, type Client19, quantity BUY, action's name 1, trigger type ^SSMI, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:02.670, type Client7, quantity BUY, action's name 9, trigger type ^VIX, trigger price LIMIT, trigger price lower 17.3, trigger price upper 16.11, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:02.929, type Client2, quantity BUY, action's name 6, trigger type ^VIX, trigger price LIMIT, trigger price lower 17.45, trigger price upper 16.04, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:53.467, type Client5, quantity BUY, action's name 4, trigger type ^AEX, trigger price LIMIT_STOP, trigger price lower 990.45, trigger price upper 907.89, expiration date 1021.52, 
+date 2026-09-17, client's name 21:14:50.159, type Client6, quantity BUY, action's name 7, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:57.595, type Client9, quantity BUY, action's name 2, trigger type ^STI, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:48.357, type Client3, quantity BUY, action's name 3, trigger type ^GDAXI, trigger price STOP, trigger price lower 25895.55, trigger price upper 0.0, expiration date 27815.06, 
+date 2026-09-17, client's name 21:15:08.050, type Client11, quantity BUY, action's name 3, trigger type ^AEX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:03.477, type Client5, quantity BUY, action's name 2, trigger type ^GSPC, trigger price LIMIT, trigger price lower 8620.73, trigger price upper 8570.77, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:58.662, type Client9, quantity BUY, action's name 8, trigger type ^FCHI, trigger price LIMIT_STOP, trigger price lower 8188.9, trigger price upper 7839.22, expiration date 8629.13, 
+date 2026-09-17, client's name 21:15:14.696, type Client17, quantity SELL, action's name 10, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:49.597, type Client13, quantity SELL, action's name 1, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:59.025, type Client4, quantity SELL, action's name 5, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:59.800, type Client10, quantity SELL, action's name 4, trigger type ^IBEX, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:09.396, type Client12, quantity SELL, action's name 4, trigger type ^XAX, trigger price LIMIT_STOP, trigger price lower 7782.91, trigger price upper 7723.95, expiration date 8066.36, 
+date 2026-09-17, client's name 21:15:11.476, type Client7, quantity SELL, action's name 7, trigger type ^N225, trigger price LIMIT_STOP, trigger price lower 57228.75, trigger price upper 52514.35, expiration date 58556.21, 
+date 2026-09-17, client's name 21:14:57.888, type Client15, quantity SELL, action's name 7, trigger type ^SSMI, trigger price LIMIT_STOP, trigger price lower 12827.49, trigger price upper 12242.16, expiration date 13468.96, 
+date 2026-09-17, client's name 21:14:53.467, type Client16, quantity SELL, action's name 8, trigger type ^AEX, trigger price LIMIT, trigger price lower 1168.02, trigger price upper 1166.32, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:54.058, type Client10, quantity SELL, action's name 6, trigger type ^IBEX, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:54.755, type Client8, quantity SELL, action's name 4, trigger type ^DJI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:59.674, type Client13, quantity SELL, action's name 3, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:02.476, type Client8, quantity SELL, action's name 5, trigger type ^DJI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:56.032, type Client1, quantity SELL, action's name 4, trigger type ^DJI, trigger price LIMIT, trigger price lower 50320.61, trigger price upper 48633.58, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:14.654, type Client4, quantity SELL, action's name 4, trigger type ^N225, trigger price LIMIT, trigger price lower 62539.14, trigger price upper 57634.32, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:07.943, type Client16, quantity SELL, action's name 1, trigger type ^AEX, trigger price LIMIT_STOP, trigger price lower 973.2, trigger price upper 942.72, expiration date 1064.74, 
+date 2026-09-17, client's name 21:14:52.078, type Client4, quantity SELL, action's name 1, trigger type ^FCHI, trigger price LIMIT_STOP, trigger price lower 8364.67, trigger price upper 8266.23, expiration date 9074.03, 
+date 2026-09-17, client's name 21:14:49.298, type Client17, quantity SELL, action's name 2, trigger type ^VIX, trigger price LIMIT_STOP, trigger price lower 14.38, trigger price upper 14.11, expiration date 14.98, 
+date 2026-09-17, client's name 21:15:01.731, type Client14, quantity SELL, action's name 8, trigger type ^JKSE, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:03.531, type Client17, quantity SELL, action's name 5, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:15.853, type Client15, quantity SELL, action's name 4, trigger type ^STOXX50E, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+
+-- Actions (name quantity last_price time) --
+action's name ^AEX, quantity 100000, last_price 1100.80004882813, time 1900-01-00
+action's name ^DJI, quantity 100000, last_price 51808.2109375, time 1900-01-00
+action's name ^FCHI, quantity 100000, last_price 8188.9, time 207573-10-15
+action's name ^FTSE, quantity 100000, last_price 10816.1396484375, time 1900-01-00
+action's name ^GDAXI, quantity 100000, last_price 25716.7109375, time 1900-01-00
+action's name ^GSPC, quantity 100000, last_price 7636.419921875, time 1900-01-00
+action's name ^HSI, quantity 100000, last_price 24713.779296875, time 1900-01-00
+action's name ^IBEX, quantity 100000, last_price 21201.77, time 207586-03-04
+action's name ^IXIC, quantity 100000, last_price 26395.384765625, time 1900-01-00
+action's name ^JKSE, quantity 100000, last_price 6436.85302734375, time 1900-01-00
+action's name ^KLSE, quantity 100000, last_price 1679.2099609375, time 207586-03-09
+action's name ^KS11, quantity 100000, last_price 6717.97021484375, time 1900-01-00
+action's name ^N100, quantity 100000, last_price 1899.27001953125, time 1900-01-00
+action's name ^N225, quantity 100000, last_price 63923.0, time 1900-01-00
+action's name ^NSEI, quantity 100000, last_price 23217.599609375, time 1900-01-00
+action's name ^NYA, quantity 100000, last_price 24112.544921875, time 1900-01-00
+action's name ^RUT, quantity 100000, last_price 2539.33, time 207569-04-26
+action's name ^SSMI, quantity 100000, last_price 14782.16, time 207539-04-00
+action's name ^STI, quantity 100000, last_price 5661.6, time 207586-02-26
+action's name ^STOXX50E, quantity 100000, last_price 6002.24, time 207572-03-06
+action's name ^TWII, quantity 100000, last_price 45848.8984375, time 1900-01-00
+action's name ^VIX, quantity 100000, last_price 15.5500001907349, time 1900-01-00
+action's name ^XAX, quantity 100000, last_price 7649.86, time 207563-06-13
+
+-- Clients (20) --
+  Client1 (id 1):
+    Portfolio value: 1440794.6044969559
+    Cash balance: 100000
+    Holdings:
+    Action: ^DJI, quantity: 23, last_price: 51808.2109375
+    Action: ^HSI, quantity: 10, last_price: 24713.779296875
+    Action: ^KLSE, quantity: 1, last_price: 1679.2099609375
+    Action: ^VIX, quantity: 25, last_price: 15.5500001907349
+    Completed orders:
+date 2026-09-17, client's name 21:15:08.987, type Client1, quantity BUY, action's name 7, trigger type ^RUT, trigger price LIMIT_STOP, trigger price lower 2539.33, trigger price upper 2737.16, expiration date 3127.02, 
+date 2026-09-17, client's name 21:14:57.485, type Client1, quantity BUY, action's name 3, trigger type ^SSMI, trigger price LIMIT, trigger price lower 14883.06, trigger price upper 13835.87, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:50.390, type Client1, quantity BUY, action's name 1, trigger type ^RUT, trigger price LIMIT_STOP, trigger price lower 2928.79, trigger price upper 2737.16, expiration date 3127.02, 
+date 2026-09-17, client's name 21:14:56.032, type Client1, quantity SELL, action's name 4, trigger type ^DJI, trigger price LIMIT, trigger price lower 50320.61, trigger price upper 48633.58, expiration date 65535.0, 
+
+  Client2 (id 2):
+    Portfolio value: 202698.46091796877
+    Cash balance: 80168.19921875
+    Holdings:
+    Action: ^IBEX, quantity: 1, last_price: 21201.77
+    Action: ^N100, quantity: 47, last_price: 1899.27001953125
+    Action: ^N225, quantity: 1, last_price: 63923
+    Action: ^STI, quantity: 5, last_price: 5661.6
+    Completed orders:
+date 2026-09-17, client's name 21:14:54.061, type Client2, quantity BUY, action's name 1, trigger type ^IBEX, trigger price MARKET, trigger price lower 19831.80078125, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:15:08.637, type Client2, quantity BUY, action's name 1, trigger type ^AEX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:05.237, type Client2, quantity BUY, action's name 5, trigger type ^FTSE, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client3 (id 3):
+    Portfolio value: 181976.227265625
+    Cash balance: 142219.57195312498
+    Holdings:
+    Action: ^FTSE, quantity: 5, last_price: 10816.1396484375
+    Action: ^KLSE, quantity: 25, last_price: 1679.2099609375
+    Action: ^RUT, quantity: 0, last_price: 2539.33
+    Action: ^SSMI, quantity: 5, last_price: 14782.16
+    Action: ^STOXX50E, quantity: 2, last_price: 6002.24
+    Completed orders:
+date 2026-09-17, client's name 21:15:08.987, type Client3, quantity SELL, action's name 7, trigger type ^RUT, trigger price LIMIT, trigger price lower 2539.33, trigger price upper 2532.44, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:55.386, type Client3, quantity SELL, action's name 3, trigger type ^RUT, trigger price MARKET, trigger price lower 2883.0751953125, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:08.978, type Client3, quantity SELL, action's name 3, trigger type ^RUT, trigger price LIMIT, trigger price lower 2539.33, trigger price upper 2532.44, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:55.379, type Client3, quantity SELL, action's name 7, trigger type ^RUT, trigger price MARKET, trigger price lower 2883.0751953125, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:10.052, type Client3, quantity BUY, action's name 2, trigger type ^STOXX50E, trigger price LIMIT, trigger price lower 6002.24, trigger price upper 5930.76, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:57.650, type Client3, quantity BUY, action's name 5, trigger type ^KLSE, trigger price LIMIT_STOP, trigger price lower 1765.49, trigger price upper 1617.74, expiration date 1917.43, 
+date 2026-09-17, client's name 21:15:03.211, type Client3, quantity BUY, action's name 5, trigger type ^STOXX50E, trigger price LIMIT, trigger price lower 6002.24, trigger price upper 5930.76, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:49.466, type Client3, quantity BUY, action's name 3, trigger type ^VIX, trigger price LIMIT, trigger price lower 15.97, trigger price upper 14.85, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:12.150, type Client3, quantity BUY, action's name 7, trigger type ^KLSE, trigger price LIMIT_STOP, trigger price lower 1585.95, trigger price upper 1487.07, expiration date 1679.39, 
+date 2026-09-17, client's name 21:14:48.357, type Client3, quantity BUY, action's name 3, trigger type ^GDAXI, trigger price STOP, trigger price lower 25895.55, trigger price upper 0.0, expiration date 27815.06, 
+
+  Client4 (id 4):
+    Portfolio value: 1760520.510703125
+    Cash balance: 128940.0546875
+    Holdings:
+    Action: ^FCHI, quantity: 8, last_price: 8188.9
+    Action: ^HSI, quantity: 7, last_price: 24713.779296875
+    Action: ^N225, quantity: 5, last_price: 63923
+    Action: ^RUT, quantity: 7, last_price: 2539.33
+    Action: ^TWII, quantity: 22, last_price: 45848.8984375
+    Action: ^XAX, quantity: 23, last_price: 7649.86
+    Completed orders:
+date 2026-09-17, client's name 21:15:03.493, type Client4, quantity SELL, action's name 6, trigger type ^FCHI, trigger price MARKET, trigger price lower 8186.93017578125, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:55.379, type Client4, quantity BUY, action's name 7, trigger type ^RUT, trigger price MARKET, trigger price lower 2883.0751953125, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:57.834, type Client4, quantity BUY, action's name 2, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:59.025, type Client4, quantity SELL, action's name 5, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:14.654, type Client4, quantity SELL, action's name 4, trigger type ^N225, trigger price LIMIT, trigger price lower 62539.14, trigger price upper 57634.32, expiration date 65535.0, 
+
+  Client5 (id 5):
+    Portfolio value: 151857.7484375
+    Cash balance: 100000
+    Holdings:
+    Action: ^IBEX, quantity: 5, last_price: 21201.77
+    Action: ^TWII, quantity: 1, last_price: 45848.8984375
+    Pending orders:
+date 2026-09-17, client's name 21:14:47.876, type Client5, quantity BUY, action's name 6, trigger type ^GSPC, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:46.689, type Client5, quantity BUY, action's name 8, trigger type ^RUT, trigger price LIMIT, trigger price lower 2666.03, trigger price upper 2413.25, expiration date 65535.0, 
+
+  Client6 (id 6):
+    Portfolio value: 221787.14
+    Cash balance: 68950.62441406249
+    Holdings:
+    Action: ^N225, quantity: 3, last_price: 63923
+    Action: ^RUT, quantity: 6, last_price: 2539.33
+    Action: ^SSMI, quantity: 1, last_price: 14782.16
+    Completed orders:
+date 2026-09-17, client's name 21:14:57.801, type Client6, quantity BUY, action's name 1, trigger type ^SSMI, trigger price LIMIT, trigger price lower 14782.16, trigger price upper 14381.4, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:08.978, type Client6, quantity BUY, action's name 3, trigger type ^RUT, trigger price MARKET, trigger price lower 2539.33, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:55.386, type Client6, quantity BUY, action's name 3, trigger type ^RUT, trigger price MARKET, trigger price lower 2883.0751953125, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:56.690, type Client6, quantity BUY, action's name 2, trigger type ^RUT, trigger price LIMIT, trigger price lower 2682.31, trigger price upper 2606.94, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:06.607, type Client6, quantity BUY, action's name 1, trigger type ^GSPC, trigger price LIMIT, trigger price lower 7066.29, trigger price upper 6926.22, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:49.112, type Client6, quantity BUY, action's name 3, trigger type ^SSMI, trigger price LIMIT, trigger price lower 14782.16, trigger price upper 14381.4, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:50.159, type Client6, quantity BUY, action's name 7, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client7 (id 7):
+    Portfolio value: 1116288.50125
+    Cash balance: 116984.8
+    Holdings:
+    Action: ^GSPC, quantity: 15, last_price: 7636.419921875
+    Action: ^IXIC, quantity: 11, last_price: 26395.384765625
+    Action: ^N225, quantity: 9, last_price: 63923
+    Action: ^RUT, quantity: 9, last_price: 2539.33
+    Action: ^STI, quantity: 20, last_price: 5661.6
+    Completed orders:
+date 2026-09-17, client's name 21:15:15.249, type Client7, quantity SELL, action's name 2, trigger type ^STI, trigger price LIMIT, trigger price lower 5661.6, trigger price upper 5445.1, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:15.240, type Client7, quantity SELL, action's name 1, trigger type ^STI, trigger price LIMIT, trigger price lower 5661.6, trigger price upper 5445.1, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:53.702, type Client7, quantity BUY, action's name 2, trigger type ^VIX, trigger price LIMIT, trigger price lower 16.2, trigger price upper 15.18, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:01.546, type Client7, quantity BUY, action's name 8, trigger type ^KLSE, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:47.049, type Client7, quantity BUY, action's name 9, trigger type ^KS11, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client8 (id 8):
+    Portfolio value: 565908.6784397889
+    Cash balance: 185837.02
+    Holdings:
+    Action: ^DJI, quantity: 9, last_price: 51808.2109375
+    Action: ^VIX, quantity: 12, last_price: 15.5500001907349
+    Action: ^XAX, quantity: 13, last_price: 7649.86
+    Completed orders:
+date 2026-09-17, client's name 21:15:06.804, type Client8, quantity SELL, action's name 3, trigger type ^XAX, trigger price LIMIT, trigger price lower 7649.86, trigger price upper 7598.26, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:58.317, type Client8, quantity SELL, action's name 2, trigger type ^XAX, trigger price LIMIT, trigger price lower 7860.93, trigger price upper 7192.88, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:58.325, type Client8, quantity SELL, action's name 6, trigger type ^XAX, trigger price LIMIT, trigger price lower 7860.93, trigger price upper 7192.88, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:58.317, type Client8, quantity BUY, action's name 2, trigger type ^XAX, trigger price MARKET, trigger price lower 7860.93, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:52.460, type Client8, quantity BUY, action's name 6, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:48.222, type Client8, quantity BUY, action's name 7, trigger type ^RUT, trigger price LIMIT, trigger price lower 2847.73, trigger price upper 2692.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:54.755, type Client8, quantity SELL, action's name 4, trigger type ^DJI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:02.476, type Client8, quantity SELL, action's name 5, trigger type ^DJI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client9 (id 9):
+    Portfolio value: 183290.1
+    Cash balance: 151169.92070312498
+    Holdings:
+    Action: ^FCHI, quantity: 21, last_price: 8188.9
+    Action: ^STI, quantity: 2, last_price: 5661.6
+    Completed orders:
+date 2026-09-17, client's name 21:14:53.107, type Client9, quantity SELL, action's name 3, trigger type ^FCHI, trigger price MARKET, trigger price lower 8186.93017578125, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:10.039, type Client9, quantity BUY, action's name 1, trigger type ^STOXX50E, trigger price MARKET, trigger price lower 6322.89990234375, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:10.650, type Client9, quantity BUY, action's name 1, trigger type ^FCHI, trigger price LIMIT_STOP, trigger price lower 8188.9, trigger price upper 7839.22, expiration date 8629.13, 
+date 2026-09-17, client's name 21:15:10.646, type Client9, quantity SELL, action's name 4, trigger type ^FCHI, trigger price MARKET, trigger price lower 7436.35, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:10.650, type Client9, quantity SELL, action's name 1, trigger type ^FCHI, trigger price MARKET, trigger price lower 8188.9, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:15.249, type Client9, quantity BUY, action's name 2, trigger type ^STI, trigger price MARKET, trigger price lower 5661.6, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:53.245, type Client9, quantity SELL, action's name 1, trigger type ^FCHI, trigger price MARKET, trigger price lower 8186.93017578125, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:15:05.264, type Client9, quantity BUY, action's name 6, trigger type ^RUT, trigger price STOP, trigger price lower 2902.15, trigger price upper 0.0, expiration date 3066.19, 
+date 2026-09-17, client's name 21:15:02.987, type Client9, quantity BUY, action's name 5, trigger type ^VIX, trigger price LIMIT, trigger price lower 15.9, trigger price upper 14.36, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:54.290, type Client9, quantity BUY, action's name 4, trigger type ^KLSE, trigger price LIMIT, trigger price lower 1429.98, trigger price upper 1345.78, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:57.595, type Client9, quantity BUY, action's name 2, trigger type ^STI, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:58.662, type Client9, quantity BUY, action's name 8, trigger type ^FCHI, trigger price LIMIT_STOP, trigger price lower 8188.9, trigger price upper 7839.22, expiration date 8629.13, 
+
+  Client10 (id 10):
+    Portfolio value: 399665.44001953123
+    Cash balance: 289421.58078125
+    Holdings:
+    Action: ^IBEX, quantity: 9, last_price: 21201.77
+    Action: ^N100, quantity: 1, last_price: 1899.27001953125
+    Action: ^SSMI, quantity: 14, last_price: 14782.16
+    Completed orders:
+date 2026-09-17, client's name 21:15:15.258, type Client10, quantity SELL, action's name 3, trigger type ^IBEX, trigger price MARKET, trigger price lower 21201.77, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:57.485, type Client10, quantity SELL, action's name 3, trigger type ^SSMI, trigger price MARKET, trigger price lower 14883.06, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:57.801, type Client10, quantity SELL, action's name 1, trigger type ^SSMI, trigger price MARKET, trigger price lower 14782.16, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:57.478, type Client10, quantity SELL, action's name 3, trigger type ^SSMI, trigger price MARKET, trigger price lower 15517.71, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:54.061, type Client10, quantity SELL, action's name 1, trigger type ^IBEX, trigger price MARKET, trigger price lower 19831.80078125, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:47.745, type Client10, quantity BUY, action's name 8, trigger type ^AEX, trigger price STOP, trigger price lower 1207.66, trigger price upper 0.0, expiration date 1286.58, 
+date 2026-09-17, client's name 21:14:59.800, type Client10, quantity SELL, action's name 4, trigger type ^IBEX, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:54.058, type Client10, quantity SELL, action's name 6, trigger type ^IBEX, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:48.761, type Client10, quantity BUY, action's name 9, trigger type ^GSPC, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client11 (id 11):
+    Portfolio value: 38249.299999999996
+    Cash balance: 100000
+    Holdings:
+    Action: ^XAX, quantity: 5, last_price: 7649.86
+    Pending orders:
+date 2026-09-17, client's name 21:14:58.010, type Client11, quantity BUY, action's name 4, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:08.050, type Client11, quantity BUY, action's name 3, trigger type ^AEX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client12 (id 12):
+    Portfolio value: 830255.7613476563
+    Cash balance: 92563.65
+    Holdings:
+    Action: ^FCHI, quantity: 1, last_price: 8188.9
+    Action: ^FTSE, quantity: 25, last_price: 10816.1396484375
+    Action: ^N100, quantity: 7, last_price: 1899.27001953125
+    Action: ^SSMI, quantity: 24, last_price: 14782.16
+    Action: ^XAX, quantity: 24, last_price: 7649.86
+    Completed orders:
+date 2026-09-17, client's name 21:15:10.009, type Client12, quantity BUY, action's name 1, trigger type ^FCHI, trigger price MARKET, trigger price lower 7436.35, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:10.646, type Client12, quantity BUY, action's name 4, trigger type ^FCHI, trigger price MARKET, trigger price lower 7436.35, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:15:01.408, type Client12, quantity BUY, action's name 1, trigger type ^STI, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client13 (id 13):
+    Portfolio value: 390888.30898475647
+    Cash balance: 105037.6298828125
+    Holdings:
+    Action: ^HSI, quantity: 15, last_price: 24713.779296875
+    Action: ^KLSE, quantity: 12, last_price: 1679.2099609375
+    Action: ^VIX, quantity: 2, last_price: 15.5500001907349
+    Completed orders:
+date 2026-09-17, client's name 21:15:15.263, type Client13, quantity SELL, action's name 3, trigger type ^KLSE, trigger price MARKET, trigger price lower 1679.2099609375, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:49.597, type Client13, quantity SELL, action's name 1, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:59.674, type Client13, quantity SELL, action's name 3, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client14 (id 14):
+    Portfolio value: 533177.4717773438
+    Cash balance: 100000
+    Holdings:
+    Action: ^FCHI, quantity: 6, last_price: 8188.9
+    Action: ^GDAXI, quantity: 13, last_price: 25716.7109375
+    Action: ^JKSE, quantity: 23, last_price: 6436.85302734375
+    Action: ^KLSE, quantity: 1, last_price: 1679.2099609375
+    Pending orders:
+date 2026-09-17, client's name 21:14:50.717, type Client14, quantity BUY, action's name 3, trigger type ^KS11, trigger price LIMIT, trigger price lower 7048.49, trigger price upper 6459.9, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:51.768, type Client14, quantity BUY, action's name 2, trigger type ^TWII, trigger price LIMIT, trigger price lower 39353.77, trigger price upper 36496.9, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:01.731, type Client14, quantity SELL, action's name 8, trigger type ^JKSE, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client15 (id 15):
+    Portfolio value: 289778.08043945313
+    Cash balance: 168164.15990234376
+    Holdings:
+    Action: ^AEX, quantity: 9, last_price: 1100.80004882813
+    Action: ^SSMI, quantity: 10, last_price: 14782.16
+    Action: ^STOXX50E, quantity: 22, last_price: 6002.24
+    Completed orders:
+date 2026-09-17, client's name 21:15:10.046, type Client15, quantity SELL, action's name 7, trigger type ^STOXX50E, trigger price MARKET, trigger price lower 7119.54, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:10.039, type Client15, quantity SELL, action's name 1, trigger type ^STOXX50E, trigger price MARKET, trigger price lower 6322.89990234375, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:10.052, type Client15, quantity SELL, action's name 2, trigger type ^STOXX50E, trigger price MARKET, trigger price lower 6002.24, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:15:13.527, type Client15, quantity BUY, action's name 3, trigger type ^RUT, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:48.943, type Client15, quantity BUY, action's name 3, trigger type ^AEX, trigger price STOP, trigger price lower 1265.86, trigger price upper 0.0, expiration date 1296.2, 
+date 2026-09-17, client's name 21:14:55.712, type Client15, quantity BUY, action's name 5, trigger type ^STOXX50E, trigger price LIMIT, trigger price lower 5662.2, trigger price upper 5580.41, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:15.853, type Client15, quantity SELL, action's name 4, trigger type ^STOXX50E, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client16 (id 16):
+    Portfolio value: 915060.1914746095
+    Cash balance: 96641.580078125
+    Holdings:
+    Action: ^AEX, quantity: 19, last_price: 1100.80004882813
+    Action: ^KLSE, quantity: 12, last_price: 1679.2099609375
+    Action: ^NSEI, quantity: 23, last_price: 23217.599609375
+    Action: ^SSMI, quantity: 23, last_price: 14782.16
+    Completed orders:
+date 2026-09-17, client's name 21:15:15.263, type Client16, quantity BUY, action's name 3, trigger type ^KLSE, trigger price MARKET, trigger price lower 1679.2099609375, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:00.334, type Client16, quantity SELL, action's name 7, trigger type ^KLSE, trigger price MARKET, trigger price lower 1679.2099609375, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:00.327, type Client16, quantity SELL, action's name 1, trigger type ^KLSE, trigger price MARKET, trigger price lower 1679.2099609375, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:00.334, type Client16, quantity BUY, action's name 7, trigger type ^KLSE, trigger price MARKET, trigger price lower 1679.2099609375, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:06.804, type Client16, quantity BUY, action's name 3, trigger type ^XAX, trigger price MARKET, trigger price lower 7649.86, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:15:06.800, type Client16, quantity BUY, action's name 6, trigger type ^XAX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:09.115, type Client16, quantity BUY, action's name 5, trigger type ^N100, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:05.704, type Client16, quantity BUY, action's name 4, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client17 (id 17):
+    Portfolio value: 502191.6088914871
+    Cash balance: 100000
+    Holdings:
+    Action: ^HSI, quantity: 17, last_price: 24713.779296875
+    Action: ^N100, quantity: 43, last_price: 1899.27001953125
+    Action: ^VIX, quantity: 25, last_price: 15.5500001907349
+    Completed orders:
+date 2026-09-17, client's name 21:15:10.046, type Client17, quantity BUY, action's name 7, trigger type ^STOXX50E, trigger price STOP, trigger price lower 7119.54, trigger price upper 0.0, expiration date 7132.24, 
+date 2026-09-17, client's name 21:14:57.478, type Client17, quantity BUY, action's name 3, trigger type ^SSMI, trigger price STOP, trigger price lower 15517.71, trigger price upper 0.0, expiration date 15751.9, 
+    Pending orders:
+date 2026-09-17, client's name 21:15:14.696, type Client17, quantity SELL, action's name 10, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:01.426, type Client17, quantity BUY, action's name 10, trigger type ^KLSE, trigger price LIMIT, trigger price lower 1564.64, trigger price upper 1409.7, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:03.531, type Client17, quantity SELL, action's name 5, trigger type ^HSI, trigger price MARKET, trigger price lower 0.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client18 (id 18):
+    Portfolio value: 243982.9875
+    Cash balance: 100000
+    Holdings:
+    Action: ^GDAXI, quantity: 8, last_price: 25716.7109375
+    Action: ^XAX, quantity: 5, last_price: 7649.86
+    Completed orders:
+date 2026-09-17, client's name 21:15:15.258, type Client18, quantity BUY, action's name 3, trigger type ^IBEX, trigger price LIMIT_STOP, trigger price lower 21201.77, trigger price upper 19711.07, expiration date 21325.88, 
+date 2026-09-17, client's name 21:14:58.325, type Client18, quantity BUY, action's name 6, trigger type ^XAX, trigger price LIMIT, trigger price lower 7860.93, trigger price upper 8555.75, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:15:07.303, type Client18, quantity BUY, action's name 7, trigger type ^N100, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:56.306, type Client18, quantity BUY, action's name 7, trigger type ^N100, trigger price LIMIT, trigger price lower 1952.52, trigger price upper 1860.11, expiration date 65535.0, 
+
+  Client19 (id 19):
+    Portfolio value: 348836.99462890625
+    Cash balance: 91813.06982421875
+    Holdings:
+    Action: ^FCHI, quantity: 20, last_price: 8188.9
+    Action: ^GSPC, quantity: 4, last_price: 7636.419921875
+    Action: ^KS11, quantity: 23, last_price: 6717.97021484375
+    Completed orders:
+date 2026-09-17, client's name 21:15:03.493, type Client19, quantity BUY, action's name 6, trigger type ^FCHI, trigger price MARKET, trigger price lower 8186.93017578125, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:53.245, type Client19, quantity BUY, action's name 1, trigger type ^FCHI, trigger price MARKET, trigger price lower 8186.93017578125, trigger price upper 0.0, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:15:05.773, type Client19, quantity BUY, action's name 2, trigger type ^VIX, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:01.118, type Client19, quantity BUY, action's name 1, trigger type ^SSMI, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+  Client20 (id 20):
+    Portfolio value: 956266.4068359375
+    Cash balance: 75534.74951171875
+    Holdings:
+    Action: ^DJI, quantity: 18, last_price: 51808.2109375
+    Action: ^FCHI, quantity: 2, last_price: 8188.9
+    Action: ^KLSE, quantity: 1, last_price: 1679.2099609375
+    Action: ^STI, quantity: 1, last_price: 5661.6
+    Completed orders:
+date 2026-09-17, client's name 21:14:53.107, type Client20, quantity BUY, action's name 3, trigger type ^FCHI, trigger price MARKET, trigger price lower 8186.93017578125, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:00.327, type Client20, quantity BUY, action's name 1, trigger type ^KLSE, trigger price MARKET, trigger price lower 1679.2099609375, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:15.240, type Client20, quantity BUY, action's name 1, trigger type ^STI, trigger price MARKET, trigger price lower 5661.6, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:10.009, type Client20, quantity SELL, action's name 1, trigger type ^FCHI, trigger price LIMIT, trigger price lower 7436.35, trigger price upper 7074.3, expiration date 65535.0, 
+    Pending orders:
+date 2026-09-17, client's name 21:14:56.720, type Client20, quantity BUY, action's name 5, trigger type ^FCHI, trigger price LIMIT, trigger price lower 7655.12, trigger price upper 7418.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:14:57.933, type Client20, quantity BUY, action's name 1, trigger type ^GSPC, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:05.677, type Client20, quantity BUY, action's name 2, trigger type ^GSPC, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+date 2026-09-17, client's name 21:15:15.447, type Client20, quantity BUY, action's name 2, trigger type ^N100, trigger price MARKET, trigger price lower 65535.0, trigger price upper 0.0, expiration date 65535.0, 
+
+================ End of summary ================

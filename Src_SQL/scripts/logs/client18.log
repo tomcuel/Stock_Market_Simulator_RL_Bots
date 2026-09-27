@@ -1,0 +1,87 @@
+Client launched...
+Serveur authentification response: AUTHENTIFICATION_SUCCESS 18
+Connected to the server !
+Enter one of the following commands:
+1. Place an order:
+   [BUY/SELL] [quantity] [action_id] [MARKET/LIMIT/STOP/LIMIT_STOP] [price] [trigger_price_lower] [trigger_price_upper] [validity_date: YYYY-MM-DD] [validity_time: HH:MM:SS]
+   Notes:
+     - For MARKET:        do NOT provide price, trigger_price_lower or trigger_price_upper
+     - For LIMIT:         provide [price] and [trigger_price_lower] only
+     - For STOP:          provide [price] and [trigger_price_upper] only
+     - For LIMIT_STOP:    provide [price], [trigger_price_lower] and [trigger_price_upper]
+
+2. Modify client balance:
+   amount [value] [deposit/withdraw]
+
+3. Display information:
+   display [portfolio | pending_orders | completed_orders | market | action_name]
+
+4. Disconnect from server:
+   exit
+
+> > > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Order created with ID: 869273360 for client 18 to BUY 6 actions of 23 at the price of 9325.75$ at time 2026-09-17 21:14:51.802 with trigger type LIMIT and trigger price lower 8555.75 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000
+> 
+Server: Order 869273360 is waiting for its trigger condition to be reached …
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Order created with ID: 3280356904 for client 18 to BUY 7 actions of 13 at the price of 1952.52$ at time 2026-09-17 21:14:56.306 with trigger type LIMIT and trigger price lower 1860.11 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000
+> 
+Server: Order 3280356904 is waiting for its trigger condition to be reached …
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> 
+Server: TRANSACTION: bought 6 of action 23 at 7860.93$ at time 2026-09-17 21:14:58.325
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Order created with ID: 1224541146 for client 18 to BUY 7 actions of 13 at the price of 65535$ at time 2026-09-17 21:15:07.303 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000
+> 
+Server: Order 1224541146 is being accumulated …
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Error: Insufficient balance for buying
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> > 
+Server: Order created with ID: 3649112793 for client 18 to BUY 3 actions of 8 at the price of 21201.77$ at time 2026-09-17 21:15:14.861 with trigger type LIMIT_STOP and trigger price lower 19711.07 and trigger price upper 21325.88 until validity date 2076-03-01 00:00:00.000
+> 
+Server: Order 3649112793 is waiting for its trigger condition to be reached …
+> 
+Server: TRANSACTION: bought 3 of action 8 at 21201.77$ at time 2026-09-17 21:15:15.258
+> > 
+Server: Error: Failed to sell action, client does not have enough shares
+> 
+Connexion closed by the server.
+
+Connection closed by the server.

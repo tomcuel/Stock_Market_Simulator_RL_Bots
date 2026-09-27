@@ -1,0 +1,1319 @@
+Simulation summary written to ../Data/simulation_summary_before.txt
+Waiting for connexion on the port 8080...
+Pre-open phase, accumulating orders …
+Open phase, calculating equilibrium price …
+Continuous trading phase, running stock market exchange …
+Client input : Authentification Request: Client2 vrFpmAt3COYq
+Client input : Authentification Request: Client1 vDvi8HiJNy7Z
+Client input : 2 CLIENT_CONNECTED2 BUY 2 2 MARKET
+Client input : 1 CLIENT_CONNECTED1 BUY 5 5 MARKET
+Client input : Authentification Request: Client3 LvR02GKbea2J
+Client input : 3 CLIENT_CONNECTED3 BUY 6 8 LIMIT_STOP 19677.43 18852.65 20869.09
+Client input : Authentification Request: Client4 pgtGhWWmPagW
+Client input : 4 CLIENT_CONNECTED4 SELL 2 8 LIMIT 19706.14 17913.08
+Client input : Authentification Request: Client5 tiSCHhBssshw
+Client input : 5 CLIENT_CONNECTED5 SELL 6 20 LIMIT 7162.17 6975.88
+Client input : Authentification Request: Client6 eqskygpn9I4n
+Client input : 6 CLIENT_CONNECTED6 BUY 8 19 LIMIT 4852.35 4437.75
+Client input : 1 SELL 7 15 LIMIT 20388.72 18407.64
+Client input : Authentification Request: Client7 PzpYz7IdhbCo
+Client input : 7 CLIENT_CONNECTED7 BUY 7 11 LIMIT 1463.82 1395.88
+Client input : 2 SELL 5 6 LIMIT 7881.09 7551.03
+Client input : 3 SELL 9 16 MARKET
+Client input : Authentification Request: Client8 KtGIbnfIGtAR
+Client input : 8 CLIENT_CONNECTED8 SELL 7 8 MARKET
+Client input : Authentification Request: Client9 LcH5vnM7Dlfo
+Client input : 9 CLIENT_CONNECTED9 SELL 5 15 MARKET
+Client input : 4 SELL 9 1 LIMIT_STOP 1200.02 1171.84 1226.65
+Client input : Authentification Request: Client10 WWjKHnyI18HQ
+Client input : 10 CLIENT_CONNECTED10 BUY 7 19 MARKET
+Client input : 5 BUY 8 17 LIMIT 2666.03 2413.25
+Client input : 6 SELL 6 19 MARKET
+Client input : Authentification Request: Client11 OD1JwMYhjrhD
+Client input : 11 CLIENT_CONNECTED11 SELL 8 15 LIMIT 23826.26 21883.61
+Client input : 1 SELL 10 13 LIMIT 1615.58 1525.98
+Client input : 7 BUY 9 12 MARKET
+Client input : Authentification Request: Client12 RjJ1NWY1VQKr
+Client input : 12 CLIENT_CONNECTED12 SELL 9 16 LIMIT 21527.2 19397.86
+Client input : 8 BUY 2 23 MARKET
+Client input : 3 SELL 9 23 STOP 8583.76 9132.32
+Client input : 2 SELL 7 6 STOP 8461.71 8892.47
+Client input : Authentification Request: Client13 ufKwPv4mSNjE
+Client input : 13 CLIENT_CONNECTED13 SELL 3 9 LIMIT 27711.34 27348.96
+Client input : 9 BUY 6 22 LIMIT 17.41 15.81
+Client input : Authentification Request: Client14 76OQwFDLEqT9
+Client input : 14 CLIENT_CONNECTED14 BUY 5 4 LIMIT 10138.02 9197.85
+Client input : 4 SELL 5 18 LIMIT 15315.0 14184.32
+Client input : 10 BUY 8 1 STOP 1207.66 1286.58
+Client input : Authentification Request: Client15 7EGaDhIhkcxm
+Client input : 15 CLIENT_CONNECTED15 BUY 9 7 LIMIT 22178.24 22147.94
+Client input : 5 BUY 6 6 MARKET
+Client input : 6 SELL 8 1 STOP 1176.7 1225.42
+Client input : 11 SELL 10 17 LIMIT 2532.02 2355.64
+Client input : Authentification Request: Client16 zV71XdW9ypfu
+Client input : 16 CLIENT_CONNECTED16 SELL 8 12 MARKET
+Client input : 7 SELL 7 3 MARKET
+Client input : 1 BUY 6 8 MARKET
+Client input : 12 SELL 5 12 LIMIT 6637.79 6547.74
+Client input : Authentification Request: Client17 IEiLe5gbhZ9q
+Client input : 17 CLIENT_CONNECTED17 SELL 5 17 LIMIT_STOP 2701.12 2637.94 2891.34
+Client input : 8 BUY 7 17 LIMIT 2847.73 2692.0
+Client input : 3 BUY 3 5 STOP 25895.55 27815.06
+Client input : Authentification Request: Client18 iSLUiDFgV1xm
+Client input : 18 CLIENT_CONNECTED18 BUY 8 6 MARKET
+Client input : 2 SELL 9 12 MARKET
+Client input : 13 BUY 3 21 MARKET
+Client input : 9 BUY 7 18 MARKET
+Client input : 14 SELL 8 15 LIMIT 22497.9 21997.36
+Client input : Authentification Request: Client19 0y1vBBSVsTFq
+Client input : 19 CLIENT_CONNECTED19 BUY 9 22 MARKET
+Client input : 4 SELL 5 1 MARKET
+Client input : 10 BUY 9 6 MARKET
+Client input : Authentification Request: Client20 RdWZ2XSssgTX
+Client input : 20 CLIENT_CONNECTED20 BUY 5 22 LIMIT 17.18 15.64
+Client input : 15 BUY 3 1 STOP 1265.86 1296.2
+Client input : 11 BUY 10 3 LIMIT_STOP 9328.41 9005.57 9902.63
+Client input : 5 SELL 9 8 MARKET
+Client input : 16 SELL 1 8 MARKET
+Client input : 6 BUY 4 18 LIMIT 14782.16 14381.4
+Client input : 7 SELL 1 3 STOP 7262.96 7425.1
+Client input : 1 BUY 7 1 LIMIT 1255.7 1221.28
+Client input : 17 SELL 2 22 LIMIT_STOP 14.38 14.11 14.98
+Client input : 8 BUY 7 16 MARKET
+Client input : 12 BUY 10 8 MARKET
+Client input : 3 BUY 3 22 LIMIT 15.97 14.85
+Client input : 13 SELL 1 7 MARKET
+Client input : 14 SELL 4 4 STOP 10217.98 11043.44
+Client input : 18 SELL 8 7 MARKET
+Client input : 2 BUY 6 2 MARKET
+Client input : 9 SELL 3 15 MARKET
+Client input : 19 SELL 6 7 LIMIT_STOP 23152.1 21180.14 23756.55
+Client input : 10 BUY 6 3 MARKET
+Client input : 4 SELL 6 10 MARKET
+Client input : 20 BUY 1 11 MARKET
+Client input : 15 SELL 6 11 MARKET
+Client input : 6 BUY 7 22 MARKET
+Client input : 11 BUY 9 6 MARKET
+Client input : 5 BUY 4 8 MARKET
+Client input : 16 SELL 4 22 LIMIT 13.26 12.33
+Client input : 7 BUY 10 21 LIMIT 39653.65 36564.96
+Client input : 8 BUY 5 8 LIMIT 19679.03 19504.2
+Client input : 1 BUY 8 17 LIMIT_STOP 2928.79 2737.16 3127.02
+Client input : 17 SELL 7 17 MARKET
+Client input : 12 SELL 3 15 MARKET
+Client input : 3 SELL 8 1 LIMIT 1239.55 1163.64
+Client input : 18 SELL 5 10 MARKET
+Client input : 14 BUY 3 12 LIMIT 7048.49 6459.9
+Client input : 2 SELL 7 11 STOP 1692.18 1787.03
+Client input : 13 BUY 5 22 STOP 13.61 14.69
+Client input : 10 SELL 7 5 MARKET
+Client input : 9 BUY 3 2 LIMIT 58395.57 56003.85
+Client input : 20 BUY 3 3 MARKET
+Client input : 4 SELL 7 20 LIMIT 5711.71 5411.04
+Client input : 19 SELL 6 9 LIMIT_STOP 29044.23 28385.8 31650.08
+Client input : 15 SELL 4 9 LIMIT_STOP 24070.22 22518.1 24824.51
+Client input : 6 SELL 7 3 STOP 8052.37 8127.89
+Client input : 5 SELL 3 6 LIMIT 6655.75 6401.45
+Client input : 11 BUY 4 2 LIMIT 56130.7 52349.14
+Client input : 16 BUY 10 11 MARKET
+Client input : 8 SELL 2 4 LIMIT_STOP 9398.43 9041.45 9752.94
+Client input : 7 BUY 5 18 MARKET
+Client input : 17 BUY 3 18 STOP 15517.71 15751.9
+Client input : 1 SELL 1 15 MARKET
+Client input : 12 BUY 10 7 STOP 21559.88 23040.93
+Client input : 14 BUY 2 21 LIMIT 39353.77 36496.9
+Client input : 18 BUY 6 23 LIMIT 9325.75 8555.75
+Client input : 2 BUY 1 8 MARKET
+Client input : 3 SELL 10 14 MARKET
+Client input : 13 SELL 7 9 LIMIT_STOP 28721.64 26586.78 31162.8
+Client input : 10 SELL 8 22 MARKET
+Client input : 19 BUY 2 1 LIMIT_STOP 973.29 920.3 1057.59
+Client input : 9 SELL 2 23 LIMIT_STOP 7879.9 7268.66 8504.77
+Client input : 20 SELL 7 19 MARKET
+Client input : 4 SELL 1 3 LIMIT_STOP 8364.67 8266.23 9074.03
+Client input : 15 SELL 4 10 LIMIT 7094.72 6732.62
+Client input : 6 SELL 2 7 LIMIT_STOP 25370.45 23343.03 27033.24
+Client input : 16 SELL 1 8 STOP 21662.1 23107.87
+Client input : 11 BUY 9 19 MARKET
+Client input : 5 BUY 3 15 MARKET
+Client input : 8 BUY 6 22 MARKET
+Client input : 7 BUY 10 18 MARKET
+Client input : 1 BUY 3 18 LIMIT 14883.06 13835.87
+Client input : 17 BUY 6 23 LIMIT 9637.0 9288.89
+Client input : 12 SELL 2 11 MARKET
+Client input : 14 SELL 10 13 LIMIT_STOP 1864.31 1791.14 2026.99
+Client input : 18 BUY 4 8 MARKET
+Client input : 10 SELL 3 10 MARKET
+Client input : 2 BUY 9 6 LIMIT 8778.87 8493.1
+Client input : 3 SELL 2 5 MARKET
+Client input : 13 SELL 6 16 STOP 25115.47 26761.17
+Client input : 9 SELL 4 3 MARKET
+Client input : 6 SELL 4 12 LIMIT 7009.34 6797.6
+Client input : 19 BUY 7 3 MARKET
+Client input : 4 BUY 7 17 MARKET
+Client input : 20 SELL 6 11 MARKET
+Client input : 15 SELL 8 15 LIMIT 26214.18 25285.07
+Client input : 16 SELL 8 1 LIMIT 1168.02 1166.32
+Client input : 5 BUY 4 1 LIMIT_STOP 990.45 907.89 1021.52
+Client input : 11 SELL 1 10 LIMIT 6354.45 5895.76
+Client input : 8 SELL 9 3 LIMIT_STOP 8387.19 7667.68 8441.18
+Client input : 7 BUY 2 22 LIMIT 16.2 15.18
+Client input : 12 BUY 2 2 LIMIT_STOP 50624.02 47808.02 53969.58
+Client input : 17 SELL 2 10 LIMIT 7129.59 6873.05
+Client input : 1 SELL 9 11 STOP 1765.0 1818.54
+Client input : 14 BUY 10 22 LIMIT 16.17 14.85
+Client input : 10 SELL 10 8 MARKET
+Client input : 18 BUY 8 12 MARKET
+Client input : 2 SELL 7 6 LIMIT 8567.9 8364.74
+Client input : 13 SELL 8 12 LIMIT 7218.62 6594.1
+Client input : 3 BUY 5 16 LIMIT_STOP 23650.75 22767.75 24362.7
+Client input : 9 BUY 4 11 LIMIT 1429.98 1345.78
+Client input : 19 SELL 7 19 MARKET
+Client input : 6 BUY 6 17 MARKET
+Client input : 4 SELL 8 10 MARKET
+Client input : 20 SELL 7 21 MARKET
+Client input : 15 BUY 8 13 LIMIT_STOP 2092.32 1924.04 2204.04
+Client input : 5 BUY 3 7 LIMIT_STOP 26127.22 26039.86 28462.32
+Client input : 11 BUY 5 18 MARKET
+Client input : 16 SELL 5 10 MARKET
+Client input : 8 SELL 4 2 MARKET
+Client input : 12 SELL 10 5 LIMIT 29390.25 29053.95
+Client input : 17 BUY 7 20 STOP 7119.54 7132.24
+Client input : 7 BUY 10 18 MARKET
+Client input : 1 SELL 9 19 MARKET
+Client input : 14 SELL 9 4 LIMIT 10072.52 9693.91
+Client input : 2 SELL 6 19 LIMIT_STOP 6416.31 5878.1 6900.1
+Client input : 10 BUY 4 19 MARKET
+Client input : 18 SELL 1 10 MARKET
+Client input : 13 SELL 9 22 MARKET
+Client input : 3 SELL 10 17 MARKET
+Client input : 9 SELL 3 13 MARKET
+Client input : 19 BUY 7 10 MARKET
+Client input : 6 SELL 6 14 LIMIT 56054.48 55382.27
+Client input : 4 SELL 1 10 MARKET
+Client input : 5 BUY 6 10 MARKET
+Client input : 20 BUY 1 19 MARKET
+Client input : 16 SELL 8 3 MARKET
+Client input : 15 BUY 5 20 LIMIT 5662.2 5580.41
+Client input : 11 SELL 1 8 MARKET
+Client input : 7 SELL 9 7 MARKET
+Client input : 12 BUY 9 18 STOP 13531.06 14097.8
+Client input : 8 SELL 10 19 STOP 5273.03 5461.12
+Client input : 17 BUY 6 12 MARKET
+Client input : 1 SELL 4 2 LIMIT 50320.61 48633.58
+Client input : 14 SELL 9 16 MARKET
+Client input : 10 SELL 4 10 MARKET
+Client input : 18 BUY 7 13 LIMIT 1952.52 1860.11
+Client input : 2 SELL 9 23 MARKET
+Client input : 13 BUY 9 7 MARKET
+Client input : 9 BUY 10 14 MARKET
+Client input : 3 SELL 10 19 MARKET
+Client input : 19 BUY 4 18 MARKET
+Client input : 6 BUY 2 17 LIMIT 2682.31 2606.94
+Client input : 20 BUY 5 3 LIMIT 7655.12 7418.0
+Client input : 5 SELL 2 5 MARKET
+Client input : 4 SELL 9 15 LIMIT 23017.28 21504.68
+Client input : 15 SELL 1 4 MARKET
+Client input : 16 BUY 10 21 MARKET
+Client input : 11 SELL 2 4 STOP 10447.89 11448.84
+Client input : 12 SELL 8 20 LIMIT 6400.95 6170.98
+Client input : 7 SELL 10 11 LIMIT_STOP 1609.48 1488.52 1638.41
+Client input : 1 SELL 2 12 MARKET
+Client input : 8 BUY 3 14 LIMIT 56206.53 54465.15
+Client input : 17 SELL 10 16 LIMIT 26773.04 24735.47
+Client input : 14 BUY 5 4 MARKET
+Client input : 18 SELL 9 9 MARKET
+Client input : 2 SELL 9 9 LIMIT 28741.01 27768.66
+Client input : 13 SELL 5 12 LIMIT 6507.88 5942.2
+Client input : 10 SELL 7 18 MARKET
+Error: Insufficient balance for buying.
+Error: Insufficient balance for buying.
+Client input : 9 BUY 4 19 MARKET
+Client input : 3 BUY 5 11 LIMIT_STOP 1765.49 1617.74 1917.43
+Client input : 19 BUY 8 5 MARKET
+Client input : 6 SELL 4 13 MARKET
+Client input : 4 BUY 2 22 MARKET
+Client input : 15 SELL 7 18 LIMIT_STOP 12827.49 12242.16 13468.96
+Client input : 5 BUY 10 20 LIMIT 6015.41 5600.32
+Client input : 20 BUY 1 6 MARKET
+Client input : 16 SELL 2 2 STOP 56320.67 59268.34
+Client input : 11 BUY 4 22 MARKET
+Client input : 12 BUY 5 3 MARKET
+Client input : 7 BUY 10 8 MARKET
+Client input : 17 BUY 4 18 LIMIT 13360.3 12381.26
+Client input : 8 SELL 8 23 LIMIT 7860.93 7192.88
+Client input : 1 BUY 3 17 LIMIT 2790.75 2648.34
+Error: Insufficient balance for buying.
+Error: Insufficient balance for buying.
+Client input : 13 BUY 10 16 MARKET
+Client input : 18 BUY 8 16 LIMIT 25060.98 22956.51
+Client input : 14 BUY 7 1 MARKET
+Client input : 2 SELL 6 15 LIMIT 26145.32 25423.12
+Client input : 9 BUY 9 3 LIMIT_STOP 8188.9 7839.22 8629.13
+Client input : 3 BUY 4 18 LIMIT 15989.5 14817.61
+Client input : 10 SELL 9 21 MARKET
+Client input : 19 SELL 1 23 LIMIT_STOP 9697.83 9304.23 10202.29
+Client input : 6 BUY 4 7 LIMIT 21133.19 19723.42
+Client input : 15 BUY 5 3 MARKET
+Client input : 5 SELL 6 10 MARKET
+Client input : 20 BUY 10 8 MARKET
+Client input : 4 SELL 5 7 MARKET
+Client input : 16 SELL 3 8 MARKET
+Client input : 11 SELL 7 2 LIMIT_STOP 50213.93 45559.29 53374.67
+Client input : 17 BUY 10 9 STOP 26657.75 29061.54
+Client input : 12 SELL 5 12 MARKET
+Client input : 7 SELL 8 16 MARKET
+Client input : 8 SELL 9 17 LIMIT 3149.58 3104.45
+Client input : 1 SELL 1 1 MARKET
+Client input : 18 SELL 3 7 MARKET
+Client input : 2 BUY 6 16 STOP 26536.05 28862.46
+Client input : 14 BUY 7 17 MARKET
+Client input : 13 SELL 3 7 MARKET
+Client input : 3 BUY 8 4 STOP 12405.48 12515.29
+Client input : 9 SELL 2 7 MARKET
+Client input : 10 SELL 4 8 MARKET
+Client input : 19 SELL 6 17 MARKET
+Client input : 15 SELL 7 21 LIMIT_STOP 43595.57 41160.97 43919.05
+Client input : 4 SELL 9 14 MARKET
+Client input : 6 SELL 6 22 MARKET
+Client input : 5 BUY 1 16 MARKET
+Client input : 20 SELL 5 1 MARKET
+Client input : 11 SELL 6 22 MARKET
+Client input : 17 SELL 6 9 MARKET
+Client input : 16 SELL 8 11 MARKET
+Client input : 8 BUY 6 23 MARKET
+Client input : 7 BUY 9 3 MARKET
+Client input : 12 SELL 6 8 MARKET
+Client input : 1 SELL 3 20 MARKET
+Client input : 18 BUY 4 16 LIMIT 24360.03 22751.38
+Client input : 2 SELL 8 20 MARKET
+Client input : 14 BUY 9 22 MARKET
+Client input : 9 BUY 10 21 MARKET
+Client input : 13 SELL 7 21 MARKET
+Client input : 10 SELL 10 16 LIMIT 24354.76 24001.92
+Client input : 3 SELL 3 3 MARKET
+Client input : 19 BUY 1 18 MARKET
+Client input : 6 SELL 3 13 LIMIT 1892.86 1738.66
+Client input : 4 BUY 1 11 LIMIT 1567.11 1501.64
+Client input : 15 SELL 3 9 MARKET
+Client input : 5 SELL 7 1 MARKET
+Client input : 20 SELL 10 21 LIMIT 51440.24 51041.22
+Client input : 16 SELL 1 23 MARKET
+Client input : 12 BUY 1 19 MARKET
+Client input : 11 BUY 7 11 LIMIT 1486.77 1374.73
+Client input : 17 BUY 10 11 LIMIT 1564.64 1409.7
+Client input : 8 SELL 6 1 MARKET
+Client input : 7 BUY 8 11 MARKET
+Client input : 1 BUY 4 8 LIMIT 21975.36 20288.04
+Client input : 18 SELL 2 22 MARKET
+Client input : 14 SELL 8 10 MARKET
+Client input : 2 SELL 5 23 LIMIT 8616.32 8070.56
+Client input : 13 BUY 4 14 MARKET
+Client input : 9 BUY 1 20 MARKET
+Client input : 10 SELL 10 5 LIMIT_STOP 28902.72 26445.01 31688.35
+Client input : 3 SELL 2 14 MARKET
+Client input : 6 SELL 2 20 LIMIT_STOP 5839.79 5827.68 6360.85
+Client input : 19 SELL 7 1 MARKET
+Client input : 4 BUY 6 8 LIMIT_STOP 18587.9 16776.84 19251.64
+Client input : 15 SELL 7 16 MARKET
+Client input : 20 SELL 3 9 MARKET
+Client input : 5 SELL 7 14 LIMIT 54508.65 49312.49
+Client input : 16 BUY 8 16 LIMIT 21384.98 21027.77
+Client input : 8 SELL 5 2 MARKET
+Client input : 17 BUY 8 12 LIMIT 6665.19 6034.63
+Client input : 12 BUY 9 14 MARKET
+Client input : 11 BUY 1 4 MARKET
+Client input : 1 SELL 10 17 MARKET
+Client input : 7 BUY 9 22 LIMIT 17.3 16.11
+Client input : 18 BUY 8 16 MARKET
+Client input : 14 BUY 5 20 MARKET
+Client input : 2 BUY 6 22 LIMIT 17.45 16.04
+Client input : 13 SELL 5 23 MARKET
+Client input : 9 BUY 5 22 LIMIT 15.9 14.36
+Client input : 10 SELL 3 4 LIMIT_STOP 9813.24 9174.09 10765.6
+Client input : 3 BUY 7 20 LIMIT 6002.24 5930.76
+Client input : 6 SELL 8 22 LIMIT 14.99 13.61
+Client input : 19 SELL 3 22 MARKET
+Client input : 20 BUY 3 23 LIMIT_STOP 8853.51 8273.41 8956.52
+Client input : 15 BUY 5 9 MARKET
+Client input : 5 BUY 2 6 LIMIT 8620.73 8570.77
+Client input : 4 SELL 6 3 MARKET
+Error: Insufficient balance for buying.
+Client input : 17 SELL 5 7 MARKET
+Client input : 8 SELL 3 23 LIMIT 7649.86 7598.26
+Client input : 16 SELL 1 3 LIMIT_STOP 8695.54 8625.56 9475.33
+Client input : 1 BUY 7 9 LIMIT 28933.19 28603.87
+Client input : 11 BUY 9 16 MARKET
+Client input : 12 SELL 1 22 MARKET
+Client input : 7 SELL 10 23 MARKET
+Client input : 18 BUY 9 21 MARKET
+Client input : 14 SELL 10 8 LIMIT_STOP 17252.37 15774.35 18466.02
+Client input : 9 SELL 4 23 MARKET
+Client input : 2 BUY 10 4 LIMIT 10079.88 9300.32
+Client input : 13 SELL 6 14 MARKET
+Client input : 10 BUY 5 15 MARKET
+Client input : 6 SELL 5 14 LIMIT 62179.12 56495.52
+Client input : 3 BUY 1 9 MARKET
+Client input : 20 BUY 9 20 MARKET
+Client input : 15 BUY 5 15 MARKET
+Client input : 19 SELL 5 15 LIMIT 22946.23 21342.7
+Client input : 5 SELL 9 12 MARKET
+Client input : 4 SELL 3 10 LIMIT 6263.88 6228.37
+Client input : 16 BUY 7 2 LIMIT 51458.14 49752.34
+Client input : 17 SELL 1 23 LIMIT 8710.58 7960.07
+Client input : 8 BUY 3 1 MARKET
+Client input : 7 BUY 2 15 LIMIT_STOP 23037.19 22263.49 23176.96
+Client input : 11 BUY 3 17 MARKET
+Client input : 12 BUY 9 20 MARKET
+Client input : 1 BUY 9 17 LIMIT 2628.34 2615.12
+Client input : 14 SELL 1 19 STOP 5475.96 6016.57
+Client input : 18 SELL 10 21 STOP 48345.76 50892.5
+Client input : 2 BUY 5 4 MARKET
+Client input : 10 BUY 2 17 MARKET
+Client input : 9 BUY 6 17 STOP 2902.15 3066.19
+Client input : 13 SELL 9 21 LIMIT 40856.06 40738.82
+Client input : 6 SELL 8 22 MARKET
+Client input : 15 SELL 8 16 MARKET
+Client input : 3 BUY 10 3 LIMIT 9289.45 9262.91
+Client input : 20 BUY 2 6 MARKET
+Client input : 16 BUY 4 22 MARKET
+Client input : 17 SELL 3 16 MARKET
+Client input : 5 BUY 10 15 LIMIT 25287.87 24933.07
+Client input : 4 BUY 5 20 LIMIT 7070.43 6569.84
+Client input : 19 BUY 2 22 MARKET
+Client input : 8 SELL 6 1 STOP 1123.63 1225.33
+Client input : 11 BUY 7 13 MARKET
+Client input : 14 SELL 10 1 MARKET
+Client input : 12 SELL 1 3 MARKET
+Client input : 7 SELL 10 23 LIMIT_STOP 9480.01 8801.81 9845.74
+Client input : 1 SELL 10 16 LIMIT 27302.73 25701.15
+Client input : 18 BUY 8 5 MARKET
+Client input : 2 BUY 7 7 STOP 26637.07 26788.36
+Client input : 9 BUY 6 23 MARKET
+Client input : 10 BUY 3 10 LIMIT 6398.49 5981.03
+Client input : 13 BUY 8 20 MARKET
+Client input : 15 SELL 2 2 LIMIT 51222.09 50083.67
+Client input : 6 BUY 1 6 LIMIT 7066.29 6926.22
+Client input : 20 BUY 6 10 LIMIT 6247.79 5908.79
+Client input : 3 SELL 3 10 LIMIT 7363.54 6877.41
+Client input : 17 BUY 2 9 LIMIT_STOP 22833.81 22772.79 23530.52
+Client input : 16 BUY 9 23 MARKET
+Error: Insufficient balance for buying.
+Client input : 4 SELL 10 9 LIMIT_STOP 25059.57 22577.16 25171.83
+Client input : 19 SELL 2 22 MARKET
+Client input : 5 SELL 2 2 MARKET
+Client input : 8 SELL 10 5 MARKET
+Client input : 7 SELL 1 22 LIMIT_STOP 14.88 14.3 15.61
+Client input : 14 SELL 6 16 MARKET
+Client input : 11 BUY 5 7 STOP 28234.43 29908.0
+Client input : 12 SELL 10 16 LIMIT 20872.24 19743.6
+Client input : 1 SELL 6 12 MARKET
+Client input : 18 BUY 7 13 MARKET
+Client input : 9 SELL 8 19 MARKET
+Client input : 10 BUY 1 14 LIMIT 55172.06 54603.38
+Client input : 2 BUY 4 12 LIMIT 5877.36 5850.65
+Client input : 6 SELL 9 7 MARKET
+Client input : 13 BUY 10 20 LIMIT 5447.77 5220.61
+Client input : 15 SELL 5 19 LIMIT 5822.74 5273.31
+Client input : 20 BUY 2 2 LIMIT_STOP 52698.41 47495.35 55722.38
+Client input : 3 BUY 7 12 MARKET
+Client input : 4 SELL 6 6 LIMIT_STOP 7800.12 7362.79 7961.77
+Client input : 5 SELL 3 17 MARKET
+Client input : 16 SELL 1 1 LIMIT_STOP 973.2 942.72 1064.74
+Client input : 19 SELL 1 15 MARKET
+Client input : 17 SELL 1 11 MARKET
+Client input : 11 BUY 3 1 MARKET
+Client input : 8 BUY 10 14 MARKET
+Client input : 7 SELL 3 7 LIMIT 23956.78 23757.5
+Client input : 14 BUY 9 7 MARKET
+Client input : 1 SELL 8 18 LIMIT 15221.69 14666.66
+Client input : 12 SELL 5 7 MARKET
+Client input : 18 SELL 6 9 MARKET
+Client input : 9 BUY 7 7 LIMIT 23443.83 22115.91
+Client input : 10 BUY 5 8 MARKET
+Client input : 2 BUY 1 1 MARKET
+Client input : 6 SELL 7 17 LIMIT_STOP 2815.39 2670.51 2985.01
+Client input : 13 SELL 3 19 MARKET
+Client input : 20 BUY 6 4 MARKET
+Client input : 3 SELL 10 17 LIMIT 2539.33 2532.44
+Client input : 15 SELL 7 21 MARKET
+Error: Insufficient balance for buying.
+Client input : 19 SELL 2 21 MARKET
+Client input : 17 BUY 5 14 STOP 66942.43 69644.78
+Client input : 5 BUY 5 23 LIMIT 8142.39 7978.54
+Client input : 4 BUY 1 7 MARKET
+Client input : 16 BUY 5 13 MARKET
+Client input : 11 BUY 1 20 LIMIT_STOP 5778.96 5350.32 6225.49
+Client input : 8 BUY 1 23 MARKET
+Client input : 7 BUY 3 16 MARKET
+Client input : 14 BUY 7 9 MARKET
+Client input : 1 BUY 2 18 LIMIT 15190.42 14911.58
+Client input : 12 SELL 4 23 LIMIT_STOP 7782.91 7723.95 8066.36
+Client input : 18 SELL 3 11 MARKET
+Client input : 9 BUY 8 7 MARKET
+Client input : 10 BUY 7 19 LIMIT_STOP 5628.24 5568.29 6042.66
+Client input : 2 BUY 3 5 LIMIT 21874.14 20976.12
+Client input : 6 SELL 8 22 MARKET
+Client input : 13 BUY 4 6 MARKET
+Client input : 20 SELL 1 3 LIMIT 7436.35 7074.3
+Client input : 3 SELL 7 17 LIMIT 3069.57 3050.06
+Client input : 15 SELL 10 20 MARKET
+Error: Insufficient balance for buying.
+Error: Insufficient balance for buying.
+Client input : 17 BUY 9 3 LIMIT 7552.54 7199.29
+Client input : 5 BUY 5 21 LIMIT_STOP 41193.35 37274.02 45257.89
+Client input : 16 BUY 4 19 LIMIT 6343.75 5775.37
+Client input : 8 SELL 3 4 STOP 10832.11 11599.22
+Client input : 4 BUY 10 6 MARKET
+Client input : 19 SELL 5 6 STOP 8396.19 8566.45
+Client input : 11 SELL 7 11 MARKET
+Client input : 7 SELL 3 18 STOP 15470.29 15901.02
+Client input : 14 SELL 1 7 LIMIT_STOP 25351.72 23532.95 27724.97
+Client input : 12 BUY 10 7 MARKET
+Client input : 1 BUY 2 9 MARKET
+Client input : 18 BUY 10 23 MARKET
+Client input : 9 SELL 5 3 MARKET
+Error: Insufficient balance for buying.
+Client input : 10 SELL 10 9 MARKET
+Client input : 2 BUY 1 8 MARKET
+Client input : 6 SELL 5 13 LIMIT 1880.62 1761.48
+Client input : 20 BUY 3 23 MARKET
+Client input : 13 BUY 8 14 STOP 66705.41 70218.02
+Client input : 3 SELL 9 14 MARKET
+Client input : 15 BUY 7 18 STOP 15589.94 15613.38
+Client input : 17 BUY 5 9 MARKET
+Client input : 5 SELL 1 18 MARKET
+Client input : 16 SELL 7 5 MARKET
+Client input : 4 BUY 6 16 LIMIT_STOP 21380.16 20373.67 23034.54
+Client input : 8 BUY 4 20 MARKET
+Client input : 19 BUY 7 16 LIMIT 25080.91 22594.81
+Client input : 11 BUY 10 3 LIMIT 6996.98 6555.24
+Client input : 14 SELL 2 12 MARKET
+Client input : 7 SELL 7 14 LIMIT_STOP 57228.75 52514.35 58556.21
+Client input : 18 SELL 1 6 LIMIT 7770.81 7350.35
+Client input : 1 SELL 1 1 LIMIT 1028.54 953.32
+Client input : 12 SELL 3 9 MARKET
+Client input : 9 BUY 7 2 LIMIT 56588.29 53743.77
+Client input : 10 SELL 8 6 STOP 6801.97 7170.16
+Client input : 2 BUY 5 20 MARKET
+Client input : 6 SELL 10 6 MARKET
+Client input : 3 BUY 7 11 LIMIT_STOP 1585.95 1487.07 1679.39
+Client input : 13 SELL 2 5 MARKET
+Client input : 20 BUY 5 22 STOP 15.17 15.34
+Client input : 15 SELL 10 22 MARKET
+Client input : 17 SELL 8 16 MARKET
+Client input : 16 SELL 8 13 MARKET
+Client input : 5 SELL 5 20 MARKET
+Client input : 4 BUY 8 14 MARKET
+Client input : 19 SELL 1 13 LIMIT 1949.9 1941.8
+Client input : 7 BUY 8 8 STOP 17941.89 18447.73
+Client input : 8 SELL 7 5 LIMIT 22790.78 21194.08
+Client input : 14 BUY 1 5 MARKET
+Client input : 1 BUY 6 20 MARKET
+Client input : 11 SELL 3 20 LIMIT_STOP 6292.03 6024.35 6837.25
+Client input : 12 BUY 4 1 LIMIT 1260.58 1260.39
+Client input : 18 BUY 10 4 LIMIT 10563.03 9933.38
+Client input : 9 BUY 10 23 LIMIT 8450.6 7800.71
+Client input : 2 SELL 8 1 LIMIT 1135.53 1027.17
+Client input : 10 SELL 8 12 LIMIT 6836.31 6220.12
+Client input : 13 BUY 8 9 LIMIT 29179.82 26366.26
+Client input : 20 BUY 4 4 MARKET
+Client input : 6 SELL 8 21 LIMIT 41147.38 40438.37
+Client input : 3 BUY 6 5 MARKET
+Client input : 5 BUY 1 14 LIMIT_STOP 66575.63 65255.2 68800.49
+Client input : 16 BUY 1 2 LIMIT 50682.68 46908.68
+Client input : 15 BUY 3 17 MARKET
+Client input : 19 SELL 9 7 MARKET
+Client input : 17 SELL 2 14 LIMIT_STOP 68750.44 63450.2 70938.39
+Client input : 14 SELL 3 17 MARKET
+Client input : 7 SELL 9 5 MARKET
+Client input : 4 SELL 8 15 MARKET
+Client input : 8 SELL 1 11 LIMIT 1678.72 1521.03
+Client input : 18 SELL 7 20 STOP 6966.74 7518.61
+Client input : 12 BUY 1 17 LIMIT_STOP 3213.45 3106.95 3303.25
+Client input : 1 BUY 5 6 LIMIT 6876.16 6376.2
+Client input : 11 BUY 5 6 LIMIT_STOP 8364.48 7736.72 8523.24
+Client input : 9 SELL 9 13 MARKET
+Client input : 10 BUY 1 14 MARKET
+Client input : 2 SELL 10 9 LIMIT 26179.84 24152.28
+Pre-close phase, accumulating orders …
+Client input : 13 SELL 3 11 MARKET
+Client input : 20 BUY 5 8 MARKET
+Client input : 3 SELL 10 22 LIMIT 16.66 15.03
+Client input : 6 BUY 10 18 MARKET
+Client input : 16 SELL 2 17 STOP 2548.95 2710.18
+Client input : 5 BUY 10 7 LIMIT_STOP 25680.58 25136.18 25954.41
+Client input : 14 SELL 5 20 LIMIT 7073.2 6388.18
+Client input : 19 SELL 4 1 MARKET
+Client input : Client input : 7 SELL 3 19 LIMIT 5661.6 5445.1
+4 SELL 4 14 LIMIT 62539.14 57634.32
+Client input : 15 SELL 6 16 LIMIT_STOP 25446.52 23702.97 26257.51
+Client input : 17 SELL 10 7 MARKET
+Client input : 8 BUY 10 20 MARKET
+Client input : 1 SELL 8 23 LIMIT 8636.0 7871.02
+Client input : 18 BUY 3 8 LIMIT_STOP 21201.77 19711.07 21325.88
+Client input : 12 BUY 9 4 LIMIT 10782.87 10086.01
+Client input : 11 BUY 7 21 STOP 47272.98 49265.33
+Market closing phase, calculating equilibrium price …
+Error: Insufficient balance for buying.
+Market session ended. Closing all client connections...
+Client input : 9 SELL 3 22 LIMIT 17.3 15.62
+Client input : 2 SELL 2 22 MARKET
+Client input : 3 BUY 6 2 MARKET
+Client input : 13 SELL 4 18 LIMIT 13096.06 11828.02
+Client input : 10 BUY 6 3 MARKET
+Client input : 20 BUY 2 13 MARKET
+Client input : 6 BUY 1 2 LIMIT 52892.61 51211.13
+Client input : 16 BUY 8 10 MARKET
+Client input : 5 SELL 3 14 MARKET
+Client input : 14 BUY 9 20 LIMIT 5748.77 5455.72
+Client input : 19 SELL 9 10 MARKET
+Client input : 4 BUY 1 7 MARKET
+Client input : 17 SELL 1 19 STOP 5345.88 5655.18
+Client input : 7 BUY 8 22 STOP 16.86 18.33
+Client input : 15 SELL 4 20 MARKET
+Client input : 1 SELL 6 10 MARKET
+Client input : 8 SELL 8 11 MARKET
+Client input : 18 SELL 9 3 LIMIT 9348.01 8902.75
+
+-------------- Displaying all messages in the database --------------
+Message ID: 3098077244, Client ID: 0, Sender: SERVER_MESSAGE, Type: SERVER_RESTART, Content: Server launched,Time: 2026-09-17 21:14:41.984
+Message ID: 283896596, Client ID: 0, Sender: SERVER_MESSAGE, Type: PRE_OPEN_PHASE, Content: Market pre-open phase, accumulating orders,Time: 2026-09-17 21:14:42.104
+Message ID: 3712326957, Client ID: 0, Sender: SERVER_MESSAGE, Type: OPEN_PHASE, Content: Market open phase (fixing),Time: 2026-09-17 21:14:43.109
+Message ID: 621076494, Client ID: 0, Sender: SERVER_MESSAGE, Type: CONTINUOUS_TRADING_PHASE, Content: Market continuous trading phase,Time: 2026-09-17 21:14:44.115
+Message ID: 202077454, Client ID: 2, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:44.990
+Message ID: 1933356081, Client ID: 1, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:44.990
+Message ID: 1962314653, Client ID: 2, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:44.990
+Message ID: 3599573518, Client ID: 1, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:44.990
+Message ID: 1593340972, Client ID: 3, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:45.102
+Message ID: 787322030, Client ID: 3, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:45.103
+Message ID: 358256065, Client ID: 4, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:45.318
+Message ID: 1720213774, Client ID: 4, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:45.319
+Message ID: 1200657550, Client ID: 5, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:45.527
+Message ID: 2306468931, Client ID: 5, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:45.528
+Message ID: 16689117, Client ID: 6, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:45.732
+Message ID: 3106578591, Client ID: 6, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:45.733
+Message ID: 1191244067, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:45.805
+Message ID: 675402356, Client ID: 7, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:45.942
+Message ID: 127849727, Client ID: 7, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:45.943
+Message ID: 304722803, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:46.066
+Message ID: 853960208, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:46.145
+Message ID: 659004758, Client ID: 8, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:46.155
+Message ID: 2623439466, Client ID: 8, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:46.155
+Message ID: 3261881261, Client ID: 9, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:46.374
+Message ID: 2607089614, Client ID: 9, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:46.375
+Message ID: 4047708686, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:46.426
+Message ID: 22824441, Client ID: 10, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:46.598
+Message ID: 2942170302, Client ID: 10, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:46.598
+Message ID: 24458085, Client ID: 5, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 637269504 for client 5 to BUY 8 actions of 17 at the price of 2666.03$ at time 2026-09-17 21:14:46.689 with trigger type LIMIT and trigger price lower 2413.25 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:46.689
+Message ID: 2345622663, Client ID: 5, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:46.691
+Message ID: 125190266, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:46.785
+Message ID: 2121323514, Client ID: 11, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:46.808
+Message ID: 2210707221, Client ID: 11, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:46.809
+Message ID: 3900324289, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:47.007
+Message ID: 2034358902, Client ID: 7, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3051084320 for client 7 to BUY 9 actions of 12 at the price of 65535$ at time 2026-09-17 21:14:47.049 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:47.049
+Message ID: 4267699693, Client ID: 7, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:47.050
+Message ID: 895037758, Client ID: 12, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:47.075
+Message ID: 3810479992, Client ID: 12, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:47.075
+Message ID: 3414096528, Client ID: 5, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 637269504 trigger condition reached at price 2883.0751953125$, entering the market,Time: 2026-09-17 21:14:47.137
+Message ID: 1833507813, Client ID: 8, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3672601920 for client 8 to BUY 2 actions of 23 at the price of 65535$ at time 2026-09-17 21:14:47.203 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:47.203
+Message ID: 79337288, Client ID: 8, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:47.204
+Message ID: 3349456647, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:47.258
+Message ID: 2662210738, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:47.260
+Message ID: 1878645489, Client ID: 13, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:47.304
+Message ID: 1454587103, Client ID: 13, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:47.305
+Message ID: 2566156587, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2449838913 for client 9 to BUY 6 actions of 22 at the price of 17.41$ at time 2026-09-17 21:14:47.390 with trigger type LIMIT and trigger price lower 15.81 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:47.390
+Message ID: 2375938579, Client ID: 9, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:47.391
+Message ID: 120044856, Client ID: 14, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:47.523
+Message ID: 1332220908, Client ID: 14, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:47.524
+Message ID: 1648942668, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:47.556
+Message ID: 2668972217, Client ID: 10, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:47.745
+Message ID: 2966938168, Client ID: 10, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 248668728 for client 10 to BUY 8 actions of 1 at the price of 1207.66$ at time 2026-09-17 21:14:47.745 with trigger type STOP and trigger price lower 0 and trigger price upper 1286.58 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:47.745
+Message ID: 2716823777, Client ID: 15, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:47.753
+Message ID: 1683767497, Client ID: 15, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:47.754
+Message ID: 4049823944, Client ID: 5, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 317331872 for client 5 to BUY 6 actions of 6 at the price of 65535$ at time 2026-09-17 21:14:47.876 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:47.876
+Message ID: 3662909349, Client ID: 5, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:47.877
+Message ID: 2367265116, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:47.931
+Message ID: 1600552659, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:47.963
+Message ID: 1700002437, Client ID: 16, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:47.991
+Message ID: 681125689, Client ID: 16, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:47.992
+Message ID: 4259293202, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:48.084
+Message ID: 3929990320, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:48.123
+Message ID: 1086550327, Client ID: 10, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 248668728 trigger condition reached at price 1100.800048828125$, entering the market,Time: 2026-09-17 21:14:48.146
+Message ID: 1154245534, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:48.217
+Message ID: 1338648929, Client ID: 17, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:48.220
+Message ID: 2074447409, Client ID: 17, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:48.221
+Message ID: 3388135005, Client ID: 8, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1184516669 for client 8 to BUY 7 actions of 17 at the price of 2847.73$ at time 2026-09-17 21:14:48.222 with trigger type LIMIT and trigger price lower 2692 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:48.222
+Message ID: 2778423245, Client ID: 8, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:48.223
+Message ID: 1650982451, Client ID: 3, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3839432484 for client 3 to BUY 3 actions of 5 at the price of 25895.55$ at time 2026-09-17 21:14:48.357 with trigger type STOP and trigger price lower 0 and trigger price upper 27815.06 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:48.357
+Message ID: 2421548421, Client ID: 3, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:48.357
+Message ID: 350125085, Client ID: 18, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:48.442
+Message ID: 2000484713, Client ID: 18, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:48.442
+Message ID: 1869350251, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:48.459
+Message ID: 2296863441, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:48.481
+Message ID: 132160046, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:48.553
+Message ID: 474007609, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:48.558
+Message ID: 514776025, Client ID: 8, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 1184516669 trigger condition reached at price 2883.0751953125$, entering the market,Time: 2026-09-17 21:14:48.652
+Message ID: 1995553987, Client ID: 3, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 3839432484 trigger condition reached at price 25716.7109375$, entering the market,Time: 2026-09-17 21:14:48.652
+Message ID: 2878811929, Client ID: 19, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:48.662
+Message ID: 2972838014, Client ID: 19, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:48.662
+Message ID: 1359179697, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:48.739
+Message ID: 1437306707, Client ID: 10, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2839654146 for client 10 to BUY 9 actions of 6 at the price of 65535$ at time 2026-09-17 21:14:48.761 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:48.761
+Message ID: 4232948172, Client ID: 10, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:48.762
+Message ID: 1979182005, Client ID: 20, Sender: SERVER_MESSAGE, Type: AUTHENTIFICATION_SUCCESS, Content: Authentification success,Time: 2026-09-17 21:14:48.880
+Message ID: 175062057, Client ID: 20, Sender: SERVER_MESSAGE, Type: CLIENT_CONNECTED, Content: Client connected,Time: 2026-09-17 21:14:48.881
+Message ID: 2791226870, Client ID: 15, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2740908782 for client 15 to BUY 3 actions of 1 at the price of 1265.86$ at time 2026-09-17 21:14:48.943 with trigger type STOP and trigger price lower 0 and trigger price upper 1296.2 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:48.943
+Message ID: 599714955, Client ID: 15, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:48.944
+Message ID: 1385494361, Client ID: 11, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2842054157 for client 11 to BUY 10 actions of 3 at the price of 9328.41$ at time 2026-09-17 21:14:49.006 with trigger type LIMIT_STOP and trigger price lower 9005.57 and trigger price upper 9902.63 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:49.006
+Message ID: 729492188, Client ID: 11, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:49.008
+Message ID: 362461641, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:49.077
+Message ID: 3792852649, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:49.108
+Message ID: 1131973741, Client ID: 6, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 4187228922 for client 6 to BUY 4 actions of 18 at the price of 14782.16$ at time 2026-09-17 21:14:49.112 with trigger type LIMIT and trigger price lower 14381.4 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:49.112
+Message ID: 3544544010, Client ID: 6, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:49.113
+Message ID: 470512626, Client ID: 15, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 2740908782 trigger condition reached at price 1100.800048828125$, entering the market,Time: 2026-09-17 21:14:49.160
+Message ID: 1128779628, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:49.173
+Message ID: 188599175, Client ID: 1, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 534931385 for client 1 to BUY 7 actions of 1 at the price of 1255.7$ at time 2026-09-17 21:14:49.188 with trigger type LIMIT and trigger price lower 1221.28 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:49.188
+Message ID: 1162975750, Client ID: 1, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:49.189
+Message ID: 2579078965, Client ID: 17, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3510293547 for client 17 to SELL 2 actions of 22 at the price of 14.38$ at time 2026-09-17 21:14:49.298 with trigger type LIMIT_STOP and trigger price lower 14.11 and trigger price upper 14.98 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:49.298
+Message ID: 3185764132, Client ID: 17, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:49.300
+Message ID: 3474462355, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:49.312
+Message ID: 4188908482, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:49.372
+Message ID: 889258373, Client ID: 3, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2602788851 for client 3 to BUY 3 actions of 22 at the price of 15.97$ at time 2026-09-17 21:14:49.466 with trigger type LIMIT and trigger price lower 14.85 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:49.466
+Message ID: 1444417574, Client ID: 3, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:49.467
+Message ID: 4001985713, Client ID: 13, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 386034884 for client 13 to SELL 1 actions of 7 at the price of 0$ at time 2026-09-17 21:14:49.597 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:49.597
+Message ID: 2256431638, Client ID: 13, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:49.598
+Message ID: 1266199877, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:49.624
+Message ID: 107999624, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:49.628
+Message ID: 21282662, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:49.645
+Message ID: 1368122620, Client ID: 3, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 2602788851 trigger condition reached at price 15.550000190734863$, entering the market,Time: 2026-09-17 21:14:49.664
+Message ID: 2802105, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:49.668
+Message ID: 3176581007, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:49.735
+Message ID: 1913347062, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:49.784
+Message ID: 3138515037, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:49.851
+Message ID: 2440665310, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 798397105 for client 20 to BUY 1 actions of 11 at the price of 65535$ at time 2026-09-17 21:14:49.884 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:49.884
+Message ID: 698977736, Client ID: 20, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:49.885
+Message ID: 2808442741, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.096
+Message ID: 411188470, Client ID: 6, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3763017744 for client 6 to BUY 7 actions of 22 at the price of 65535$ at time 2026-09-17 21:14:50.159 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:50.159
+Message ID: 3050367233, Client ID: 6, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:50.160
+Message ID: 3552027362, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:50.199
+Message ID: 282572939, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:50.205
+Message ID: 2949775624, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.216
+Message ID: 762522453, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:50.282
+Message ID: 3012563942, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:50.365
+Message ID: 1915346029, Client ID: 1, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 739198958 for client 1 to BUY 8 actions of 17 at the price of 2928.79$ at time 2026-09-17 21:14:50.390 with trigger type LIMIT_STOP and trigger price lower 2737.16 and trigger price upper 3127.02 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:50.390
+Message ID: 233292584, Client ID: 1, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:50.391
+Message ID: 2240790256, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.411
+Message ID: 3468434198, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.572
+Message ID: 22216570, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.661
+Message ID: 3178272097, Client ID: 1, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 739198958 trigger condition reached at price 2883.0751953125$, entering the market,Time: 2026-09-17 21:14:50.678
+Message ID: 2198665735, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.706
+Message ID: 418568027, Client ID: 14, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2095388581 for client 14 to BUY 3 actions of 12 at the price of 7048.49$ at time 2026-09-17 21:14:50.717 with trigger type LIMIT and trigger price lower 6459.9 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:50.717
+Message ID: 1677460094, Client ID: 14, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:50.718
+Message ID: 2263677438, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.747
+Message ID: 657335886, Client ID: 13, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2354626717 for client 13 to BUY 5 actions of 22 at the price of 13.61$ at time 2026-09-17 21:14:50.760 with trigger type STOP and trigger price lower 0 and trigger price upper 14.69 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:50.760
+Message ID: 3304097004, Client ID: 13, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:50.761
+Message ID: 3546050844, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.839
+Message ID: 2290848167, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:50.851
+Message ID: 2303790155, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2901433061 for client 20 to BUY 3 actions of 3 at the price of 65535$ at time 2026-09-17 21:14:50.919 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:50.919
+Message ID: 927813419, Client ID: 20, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:50.920
+Message ID: 2675988220, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.924
+Message ID: 1740878953, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:50.935
+Message ID: 129946590, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:51.122
+Message ID: 1666935307, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:51.179
+Message ID: 2910902311, Client ID: 14, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 2095388581 trigger condition reached at price 6717.97021484375$, entering the market,Time: 2026-09-17 21:14:51.186
+Message ID: 218737237, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:51.226
+Message ID: 1072592169, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:51.237
+Message ID: 2971362652, Client ID: 16, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3671370371 for client 16 to BUY 10 actions of 11 at the price of 65535$ at time 2026-09-17 21:14:51.298 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:51.298
+Message ID: 1001891923, Client ID: 16, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:51.299
+Message ID: 3818154256, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:51.421
+Message ID: 3579772621, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:51.479
+Message ID: 556515718, Client ID: 17, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3110762549 for client 17 to BUY 3 actions of 18 at the price of 15517.71$ at time 2026-09-17 21:14:51.591 with trigger type STOP and trigger price lower 0 and trigger price upper 15751.9 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:51.591
+Message ID: 401071188, Client ID: 17, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:51.593
+Message ID: 3631899985, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:51.598
+Message ID: 3427439608, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:51.665
+Message ID: 3814584475, Client ID: 17, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 3110762549 trigger condition reached at price 13947.3095703125$, entering the market,Time: 2026-09-17 21:14:51.697
+Message ID: 2844481174, Client ID: 14, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2164362931 for client 14 to BUY 2 actions of 21 at the price of 39353.77$ at time 2026-09-17 21:14:51.768 with trigger type LIMIT and trigger price lower 36496.9 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:51.768
+Message ID: 3218278669, Client ID: 14, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:51.769
+Message ID: 2078172531, Client ID: 18, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 869273360 for client 18 to BUY 6 actions of 23 at the price of 9325.75$ at time 2026-09-17 21:14:51.802 with trigger type LIMIT and trigger price lower 8555.75 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:51.802
+Message ID: 3029061240, Client ID: 18, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:51.803
+Message ID: 701490467, Client ID: 2, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 116882525 for client 2 to BUY 1 actions of 8 at the price of 65535$ at time 2026-09-17 21:14:51.853 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:51.853
+Message ID: 3407469110, Client ID: 2, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:51.854
+Message ID: 1164861583, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:51.861
+Message ID: 1132436778, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:51.920
+Message ID: 2244874560, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:51.990
+Message ID: 3643888279, Client ID: 19, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 551315131 for client 19 to BUY 2 actions of 1 at the price of 973.29$ at time 2026-09-17 21:14:52.030 with trigger type LIMIT_STOP and trigger price lower 920.3 and trigger price upper 1057.59 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:52.030
+Message ID: 270984266, Client ID: 19, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:52.031
+Message ID: 2354349744, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:52.057
+Message ID: 3713056472, Client ID: 4, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3095425975 for client 4 to SELL 1 actions of 3 at the price of 8364.67$ at time 2026-09-17 21:14:52.078 with trigger type LIMIT_STOP and trigger price lower 8266.23 and trigger price upper 9074.03 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:52.078
+Message ID: 3917706957, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:52.078
+Message ID: 3193988206, Client ID: 4, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:52.080
+Message ID: 2270573055, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:52.144
+Message ID: 138479637, Client ID: 14, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 2164362931 trigger condition reached at price 45848.8984375$, entering the market,Time: 2026-09-17 21:14:52.203
+Message ID: 1212956115, Client ID: 18, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 869273360 trigger condition reached at price 8645.0927734375$, entering the market,Time: 2026-09-17 21:14:52.203
+Message ID: 1515133048, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:52.213
+Message ID: 1290993458, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:52.336
+Message ID: 199073527, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:52.389
+Message ID: 373035325, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:52.430
+Message ID: 3785227795, Client ID: 8, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 780128761 for client 8 to BUY 6 actions of 22 at the price of 65535$ at time 2026-09-17 21:14:52.460 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:52.460
+Message ID: 304498603, Client ID: 8, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:52.461
+Message ID: 4149329320, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:52.595
+Message ID: 2259313182, Client ID: 1, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 159796820 for client 1 to BUY 3 actions of 18 at the price of 14883.06$ at time 2026-09-17 21:14:52.624 with trigger type LIMIT and trigger price lower 13835.87 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:52.624
+Message ID: 2275711829, Client ID: 1, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:52.625
+Message ID: 437948155, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:52.684
+Message ID: 1869702686, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:52.692
+Message ID: 427683873, Client ID: 1, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 159796820 trigger condition reached at price 13947.3095703125$, entering the market,Time: 2026-09-17 21:14:52.717
+Message ID: 2986834800, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:52.860
+Message ID: 2043742549, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:52.937
+Message ID: 3579148120, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.006
+Message ID: 873435073, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:53.067
+Message ID: 3187997780, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.070
+Message ID: 2761836947, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.095
+Message ID: 952391773, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3648387677 for client 9 to SELL 4 actions of 3 at the price of 0$ at time 2026-09-17 21:14:53.105 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:53.105
+Message ID: 1856106886, Client ID: 9, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:53.106
+Message ID: 2835368786, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 3 actions 3 at the price of 8186.93017578125$ between buyer 20 and seller 9 at time 2026-09-17 21:14:53.107,Time: 2026-09-17 21:14:53.107
+Message ID: 827715556, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.233
+Message ID: 172747182, Client ID: 19, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2812914995 for client 19 to BUY 7 actions of 3 at the price of 65535$ at time 2026-09-17 21:14:53.242 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:53.242
+Message ID: 1129446318, Client ID: 19, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:53.243
+Message ID: 700600177, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 1 actions 3 at the price of 8186.93017578125$ between buyer 19 and seller 9 at time 2026-09-17 21:14:53.245,Time: 2026-09-17 21:14:53.245
+Message ID: 4294784796, Client ID: 4, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 5720223 for client 4 to BUY 7 actions of 17 at the price of 65535$ at time 2026-09-17 21:14:53.280 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:53.280
+Message ID: 4254847648, Client ID: 4, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:53.281
+Message ID: 3280226288, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.283
+Message ID: 2295286774, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.289
+Message ID: 634813723, Client ID: 16, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1516097597 for client 16 to SELL 8 actions of 1 at the price of 1168.02$ at time 2026-09-17 21:14:53.467 with trigger type LIMIT and trigger price lower 1166.32 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:53.467
+Message ID: 4254782169, Client ID: 5, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3701621047 for client 5 to BUY 4 actions of 1 at the price of 990.45$ at time 2026-09-17 21:14:53.467 with trigger type LIMIT_STOP and trigger price lower 907.89 and trigger price upper 1021.52 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:53.467
+Message ID: 1348444612, Client ID: 5, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:53.470
+Message ID: 3135358225, Client ID: 16, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:53.470
+Message ID: 1727543260, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.523
+Message ID: 3757552166, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.606
+Message ID: 281894991, Client ID: 7, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 56622491 for client 7 to BUY 2 actions of 22 at the price of 16.2$ at time 2026-09-17 21:14:53.702 with trigger type LIMIT and trigger price lower 15.18 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:53.702
+Message ID: 3772362849, Client ID: 7, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:53.705
+Message ID: 1411681590, Client ID: 7, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 56622491 trigger condition reached at price 15.550000190734863$, entering the market,Time: 2026-09-17 21:14:53.733
+Message ID: 913702661, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:53.754
+Message ID: 3138937335, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.793
+Message ID: 750712686, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:53.800
+Message ID: 212291814, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:53.945
+Message ID: 804190432, Client ID: 10, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 649040846 for client 10 to SELL 10 actions of 8 at the price of 0$ at time 2026-09-17 21:14:54.058 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:54.058
+Message ID: 748371112, Client ID: 10, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:54.059
+Message ID: 165115376, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 1 actions 8 at the price of 19831.80078125$ between buyer 2 and seller 10 at time 2026-09-17 21:14:54.061,Time: 2026-09-17 21:14:54.061
+Message ID: 3904546762, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:54.106
+Message ID: 3302419931, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:54.157
+Message ID: 755179868, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:54.174
+Message ID: 2532513525, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:54.199
+Message ID: 2650144959, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3089848630 for client 9 to BUY 4 actions of 11 at the price of 1429.98$ at time 2026-09-17 21:14:54.290 with trigger type LIMIT and trigger price lower 1345.78 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:54.290
+Message ID: 856541028, Client ID: 9, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:54.292
+Message ID: 543198207, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:54.396
+Message ID: 3833762988, Client ID: 6, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3427650316 for client 6 to BUY 6 actions of 17 at the price of 65535$ at time 2026-09-17 21:14:54.432 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:54.432
+Message ID: 4176427068, Client ID: 6, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:54.433
+Message ID: 547708999, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:54.436
+Message ID: 1975681257, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:54.496
+Message ID: 1424842859, Client ID: 15, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1723743302 for client 15 to BUY 8 actions of 13 at the price of 2092.32$ at time 2026-09-17 21:14:54.510 with trigger type LIMIT_STOP and trigger price lower 1924.04 and trigger price upper 2204.04 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:54.510
+Message ID: 3740475509, Client ID: 15, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:54.511
+Message ID: 3059419912, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:54.581
+Message ID: 788619807, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:54.640
+Message ID: 1529251633, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:54.674
+Message ID: 1179865293, Client ID: 9, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 3089848630 trigger condition reached at price 1679.2099609375$, entering the market,Time: 2026-09-17 21:14:54.748
+Message ID: 4010810986, Client ID: 8, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2058892633 for client 8 to SELL 4 actions of 2 at the price of 0$ at time 2026-09-17 21:14:54.755 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:54.755
+Message ID: 1000927011, Client ID: 8, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:54.756
+Message ID: 2463800250, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:54.804
+Message ID: 3785519178, Client ID: 17, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 618586664 for client 17 to BUY 7 actions of 20 at the price of 7119.54$ at time 2026-09-17 21:14:54.819 with trigger type STOP and trigger price lower 0 and trigger price upper 7132.24 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:54.819
+Message ID: 1190349076, Client ID: 17, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:54.821
+Message ID: 1401026632, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:54.856
+Message ID: 3210501386, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:54.956
+Message ID: 628420592, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.128
+Message ID: 3686347999, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.176
+Message ID: 1831783637, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:55.204
+Message ID: 96781312, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.223
+Message ID: 3927875175, Client ID: 17, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 618586664 trigger condition reached at price 6322.89990234375$, entering the market,Time: 2026-09-17 21:14:55.255
+Message ID: 1308852576, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.300
+Message ID: 1014033426, Client ID: 3, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 469376345 for client 3 to SELL 10 actions of 17 at the price of 0$ at time 2026-09-17 21:14:55.374 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:55.374
+Message ID: 3826496289, Client ID: 3, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:55.376
+Message ID: 1069670737, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 7 actions 17 at the price of 2883.0751953125$ between buyer 4 and seller 3 at time 2026-09-17 21:14:55.379,Time: 2026-09-17 21:14:55.379
+Message ID: 41126782, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 3 actions 17 at the price of 2883.0751953125$ between buyer 6 and seller 3 at time 2026-09-17 21:14:55.386,Time: 2026-09-17 21:14:55.386
+Message ID: 3788047747, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.457
+Message ID: 2127935982, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:55.464
+Message ID: 1911949088, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.583
+Message ID: 3578038441, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.597
+Message ID: 4124906507, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:55.597
+Message ID: 2646053672, Client ID: 20, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:55.670
+Message ID: 3823476714, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2963227711 for client 20 to BUY 1 actions of 19 at the price of 65535$ at time 2026-09-17 21:14:55.670 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:55.670
+Message ID: 133445672, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.690
+Message ID: 3569067086, Client ID: 15, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3468570386 for client 15 to BUY 5 actions of 20 at the price of 5662.2$ at time 2026-09-17 21:14:55.712 with trigger type LIMIT and trigger price lower 5580.41 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:55.712
+Message ID: 3346902149, Client ID: 15, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:55.713
+Message ID: 4255207318, Client ID: 15, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 3468570386 trigger condition reached at price 6322.89990234375$, entering the market,Time: 2026-09-17 21:14:55.761
+Message ID: 1582162883, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.762
+Message ID: 2286594918, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.869
+Message ID: 2977789328, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:55.904
+Message ID: 2734457605, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:55.965
+Message ID: 602493392, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:55.991
+Message ID: 472744717, Client ID: 1, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2353624637 for client 1 to SELL 4 actions of 2 at the price of 50320.61$ at time 2026-09-17 21:14:56.032 with trigger type LIMIT and trigger price lower 48633.58 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:56.032
+Message ID: 2427573602, Client ID: 1, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:56.033
+Message ID: 2574884396, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:56.253
+Message ID: 329966525, Client ID: 1, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 2353624637 trigger condition reached at price 51808.2109375$, entering the market,Time: 2026-09-17 21:14:56.268
+Message ID: 302742571, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:56.294
+Message ID: 1659964644, Client ID: 18, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3280356904 for client 18 to BUY 7 actions of 13 at the price of 1952.52$ at time 2026-09-17 21:14:56.306 with trigger type LIMIT and trigger price lower 1860.11 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:56.306
+Message ID: 4108721093, Client ID: 18, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:56.308
+Message ID: 3500613934, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:56.324
+Message ID: 3683884787, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:56.374
+Message ID: 4100806344, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:56.549
+Message ID: 258442047, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:56.561
+Message ID: 2533208486, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:56.589
+Message ID: 3838034482, Client ID: 6, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 75511245 for client 6 to BUY 2 actions of 17 at the price of 2682.31$ at time 2026-09-17 21:14:56.690 with trigger type LIMIT and trigger price lower 2606.94 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:56.690
+Message ID: 947902507, Client ID: 6, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:56.691
+Message ID: 1959140808, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 53640511 for client 20 to BUY 5 actions of 3 at the price of 7655.12$ at time 2026-09-17 21:14:56.720 with trigger type LIMIT and trigger price lower 7418 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:56.720
+Message ID: 4009713465, Client ID: 20, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:56.722
+Message ID: 2389103528, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:56.756
+Message ID: 339015403, Client ID: 6, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 75511245 trigger condition reached at price 2883.0751953125$, entering the market,Time: 2026-09-17 21:14:56.773
+Message ID: 628194240, Client ID: 18, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 3280356904 trigger condition reached at price 1899.27001953125$, entering the market,Time: 2026-09-17 21:14:56.773
+Message ID: 4116346340, Client ID: 20, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 53640511 trigger condition reached at price 8186.93017578125$, entering the market,Time: 2026-09-17 21:14:56.773
+Message ID: 3636912407, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:56.804
+Message ID: 2387046449, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:56.871
+Message ID: 2156580295, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:56.878
+Message ID: 288740038, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:56.908
+Message ID: 2751798525, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.022
+Message ID: 3276701073, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.057
+Message ID: 3115015951, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.114
+Message ID: 995518687, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:57.129
+Message ID: 3895709942, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.140
+Message ID: 1410996810, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:57.337
+Message ID: 4252071615, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.348
+Message ID: 2181571120, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.370
+Message ID: 4264048647, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.402
+Message ID: 3380034122, Client ID: 10, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 558629945 for client 10 to SELL 7 actions of 18 at the price of 0$ at time 2026-09-17 21:14:57.474 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:57.474
+Message ID: 4087972652, Client ID: 10, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:57.476
+Message ID: 141732608, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 3 actions 18 at the price of 15517.71$ between buyer 17 and seller 10 at time 2026-09-17 21:14:57.478,Time: 2026-09-17 21:14:57.478
+Message ID: 379980639, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 3 actions 18 at the price of 14883.06$ between buyer 1 and seller 10 at time 2026-09-17 21:14:57.485,Time: 2026-09-17 21:14:57.485
+Message ID: 3888582116, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1311054744 for client 9 to BUY 4 actions of 19 at the price of 65535$ at time 2026-09-17 21:14:57.595 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:57.595
+Message ID: 1644489991, Client ID: 9, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:57.596
+Message ID: 1484263181, Client ID: 3, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1427071839 for client 3 to BUY 5 actions of 11 at the price of 1765.49$ at time 2026-09-17 21:14:57.650 with trigger type LIMIT_STOP and trigger price lower 1617.74 and trigger price upper 1917.43 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:57.650
+Message ID: 2342049111, Client ID: 3, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:57.651
+Message ID: 2948644609, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:57.706
+Message ID: 764052926, Client ID: 3, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 1427071839 trigger condition reached at price 1679.2099609375$, entering the market,Time: 2026-09-17 21:14:57.793
+Message ID: 2193606883, Client ID: 6, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 4187228922 trigger condition reached at price 14883.06$, entering the market,Time: 2026-09-17 21:14:57.793
+Message ID: 1914924250, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 1 actions 18 at the price of 14782.16$ between buyer 6 and seller 10 at time 2026-09-17 21:14:57.801,Time: 2026-09-17 21:14:57.801
+Message ID: 2887780450, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.820
+Message ID: 141097906, Client ID: 4, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 570428614 for client 4 to BUY 2 actions of 22 at the price of 65535$ at time 2026-09-17 21:14:57.834 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:57.834
+Message ID: 2184556085, Client ID: 4, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:57.835
+Message ID: 8044414, Client ID: 15, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1413325513 for client 15 to SELL 7 actions of 18 at the price of 12827.49$ at time 2026-09-17 21:14:57.888 with trigger type LIMIT_STOP and trigger price lower 12242.16 and trigger price upper 13468.96 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:57.888
+Message ID: 3320042749, Client ID: 15, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:57.894
+Message ID: 2737785955, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:57.896
+Message ID: 831921529, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2256827708 for client 20 to BUY 1 actions of 6 at the price of 65535$ at time 2026-09-17 21:14:57.933 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:57.933
+Message ID: 4136875542, Client ID: 20, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:57.934
+Message ID: 4010225870, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:57.945
+Message ID: 46932179, Client ID: 11, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1472382783 for client 11 to BUY 4 actions of 22 at the price of 65535$ at time 2026-09-17 21:14:58.010 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:58.010
+Message ID: 1853753157, Client ID: 11, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:58.012
+Message ID: 1704621501, Client ID: 12, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 4258654070 for client 12 to BUY 5 actions of 3 at the price of 65535$ at time 2026-09-17 21:14:58.093 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:58.093
+Message ID: 371665038, Client ID: 12, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:58.095
+Message ID: 747866917, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.145
+Message ID: 619581869, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.155
+Message ID: 899727720, Client ID: 8, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 548346925 for client 8 to SELL 8 actions of 23 at the price of 7860.93$ at time 2026-09-17 21:14:58.231 with trigger type LIMIT and trigger price lower 7192.88 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:58.231
+Message ID: 3778543811, Client ID: 8, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:58.233
+Message ID: 3472188108, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.272
+Message ID: 28376825, Client ID: 8, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 548346925 trigger condition reached at price 8645.0927734375$, entering the market,Time: 2026-09-17 21:14:58.312
+Message ID: 1143110313, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 2 actions 23 at the price of 7860.93$ between buyer 8 and seller 8 at time 2026-09-17 21:14:58.317,Time: 2026-09-17 21:14:58.317
+Message ID: 1411377254, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 6 actions 23 at the price of 7860.93$ between buyer 18 and seller 8 at time 2026-09-17 21:14:58.325,Time: 2026-09-17 21:14:58.325
+Message ID: 579566963, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.491
+Message ID: 3289761676, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.502
+Message ID: 2104043410, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.518
+Message ID: 3611923857, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:58.581
+Message ID: 3215516188, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 536069985 for client 9 to BUY 9 actions of 3 at the price of 8188.9$ at time 2026-09-17 21:14:58.662 with trigger type LIMIT_STOP and trigger price lower 7839.22 and trigger price upper 8629.13 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:58.662
+Message ID: 2414109036, Client ID: 9, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:14:58.663
+Message ID: 3229230380, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.674
+Message ID: 3963816972, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:58.688
+Message ID: 3916549335, Client ID: 9, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 536069985 trigger condition reached at price 8186.93017578125$, entering the market,Time: 2026-09-17 21:14:58.836
+Message ID: 1359798021, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:58.851
+Message ID: 1449697235, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.894
+Message ID: 2177104313, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.941
+Message ID: 3962929642, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:58.950
+Message ID: 3964459848, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:58.969
+Message ID: 797013476, Client ID: 4, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 816791425 for client 4 to SELL 5 actions of 7 at the price of 0$ at time 2026-09-17 21:14:59.025 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:59.025
+Message ID: 496770638, Client ID: 4, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:59.026
+Message ID: 1810873949, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.140
+Message ID: 1497007413, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.157
+Message ID: 520218183, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:59.176
+Message ID: 2273013615, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.185
+Message ID: 6547291, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.235
+Message ID: 1769687397, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.254
+Message ID: 2269066061, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.389
+Message ID: 1865738576, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.616
+Message ID: 2202104915, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:59.628
+Message ID: 1172782707, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:59.670
+Message ID: 1987343798, Client ID: 13, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2208085612 for client 13 to SELL 3 actions of 7 at the price of 0$ at time 2026-09-17 21:14:59.674 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:59.674
+Message ID: 1573059837, Client ID: 13, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:59.675
+Message ID: 3712938663, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:14:59.756
+Message ID: 3614120744, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.777
+Message ID: 290202895, Client ID: 10, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 848130958 for client 10 to SELL 4 actions of 8 at the price of 0$ at time 2026-09-17 21:14:59.800 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:14:59.800
+Message ID: 4270409138, Client ID: 10, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:14:59.801
+Message ID: 1116847156, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:14:59.952
+Message ID: 3344467203, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.070
+Message ID: 1300980589, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.088
+Message ID: 1547367659, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.101
+Message ID: 1797558879, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:00.131
+Message ID: 1149439249, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.177
+Message ID: 2417604654, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.288
+Message ID: 1478682757, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.318
+Message ID: 3881155098, Client ID: 16, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1895278521 for client 16 to SELL 8 actions of 11 at the price of 0$ at time 2026-09-17 21:15:00.320 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:00.320
+Message ID: 4168322911, Client ID: 16, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:00.322
+Message ID: 3957186720, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 1 actions 11 at the price of 1679.2099609375$ between buyer 20 and seller 16 at time 2026-09-17 21:15:00.327,Time: 2026-09-17 21:15:00.327
+Message ID: 3547358569, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:00.330
+Message ID: 4283253342, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 7 actions 11 at the price of 1679.2099609375$ between buyer 16 and seller 16 at time 2026-09-17 21:15:00.334,Time: 2026-09-17 21:15:00.334
+Message ID: 1704043481, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:00.350
+Message ID: 4109691812, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.379
+Message ID: 2824526266, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.414
+Message ID: 344607413, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:00.637
+Message ID: 792266470, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.657
+Message ID: 1498013613, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:00.712
+Message ID: 3815058911, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:00.819
+Message ID: 3508934283, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.864
+Message ID: 1510577713, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.872
+Message ID: 4030500851, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:00.890
+Message ID: 1560835573, Client ID: 19, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3655669212 for client 19 to BUY 1 actions of 18 at the price of 65535$ at time 2026-09-17 21:15:01.118 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:01.118
+Message ID: 2342429328, Client ID: 19, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:01.120
+Message ID: 543233588, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.126
+Message ID: 367786940, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:01.201
+Message ID: 2791143838, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.234
+Message ID: 1578355631, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.256
+Message ID: 2070278559, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.264
+Message ID: 1860393584, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.374
+Message ID: 3641128172, Client ID: 12, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3367201983 for client 12 to BUY 1 actions of 19 at the price of 65535$ at time 2026-09-17 21:15:01.408 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:01.408
+Message ID: 2076398310, Client ID: 12, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:01.410
+Message ID: 3759166700, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:01.412
+Message ID: 2176194858, Client ID: 17, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3462104461 for client 17 to BUY 10 actions of 11 at the price of 1564.64$ at time 2026-09-17 21:15:01.426 with trigger type LIMIT and trigger price lower 1409.7 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:01.426
+Message ID: 112754157, Client ID: 17, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:01.427
+Message ID: 3624975171, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.452
+Message ID: 1030882590, Client ID: 7, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1701973432 for client 7 to BUY 8 actions of 11 at the price of 65535$ at time 2026-09-17 21:15:01.546 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:01.546
+Message ID: 2487636896, Client ID: 7, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:01.547
+Message ID: 2463723395, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:01.602
+Message ID: 3802438227, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.659
+Message ID: 2728531237, Client ID: 14, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3642287843 for client 14 to SELL 8 actions of 10 at the price of 0$ at time 2026-09-17 21:15:01.731 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:01.731
+Message ID: 322028355, Client ID: 14, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:01.733
+Message ID: 1823486715, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.799
+Message ID: 3611170935, Client ID: 17, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 3462104461 trigger condition reached at price 1679.2099609375$, entering the market,Time: 2026-09-17 21:15:01.869
+Message ID: 951969215, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:01.895
+Message ID: 800577113, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 872505471 for client 9 to BUY 1 actions of 20 at the price of 65535$ at time 2026-09-17 21:15:01.934 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:01.934
+Message ID: 1303519436, Client ID: 9, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:01.937
+Message ID: 665431011, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:01.998
+Message ID: 608736992, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:02.099
+Message ID: 3101709363, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:02.174
+Message ID: 3921784980, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:02.223
+Message ID: 1071602203, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:02.303
+Message ID: 3674561256, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:02.316
+Message ID: 882569029, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:02.359
+Message ID: 4007046247, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:02.426
+Message ID: 1769568555, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:02.434
+Message ID: 1859495324, Client ID: 8, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2251036313 for client 8 to SELL 5 actions of 2 at the price of 0$ at time 2026-09-17 21:15:02.476 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:02.476
+Message ID: 4040362413, Client ID: 8, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:02.477
+Message ID: 635169461, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:02.498
+Message ID: 2509051080, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:02.524
+Message ID: 3702708985, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:02.578
+Message ID: 3621126918, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:02.620
+Message ID: 3932689665, Client ID: 7, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3679467059 for client 7 to BUY 9 actions of 22 at the price of 17.3$ at time 2026-09-17 21:15:02.670 with trigger type LIMIT and trigger price lower 16.11 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:02.670
+Message ID: 3898250738, Client ID: 7, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:02.671
+Message ID: 1712725265, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:02.783
+Message ID: 1354508949, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:02.788
+Message ID: 561103940, Client ID: 2, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3682266795 for client 2 to BUY 6 actions of 22 at the price of 17.45$ at time 2026-09-17 21:15:02.929 with trigger type LIMIT and trigger price lower 16.04 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:02.929
+Message ID: 573104719, Client ID: 2, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:02.931
+Message ID: 3761038013, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:02.944
+Message ID: 1093274530, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2484541402 for client 9 to BUY 5 actions of 22 at the price of 15.9$ at time 2026-09-17 21:15:02.987 with trigger type LIMIT and trigger price lower 14.36 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:02.987
+Message ID: 1937058415, Client ID: 9, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:02.989
+Message ID: 2527181183, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:03.139
+Message ID: 1876502174, Client ID: 3, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1301504908 for client 3 to BUY 7 actions of 20 at the price of 6002.24$ at time 2026-09-17 21:15:03.211 with trigger type LIMIT and trigger price lower 5930.76 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:03.211
+Message ID: 2113251913, Client ID: 3, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:03.213
+Message ID: 1388646334, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:03.218
+Message ID: 623752140, Client ID: 9, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 2484541402 trigger condition reached at price 15.550000190734863$, entering the market,Time: 2026-09-17 21:15:03.392
+Message ID: 3057842694, Client ID: 3, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 1301504908 trigger condition reached at price 6322.89990234375$, entering the market,Time: 2026-09-17 21:15:03.392
+Message ID: 2551931557, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:03.413
+Message ID: 3654154240, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:03.436
+Message ID: 3855555786, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:03.468
+Message ID: 3664067618, Client ID: 5, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3952350728 for client 5 to BUY 2 actions of 6 at the price of 8620.73$ at time 2026-09-17 21:15:03.477 with trigger type LIMIT and trigger price lower 8570.77 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:03.477
+Message ID: 3470118527, Client ID: 5, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:03.478
+Message ID: 4225039085, Client ID: 4, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3404447089 for client 4 to SELL 6 actions of 3 at the price of 0$ at time 2026-09-17 21:15:03.490 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:03.490
+Message ID: 1765937113, Client ID: 4, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:03.491
+Message ID: 3829605796, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 6 actions 3 at the price of 8186.93017578125$ between buyer 19 and seller 4 at time 2026-09-17 21:15:03.493,Time: 2026-09-17 21:15:03.493
+Message ID: 2077238489, Client ID: 17, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 4017599976 for client 17 to SELL 5 actions of 7 at the price of 0$ at time 2026-09-17 21:15:03.531 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:03.531
+Message ID: 381611934, Client ID: 17, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:03.532
+Message ID: 2507473073, Client ID: 8, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1910835828 for client 8 to SELL 3 actions of 23 at the price of 7649.86$ at time 2026-09-17 21:15:03.613 with trigger type LIMIT and trigger price lower 7598.26 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:03.613
+Message ID: 233549443, Client ID: 8, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:03.615
+Message ID: 1778385956, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:03.623
+Message ID: 4119864875, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:03.673
+Message ID: 2131900040, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:03.702
+Message ID: 900453717, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:03.709
+Message ID: 3772030666, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:03.756
+Message ID: 1607247372, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:03.810
+Message ID: 649752768, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:03.849
+Message ID: 2738764673, Client ID: 8, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 1910835828 trigger condition reached at price 7860.93$, entering the market,Time: 2026-09-17 21:15:03.905
+Message ID: 2328383675, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.072
+Message ID: 1306473870, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.073
+Message ID: 2280404330, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.141
+Message ID: 2700454070, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.243
+Message ID: 3467155584, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.315
+Message ID: 2661281146, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.422
+Message ID: 558907822, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.513
+Message ID: 1029087021, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.534
+Message ID: 3915271558, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.583
+Message ID: 164958799, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.587
+Message ID: 181713923, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.630
+Message ID: 2170061353, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.640
+Message ID: 3763303822, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.659
+Message ID: 119322085, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.745
+Message ID: 1899729939, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.805
+Message ID: 2060265532, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.825
+Message ID: 1889529994, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.839
+Message ID: 3935174367, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:04.849
+Message ID: 878904055, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.873
+Message ID: 2494042161, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:04.985
+Message ID: 424218733, Client ID: 2, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1756464348 for client 2 to BUY 5 actions of 4 at the price of 65535$ at time 2026-09-17 21:15:05.237 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:05.237
+Message ID: 748275004, Client ID: 2, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:05.238
+Message ID: 3029199001, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:05.260
+Message ID: 111126426, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 169638761 for client 9 to BUY 6 actions of 17 at the price of 2902.15$ at time 2026-09-17 21:15:05.264 with trigger type STOP and trigger price lower 0 and trigger price upper 3066.19 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:05.264
+Message ID: 3289403061, Client ID: 9, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:05.266
+Message ID: 3567683606, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:05.312
+Message ID: 2335393892, Client ID: 9, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 169638761 trigger condition reached at price 2883.0751953125$, entering the market,Time: 2026-09-17 21:15:05.425
+Message ID: 3489868146, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:05.450
+Message ID: 2653469642, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:05.552
+Message ID: 3657495123, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:05.637
+Message ID: 1069624939, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2496851618 for client 20 to BUY 2 actions of 6 at the price of 65535$ at time 2026-09-17 21:15:05.677 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:05.677
+Message ID: 818373112, Client ID: 20, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:05.679
+Message ID: 344329452, Client ID: 16, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2915212359 for client 16 to BUY 4 actions of 22 at the price of 65535$ at time 2026-09-17 21:15:05.704 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:05.704
+Message ID: 169707160, Client ID: 16, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:05.706
+Message ID: 2377033023, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:05.731
+Message ID: 725069802, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:05.765
+Message ID: 1392363013, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:05.765
+Message ID: 1355624185, Client ID: 19, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 991283934 for client 19 to BUY 2 actions of 22 at the price of 65535$ at time 2026-09-17 21:15:05.773 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:05.773
+Message ID: 1358621000, Client ID: 19, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:05.774
+Message ID: 3232644323, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:05.883
+Message ID: 2936680435, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:05.930
+Message ID: 142051800, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:05.945
+Message ID: 3218227444, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:05.957
+Message ID: 1877713408, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:05.973
+Message ID: 1622231945, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:06.020
+Message ID: 1542388287, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:06.102
+Message ID: 2044214860, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:06.273
+Message ID: 2892504963, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:06.378
+Message ID: 2069788675, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:06.380
+Message ID: 194908374, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:06.523
+Message ID: 2472236166, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:06.589
+Message ID: 174104003, Client ID: 6, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1124838265 for client 6 to BUY 1 actions of 6 at the price of 7066.29$ at time 2026-09-17 21:15:06.607 with trigger type LIMIT and trigger price lower 6926.22 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:06.607
+Message ID: 2123732406, Client ID: 6, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:06.610
+Message ID: 1842240038, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:06.732
+Message ID: 9815395, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:06.798
+Message ID: 466655636, Client ID: 16, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1065351383 for client 16 to BUY 9 actions of 23 at the price of 65535$ at time 2026-09-17 21:15:06.800 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:06.800
+Message ID: 3656282949, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:06.800
+Message ID: 2799844793, Client ID: 16, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:06.802
+Message ID: 1567738009, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 3 actions 23 at the price of 7649.86$ between buyer 16 and seller 8 at time 2026-09-17 21:15:06.804,Time: 2026-09-17 21:15:06.804
+Message ID: 2341060297, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:06.856
+Message ID: 372336979, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:06.877
+Message ID: 2308824797, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:06.887
+Message ID: 1453636169, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:06.941
+Message ID: 3361482146, Client ID: 6, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 1124838265 trigger condition reached at price 7636.419921875$, entering the market,Time: 2026-09-17 21:15:06.943
+Message ID: 3840732167, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.006
+Message ID: 1364065200, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.027
+Message ID: 1567485844, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:07.032
+Message ID: 3139923713, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.093
+Message ID: 403668470, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.217
+Message ID: 716570254, Client ID: 18, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1224541146 for client 18 to BUY 7 actions of 13 at the price of 65535$ at time 2026-09-17 21:15:07.303 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:07.303
+Message ID: 34061134, Client ID: 18, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:07.304
+Message ID: 4243551879, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.402
+Message ID: 1821345033, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:07.432
+Message ID: 2050862134, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:07.435
+Message ID: 2182193187, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.696
+Message ID: 830066159, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:07.697
+Message ID: 3526631085, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:07.766
+Message ID: 1010437831, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.768
+Message ID: 939443180, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:07.873
+Message ID: 1414103720, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.877
+Message ID: 2371105792, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.929
+Message ID: 909673119, Client ID: 16, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2856103372 for client 16 to SELL 1 actions of 1 at the price of 973.2$ at time 2026-09-17 21:15:07.943 with trigger type LIMIT_STOP and trigger price lower 942.72 and trigger price upper 1064.74 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:07.943
+Message ID: 2441666753, Client ID: 16, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:07.945
+Message ID: 842197480, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.947
+Message ID: 538837098, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:07.997
+Message ID: 643169107, Client ID: 11, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3942775630 for client 11 to BUY 3 actions of 1 at the price of 65535$ at time 2026-09-17 21:15:08.050 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:08.050
+Message ID: 4179353767, Client ID: 11, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:08.051
+Message ID: 526573916, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:08.104
+Message ID: 960841196, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:08.128
+Message ID: 2932255326, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:08.214
+Message ID: 3510346976, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:08.242
+Message ID: 455174267, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:08.293
+Message ID: 4266662535, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:08.387
+Message ID: 2006753682, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:08.483
+Message ID: 2361057356, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:08.635
+Message ID: 1051500602, Client ID: 2, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1695350900 for client 2 to BUY 1 actions of 1 at the price of 65535$ at time 2026-09-17 21:15:08.637 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:08.637
+Message ID: 3080930034, Client ID: 2, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:08.638
+Message ID: 2096737244, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:08.739
+Message ID: 1187706998, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:08.770
+Message ID: 2313876964, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:08.858
+Message ID: 2060459525, Client ID: 3, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3936020053 for client 3 to SELL 10 actions of 17 at the price of 2539.33$ at time 2026-09-17 21:15:08.959 with trigger type LIMIT and trigger price lower 2532.44 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:08.959
+Message ID: 784070187, Client ID: 3, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:08.961
+Message ID: 775119342, Client ID: 3, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 3936020053 trigger condition reached at price 2883.0751953125$, entering the market,Time: 2026-09-17 21:15:08.972
+Message ID: 1435870730, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:08.976
+Message ID: 1697941140, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 3 actions 17 at the price of 2539.33$ between buyer 6 and seller 3 at time 2026-09-17 21:15:08.978,Time: 2026-09-17 21:15:08.978
+Message ID: 4203566190, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 7 actions 17 at the price of 2539.33$ between buyer 1 and seller 3 at time 2026-09-17 21:15:08.987,Time: 2026-09-17 21:15:08.987
+Message ID: 1568282120, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:08.997
+Message ID: 3636942352, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.024
+Message ID: 469877414, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.037
+Message ID: 3316547045, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.053
+Message ID: 1476170624, Client ID: 16, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1984058949 for client 16 to BUY 5 actions of 13 at the price of 65535$ at time 2026-09-17 21:15:09.115 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:09.115
+Message ID: 286902186, Client ID: 16, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:09.117
+Message ID: 1052313549, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.171
+Message ID: 2155066641, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.171
+Message ID: 952841335, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.289
+Message ID: 2399970006, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.297
+Message ID: 126055851, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.392
+Message ID: 1353300145, Client ID: 12, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1229956610 for client 12 to SELL 4 actions of 23 at the price of 7782.91$ at time 2026-09-17 21:15:09.396 with trigger type LIMIT_STOP and trigger price lower 7723.95 and trigger price upper 8066.36 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:09.396
+Message ID: 936415112, Client ID: 12, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:09.398
+Message ID: 720855007, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:09.404
+Message ID: 2261984066, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.623
+Message ID: 55003493, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.721
+Message ID: 2874534779, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.733
+Message ID: 3699798901, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:09.862
+Message ID: 1514302880, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:09.911
+Message ID: 4003561153, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 492873619 for client 20 to SELL 1 actions of 3 at the price of 7436.35$ at time 2026-09-17 21:15:09.978 with trigger type LIMIT and trigger price lower 7074.3 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:09.978
+Message ID: 1002256919, Client ID: 20, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:09.979
+Message ID: 2081899584, Client ID: 20, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 492873619 trigger condition reached at price 8186.93017578125$, entering the market,Time: 2026-09-17 21:15:10.004
+Message ID: 1875277456, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 1 actions 3 at the price of 7436.35$ between buyer 12 and seller 20 at time 2026-09-17 21:15:10.009,Time: 2026-09-17 21:15:10.009
+Message ID: 644476058, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:10.024
+Message ID: 2345813375, Client ID: 15, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3156118792 for client 15 to SELL 10 actions of 20 at the price of 0$ at time 2026-09-17 21:15:10.036 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:10.036
+Message ID: 3473263005, Client ID: 15, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:10.037
+Message ID: 1985967483, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 1 actions 20 at the price of 6322.89990234375$ between buyer 9 and seller 15 at time 2026-09-17 21:15:10.039,Time: 2026-09-17 21:15:10.039
+Message ID: 896592345, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 7 actions 20 at the price of 7119.54$ between buyer 17 and seller 15 at time 2026-09-17 21:15:10.046,Time: 2026-09-17 21:15:10.046
+Message ID: 636598437, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 2 actions 20 at the price of 6002.24$ between buyer 3 and seller 15 at time 2026-09-17 21:15:10.052,Time: 2026-09-17 21:15:10.052
+Message ID: 1486031991, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:10.067
+Message ID: 3676724929, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:10.132
+Message ID: 3899866309, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:10.180
+Message ID: 3640945889, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:10.189
+Message ID: 2510673707, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:10.200
+Message ID: 3222256081, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:10.207
+Message ID: 3687593918, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:10.280
+Message ID: 1353331110, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:10.334
+Message ID: 2788077372, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:10.381
+Message ID: 2070073008, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:10.417
+Message ID: 4066590305, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:10.448
+Message ID: 2900110018, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:10.479
+Message ID: 649494964, Client ID: 9, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3719207982 for client 9 to SELL 5 actions of 3 at the price of 0$ at time 2026-09-17 21:15:10.644 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:10.644
+Message ID: 3742013220, Client ID: 9, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:10.645
+Message ID: 304302878, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 4 actions 3 at the price of 7436.35$ between buyer 12 and seller 9 at time 2026-09-17 21:15:10.646,Time: 2026-09-17 21:15:10.646
+Message ID: 102133277, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 1 actions 3 at the price of 8188.9$ between buyer 9 and seller 9 at time 2026-09-17 21:15:10.650,Time: 2026-09-17 21:15:10.650
+Message ID: 2147486231, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:10.756
+Message ID: 3855159714, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:10.939
+Message ID: 502064300, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:10.995
+Message ID: 3367575369, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.008
+Message ID: 4067903801, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.053
+Message ID: 135287253, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:11.085
+Message ID: 2724723707, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.187
+Message ID: 1911648257, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.222
+Message ID: 1241004344, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:11.300
+Message ID: 838524706, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:11.305
+Message ID: 61614476, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.319
+Message ID: 3551277224, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.352
+Message ID: 3317063134, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.360
+Message ID: 4027424824, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.423
+Message ID: 2759645384, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:11.458
+Message ID: 3327061865, Client ID: 7, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 1364228448 for client 7 to SELL 7 actions of 14 at the price of 57228.75$ at time 2026-09-17 21:15:11.476 with trigger type LIMIT_STOP and trigger price lower 52514.35 and trigger price upper 58556.21 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:11.476
+Message ID: 629378520, Client ID: 7, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:11.477
+Message ID: 1441733512, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:11.506
+Message ID: 1999806181, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:11.523
+Message ID: 3455424356, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:11.529
+Message ID: 208736718, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.727
+Message ID: 4101898477, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:11.857
+Message ID: 1223408317, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:11.968
+Message ID: 1096572199, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.081
+Message ID: 3096926499, Client ID: 3, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2763676074 for client 3 to BUY 7 actions of 11 at the price of 1585.95$ at time 2026-09-17 21:15:12.150 with trigger type LIMIT_STOP and trigger price lower 1487.07 and trigger price upper 1679.39 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:12.150
+Message ID: 3546800487, Client ID: 3, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:12.152
+Message ID: 1397009118, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.166
+Message ID: 424208634, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3580669825 for client 20 to BUY 5 actions of 22 at the price of 15.17$ at time 2026-09-17 21:15:12.173 with trigger type STOP and trigger price lower 0 and trigger price upper 15.34 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:12.173
+Message ID: 1444038079, Client ID: 20, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:12.174
+Message ID: 2526537553, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.350
+Message ID: 1159389664, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.383
+Message ID: 1724100183, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.443
+Message ID: 1486955726, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.453
+Message ID: 3709473778, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:12.498
+Message ID: 2427308712, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.527
+Message ID: 1777035340, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:12.544
+Message ID: 1075501171, Client ID: 3, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 2763676074 trigger condition reached at price 1679.2099609375$, entering the market,Time: 2026-09-17 21:15:12.549
+Message ID: 2679502210, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.555
+Message ID: 1977962087, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:12.562
+Message ID: 1119070924, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:12.625
+Message ID: 2217104162, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:12.628
+Message ID: 1167485792, Client ID: 12, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 198813823 for client 12 to BUY 4 actions of 1 at the price of 1260.58$ at time 2026-09-17 21:15:12.657 with trigger type LIMIT and trigger price lower 1260.39 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:12.657
+Message ID: 2608798556, Client ID: 12, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:12.658
+Message ID: 4057769385, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:12.660
+Message ID: 1347225313, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:12.944
+Message ID: 3935743696, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.045
+Message ID: 2703756123, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.063
+Message ID: 1727044966, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:13.193
+Message ID: 2199090879, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:13.259
+Message ID: 2303400785, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.269
+Message ID: 545746867, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:13.364
+Message ID: 3707848862, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:13.490
+Message ID: 530009638, Client ID: 15, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 352687990 for client 15 to BUY 3 actions of 17 at the price of 65535$ at time 2026-09-17 21:15:13.527 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:13.527
+Message ID: 2360764971, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:13.527
+Message ID: 2524625963, Client ID: 15, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:13.528
+Message ID: 3447280693, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.553
+Message ID: 959485345, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.562
+Message ID: 482673478, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.578
+Message ID: 445559340, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.588
+Message ID: 124950275, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.593
+Message ID: 1603048618, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.611
+Message ID: 2931013861, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:13.689
+Message ID: 2444240465, Client ID: 12, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:13.695
+Message ID: 4257183013, Client ID: 12, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3025497738 for client 12 to BUY 1 actions of 17 at the price of 3213.45$ at time 2026-09-17 21:15:13.695 with trigger type LIMIT_STOP and trigger price lower 3106.95 and trigger price upper 3303.25 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:13.695
+Message ID: 986109534, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:13.730
+Message ID: 1748713615, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:13.780
+Message ID: 2822862571, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:14.152
+Message ID: 3247115144, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:14.226
+Message ID: 729390567, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:14.229
+Message ID: 3927579890, Client ID: 0, Sender: SERVER_MESSAGE, Type: PRE_CLOSE_PHASE, Content: Market pre-close phase (fixing),Time: 2026-09-17 21:15:14.234
+Message ID: 231275040, Client ID: 13, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 180543091 for client 13 to SELL 3 actions of 11 at the price of 0$ at time 2026-09-17 21:15:14.247 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:14.247
+Message ID: 1796718981, Client ID: 13, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:14.249
+Message ID: 2576772302, Client ID: 20, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:14.391
+Message ID: 2496085093, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:14.394
+Message ID: 4255453936, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:14.452
+Message ID: 4129525443, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:14.546
+Message ID: 3012732351, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:14.581
+Message ID: 3217172968, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:14.642
+Message ID: 1289193896, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:14.644
+Message ID: 1738820526, Client ID: 7, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 306046920 for client 7 to SELL 3 actions of 19 at the price of 5661.6$ at time 2026-09-17 21:15:14.654 with trigger type LIMIT and trigger price lower 5445.1 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:14.654
+Message ID: 3431861012, Client ID: 4, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 2667864176 for client 4 to SELL 4 actions of 14 at the price of 62539.14$ at time 2026-09-17 21:15:14.654 with trigger type LIMIT and trigger price lower 57634.32 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:14.654
+Message ID: 2951601365, Client ID: 7, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:14.657
+Message ID: 345738188, Client ID: 4, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:14.658
+Message ID: 4030578424, Client ID: 15, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:14.675
+Message ID: 3289912083, Client ID: 17, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 187331400 for client 17 to SELL 10 actions of 7 at the price of 0$ at time 2026-09-17 21:15:14.696 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:14.696
+Message ID: 3132229567, Client ID: 17, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:14.697
+Message ID: 3129796078, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:14.761
+Message ID: 1383510911, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:14.808
+Message ID: 172294433, Client ID: 18, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3649112793 for client 18 to BUY 3 actions of 8 at the price of 21201.77$ at time 2026-09-17 21:15:14.861 with trigger type LIMIT_STOP and trigger price lower 19711.07 and trigger price upper 21325.88 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:14.861
+Message ID: 4206624390, Client ID: 18, Sender: SERVER_MESSAGE, Type: WAITING_ORDER, Content: Order is waiting for its trigger condition to be reached …,Time: 2026-09-17 21:15:14.862
+Message ID: 843060991, Client ID: 12, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:14.865
+Message ID: 465707095, Client ID: 11, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:14.930
+Message ID: 430923905, Client ID: 4, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 2667864176 trigger condition reached at price 63923$, entering the market,Time: 2026-09-17 21:15:15.080
+Message ID: 1450038345, Client ID: 18, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 3649112793 trigger condition reached at price 19831.80078125$, entering the market,Time: 2026-09-17 21:15:15.080
+Message ID: 2691403796, Client ID: 7, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Order 306046920 trigger condition reached at price 5635.41015625$, entering the market,Time: 2026-09-17 21:15:15.080
+Message ID: 4285571851, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 1 actions 19 at the price of 5661.6$ between buyer 20 and seller 7 at time 2026-09-17 21:15:15.240,Time: 2026-09-17 21:15:15.240
+Message ID: 2357377156, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 2 actions 19 at the price of 5661.6$ between buyer 9 and seller 7 at time 2026-09-17 21:15:15.249,Time: 2026-09-17 21:15:15.249
+Message ID: 872156397, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 3 actions 8 at the price of 21201.77$ between buyer 18 and seller 10 at time 2026-09-17 21:15:15.258,Time: 2026-09-17 21:15:15.258
+Message ID: 3475066653, Client ID: 0, Sender: SERVER_MESSAGE, Type: TRANSACTION, Content: Transaction of 3 actions 11 at the price of 1679.2099609375$ between buyer 16 and seller 13 at time 2026-09-17 21:15:15.263,Time: 2026-09-17 21:15:15.263
+Message ID: 1827343087, Client ID: 0, Sender: SERVER_MESSAGE, Type: CLOSE_PHASE, Content: Market close phase, accumulating orders,Time: 2026-09-17 21:15:15.267
+Message ID: 1178139219, Client ID: 9, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.303
+Message ID: 1340866801, Client ID: 2, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.386
+Message ID: 467299342, Client ID: 3, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:15.413
+Message ID: 4245008270, Client ID: 13, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.436
+Message ID: 1028605434, Client ID: 10, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:15.438
+Message ID: 2658714808, Client ID: 20, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 3156912288 for client 20 to BUY 2 actions of 13 at the price of 65535$ at time 2026-09-17 21:15:15.447 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:15.447
+Message ID: 3830528726, Client ID: 20, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:15.448
+Message ID: 1067925457, Client ID: 6, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:15.602
+Message ID: 1581563341, Client ID: 16, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:15.604
+Message ID: 1866010545, Client ID: 5, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.644
+Message ID: 1033547562, Client ID: 14, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:15.680
+Message ID: 418734036, Client ID: 19, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.707
+Message ID: 7944701, Client ID: 4, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:15.722
+Message ID: 4099257997, Client ID: 17, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.735
+Message ID: 127117388, Client ID: 7, Sender: SERVER_MESSAGE, Type: ERROR, Content: Insufficient balance for buying,Time: 2026-09-17 21:15:15.853
+Message ID: 3020050441, Client ID: 15, Sender: CLIENT_MESSAGE, Type: ORDER, Content: Order created with ID: 4159557426 for client 15 to SELL 4 actions of 20 at the price of 0$ at time 2026-09-17 21:15:15.853 with trigger type MARKET and trigger price lower 0 and trigger price upper 65535 until validity date 2076-03-01 00:00:00.000,Time: 2026-09-17 21:15:15.853
+Message ID: 3791514981, Client ID: 15, Sender: SERVER_MESSAGE, Type: ACCUMULATING_ORDER, Content: Accumulating the order …,Time: 2026-09-17 21:15:15.855
+Message ID: 2032007641, Client ID: 1, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.869
+Message ID: 1638349595, Client ID: 8, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.944
+Message ID: 1619337687, Client ID: 18, Sender: SERVER_MESSAGE, Type: ERROR, Content: Failed to sell action, client does not have enough shares,Time: 2026-09-17 21:15:15.963
+Message ID: 2880974331, Client ID: 0, Sender: SERVER_MESSAGE, Type: SERVER_SHUTDOWN, Content: Server shutdown,Time: 2026-09-17 21:15:15.975
+-------------- End of messages in the database --------------
+Client input : 12 SELL 3 22 MARKET
+Client input : 11 BUY 1 4 LIMIT 10021.73 9760.99
+Simulation summary written to ../Data/simulation_summary_after.txt
