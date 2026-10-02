@@ -1,0 +1,12 @@
+# the trained RL agents are versioned once they exist (rebuilt by rl_agents.train), so launch.sh trades them out of the box: the production model rl, the fold models rl_f<k> (the ensemble members) and the two rule baselines
+artifacts/*
+!artifacts/rl/
+!artifacts/rl_*/
+!artifacts/*/ppo.pkl
+!artifacts/*/metadata.json
+artifacts/*/*.csv
+artifacts/*/*.log
+# the training's reports (rebuilt by train) and the recorded trading-day markets (1.5 GO, rebuilt by scripts/simulate_market_days.sh)
+reports/
+sim_days/
+__pycache__/

@@ -1,0 +1,12 @@
+*.o
+*.d
+*.x
+*.json
+*.log
+*.csv
+*.png
+*.html
+*.snapshot
+*.DS_Store
+# the README charts are versioned (the run outputs they come from are not)
+!Data/README_Pictures/*.png
