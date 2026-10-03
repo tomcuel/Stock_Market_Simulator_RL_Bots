@@ -3,15 +3,16 @@
 #include <algorithm>
 #include <filesystem>
 #include <fstream>
+#include <map>
 #include <sstream>
 
 #include "logger.hpp"
 #include "metrics.hpp"
+#include "paths.hpp"
 
 namespace sim {
 
-Simulation::Simulation(SimulationConfig config)
-    : config_(std::move(config)), engine_(bus_), market_data_(bus_) {
+Simulation::Simulation(SimulationConfig config) : config_(std::move(config)), engine_(bus_), market_data_(bus_) {
     for (const auto& symbol_config : config_.symbols) {
         engine_.register_symbol(symbol_config.symbol, symbol_config.initial_price);
     }
@@ -52,31 +53,53 @@ void Simulation::spawn_bots() {
 
     auto make_client = [&]() {
         ClientId id = next_client_id_++;
-        engine_.ensure_client(id, config_.bot_initial_cash);
-        for (const auto& symbol : all_symbols) {
-            engine_.grant_initial_holdings(id, symbol, config_.bot_initial_shares);
-        }
+        // balanced by value: the same equity for every bot, split between cash and an equal value of every symbol, so a bot can both buy and sell whichever symbol pick_symbol() hands it
+        engine_.fund_balanced_account(id, config_.bot_equity, config_.bot_cash_fraction);
         return id;
     };
 
-    for (int i = 0; i < config_.noise_traders; ++i) {
-        ClientId id = make_client();
-        bots_.push_back(std::make_unique<NoiseTraderBot>(
-            engine_, market_data_, id, all_symbols, config_.bot_min_interval, config_.bot_max_interval,
-            seed++, volatilities));
+    // one entry per strategy: how many bots run it
+    auto spawn = [&](const std::string& strategy, int count) {
+        for (int i = 0; i < count; ++i) {
+            ClientId id = make_client();
+            gateways_.push_back(std::make_unique<InProcessGateway>(engine_, id));
+            auto bot = make_strategy(strategy, *gateways_.back(), all_symbols, seed++, volatilities, ml_model_, config_.ml_bar_interval);
+            if (!bot) {
+                continue;
+            }
+            bots_.push_back(std::make_unique<BotRunner>(std::move(bot), config_.bot_min_interval, config_.bot_max_interval, seed++));
+        }
+    };
+
+    int ml_count = config_.ml_traders;
+    if (ml_count > 0) {
+        auto model = std::make_shared<SignalModel>();
+        std::string error;
+        if (model->load(config_.ml_model_path, error)) {
+            ml_model_ = model;
+            LOG_INFO("ML model loaded from ", display_path(config_.ml_model_path), " (horizon ", model->horizon(), " bars of ", config_.ml_bar_interval.count(), " ms)");
+            // each ML bot needs kSignalMinHistory bars before its first decision, then horizon() bars per position: a run shorter than that plus a few horizons gives too few trades to judge the model
+            if (config_.ml_bar_interval.count() > 0) {
+                auto bars = static_cast<long long>(config_.duration / config_.ml_bar_interval);
+                auto useful = static_cast<long long>(kSignalMinHistory) + 4LL * std::max(1, model->horizon());
+                if (bars < useful) {
+                    LOG_WARN("this run lasts ", bars, " ML bars (simulated trading days): the ML bots need ", kSignalMinHistory, " to start and ", model->horizon(), " per position, run at least ", useful * config_.ml_bar_interval.count() / 1000, " s (--duration) for their results to mean anything");
+                }
+            }
+        }
+        else {
+            LOG_WARN("no ML bots: ", error);
+            ml_count = 0;
+        }
     }
-    for (int i = 0; i < config_.momentum_traders; ++i) {
-        ClientId id = make_client();
-        bots_.push_back(std::make_unique<MomentumBot>(
-            engine_, market_data_, id, all_symbols, config_.bot_min_interval, config_.bot_max_interval,
-            seed++, volatilities));
-    }
-    for (int i = 0; i < config_.market_makers; ++i) {
-        ClientId id = make_client();
-        bots_.push_back(std::make_unique<MarketMakerBot>(
-            engine_, market_data_, id, all_symbols, config_.bot_min_interval, config_.bot_max_interval,
-            seed++, volatilities));
-    }
+
+    spawn("noise", config_.noise_traders);
+    spawn("momentum", config_.momentum_traders);
+    spawn("marketmaker", config_.market_makers);
+    spawn("meanreversion", config_.mean_reversion_traders);
+    spawn("trend", config_.trend_followers);
+    spawn("twap", config_.twap_executors);
+    spawn("ml", ml_count);
 }
 
 std::string Simulation::run() {
@@ -111,7 +134,17 @@ std::string Simulation::run() {
         recorder_config.file_suffix = config_.file_suffix;
         recorder_config.sample_interval = config_.report_interval;
         recorder_ = std::make_unique<MarketRecorder>(bus_, engine_, recorder_config);
-        recorder_->start(); // "before" snapshot: initial prices and every bot's starting portfolio
+        for (auto& bot : bots_) {
+            recorder_->set_client_label(bot->strategy().client(), bot->strategy().name()); // P&L per strategy in the report
+        }
+        recorder_->start(); // "before" snapshot (initial prices, every bot's starting portfolio) and the sampling thread: without it the report only holds the final snapshot
+    }
+
+    // net worth at the start, valued at the initial prices: the base of each strategy's P&L
+    auto initial_prices = engine_.all_last_prices();
+    for (auto& bot : bots_){
+        ClientId client = bot->strategy().client();
+        initial_net_worth_[client] = engine_.portfolio_snapshot(client).net_worth(initial_prices);
     }
 
     for (auto& bot : bots_) {
@@ -142,12 +175,12 @@ std::string Simulation::run() {
     std::ostringstream report;
     report << "=== Simulation report (" << elapsed_seconds << "s) ===\n";
     if (has_output) {
-        report << "output: " << config_.output_dir << '\n';
+        report << "output: " << display_path(config_.output_dir) << '\n';
         if (metrics_thread_started_) {
-            report << "  metrics" << config_.file_suffix << ".csv  (plot: python3 scripts/plot_metrics.py " << config_.output_dir << ")\n";
+            report << "  metrics" << config_.file_suffix << ".csv  (plot: python3 scripts/plot_metrics.py " << display_path(config_.output_dir) << ")\n";
         }
         if (recorder_) {
-            report << (market_report_written ? "  market report *" + config_.file_suffix + ".csv  (plot: python3 scripts/plot_market_report.py " + config_.output_dir + ")\n" : std::string("  market report: FAILED to write (see log)\n"));
+            report << (market_report_written ? "  market report *" + config_.file_suffix + ".csv  (plot: python3 scripts/plot_market_report.py " + display_path(config_.output_dir) + ")\n" : std::string("  market report: FAILED to write (see log)\n"));
         }
     }
     report << MetricsRegistry::instance().report(elapsed_seconds) << "\n";
@@ -167,6 +200,44 @@ std::string Simulation::run() {
         report << "\n";
     }
 
+    // per strategy: how the bots running it did, and how much they managed their own orders
+    struct StrategyScore
+    {
+        int bots{0};
+        double pnl{0.0};
+        std::uint64_t placed{0};
+        std::uint64_t retracted{0};
+    };
+    std::map<std::string, StrategyScore> scores;
+    auto final_prices = engine_.all_last_prices();
+    for (auto& bot : bots_){
+        TradingStrategy& strategy = bot->strategy();
+        StrategyScore& score = scores[strategy.name()];
+        ++score.bots;
+        score.pnl += engine_.portfolio_snapshot(strategy.client()).net_worth(final_prices) - initial_net_worth_[strategy.client()];
+        score.placed += strategy.orders_placed();
+        score.retracted += strategy.orders_retracted();
+    }
+    report << "\n-- Strategies --\n";
+    for (const auto& [name, score] : scores){
+        report << name << ": bots=" << score.bots << " mean_pnl=" << score.pnl / score.bots << " orders_placed=" << score.placed << " orders_retracted=" << score.retracted << "\n";
+    }
+    // the ML bots' positions: how they ended (closed at the model's horizon, or earlier by their protective stop)
+    std::uint64_t ml_bars = 0, ml_opened = 0, ml_horizon = 0, ml_stop = 0, ml_open = 0, ml_bots = 0;
+    for (auto& bot : bots_) {
+        if (auto* ml = dynamic_cast<MLSignalBot*>(&bot->strategy())) {
+            ++ml_bots;
+            ml_bars = std::max(ml_bars, ml->bars_seen());
+            ml_opened += ml->positions_opened();
+            ml_horizon += ml->horizon_exits();
+            ml_stop += ml->stop_exits();
+            ml_open += ml->open_positions();
+        }
+    }
+    if (ml_bots > 0) {
+        report << "ml positions: bars=" << ml_bars << " opened=" << ml_opened << " closed_at_horizon=" << ml_horizon << " closed_by_stop=" << ml_stop << " still_open=" << ml_open << "\n";
+    }
+
     report << "\n-- Top 5 clients by net worth --\n";
     auto last_prices = engine_.all_last_prices();
     std::vector<std::pair<ClientId, double>> leaderboard;
@@ -174,7 +245,7 @@ std::string Simulation::run() {
         Portfolio p = engine_.portfolio_snapshot(id);
         leaderboard.emplace_back(id, p.net_worth(last_prices));
     }
-    std::sort(leaderboard.begin(), leaderboard.end(), [](auto& a, auto& b) { return a.second > b.second; });
+    std::sort(leaderboard.begin(), leaderboard.end(), [](auto& a, auto& b) {return a.second > b.second;});
     for (std::size_t i = 0; i < std::min<std::size_t>(5, leaderboard.size()); ++i) {
         report << "client " << leaderboard[i].first << ": net_worth=" << leaderboard[i].second << "\n";
     }

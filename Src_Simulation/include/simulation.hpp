@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SIMULATION_HPP
+#define SIMULATION_HPP
 
 #include <atomic>
 #include <memory>
@@ -25,8 +26,16 @@ struct SimulationConfig {
     int noise_traders{15};
     int momentum_traders{5};
     int market_makers{4};
-    double bot_initial_cash{100000.0};
-    Quantity bot_initial_shares{100}; // starting inventory per symbol, so bots can sell right away too
+    int mean_reversion_traders{4};
+    int trend_followers{4};
+    int twap_executors{2};
+    int ml_traders{2};                                    // only started when the model below loads
+    std::string ml_model_path{"models/signal_model.csv"}; // written by scripts/train_signal_model.py
+        std::chrono::milliseconds ml_bar_interval{1000};      // the ML bots' bar: one simulated trading day (see MLSignalBot)
+    // every bot starts with the same equity, bot_cash_fraction of it in cash and the rest split equally by value across the symbols (MatchingEngine::fund_balanced_account)
+    // 10 million keeps whole shares fine-grained even for index-priced symbols (^DJI around 42000: 23 shares instead of 2)
+    double bot_equity{10000000.0};
+    double bot_cash_fraction{0.5};
     std::chrono::milliseconds bot_min_interval{20};
     std::chrono::milliseconds bot_max_interval{200};
     std::chrono::seconds duration{10};
@@ -63,7 +72,10 @@ private:
     NotificationBus bus_;
     MatchingEngine engine_;
     MarketData market_data_;
-    std::vector<std::unique_ptr<TradingBot>> bots_;
+    std::vector<std::unique_ptr<InProcessGateway>> gateways_; // one per bot, owned here, outlive the runners
+    std::vector<std::unique_ptr<BotRunner>> bots_;
+    std::shared_ptr<const SignalModel> ml_model_;
+    std::unordered_map<ClientId, double> initial_net_worth_;
     ClientId next_client_id_{1};
     bool metrics_thread_started_{false};
     // declared last so it's destroyed first: it unsubscribes from bus_ in its destructor
@@ -71,3 +83,5 @@ private:
 };
 
 } // namespace sim
+
+#endif // SIMULATION_HPP
