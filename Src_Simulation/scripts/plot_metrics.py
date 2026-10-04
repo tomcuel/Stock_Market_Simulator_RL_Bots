@@ -33,6 +33,17 @@ import pandas as pd
 KNOWN_SUFFIXES = ("simu", "bots")
 
 
+def display_path(path) -> str:
+    """
+    A path as shown to the user: relative to the project root (the folder holding Src_Simulation/ and NRT/), e.g. Src_Simulation/output/20260925_012005, never absolute
+    """
+    resolved = Path(path).resolve()
+    for parent in [resolved, *resolved.parents]:
+        if (parent / "Src_Simulation").is_dir() and (parent / "NRT").is_dir():
+            return str(resolved.relative_to(parent))
+    return str(path)
+
+
 def resolve_csv(path: Path, suffix: str | None) -> tuple[Path, str]:
     """
     Returns (csv file, suffix without underscore) for a run folder or a CSV path
@@ -125,7 +136,7 @@ def main() -> None:
     label = {"simu": "simulation (in-process)", "bots": "server + socket bots"}.get(suffix, suffix)
     fig = plot(plt, df, f"Metrics: {label}")
     fig.savefig(output, dpi=140)
-    print(f"saved {output}")
+    print(f"saved {display_path(output)}")
     if not headless:
         plt.show()
 

@@ -5,8 +5,8 @@
 # Called by launch.sh, launch_simulation.sh and launch_bots.sh when given --refresh-data MODE (with the same tuning options below): can also be run on its own
 # Same tuning as Src_SQL/scripts/launch_multi_client.sh --reload_prices (--period, --interval, --history_length), which feeds the SQL exchange instead
 #
-# Usage (from anywhere; no argument is required -- the default refreshes Data/tickers.txt, 5y of daily bars):
-#   Src_Simulation/scripts/refresh_data.sh                      # tickers-file mode, 5y, 1d, last 100 rows
+# Usage (from anywhere, no argument is required, the default refreshes Data/tickers.txt, 5y of daily bars):
+#   Src_Simulation/scripts/refresh_data.sh                      # tickers-file mode, 5y, 1d, last 1250 rows
 #   Src_Simulation/scripts/refresh_data.sh small                # 10 large US stocks
 #   Src_Simulation/scripts/refresh_data.sh full --period 10y --history-length 250
 #   Src_Simulation/scripts/refresh_data.sh tickers-file --period 1y --interval 1h
@@ -19,9 +19,10 @@
 #                           tickers-file  one ticker per line in --tickers-file
 #   --period P            how far back to fetch: 1d 5d 1mo 3mo 6mo 1y 2y 5y 10y ytd max (default 5y)
 #   --interval I          bar size: 1d 1h 1wk 1mo (default 1d) (Yahoo serves hourly (1h) bars for the last ~730 days only, so 1h needs --period 2y or shorter)
-#   --history-length N    keep only each ticker's N most recent bars (preprocess.py --max-rows, default 100), also accepted as --max_rows
+#   --history-length N    keep only each ticker's N most recent bars (preprocess.py --max-rows, default 1250, about 5 years: the ML model trains on all of it, the simulator only needs the last price and 20-day volatility), also accepted as --max_rows
 #   --min-rows N          drop tickers with fewer than N bars before that cut (preprocess.py --min-rows, default 30), also accepted as --min_rows
 #   --tickers-file PATH   ticker list for tickers-file mode (default Data/tickers.txt)
+#   --no-train            don't retrain the ML bots' model afterwards (by default it is retrained on the fresh data)
 #   --dry-run             print the commands that would run, without fetching anything
 #   -h, --help            show this help
 #
@@ -31,16 +32,20 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DATA_DIR="$(cd "${SCRIPT_DIR}/../../Data" && pwd)"
+# paths are displayed relative to the project root (e.g. Src_Simulation/output/...), never absolute
+ROOT_DIR="$(cd "${SCRIPT_DIR}/../.." && pwd)"
+rel() { printf '%s' "${1#"${ROOT_DIR}"/}"; }
 
 usage() { awk 'NR > 1 && /^#/ { sub(/^# ?/, ""); print; next } NR > 1 { exit }' "$0"; }
 
 MODE="tickers-file"
 PERIOD="5y"
 INTERVAL="1d"
-HISTORY_LENGTH=100
+HISTORY_LENGTH=1250
 MIN_ROWS=30
 TICKERS_FILE="${DATA_DIR}/tickers.txt"
 DRY_RUN=0
+NO_TRAIN=0
 
 need_value() { # $1 = option name, $2 = number of remaining args
     if [[ "$2" -lt 2 ]]; then echo "$1 needs a value (see --help)" >&2; exit 1; fi
@@ -55,6 +60,7 @@ while [[ $# -gt 0 ]]; do
         --min-rows|--min_rows)             need_value "$1" $#; MIN_ROWS="$2"; shift 2 ;;
         --tickers-file|--tickers_file)     need_value "$1" $#; TICKERS_FILE="$2"; shift 2 ;;
         --dry-run)                         DRY_RUN=1; shift ;;
+        --no-train)                        NO_TRAIN=1; shift ;;
         -h|--help)                         usage; exit 0 ;;
         *) echo "Unknown argument: $1 (see --help)" >&2; exit 1 ;;
     esac
@@ -89,7 +95,7 @@ case "${MODE}" in
     full)  FETCH_ARGS=(--full-tickers) ;;
     tickers-file)
         if [[ ! -f "${TICKERS_FILE}" ]]; then
-            echo "Ticker list not found: ${TICKERS_FILE}" >&2; exit 1
+            echo "Ticker list not found: $(rel "${TICKERS_FILE}")" >&2; exit 1
         fi
         TICKERS_FILE="$(cd "$(dirname "${TICKERS_FILE}")" && pwd)/$(basename "${TICKERS_FILE}")"
         FETCH_ARGS=(--tickers-file "${TICKERS_FILE}") ;;
@@ -99,16 +105,22 @@ RUN_NAME="launcher_${MODE}" # -> Data/Datasets/raw/launcher_<mode>_fetched_data.
 FETCH_CMD=(python3 fetch_data.py "${FETCH_ARGS[@]}" --period "${PERIOD}" --interval "${INTERVAL}" --output "${RUN_NAME}")
 PREPROCESS_CMD=(python3 preprocess.py --keep_only_fetched --input "${RUN_NAME}" --min-rows "${MIN_ROWS}" --max-rows "${HISTORY_LENGTH}")
 FEATURES_CMD=(python3 feature_engineering.py)
+TRAIN_CMD=(python3 "${SCRIPT_DIR}/train_signal_model.py") # the ML bots' model, trained on the data just fetched
 
 echo "==> Refreshing market data: mode=${MODE} period=${PERIOD} interval=${INTERVAL} history=${HISTORY_LENGTH} bars (min ${MIN_ROWS})"
 if [[ "${DRY_RUN}" -eq 1 ]]; then
-    echo "    (dry run, in ${DATA_DIR})"
+    echo "    (dry run, in $(rel "${DATA_DIR}"))"
     echo "    ${FETCH_CMD[*]}"
     echo "    ${PREPROCESS_CMD[*]}"
     echo "    ${FEATURES_CMD[*]}"
+    [[ "${NO_TRAIN}" -eq 1 ]] || echo "    python3 $(rel "${SCRIPT_DIR}/train_signal_model.py")"
     exit 0
 fi
 (cd "${DATA_DIR}" && "${FETCH_CMD[@]}")
 (cd "${DATA_DIR}" && "${PREPROCESS_CMD[@]}")
 (cd "${DATA_DIR}" && "${FEATURES_CMD[@]}")
-echo "==> Seed file updated: ${DATA_DIR}/Datasets/processed/latest_snapshot.csv"
+echo "==> Seed file updated: $(rel "${DATA_DIR}/Datasets/processed/latest_snapshot.csv")"
+if [[ "${NO_TRAIN}" -eq 0 ]]; then
+    echo "==> Retraining the ML bots' model on the fresh data"
+    "${TRAIN_CMD[@]}" | sed 's/^/    /'
+fi

@@ -16,6 +16,7 @@ Output, in DIR/plots/ (the launchers call this automatically):
     07_portfolios_<sfx>.png       client net worth over time, P&L distribution, per-client before vs after
     08_trade_flow_<sfx>.png       volume and notional per symbol, trade sizes, activity over time
     09_waiting_orders_<sfx>.png   every still-waiting STOP/LIMIT_STOP order's release band vs final price
+    10_strategies_<sfx>.png       P&L by strategy, one dot per bot (label column of portfolios_final)
     report_<sfx>.html             summary tables + every chart above (+ metrics_<sfx>.png if present) where <sfx> is "simu" or "bots"
 
 Usage (from Src_Simulation/):
@@ -36,6 +37,7 @@ import argparse
 import html
 import math
 import os
+import re
 import sys
 from pathlib import Path
 
@@ -56,10 +58,21 @@ TEXT = "#d1d4dc"
 # ---------------------------------------------------------------------------------------------
 # loading
 # ---------------------------------------------------------------------------------------------
+def display_path(path) -> str:
+    """
+    A path as shown to the user: relative to the project root (the folder holding Src_Simulation/ and NRT/), e.g. Src_Simulation/output/20260925_012005, never absolute
+    """
+    resolved = Path(path).resolve()
+    for parent in [resolved, *resolved.parents]:
+        if (parent / "Src_Simulation").is_dir() and (parent / "NRT").is_dir():
+            return str(resolved.relative_to(parent))
+    return str(path)
+
+
 def read_csv(report_dir: Path, name: str) -> pd.DataFrame:
     path = report_dir / name
     if not path.exists():
-        print(f"warning: {name} not found in {report_dir}, related charts will be skipped", file=sys.stderr)
+        print(f"warning: {name} not found in {display_path(report_dir)}, related charts will be skipped", file=sys.stderr)
         return pd.DataFrame()
     return pd.read_csv(path)
 
@@ -69,18 +82,18 @@ KNOWN_SUFFIXES = ("simu", "bots")
 
 def resolve_suffix(report_dir: Path, suffix: str | None) -> str:
     """
-    eturns the report's file suffix ("simu"/"bots"), detecting it from summary_*.csv if not given
+    Returns the report's file suffix ("simu"/"bots"), detecting it from summary_*.csv if not given
     """
     if suffix:
         if not (report_dir / f"summary_{suffix}.csv").exists():
-            raise SystemExit(f"summary_{suffix}.csv not found in {report_dir}")
+            raise SystemExit(f"summary_{suffix}.csv not found in {display_path(report_dir)}")
         return suffix
     found = sorted(report_dir.glob("summary_*.csv"))
     if not found:
-        raise SystemExit(f"no summary_*.csv in {report_dir}: was the run started with --output-dir (and without --no-report)?")
+        raise SystemExit(f"no summary_*.csv in {display_path(report_dir)}: was the run started with --output-dir (and without --no-report)?")
     if len(found) > 1:
         names = ", ".join(f.name for f in found)
-        raise SystemExit(f"{report_dir} holds several reports ({names}): pick one with --suffix {'|'.join(KNOWN_SUFFIXES)}")
+        raise SystemExit(f"{display_path(report_dir)} holds several reports ({names}): pick one with --suffix {'|'.join(KNOWN_SUFFIXES)}")
     return found[0].stem.split("_", 1)[1]
 
 
@@ -88,7 +101,7 @@ def load_report(report_dir: Path, suffix: str) -> dict[str, pd.DataFrame]:
     names = ["summary", "symbols", "trades", "price_samples", "portfolio_samples", "portfolios_final", "order_book_final", "resting_orders", "waiting_orders", "rejections"]
     data = {name: read_csv(report_dir, f"{name}_{suffix}.csv") for name in names}
     if data["symbols"].empty:
-        raise SystemExit(f"{report_dir} doesn't look like a market report (symbols_{suffix}.csv missing or empty)")
+        raise SystemExit(f"{display_path(report_dir)} doesn't look like a market report (symbols_{suffix}.csv missing or empty)")
     for key in ("trades", "price_samples", "portfolio_samples"):
         if not data[key].empty:
             data[key]["elapsed_s"] = data[key]["elapsed_ms"] / 1000.0
@@ -408,7 +421,7 @@ def plot_trade_flow(plt, data, out: Path):
     ax.set_title("notional traded per symbol", loc="left")
 
     ax = axes[1, 0]
-    ax.hist(trades["quantity"], bins=range(1, int(trades["quantity"].max()) + 2), color=ACCENT, edgecolor=BG, align="left")
+    ax.hist(trades["quantity"], bins=range(1, int(trades["quantity"].max()) + 2), color=ACCENT, align="left") #edgecolor=BG, align="left")
     ax.set_xlabel("trade size (shares)")
     ax.set_title("trade size distribution", loc="left")
 
@@ -456,6 +469,51 @@ def plot_waiting_orders(plt, data, out: Path):
     return fig
 
 
+def strategy_of(label) -> str:
+    """
+    Strategy behind a client label: the strategy name for simulation.x bots, and the part after "botNN_" for launch_bots.sh accounts (bot07_trend -> trend). Other accounts keep their name
+    """
+    label = "" if pd.isna(label) else str(label)
+    match = re.match(r"^bot\d+_(.+)$", label)
+    return match.group(1) if match else label
+
+
+def strategy_table(final: pd.DataFrame) -> pd.DataFrame:
+    if final.empty or "label" not in final.columns:
+        return pd.DataFrame()
+    df = final.assign(strategy=final["label"].map(strategy_of))
+    df = df[df["strategy"] != ""]
+    if df.empty:
+        return pd.DataFrame()
+    return (df.groupby("strategy").agg(bots=("client", "count"), mean_pnl_pct=("pnl_pct", "mean"), best_pnl_pct=("pnl_pct", "max"), worst_pnl_pct=("pnl_pct", "min"), trades=("trades_as_buyer", "sum")).sort_values("mean_pnl_pct", ascending=False))
+
+
+def plot_strategies(plt, data, out: Path):
+    final = data["portfolios_final"]
+    table = strategy_table(final)
+    if table.empty:
+        return None
+    df = final.assign(strategy=final["label"].map(strategy_of))
+    order = list(table.index)
+    fig, ax = plt.subplots(figsize=(11, max(3.5, 0.6 * len(order) + 1.5)))
+    fig.suptitle("P&L by strategy: every dot is one bot, the bar is the strategy's mean", fontsize=13, fontweight="bold")
+    for y, strategy in enumerate(order):
+        mean = table.loc[strategy, "mean_pnl_pct"]
+        ax.barh(y, mean, color=UP if mean >= 0 else DOWN, alpha=0.35, edgecolor=BG)
+        points = df.loc[df["strategy"] == strategy, "pnl_pct"]
+        jitter = (pd.Series(range(len(points))) % 5 - 2) * 0.06
+        ax.scatter(points, [y + j for j in jitter], s=22, color=[UP if v >= 0 else DOWN for v in points], edgecolors=BG, zorder=3)
+        # labels in a fixed column just right of the plot area (axes coordinates), so they never collide with the strategy names, whatever the sign of the mean
+        ax.text(1.01, y, f"{mean:+.2f}%  ({int(table.loc[strategy, 'bots'])} bots)", transform=ax.get_yaxis_transform(), va="center", ha="left", fontsize=9, color=UP if mean >= 0 else DOWN)
+    ax.axvline(0, color=TEXT, linewidth=0.8)
+    ax.set_yticks(range(len(order)))
+    ax.set_yticklabels(order)
+    ax.invert_yaxis()
+    ax.set_xlabel("P&L since first seen (%), marked to the final prices")
+    fig.tight_layout(rect=(0, 0, 0.86, 1)) # room on the right for the label column
+    return fig
+
+
 # ---------------------------------------------------------------------------------------------
 # text summary + HTML
 # ---------------------------------------------------------------------------------------------
@@ -473,11 +531,15 @@ def print_summary(data) -> None:
     print("\nPer symbol, before -> after:")
     cols = ["symbol", "initial_price", "final_price", "change_pct", "trades", "volume", "vwap", "spread", "imbalance", "resting_orders", "waiting_orders"]
     print(sy[cols].to_string(index=False, float_format=lambda v: f"{v:,.2f}"))
+    table = strategy_table(final)
+    if not table.empty:
+        print("\nBy strategy (P&L in % since first seen):")
+        print(table.to_string(float_format=lambda v: f"{v:+.2f}"))
     if not final.empty:
         print("\nTop 5 / bottom 5 clients by P&L:")
         ranked = final.sort_values("pnl", ascending=False)
         view = pd.concat([ranked.head(5), ranked.tail(5)]).drop_duplicates("client")
-        print(view[["client", "initial_net_worth", "final_net_worth", "pnl", "pnl_pct", "trades_as_buyer", "trades_as_seller"]].to_string(index=False, float_format=lambda v: f"{v:,.2f}"))
+        print(view[[c for c in ["client", "label", "initial_net_worth", "final_net_worth", "pnl", "pnl_pct", "trades_as_buyer", "trades_as_seller"] if c in view.columns]].to_string(index=False, float_format=lambda v: f"{v:,.2f}"))
     print()
 
 
@@ -498,7 +560,7 @@ table.t th {{ color:{MUTED}; }} table.s td:first-child {{ text-align:left; color
 figure {{ margin:18px 0; }} img {{ max-width:100%; border:1px solid {GRID}; border-radius:6px; }}
 .wrap {{ overflow-x:auto; }}
 </style></head><body>
-<h1>Market report: {html.escape(TITLES.get(suffix, suffix))}</h1><p style="color:{MUTED}">source: {html.escape(str(report_dir))} (files *_{html.escape(suffix)}.csv)</p>
+<h1>Market report: {html.escape(TITLES.get(suffix, suffix))}</h1><p style="color:{MUTED}">source: {html.escape(display_path(report_dir))} (files *_{html.escape(suffix)}.csv)</p>
 <h2>Summary</h2><table class="s">{rows}</table>
 <h2>Symbols: before vs after</h2><div class="wrap">{symbols_table}</div>
 <h2>Charts</h2>{imgs}
@@ -547,6 +609,7 @@ def main() -> None:
         ("07_portfolios", lambda: plot_portfolios(plt, data, out, args.highlight)),
         ("08_trade_flow", lambda: plot_trade_flow(plt, data, out)),
         ("09_waiting_orders", lambda: plot_waiting_orders(plt, data, out)),
+        ("10_strategies", lambda: plot_strategies(plt, data, out)),
     ]
     written = []
     metrics_png = out / f"metrics_{suffix}.png" # from plot_metrics.py, if it ran first
@@ -564,7 +627,7 @@ def main() -> None:
             plt.close(fig)
 
     html_path = write_html(data, out, written, args.report_dir, suffix)
-    print(f"wrote {len(written)} charts and {html_path}")
+    print(f"wrote {len(written)} charts and {display_path(html_path)}")
     if not headless:
         plt.show()
 
