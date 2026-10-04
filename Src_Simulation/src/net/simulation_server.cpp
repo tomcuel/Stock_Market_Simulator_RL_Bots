@@ -160,6 +160,10 @@ void SimulationServer::stop() {
     if (!running_.exchange(false)) {
         return; // already stopped
     }
+    {
+        std::lock_guard<std::mutex> lock(wake_mutex_); // so no loop can miss the wake-up between its check and its wait
+    }
+    wake_cv_.notify_all();
     if (listen_fd_ >= 0) {
         ::shutdown(listen_fd_, SHUT_RDWR);
         ::close(listen_fd_);
@@ -212,8 +216,7 @@ void SimulationServer::accept_loop() {
 
 void SimulationServer::watcher_loop() {
     int tick = 0;
-    while (running_.load()) {
-        std::this_thread::sleep_for(config_.watcher_poll_interval);
+    while (wait_while_running(config_.watcher_poll_interval)) {
         ++tick;
         // most ticks only rescan symbols that traded since the last tick (cheap, see  MatchingEngine::try_release_waiting_orders):
         // every Nth tick does a full sweep so orders waiting purely on a start date, or expiring on an otherwise-quiet symbol, are still eventually caught
@@ -226,12 +229,8 @@ void SimulationServer::watcher_loop() {
 }
 
 void SimulationServer::persistence_loop() {
-    while (running_.load()) {
-        std::this_thread::sleep_for(config_.persistence_save_interval);
-        if (!running_.load()) {
-            break;
-        }
-        save_snapshot();
+    while (wait_while_running(config_.persistence_save_interval)) {
+        save_snapshot(); // and stop() saves the final one
     }
 }
 
@@ -255,11 +254,7 @@ void SimulationServer::metrics_loop() {
         out << elapsed_ms << ',' << metrics.orders_submitted() << ',' << metrics.orders_accepted() << ',' << metrics.orders_rejected() << ',' << metrics.orders_queued() << ',' << metrics.orders_expired() << ',' << metrics.trades_executed() << ',' << metrics.volume_traded() << ',' << engine_.waiting_order_count() << ',' << metrics.submit_latency().mean_us() << ',' << metrics.submit_latency().max_us() << '\n';
         out.flush();
     };
-    while (running_.load()) {
-        std::this_thread::sleep_for(config_.metrics_interval);
-        if (!running_.load()) {
-            break;
-        }
+    while (wait_while_running(config_.metrics_interval)) {
         write_row();
     }
     write_row(); // final row at shutdown, so the series always ends at the end of the session
@@ -287,13 +282,10 @@ void SimulationServer::handle_connection(int client_socket) {
                 std::string token;
                 auto outcome = directory_.register_client(tokens[1], tokens[2], new_id, token);
                 if (outcome == ClientDirectory::RegisterOutcome::OK) {
-                    engine_.ensure_client(new_id, 100000.0); // starting cash for a freshly registered account
-                    // also grant a small starting position in every currently registered symbol: 
-                    // without this, a fresh account could never place a first SELL (nothing to sell) nor have a MARKET BUY fill (nobody else holds shares to sell it either),
-                    // since Src_Simulation has no separate "IPO" step the way Src_SQL's demo seeds Client2 with an explicit starting portfolio (see Src_SQL/server.cpp's `init`)
-                    for (const auto& symbol : engine_.symbols()) {
-                        engine_.grant_initial_holdings(new_id, symbol, 50);
-                    }
+                    // a balanced starting account: cash plus an equal value of every listed symbol, so a new client can both buy and sell from its first order 
+                    // (Src_Simulation has no separate "IPO" step, like the explicit starting portfolio of Src_SQL's `init`)
+                    // compared to the V1 release, this avoid having 10 actions at 500 and 10 actions at 10, market was unbalanced and the first trade was always a sell, so the first buy was rejected for insufficient cash, hence the bad results on the order book and trades
+                    engine_.fund_balanced_account(new_id, config_.starting_equity, config_.starting_cash_fraction);
                     client_id = new_id;
                     authenticated = true;
                     std::ostringstream oss;
@@ -397,10 +389,10 @@ std::string SimulationServer::dispatch_command(const std::string& line, ClientId
             OrderId order_id = std::stoull(tokens[1]);
             const std::string& symbol = tokens[2];
             // tries the resting book first (the common case for a market-maker cancel-and-requote), then falls back to the waiting registry (a STOP/LIMIT_STOP that hasn't released yet)
-            if (engine_.cancel_order(symbol, order_id)) {
+            if (engine_.cancel_order(symbol, order_id, client_id)) {
                 return "OK CANCELLED";
             }
-            if (engine_.cancel_waiting_order(order_id)) {
+            if (engine_.cancel_waiting_order(order_id, client_id)) {
                 return "OK CANCELLED";
             }
             return "ERR NOT_FOUND";
@@ -412,7 +404,7 @@ std::string SimulationServer::dispatch_command(const std::string& line, ClientId
     if (command == "CANCEL_WAITING" && tokens.size() == 2) {
         try {
             OrderId order_id = std::stoull(tokens[1]);
-            return engine_.cancel_waiting_order(order_id) ? "OK CANCELLED" : "ERR NOT_FOUND";
+            return engine_.cancel_waiting_order(order_id, client_id) ? "OK CANCELLED" : "ERR NOT_FOUND";
         } catch (...) {
             return "ERR INVALID_ORDER_ID";
         }
@@ -424,7 +416,7 @@ std::string SimulationServer::dispatch_command(const std::string& line, ClientId
             const std::string& symbol = tokens[2];
             Side side = (tokens[3] == "BUY") ? Side::BUY : Side::SELL;
             Price price = std::stod(tokens[4]);
-            return engine_.cancel_order(symbol, side, price, order_id) ? "OK CANCELLED" : "ERR NOT_FOUND";
+            return engine_.cancel_order(symbol, side, price, order_id, client_id) ? "OK CANCELLED" : "ERR NOT_FOUND";
         } catch (...) {
             return "ERR INVALID_ARGUMENTS";
         }
@@ -433,10 +425,10 @@ std::string SimulationServer::dispatch_command(const std::string& line, ClientId
     if (command == "PORTFOLIO") {
         Portfolio portfolio = engine_.portfolio_snapshot(client_id);
         std::ostringstream oss;
-        oss << std::setprecision(15) << "OK PORTFOLIO cash=" << portfolio.cash;
+        oss << std::setprecision(15) << "OK PORTFOLIO cash=" << portfolio.cash << " reserved_cash=" << portfolio.reserved_cash << " available_cash=" << portfolio.available_cash();
         for (const auto& [symbol, qty] : portfolio.holdings) {
             oss << " " << symbol << "=" << qty;
-        }
+        }        
         return oss.str();
     }
 
@@ -448,11 +440,13 @@ std::string SimulationServer::dispatch_command(const std::string& line, ClientId
         Price last = market_data_.last_price(symbol);
         if (last <= 0.0) last = engine_.last_price(symbol);
         std::ostringstream oss;
-        oss << std::setprecision(15)
-            << "OK MARKET " << symbol << " last=" << last
-            << " vwap=" << market_data_.vwap(symbol) << " volume=" << market_data_.total_volume(symbol);
-        if (!snap.bids.empty()) oss << " bid=" << snap.bids.front().price;
-        if (!snap.asks.empty()) oss << " ask=" << snap.asks.front().price;
+        oss << std::setprecision(15) << "OK MARKET " << symbol << " last=" << last << " vwap=" << market_data_.vwap(symbol) << " volume=" << market_data_.total_volume(symbol);
+        if (!snap.bids.empty()) {
+            oss << " bid=" << snap.bids.front().price;
+        }
+        if (!snap.asks.empty()) {
+            oss << " ask=" << snap.asks.front().price;
+        }
         return oss.str();
     }
 
@@ -511,6 +505,18 @@ std::string SimulationServer::handle_order_command(const std::vector<std::string
     }
     if (auto upper = kv_double(kv, "TRIGGER_UPPER")) {
         request.trigger_upper = *upper;
+    }
+    // time in force: DAY (expires at the close) or GTC (kept for the next session), default: GTC with EXPIRES, DAY without
+    if (auto tif = kv.find("TIF"); tif != kv.end()) {
+        if (tif->second == "DAY") {
+            request.time_in_force = TimeInForce::DAY;
+        }
+        else if (tif->second == "GTC") {
+            request.time_in_force = TimeInForce::GTC;
+        }
+        else {
+            return "ERR ORDER reason=TIF_must_be_DAY_or_GTC";
+        }
     }
     if (auto expires = kv_int(kv, "EXPIRES")) {
         request.expires_in = std::chrono::seconds(*expires);

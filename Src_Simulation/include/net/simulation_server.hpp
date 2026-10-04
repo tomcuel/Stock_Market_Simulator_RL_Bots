@@ -22,9 +22,12 @@
 // REGISTER and LOGIN responses include a session token (`OK REGISTERED client_id=1 token=...`)
 // reconnecting with RESUME <token> re-authenticates without sending the password again
 //=======================================================================
-#pragma once
+#ifndef NET_SIMULATION_SERVER_HPP
+#define NET_SIMULATION_SERVER_HPP
 
 #include <atomic>
+#include <mutex>
+#include <condition_variable>
 #include <string>
 #include <thread>
 #include <vector>
@@ -46,6 +49,8 @@ struct ServerConfig {
     std::string metrics_csv_path;                             // empty = disabled; periodic CSV export, see scripts/plot_metrics.py
     std::chrono::milliseconds metrics_interval{1000};
     bool log_commands{true}; // log every command a client sends and the response it got (INFO level)
+    double starting_equity{10000000.0}; // every new account starts with this much cash, plus a balanced grant of every registered symbol
+    double starting_cash_fraction{0.5}; // fraction of starting_equity that is cash
 };
 
 class SimulationServer {
@@ -86,6 +91,15 @@ private:
 
     int listen_fd_{-1};
     std::atomic<bool> running_{false};
+    // the background loops wait on this instead of sleeping, so stop() wakes them at once (a plain sleep_for made a stop wait for the end of the persistence thread's current 30 s sleep: 7.6 s in a real run)
+    std::mutex wake_mutex_;
+    std::condition_variable wake_cv_;
+    // waits `interval`, or less if the server stops: true while the server is still running
+    template <class Duration>
+    bool wait_while_running(Duration interval) {
+        std::unique_lock<std::mutex> lock(wake_mutex_);
+        return !wake_cv_.wait_for(lock, interval, [this] {return !running_.load();});
+    }
     std::thread accept_thread_;
     std::thread watcher_thread_;
     std::thread persistence_thread_;
@@ -93,3 +107,5 @@ private:
 };
 
 } // namespace sim::net
+
+#endif // NET_SIMULATION_SERVER_HPP
