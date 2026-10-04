@@ -3,7 +3,8 @@
 // atomic counters plus a simple bucketed latency histogram for order-processing time
 // "how many orders/sec, how many trades/sec, what does p50/p99 order latency look like" without pulling in a full metrics library
 //=======================================================================
-#pragma once
+#ifndef METRICS_HPP
+#define METRICS_HPP
 
 #include <array>
 #include <atomic>
@@ -133,3 +134,5 @@ private:
 };
 
 } // namespace sim
+
+#endif // METRICS_HPP

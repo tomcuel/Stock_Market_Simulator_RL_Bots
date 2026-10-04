@@ -2,7 +2,8 @@
 // Minimal thread-safe leveled logger: no external dependency (no {fmt}, no spdlog):
 // Src_Simulation only relies on the standard library so it stays trivially buildable and unit-testable anywhere a C++20 compiler is available
 //=======================================================================
-#pragma once
+#ifndef LOGGER_HPP
+#define LOGGER_HPP
 
 #include <chrono>
 #include <fstream>
@@ -78,3 +79,5 @@ private:
 #define LOG_INFO(...)  ::sim::Logger::instance().log(::sim::LogLevel::INFO, __VA_ARGS__)
 #define LOG_WARN(...)  ::sim::Logger::instance().log(::sim::LogLevel::WARN, __VA_ARGS__)
 #define LOG_ERROR(...) ::sim::Logger::instance().log(::sim::LogLevel::ERROR, __VA_ARGS__)
+
+#endif // LOGGER_HPP

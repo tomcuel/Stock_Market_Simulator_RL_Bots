@@ -4,7 +4,8 @@
 // Src_Simulation is meant to be a fast, self-contained C++ matching engine
 // with no SQL/network dependency, so it can be unit tested in isolation (see NRT/).
 //=======================================================================
-#pragma once
+#ifndef TYPES_HPP
+#define TYPES_HPP
 
 #include <atomic>
 #include <chrono>
@@ -58,6 +59,14 @@ inline const char* to_string(OrderKind kind) {
 // - STOP/LIMIT_STOP narrow this band to implement trigger semantics. 
 // - `not_before` is this order's "start date": it is held back even if its price band is already satisfied. 
 // `expires_at` is its "expiry date": it is dropped if it hasn't been released into the book by then. 
+// Time in force: how long an order lives (as on real exchanges)
+//   DAY  expires at the end of the trading day (the close, see MatchingEngine::expire_day_orders): the default
+//   GTC  good till cancelled: kept from one session to the next (saved in the snapshot) until filled or cancelled
+// An order with an expiry date (expires_in, "good till date") is GTC until that date: its own expiry decides, not the close
+enum class TimeInForce { DAY, GTC };
+
+inline const char* to_string(TimeInForce tif) {return tif == TimeInForce::DAY ? "DAY" : "GTC";}
+
 struct Order {
     OrderId id{0};
     ClientId client{0};
@@ -71,6 +80,7 @@ struct Order {
     TimePoint submitted_at{};
     std::optional<TimePoint> not_before; // optional
     std::optional<TimePoint> expires_at; // optional
+    TimeInForce time_in_force{TimeInForce::DAY};
 
     bool release_band_contains(Price reference_price) const {
         return reference_price >= release_lower && reference_price <= release_upper;
@@ -89,6 +99,7 @@ struct OrderRequest {
     std::optional<Price> trigger_upper;                // STOP/LIMIT_STOP: release band upper bound (STOP's trigger)
     std::optional<std::chrono::seconds> expires_in;    // relative "expiry date" from submission time
     std::optional<std::chrono::seconds> not_before_in; // relative "start date" from submission time
+    std::optional<TimeInForce> time_in_force;          // default: GTC when expires_in is set (good till date), DAY otherwise
 };
 
 // A completed match between two orders. `price` is always the resting (book) order's real limit price, always a meaningful, tradable price (never a placeholder)
@@ -115,3 +126,5 @@ struct SubmitResult {
 };
 
 } // namespace sim
+
+#endif // TYPES_HPP

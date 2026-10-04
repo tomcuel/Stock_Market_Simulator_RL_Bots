@@ -10,19 +10,28 @@ void OrderRegistry::add(Order order) {
     order_symbol_index_.emplace(id, std::move(symbol));
 }
 
-bool OrderRegistry::cancel(OrderId order_id) {
+std::optional<Order> OrderRegistry::cancel(OrderId order_id, std::optional<ClientId> owner) {
     std::lock_guard<std::mutex> lock(mutex_);
     auto index_it = order_symbol_index_.find(order_id);
     if (index_it == order_symbol_index_.end()) {
-        return false;
+        return std::nullopt;
     }
 
+    std::optional<Order> removed;
     auto bucket_it = waiting_by_symbol_.find(index_it->second);
-    if (bucket_it != waiting_by_symbol_.end()) {
-        bucket_it->second.erase(order_id);
+    if (bucket_it != waiting_by_symbol_.end()){
+        auto order_it = bucket_it->second.find(order_id);
+        if (order_it != bucket_it->second.end() && owner && order_it->second.client != *owner){
+            return std::nullopt; // someone else's order: left untouched
+        }
+        if (order_it != bucket_it->second.end()){
+            removed = std::move(order_it->second);
+            bucket_it->second.erase(order_it);
+        }
     }
+
     order_symbol_index_.erase(index_it);
-    return true;
+    return removed;
 }
 
 std::size_t OrderRegistry::size() const {

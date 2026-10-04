@@ -5,9 +5,11 @@
 // Orders are grouped by symbol: after a trade, the MatchingEngine only scans the waiting orders for that symbol instead of scanning the entire registry. 
 // A full scan is also available for periodic checks, mainly to release or expire orders that depend only on time (for example, `not_before` or `expires_at`)
 //=======================================================================
-#pragma once
+#ifndef ORDER_REGISTRY_HPP
+#define ORDER_REGISTRY_HPP
 
 #include <mutex>
+#include <optional>
 #include <unordered_map>
 #include <vector>
 
@@ -21,7 +23,7 @@ public:
     void add(Order order);
 
     // Removes a specific waiting order (administrative cancel) by id alone
-    bool cancel(OrderId order_id);
+    std::optional<Order> cancel(OrderId order_id, std::optional<ClientId> owner = std::nullopt);
 
     struct ScanResult {
         std::vector<Order> released;
@@ -92,3 +94,5 @@ private:
 };
 
 } // namespace sim
+
+#endif // ORDER_REGISTRY_HPP

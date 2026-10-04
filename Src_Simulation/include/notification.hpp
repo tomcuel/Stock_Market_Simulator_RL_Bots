@@ -7,7 +7,8 @@
 // flush() waits until all queued events have been delivered to all subscribers pending() alone is not sufficient, because an event may have been removed from the queue while its callbacks are still running
 // The worker_ thread is declared last so all other members are initialized before the worker starts
 //=======================================================================
-#pragma once
+#ifndef NOTIFICATION_HPP
+#define NOTIFICATION_HPP
 
 #include <condition_variable>
 #include <functional>
@@ -128,3 +129,5 @@ private:
 };
 
 } // namespace sim
+
+#endif // NOTIFICATION_HPP

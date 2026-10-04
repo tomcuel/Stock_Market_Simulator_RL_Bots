@@ -3,7 +3,8 @@
 // Deliberately a tiny hand-rolled CSV reader rather than a dependency: the file's format is simple (no embedded commas/quotes) and fixed by feature_engineering.py's own output code, so a plain comma-split is both correct and enough
 // (this will evolve, to include the real history of each symbol and not the initial snapshot for more advanced bots and simulations)
 //=======================================================================
-#pragma once
+#ifndef MARKET_SEED_HPP
+#define MARKET_SEED_HPP
 
 #include <string>
 #include <vector>
@@ -26,3 +27,5 @@ std::vector<SeedSymbol> load_market_seed(const std::string& csv_path);
 std::vector<SeedSymbol> pick_symbols(const std::vector<SeedSymbol>& all, std::size_t max_symbols);
 
 } // namespace sim
+
+#endif // MARKET_SEED_HPP

@@ -2,7 +2,8 @@
 // Subscribes to trade events and builds fixed-interval OHLCV candles per symbol, plus basic running stats (last price, cumulative volume, VWAP)
 // Bot / dashboard / future charting layer would read those instead of hammering the order book directly
 //=======================================================================
-#pragma once
+#ifndef MARKET_DATA_HPP
+#define MARKET_DATA_HPP
 
 #include <mutex>
 #include <unordered_map>
@@ -58,3 +59,5 @@ private:
 };
 
 } // namespace sim
+
+#endif // MARKET_DATA_HPP
