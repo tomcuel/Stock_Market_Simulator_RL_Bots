@@ -8,7 +8,7 @@
 //   ./simulation.x --output-dir output/my_run         # same, plus metrics + market report CSVs:
 //                                                     #   output/my_run/metrics_simu.csv
 //                                                     #   output/my_run/{summary,symbols,trades,...}_simu.csv
-//   ./simulation.x --symbols 8 --duration 300 --noise 60 --momentum 20 --marketmakers 12 --output-dir output/big_run # a much bigger run
+//   ./simulation.x --symbols 8 --duration 300 --noise 60 --momentum 20 --marketmakers 12 --output-dir output/big_run : a much bigger run
 // The easiest way to run it with logs + plots is the launcher: ./launch.sh simu (see its header)
 //
 // Options (all optional; defaults give a working run):
@@ -17,6 +17,14 @@
 //   --noise N                noise-trader bots (default 15)
 //   --momentum N             momentum bots (default 5)
 //   --marketmakers N         market-maker bots (default 4)
+//   --meanreversion N        mean-reversion bots (default 4)
+//   --trend N                trend-following bots (default 4)
+//   --twap N                 TWAP execution bots (default 2)
+//   --ml N                   machine-learning signal bots (default 2, only if --ml-model loads)
+//   --ml-model PATH          model trained by scripts/train_signal_model.py (default models/signal_model.csv)
+//   --ml-bar-ms N            the ML bots' bar: one simulated trading day of N ms, they decide once per bar (default 1000, 0: every tick)
+//   --bot-equity X           starting value of every bot's account (default 10000000)
+//   --cash-fraction F        share of it held as cash, the rest split equally by value across the symbols (default 0.5)
 //   --seed N                 RNG seed, for reproducible runs (default 42)
 //   --log-level LEVEL        DEBUG | INFO | WARN | ERROR (default INFO; INFO logs every trade)
 //   --data-seed PATH         real-market seed CSV from Data/feature_engineering.py (default ../Data/Datasets/processed/latest_snapshot.csv)
@@ -27,12 +35,14 @@
 //   --metrics-interval-ms N  metrics sampling period (default 1000)
 //   --report-interval-ms N   market report sampling period for prices/book/portfolios (default 250)
 //=======================================================================
+#include <algorithm>
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
 
 #include "logger.hpp"
 #include "market_seed.hpp"
+#include "paths.hpp"
 #include "simulation.hpp"
 
 namespace {
@@ -47,6 +57,14 @@ void print_usage(const char* program) {
               << "  --noise N                noise-trader bots, trading across ALL symbols (default 15)\n"
               << "  --momentum N             momentum bots (default 5)\n"
               << "  --marketmakers N         market-maker bots (default 4)\n"
+              << "  --meanreversion N        mean-reversion bots (default 4)\n"
+              << "  --trend N                trend-following bots (default 4)\n"
+              << "  --twap N                 TWAP execution bots (default 2)\n"
+              << "  --ml N                   machine-learning signal bots (default 2, only if the model loads)\n"
+              << "  --ml-model PATH          model file (default models/signal_model.csv, see scripts/train_signal_model.py)\n"
+              << "  --ml-bar-ms N            ML bots' bar, one simulated trading day (default 1000, 0: every tick)\n"
+              << "  --bot-equity X           starting value of every bot's account (default 10000000)\n"
+              << "  --cash-fraction F        share of it in cash, the rest split equally by value across symbols (default 0.5)\n"
               << "  --seed N                 RNG seed for reproducible runs (default 42)\n"
               << "  --log-level LEVEL        DEBUG, INFO, WARN, ERROR (default INFO)\n"
               << "  --data-seed PATH         real-market seed CSV (default: " << kDefaultDataSeedPath << ")\n"
@@ -85,11 +103,19 @@ int main(int argc, char* argv[]) {
     int noise_traders = 15;
     int momentum_traders = 5;
     int market_makers = 4;
+    int mean_reversion = 4;
+    int trend = 4;
+    int twap = 2;
+    int ml = 2;
+    std::string ml_model = "models/signal_model.csv";
+    int ml_bar_ms = 1000;
     std::string output_dir;
     bool write_metrics = true;
     bool write_report = true;
     int metrics_interval_ms = 1000;
     int report_interval_ms = 250;
+    double bot_equity = 10000000.0;
+    double cash_fraction = 0.5;
 
     for (int i = 1; i < argc; ++i) {
         std::string arg = argv[i];
@@ -128,6 +154,30 @@ int main(int argc, char* argv[]) {
         else if (arg == "--marketmakers") {
             market_makers = std::max(0, std::atoi(next_value("--marketmakers").c_str()));
         } 
+        else if (arg == "--meanreversion") {
+            mean_reversion = std::max(0, std::atoi(next_value("--meanreversion").c_str()));
+        } 
+        else if (arg == "--trend") {
+            trend = std::max(0, std::atoi(next_value("--trend").c_str()));
+        } 
+        else if (arg == "--twap") {
+            twap = std::max(0, std::atoi(next_value("--twap").c_str()));
+        } 
+        else if (arg == "--ml") {
+            ml = std::max(0, std::atoi(next_value("--ml").c_str()));
+        } 
+        else if (arg == "--ml-model") {
+            ml_model = next_value("--ml-model");
+        } 
+        else if (arg == "--ml-bar-ms") {
+            ml_bar_ms = std::max(0, std::atoi(next_value("--ml-bar-ms").c_str()));
+        } 
+        else if (arg == "--bot-equity") {
+            bot_equity = std::max(1.0, std::atof(next_value("--bot-equity").c_str()));
+        } 
+        else if (arg == "--cash-fraction") {
+            cash_fraction = std::clamp(std::atof(next_value("--cash-fraction").c_str()), 0.0, 1.0);
+        }
         else if (arg == "--output-dir") {
             output_dir = next_value("--output-dir");
         } 
@@ -162,6 +212,14 @@ int main(int argc, char* argv[]) {
     config.noise_traders = noise_traders;
     config.momentum_traders = momentum_traders;
     config.market_makers = market_makers;
+    config.mean_reversion_traders = mean_reversion;
+    config.trend_followers = trend;
+    config.twap_executors = twap;
+    config.ml_traders = ml;
+    config.ml_model_path = ml_model;
+    config.ml_bar_interval = std::chrono::milliseconds(ml_bar_ms);
+    config.bot_equity = bot_equity;
+    config.bot_cash_fraction = cash_fraction;
     config.output_dir = output_dir;
     config.file_suffix = "_simu";
     config.write_metrics = write_metrics;
@@ -177,7 +235,7 @@ int main(int argc, char* argv[]) {
     }
 
     if (!data_symbols.empty()) {
-        std::cout << "Seeding " << data_symbols.size() << " symbols from " << data_seed_path << "\n";
+        std::cout << "Seeding " << data_symbols.size() << " symbols from " << sim::display_path(data_seed_path) << "\n";
         for (const auto& seed_symbol : data_symbols) {
             sim::SymbolConfig symbol_config;
             symbol_config.symbol = seed_symbol.symbol;
@@ -187,7 +245,7 @@ int main(int argc, char* argv[]) {
         }
     } 
     else {
-        std::cout << "No usable data seed found at " << data_seed_path << " -- using hardcoded demo symbols.\n" << "(Run Data/preprocess.py && Data/feature_engineering.py first for real market data.)\n";
+        std::cout << "No usable data seed found at " << sim::display_path(data_seed_path) << " -- using hardcoded demo symbols.\n" << "(Run Data/preprocess.py && Data/feature_engineering.py first for real market data.)\n";
         static const char* kNames[] = {"AAPL", "MSFT", "GOOG", "AMZN", "TSLA", "NVDA", "META", "NFLX"};
         static const double kPrices[] = {180.0, 410.0, 165.0, 175.0, 240.0, 900.0, 480.0, 600.0};
         int usable_symbols = std::min(num_symbols, 8); // the hardcoded list only has 8 distinct names
@@ -200,7 +258,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    std::cout << "Bots: " << config.noise_traders << " noise, " << config.momentum_traders << " momentum, " << config.market_makers << " market-maker -- each trading across all " << config.symbols.size() << " symbols (not pinned to one).\n";
+    std::cout << "Bots: " << config.noise_traders << " noise, " << config.momentum_traders << " momentum, " << config.market_makers << " market maker, " << config.mean_reversion_traders << " mean reversion, " << config.trend_followers << " trend, " << config.twap_executors << " twap, " << config.ml_traders << " ml (each trading across all " << config.symbols.size() << " symbols)\n";
 
     sim::Simulation simulation(config);
     std::string report = simulation.run();
