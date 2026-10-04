@@ -102,9 +102,7 @@ TEST_CASE(concurrent_add_cancel_and_scan_never_lose_or_double_release_an_order) 
             for (int i = 0; i < orders_per_adder; ++i) {
                 OrderId id = next_id.fetch_add(1);
                 const Symbol& symbol = symbols[symbol_dist(rng)];
-                Order order = releasable_dist(rng)
-                    ? make_waiting_order(id, t, symbol, 90.0, 110.0)   // will release (100 is in band)
-                    : make_waiting_order(id, t, symbol, 500.0, 600.0); // never releases
+                Order order = releasable_dist(rng) ? make_waiting_order(id, t, symbol, 90.0, 110.0) : make_waiting_order(id, t, symbol, 500.0, 600.0); // will release (100 is in band) or never releases
                 registry.add(std::move(order));
                 total_added.fetch_add(1);
             }

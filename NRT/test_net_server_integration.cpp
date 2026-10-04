@@ -7,6 +7,7 @@
 #include <unistd.h>
 
 #include <atomic>
+#include <cmath>
 #include <iomanip>
 #include <random>
 #include <sstream>
@@ -15,7 +16,10 @@
 
 #include "market_data.hpp"
 #include "matching_engine.hpp"
+#include "bot.hpp"
 #include "net/client_connection.hpp"
+#include "net/wire_gateway.hpp"
+#include "test_helpers.hpp"
 #include "net/protocol.hpp"
 #include "net/simulation_server.hpp"
 #include "notification.hpp"
@@ -88,7 +92,7 @@ TEST_CASE(server_register_then_order_then_portfolio_round_trip) {
 
     auto portfolio_response = conn.send_command("PORTFOLIO");
     CHECK(portfolio_response.has_value());
-    CHECK(portfolio_response->find("AAPL=50") != std::string::npos); // the starting-inventory grant
+    CHECK(portfolio_response->find("AAPL=50000") != std::string::npos);
 
     auto order_response = conn.send_command("ORDER SELL AAPL 5 LIMIT PRICE=101");
     CHECK(order_response.has_value());
@@ -128,7 +132,7 @@ TEST_CASE(market_command_for_unknown_symbol_returns_error_not_a_crash) {
 
     auto response = conn.send_command("MARKET NOT_A_REAL_SYMBOL");
     CHECK(response.has_value()); // the server must still be alive to answer at all
-    CHECK(response->rfind("OK", 0) == 0); // an empty/zeroed snapshot, not an error -- see snapshot()'s doc comment
+    CHECK(response->rfind("OK", 0) == 0); // an empty/zeroed snapshot, not an error: see snapshot()'s doc comment
 }
 
 TEST_CASE(cancel_commands_for_unknown_symbol_return_not_found_not_a_crash) {
@@ -172,9 +176,11 @@ TEST_CASE(server_survives_a_bad_client_and_keeps_serving_other_clients) {
 
     auto portfolio_response = good_client.send_command("PORTFOLIO");
     CHECK(portfolio_response.has_value());
-    CHECK(portfolio_response->find("AAPL=50") != std::string::npos);
+    CHECK(portfolio_response->find("AAPL=50000") != std::string::npos);
 }
 
+// Regression test for a real crash: a client that disappears while the server is still replying
+// used to kill the whole server with SIGPIPE (the default action of writing to a dead socket)
 TEST_CASE(server_survives_clients_that_vanish_mid_reply) {
     ServerConfig config;
     config.port = next_test_port();
@@ -237,6 +243,9 @@ TEST_CASE(concurrent_clients_over_real_sockets_conserve_cash_and_shares) {
     const int orders_per_client = 40;
     std::vector<std::thread> threads;
     std::vector<ClientId> client_ids(num_clients, 0);
+    // each account's grant, read right after REGISTER: the balanced grant is computed at the price of the moment, and the other clients are already trading, so it is not exactly 100 for everyone
+    std::vector<double> granted_cash(num_clients, 0.0);
+    std::vector<Quantity> granted_shares(num_clients, 0);
     std::atomic<int> connect_failures{0};
 
     for (int t = 0; t < num_clients; ++t) {
@@ -254,6 +263,17 @@ TEST_CASE(concurrent_clients_over_real_sockets_conserve_cash_and_shares) {
             auto id_pos = response->find("client_id=");
             if (id_pos != std::string::npos) {
                 client_ids[t] = std::stoll(response->substr(id_pos + 10));
+            }
+
+            // no order yet, so nobody else's trade can have touched this account: this is exactly its grant
+            auto portfolio = conn.send_command("PORTFOLIO");
+            if (portfolio) {
+                auto value_of = [&](const std::string& key) {
+                    auto pos = portfolio->find(" " + key + "=");
+                    return pos == std::string::npos ? std::string("0") : portfolio->substr(pos + key.size() + 2, portfolio->find(' ', pos + 1) - pos - key.size() - 2);
+                };
+                granted_cash[t] = std::stod(value_of("cash"));
+                granted_shares[t] = std::stoll(value_of("AAPL"));
             }
 
             std::mt19937 rng(t + 1);
@@ -296,8 +316,20 @@ TEST_CASE(concurrent_clients_over_real_sockets_conserve_cash_and_shares) {
     }
 
     CHECK_EQ(successfully_registered, num_clients);
-    CHECK_NEAR(total_cash, 100000.0 * num_clients, 1e-6);
-    CHECK_EQ(total_shares, Quantity{50 * num_clients});
+
+    // every grant was balanced at its own price: half of the equity in cash, give or take the rounding of the share count (at most half a share, about 55 at AAPL's prices here)
+    const double equity = ServerConfig{}.starting_equity;
+    double total_granted_cash = 0.0;
+    Quantity total_granted_shares = 0;
+    for (int t = 0; t < num_clients; ++t){
+        CHECK(std::abs(granted_cash[t] - equity * 0.5) < 1000.0);
+        CHECK(granted_shares[t] > 0);
+        total_granted_cash += granted_cash[t];
+        total_granted_shares += granted_shares[t];
+    }
+    // trades only move cash and shares between clients: the totals are exactly what was granted
+    CHECK_NEAR(total_cash, total_granted_cash, 1e-3);
+    CHECK_EQ(total_shares, total_granted_shares);
 }
 
 // Many bots repeatedly hitting the SAME symbol's book concurrently to stress:
@@ -335,4 +367,114 @@ TEST_CASE(concurrent_stop_orders_over_real_sockets_eventually_all_resolve) {
 
     // every "triggers immediately" order (band upper=200, satisfied by the starting price of 100) should have been released and removed from the waiting registry; only the "never triggers" ones should remain
     CHECK_EQ(test_server.engine.waiting_order_count(), std::size_t{num_clients});
+}
+
+
+namespace {
+
+// client id from "OK REGISTERED client_id=3 token=..."
+ClientId client_id_of(const std::optional<std::string>& response) {
+    if (!response) {
+        return 0;
+    }
+    auto pos = response->find("client_id=");
+    return pos == std::string::npos ? 0 : std::stoll(response->substr(pos + 10));
+}
+
+// order id from "OK ORDER order_id=12 status=..."
+std::string order_id_of(const std::optional<std::string>& response) {
+    auto pos = response->find("order_id=") + 9;
+    return response->substr(pos, response->find(' ', pos) - pos);
+}
+
+} // namespace
+
+// Regression test: CANCEL, CANCEL_BOOK and CANCEL_WAITING used to remove any order by id, so a client could retract another client's orders by guessing their sequential ids
+// Someone else's order must now look exactly like a missing one
+TEST_CASE(a_client_cannot_cancel_another_clients_orders) {
+    ServerConfig config;
+    config.port = next_test_port();
+    TestServer test_server({{"AAPL", 100.0}}, config);
+    CHECK(test_server.start());
+
+    ClientConnection alice, mallory;
+    CHECK(alice.connect("127.0.0.1", test_server.port));
+    CHECK(mallory.connect("127.0.0.1", test_server.port));
+    register_and_get_response(alice, "alice", "pw");
+    register_and_get_response(mallory, "mallory", "pw");
+
+    std::string limit_id = order_id_of(alice.send_command("ORDER BUY AAPL 5 LIMIT PRICE=90"));
+    std::string stop_id = order_id_of(alice.send_command("ORDER SELL AAPL 5 STOP TRIGGER=80"));
+
+    CHECK_EQ(*mallory.send_command("CANCEL " + limit_id + " AAPL"), std::string("ERR NOT_FOUND"));
+    CHECK_EQ(*mallory.send_command("CANCEL_BOOK " + limit_id + " AAPL BUY 90"), std::string("ERR NOT_FOUND"));
+    CHECK_EQ(*mallory.send_command("CANCEL_WAITING " + stop_id), std::string("ERR NOT_FOUND"));
+    CHECK_EQ(*mallory.send_command("CANCEL " + stop_id + " AAPL"), std::string("ERR NOT_FOUND"));
+    CHECK_EQ(test_server.engine.resting_orders("AAPL").size(), std::size_t{1}); // untouched
+    CHECK_EQ(test_server.engine.waiting_orders().size(), std::size_t{1});
+
+    CHECK_EQ(*alice.send_command("CANCEL " + limit_id + " AAPL"), std::string("OK CANCELLED")); // the owner can
+    CHECK_EQ(*alice.send_command("CANCEL " + stop_id + " AAPL"), std::string("OK CANCELLED"));
+}
+
+// The same strategy code that simulation.x runs in-process must run unchanged over the socket protocol through a WireGateway (this is what sim_client.x --bot does)
+TEST_CASE(strategies_run_unchanged_over_the_wire_gateway) {
+    ServerConfig config;
+    config.port = next_test_port();
+    TestServer test_server({{"AAPL", 100.0}, {"MSFT", 200.0}}, config);
+    CHECK(test_server.start());
+
+    ClientConnection maker_connection, noise_connection;
+    CHECK(maker_connection.connect("127.0.0.1", test_server.port));
+    CHECK(noise_connection.connect("127.0.0.1", test_server.port));
+    ClientId maker_id = client_id_of(register_and_get_response(maker_connection, "maker", "pw"));
+    ClientId noise_id = client_id_of(register_and_get_response(noise_connection, "noise", "pw"));
+    CHECK(maker_id != 0 && noise_id != 0);
+
+    WireGateway maker_gateway(maker_connection, maker_id);
+    WireGateway noise_gateway(noise_connection, noise_id);
+    auto symbols = maker_gateway.symbols();
+    CHECK_EQ(symbols.size(), std::size_t{2});
+    CHECK(maker_gateway.quote("AAPL").last > 0.0);
+    // the balanced starting grant parsed from PORTFOLIO: half of the 10 million split between AAPL at 100 and MSFT at 200
+    CHECK_EQ(maker_gateway.portfolio().holding("AAPL"), Quantity{25000});
+    CHECK_EQ(maker_gateway.portfolio().holding("MSFT"), Quantity{12500});
+
+    MarketMakerBot maker(maker_gateway, symbols, 1);
+    NoiseTraderBot noise(noise_gateway, symbols, 2);
+    for (int i = 0; i < 40; ++i){
+        maker.step();
+        noise.step();
+    }
+    CHECK(maker.orders_placed() > 0);
+    CHECK(noise.orders_placed() > 0);
+    CHECK(maker.orders_retracted() > 0); // CANCEL worked over the wire
+    std::size_t maker_resting = 0;
+    for (const auto& s : symbols){
+        for (const auto& order : test_server.engine.resting_orders(s)){
+            if (order.client == maker_id) {
+                ++maker_resting;
+            }
+        }
+    }
+    CHECK(maker_resting <= 2); // one requoted pair at most, exactly like in-process
+    CHECK(maker_gateway.portfolio().reserved_cash >= 0.0);
+    CHECK_EQ(WireGateway::order_command(nrt::make_order(1, Side::BUY, OrderKind::LIMIT, "AAPL", 3, 99.5)), std::string("ORDER BUY AAPL 3 LIMIT PRICE=99.5"));
+}
+
+TEST_CASE(server_stops_at_once_even_with_a_long_save_interval) {
+    // the background loops used to sleep their whole interval: a stop waited for the end of the persistence thread's
+    // current 30 s sleep (7.6 s in a real run), now they wake at once
+    ServerConfig config;
+    config.port = next_test_port();
+    config.persistence_path = (nrt::fresh_output_dir("server_stop") / "snapshot.txt").string();
+    config.persistence_save_interval = std::chrono::seconds(30);
+    TestServer test_server({{"AAPL", 100.0}}, config);
+    CHECK(test_server.start());
+    std::this_thread::sleep_for(std::chrono::milliseconds(200)); // every background thread is now inside its wait
+    auto started = std::chrono::steady_clock::now();
+    test_server.server.stop();
+    auto took = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::steady_clock::now() - started).count();
+    CHECK(took < 2000);
+    CHECK(std::filesystem::exists(config.persistence_path)); // and the final snapshot is still written
 }

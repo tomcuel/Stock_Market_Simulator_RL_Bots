@@ -1,3 +1,5 @@
+#include <cmath>
+
 #include "matching_engine.hpp"
 #include "nrt_framework.hpp"
 #include "test_helpers.hpp"
@@ -204,4 +206,40 @@ TEST_CASE(a_trade_marks_its_symbol_dirty_so_the_next_dirty_scan_catches_its_own_
     // a dirty-only scan (the default, and what the hot path uses) must now find and release it, with no need for a full scan
     auto summary = engine.try_release_waiting_orders(/*full_scan=*/false);
     CHECK_EQ(summary.released.size(), std::size_t{1});
+}
+
+// Balanced funding: every account gets the same VALUE of each symbol, not the same number of shares
+// With 100 shares of everything, index-priced symbols made bots 98% stock and 2% cash: they could sell everything and buy almost nothing, and every price drifted down
+TEST_CASE(balanced_funding_gives_every_symbol_the_same_value) {
+    NotificationBus bus;
+    MatchingEngine engine(bus);
+    engine.register_symbol("CHEAP", 10.0);
+    engine.register_symbol("MID", 500.0);
+    engine.register_symbol("DJI", 42573.73);
+    double stock = engine.fund_balanced_account(1, 10000000.0, 0.5);
+
+    Portfolio p = engine.portfolio_snapshot(1);
+    auto prices = engine.all_last_prices();
+    double budget = 5000000.0 / 3.0;
+    const std::vector<Symbol> symbols = {"CHEAP", "MID", "DJI"};
+    for (const auto& s : symbols) {
+        double value = static_cast<double>(p.holding(s)) * prices[s];
+        CHECK(std::abs(value - budget) <= prices[s]); // within one share of an equal split
+    }
+    CHECK_NEAR(p.cash + stock, 10000000.0, 1e-6);  // rounding the shares never changes the equity
+    CHECK_NEAR(p.net_worth(prices), 10000000.0, 1e-6);
+    CHECK(p.cash > 4900000.0 && p.cash < 5100000.0);
+}
+
+TEST_CASE(balanced_funding_skips_a_symbol_too_expensive_for_its_budget) {
+    NotificationBus bus;
+    MatchingEngine engine(bus);
+    engine.register_symbol("A", 100.0);
+    engine.register_symbol("HUGE", 200000.0);
+    engine.fund_balanced_account(1, 100000.0, 0.5); // 25000 per symbol: one HUGE share would be 8 times that
+
+    Portfolio p = engine.portfolio_snapshot(1);
+    CHECK_EQ(p.holding("A"), Quantity{250});
+    CHECK_EQ(p.holding("HUGE"), Quantity{0});
+    CHECK_NEAR(p.cash, 75000.0, 1e-6); // the unspent budget stays in cash
 }

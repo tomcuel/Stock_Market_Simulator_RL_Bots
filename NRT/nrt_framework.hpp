@@ -2,7 +2,8 @@
 // Non-regression-test framework: no external dependency (no Catch2/gtest)
 // self-register test cases and run them with clear PASS/FAIL output and a non-zero exit code on failure (so it plugs straight into CI)
 //=======================================================================
-#pragma once
+#ifndef NRT_FRAMEWORK_HPP
+#define NRT_FRAMEWORK_HPP
 
 #include <functional>
 #include <iostream>
@@ -76,3 +77,5 @@ struct AssertionFailure : std::runtime_error {
             throw ::nrt::AssertionFailure(oss.str());                                       \
         }                                                                                   \
     } while (0)
+
+#endif // NRT_FRAMEWORK_HPP

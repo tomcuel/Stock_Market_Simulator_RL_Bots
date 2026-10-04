@@ -1,4 +1,5 @@
-#pragma once
+#ifndef TEST_HELPERS_HPP
+#define TEST_HELPERS_HPP
 
 #include <atomic>
 #include <filesystem>
@@ -35,3 +36,5 @@ inline sim::OrderRequest make_order(sim::ClientId client, sim::Side side, sim::O
 }
 
 } // namespace nrt
+
+#endif // TEST_HELPERS_HPP

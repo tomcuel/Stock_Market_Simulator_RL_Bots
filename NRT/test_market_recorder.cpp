@@ -101,8 +101,7 @@ TEST_CASE(market_report_contains_trades_resting_and_waiting_orders_and_before_af
     CHECK(recorder.write_report());
 
     // every file carries the configured suffix, and nothing is written without it
-    for (const char* base : {"summary", "symbols", "trades", "price_samples", "portfolio_samples",
-                             "portfolios_final", "order_book_final", "resting_orders", "waiting_orders", "rejections"}) {
+    for (const char* base : {"summary", "symbols", "trades", "price_samples", "portfolio_samples", "portfolios_final", "order_book_final", "resting_orders", "waiting_orders", "rejections"}) {
         CHECK(fs::exists(dir / (std::string(base) + "_simu.csv")));
         CHECK(!fs::exists(dir / (std::string(base) + ".csv")));
     }
