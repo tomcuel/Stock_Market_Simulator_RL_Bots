@@ -1,5 +1,7 @@
 CXX = g++
-CXXFLAGS = -std=c++20 -O2 -Wall -Wextra -Iinclude
+# -MMD -MP: every object also records which headers it includes (build/*.d), so changing a header
+# rebuilds everything that uses it instead of silently linking stale objects
+CXXFLAGS = -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP
 LDFLAGS = -pthread
 
 SRC_DIR = src
@@ -13,8 +15,9 @@ ENGINE_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(ENGINE_SOURCES))
 
 all: simulation.x sim_server.x sim_client.x
 
-# simulation.x: in-process demo/benchmark (bots call the engine directly, no sockets)
-SIMULATION_SOURCES = $(ENGINE_SOURCES) $(SRC_DIR)/bot.cpp $(SRC_DIR)/simulation.cpp $(SRC_DIR)/main.cpp
+# simulation.x: in-process demo/benchmark (bots call the engine directly, no sockets) strategies (bot.cpp) and the ML signal (signal_model.cpp) only depend on the MarketGateway interface, so the socket client links them too, see below
+STRATEGY_SOURCES = $(SRC_DIR)/bot.cpp $(SRC_DIR)/signal_model.cpp
+SIMULATION_SOURCES = $(ENGINE_SOURCES) $(STRATEGY_SOURCES) $(SRC_DIR)/gateway.cpp $(SRC_DIR)/simulation.cpp $(SRC_DIR)/main.cpp
 SIMULATION_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SIMULATION_SOURCES))
 simulation.x: $(SIMULATION_OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
@@ -25,8 +28,9 @@ SERVER_OBJECTS = $(ENGINE_OBJECTS) $(BUILD_DIR)/net_protocol.o $(BUILD_DIR)/net_
 sim_server.x: $(SERVER_OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
-# sim_client.x: interactive/piped client and bot client: pure socket protocol, no engine linked in
-CLIENT_OBJECTS = $(BUILD_DIR)/net_protocol.o $(BUILD_DIR)/net_client_connection.o $(BUILD_DIR)/net_sim_client_main.o
+# sim_client.x: interactive/piped client AND bot client, pure socket protocol, no engine linked in the bots run the same strategy code as simulation.x, through a WireGateway instead of the engine
+CLIENT_OBJECTS = $(BUILD_DIR)/net_protocol.o $(BUILD_DIR)/net_client_connection.o $(BUILD_DIR)/net_wire_gateway.o \
+                 $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(STRATEGY_SOURCES)) $(BUILD_DIR)/net_sim_client_main.o
 sim_client.x: $(CLIENT_OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
@@ -47,3 +51,5 @@ server: sim_server.x
 
 clean:
 	rm -rf $(BUILD_DIR) simulation.x sim_server.x sim_client.x
+
+-include $(wildcard $(BUILD_DIR)/*.d)
