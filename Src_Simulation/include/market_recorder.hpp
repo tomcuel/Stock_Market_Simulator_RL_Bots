@@ -5,6 +5,7 @@
 //   - captures every trade (via a NotificationBus subscription) plus rejection/queue/expiry counts
 //   - samples every symbol's last price, best bid/ask and top-of-book depth every sample_interval (for price paths, spread, and order book pressure over time)
 //   - samples every client's cash and net worth at the same interval (portfolio evolution)
+// At the end, write_report() adds a final snapshot: every order still resting in the book, every order still waiting in the STOP/LIMIT_STOP/start-date registry, the full final order book depth, and before-vs-after figures per symbol and per client
 //
 // Files written to RecorderConfig::output_dir, each name ending in RecorderConfig::file_suffix (simulation.x uses "_simu", sim_server.x uses "_bots", so both runs can share one folder):
 //   summary<sfx>.csv            key,value run-level totals
@@ -18,7 +19,8 @@
 //   waiting_orders<sfx>.csv     every order still waiting for its release band / start date at the end
 //   rejections<sfx>.csv         rejection count per reason
 //=======================================================================
-#pragma once
+#ifndef MARKET_RECORDER_HPP
+#define MARKET_RECORDER_HPP
 
 #include <atomic>
 #include <chrono>
@@ -63,7 +65,10 @@ public:
     bool write_report();
 
     std::size_t recorded_trade_count() const;
-    const std::string& output_dir() const { return config_.output_dir; }
+
+    // a short text shown next to client in portfolios_final‹stx>.csv (the "label" column): the strategy name for simulation.x bots, the account username for sim_server.x clients
+    void set_client_label(ClientId client, std::string label); 
+    const std::string& output_dir() const {return config_.output_dir;}
 
 private:
     struct TradeRow {
@@ -83,6 +88,7 @@ private:
         double elapsed_ms;
         ClientId client;
         double cash;
+        double reserved_cash;
         double net_worth;
     };
     struct FirstSeen {
@@ -116,7 +122,8 @@ private:
     std::vector<PortfolioSample> portfolio_samples_;
     std::unordered_map<Symbol, Price> initial_prices_;
     std::unordered_map<ClientId, FirstSeen> first_seen_; // a client's "before" state = first time it was sampled
-
+    std::unordered_map<ClientId, std::string> labels_;
+    
     std::atomic<bool> running_{false};
     std::mutex sampler_mutex_;
     std::condition_variable sampler_cv_; // lets stop() wake the sampler immediately instead of waiting a full interval
@@ -124,3 +131,5 @@ private:
 };
 
 } // namespace sim
+
+#endif // MARKET_RECORDER_HPP

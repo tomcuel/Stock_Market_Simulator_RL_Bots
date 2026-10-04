@@ -10,6 +10,7 @@
 
 #include "logger.hpp"
 #include "metrics.hpp"
+#include "paths.hpp"
 
 namespace sim {
 
@@ -28,6 +29,23 @@ std::string holdings_to_string(const Portfolio& portfolio) {
     std::sort(sorted.begin(), sorted.end());
     std::string result;
     for (const auto& [symbol, quantity] : sorted) {
+        if (quantity == 0) {
+            continue;
+        }
+        if (!result.empty()) {
+            result += ';';
+        }
+        result += symbol + ':' + std::to_string(quantity);
+    }
+    return result;
+}
+
+// "SYM:qty;SYM:qty" of the shares reserved by open SELL orders
+std::string reserved_to_string(const Portfolio& portfolio){
+    std::vector<std::pair<Symbol, Quantity>> sorted(portfolio.reserved_shares.begin(), portfolio.reserved_shares.end());
+    std::sort(sorted.begin(), sorted.end());
+    std::string result;
+    for (const auto& [symbol, quantity] : sorted){
         if (quantity == 0) {
             continue;
         }
@@ -61,7 +79,7 @@ void MarketRecorder::start() {
     {
         std::lock_guard<std::mutex> lock(subscription_mutex_);
         if (!subscribed_) {
-            subscription_id_ = bus_.subscribe([this](const Event& event) { on_event(event); });
+            subscription_id_ = bus_.subscribe([this](const Event& event) {on_event(event);});
             subscribed_ = true;
         }
     }
@@ -73,7 +91,7 @@ void MarketRecorder::start() {
     take_sample(); // the "before" snapshot: every client that already exists is first seen here
 
     running_.store(true);
-    sampler_ = std::thread([this] { sampler_loop(); });
+    sampler_ = std::thread([this] {sampler_loop();});
 }
 
 void MarketRecorder::stop() {
@@ -92,6 +110,12 @@ void MarketRecorder::unsubscribe() {
         bus_.unsubscribe(subscription_id_);
         subscribed_ = false;
     }
+}
+
+void MarketRecorder::set_client_label(ClientId client, std::string label)
+{
+    std::lock_guard<std::mutex> lock(mutex_);
+    labels_[client] = std::move(label);
 }
 
 std::size_t MarketRecorder::recorded_trade_count() const {
@@ -155,7 +179,7 @@ void MarketRecorder::take_sample() {
     price_samples_.insert(price_samples_.end(), new_price_samples.begin(), new_price_samples.end());
     for (const auto& [client, portfolio] : portfolios) {
         double net_worth = portfolio.net_worth(prices);
-        portfolio_samples_.push_back(PortfolioSample{t, client, portfolio.cash, net_worth});
+        portfolio_samples_.push_back(PortfolioSample{t, client, portfolio.cash, portfolio.reserved_cash, net_worth});
         first_seen_.try_emplace(client, FirstSeen{t, portfolio.cash, net_worth});
     }
 }
@@ -169,7 +193,7 @@ bool MarketRecorder::write_report() {
     std::error_code ec;
     fs::create_directories(config_.output_dir, ec);
     if (ec) {
-        LOG_ERROR("market report: cannot create ", config_.output_dir, ": ", ec.message());
+        LOG_ERROR("market report: cannot create ", display_path(config_.output_dir), ": ", ec.message());
         return false;
     }
 
@@ -195,7 +219,7 @@ bool MarketRecorder::write_report() {
         std::string name = base + config_.file_suffix + ".csv";
         std::ofstream out(fs::path(config_.output_dir) / name, std::ios::out | std::ios::trunc);
         if (!out.is_open()) {
-            LOG_ERROR("market report: cannot write ", name, " in ", config_.output_dir);
+            LOG_ERROR("market report: cannot write ", name, " in ", display_path(config_.output_dir));
             ok = false;
         }
         out << std::setprecision(12);
@@ -254,9 +278,9 @@ bool MarketRecorder::write_report() {
     // portfolio_samples.csv 
     {
         auto out = open_csv("portfolio_samples");
-        out << "elapsed_ms,client,cash,net_worth\n";
+        out << "elapsed_ms,client,cash,reserved_cash,net_worth\n";
         for (const auto& s : portfolio_samples_) {
-            out << s.elapsed_ms << "," << s.client << "," << s.cash << "," << s.net_worth << "\n";
+            out << s.elapsed_ms << "," << s.client << "," << s.cash << "," << s.reserved_cash << "," << s.net_worth << "\n";
         }
     }
 
@@ -338,14 +362,17 @@ bool MarketRecorder::write_report() {
     }
 
     // portfolios_final.csv (before vs after) 
-    double total_cash_initial = 0.0, total_cash_final = 0.0;
+    double total_cash_initial = 0.0, total_cash_final = 0.0, total_reserved_cash_final = 0.0;
+    std::size_t negative_cash_clients = 0, negative_share_positions = 0; // both must stay 0, see portfolio.hpp
     {
         auto out = open_csv("portfolios_final");
-        out << "client,first_seen_ms,initial_cash,initial_net_worth,final_cash,final_net_worth,pnl,pnl_pct,trades_as_buyer,trades_as_seller,holdings\n";
+        out << "client,label,first_seen_ms,initial_cash,initial_net_worth,final_cash,final_reserved_cash,final_available_cash,final_net_worth,pnl,pnl_pct,trades_as_buyer,trades_as_seller,holdings,reserved_shares\n";
         std::vector<ClientId> clients;
-        for (const auto& [client, portfolio] : final_portfolios) clients.push_back(client);
+        for (const auto& [client, portfolio] : final_portfolios) {
+            clients.push_back(client);
+        }
         std::sort(clients.begin(), clients.end());
-        for (ClientId client : clients) {
+        for (ClientId client : clients){
             const Portfolio& portfolio = final_portfolios.at(client);
             double final_net_worth = portfolio.net_worth(final_prices);
             auto seen_it = first_seen_.find(client);
@@ -353,7 +380,17 @@ bool MarketRecorder::write_report() {
             double pnl = final_net_worth - seen.net_worth;
             total_cash_initial += seen.cash;
             total_cash_final += portfolio.cash;
-            out << client << "," << seen.elapsed_ms << "," << seen.cash << "," << seen.net_worth << "," << portfolio.cash << "," << final_net_worth << "," << pnl << "," << (seen.net_worth != 0.0 ? pnl / seen.net_worth * 100.0 : 0.0) << "," << buys_by_client[client] << "," << sells_by_client[client] << "," << holdings_to_string(portfolio) << "\n";
+            total_reserved_cash_final += portfolio.reserved_cash;
+            if (portfolio.cash < -1e-6) {
+                ++negative_cash_clients;
+            }
+            for (const auto& [symbol, quantity] : portfolio.holdings){
+                if (quantity < 0) {
+                    ++negative_share_positions;
+                }
+            }
+            auto label_it = labels_.find(client);
+            out << client << ',' << (label_it != labels_.end() ? label_it->second : std::string()) << ',' << seen.elapsed_ms << ',' << seen.cash << ',' << seen.net_worth << ',' << portfolio.cash << ',' << portfolio.reserved_cash << ',' << portfolio.available_cash() << ',' << final_net_worth << ',' << pnl << ',' << (seen.net_worth != 0.0 ? pnl / seen.net_worth * 100.0 : 0.0) << ',' << buys_by_client[client] << ',' << sells_by_client[client] << ',' << holdings_to_string(portfolio) << ',' << reserved_to_string(portfolio) << '\n';
         }
     }
 
@@ -391,11 +428,14 @@ bool MarketRecorder::write_report() {
             << "max_submit_latency_us," << metrics.submit_latency().max_us() << "\n"
             << "total_cash_initial," << total_cash_initial << "\n"
             << "total_cash_final," << total_cash_final << "\n"
+            << "total_reserved_cash_final," << total_reserved_cash_final << "\n"
+            << "negative_cash_clients," << negative_cash_clients << "\n"
+            << "negative_share_positions," << negative_share_positions << "\n"
             << "sample_interval_ms," << config_.sample_interval.count() << "\n";
     }
 
     if (ok) {
-        LOG_INFO("market report written to ", config_.output_dir, " (", trades_.size(), " trades, ", total_resting, " resting, ", waiting.size(), " waiting orders)");
+        LOG_INFO("market report written to ", display_path(config_.output_dir), " (", trades_.size(), " trades, ", total_resting, " resting, ", waiting.size(), " waiting orders)");
     }
     return ok;
 }
