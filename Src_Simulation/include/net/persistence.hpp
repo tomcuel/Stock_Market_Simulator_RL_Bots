@@ -2,15 +2,16 @@
 // Periodic and shutdown-time persistence for the exchange server: 
 // - accounts (as their already one-way-hashed credentials, never the plaintext password)
 // - portfolios (cash + holdings)
-// - each symbol's last traded price are written to a plain-text snapshot file and restored on the next startup
-// Deliberately a simple line-based format rather than JSON/a binary format, so no extra dependency is needed to read or write it (consistent with the rest of Src_Simulation)
-//
-// Known scope limitation, stated plainly: resting orders in the live book and the waiting registry are not persisted
-// A restart loses in-flight orders but keeps every account's money and positions: the part that actually matters for a client not to lose everything on a restart
-// Persisting live orders too would mean reconstructing OrderBook's internal state (and re-deriving which orders were mid-partial-fill) 
-// rather than just replaying a few admin-style engine calls, which is a larger, riskier change than this pass covers
+// - each symbol's last traded price (the official close after a closing auction) are written to a plain-text snapshot file and restored on the next startup
+//   Deliberately a simple line-based format rather than JSON/a binary format, so no extra dependency is needed to read or write it (consistent with the rest of Src_Simulation)
+// - the open orders that outlive the day: GTC orders, and orders with their own expiry date still ahead (time in force, see types.hpp)
+//   DAY orders expire at the close (sim_server.x --closing-auction) and are not saved
+// Each saved order keeps its id, its place in the queue (book orders are written in priority order) and the trading time it has left, counted at the close: its clock stops while the market is closed
+// At load, the reservations are rebuilt from the restored orders (they are never saved), and sim_server.x opens the session with an auction in case restored orders cross
+// Persisting live orders too would mean reconstructing OrderBook's internal state (and re-deriving which orders were mid-partial-fill) rather than just replaying a few admin-style engine calls, which is a larger, riskier change than this pass covers
 //=======================================================================
-#pragma once
+#ifndef NET_PERSISTENCE_HPP
+#define NET_PERSISTENCE_HPP
 
 #include <string>
 
@@ -30,3 +31,5 @@ public:
 };
 
 } // namespace sim::net
+
+#endif // NET_PERSISTENCE_HPP

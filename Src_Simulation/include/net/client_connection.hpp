@@ -4,7 +4,8 @@
 // so a bot's every action is provably going through the exact same code path (and therefore the exact same wire protocol) a human typing commands would use
 // there is no separate in-process shortcut a bot could take instead
 //=======================================================================
-#pragma once
+#ifndef NET_CLIENT_CONNECTION_HPP
+#define NET_CLIENT_CONNECTION_HPP
 
 #include <optional>
 #include <string>
@@ -27,3 +28,5 @@ private:
 };
 
 } // namespace sim::net
+
+#endif // NET_CLIENT_CONNECTION_HPP

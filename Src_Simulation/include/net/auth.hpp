@@ -8,7 +8,8 @@
 //
 // Session tokens let a client reconnect (RESUME <token>) without re-sending its password over the wire every time a fresh random token is issued on every successful REGISTER/LOGIN and stays valid until the client (or an administrator) invalidates it, independent of any one TCP connection's lifetime
 //=======================================================================
-#pragma once
+#ifndef NET_AUTH_HPP
+#define NET_AUTH_HPP
 
 #include <mutex>
 #include <optional>
@@ -68,3 +69,5 @@ private:
 };
 
 } // namespace sim::net
+
+#endif // NET_AUTH_HPP

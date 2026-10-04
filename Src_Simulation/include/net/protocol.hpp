@@ -5,7 +5,8 @@
 //
 // This is transport plumbing only: it has no idea what a "command" or "order" is, and is used identically by the server and every client (interactive, scripted, or bot)
 //=======================================================================
-#pragma once
+#ifndef NET_PROTOCOL_HPP
+#define NET_PROTOCOL_HPP
 
 #include <chrono>
 #include <cstdint>
@@ -37,3 +38,5 @@ bool send_framed(int socket_fd, const std::string& payload);
 std::optional<std::string> recv_framed(int socket_fd);
 
 } // namespace sim::net
+
+#endif // NET_PROTOCOL_HPP

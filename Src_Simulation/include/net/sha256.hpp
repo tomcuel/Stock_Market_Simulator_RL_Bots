@@ -3,7 +3,8 @@
 // pulled in-tree rather than depending on OpenSSL specifically so Src_Simulation keeps its "standard library only" property, 
 // unlike Test_Functionnalities/Password_Cryptage's AES approach, which needs -lssl/-lcrypto (or Src_SQL)
 //=======================================================================
-#pragma once
+#ifndef NET_SHA256_HPP
+#define NET_SHA256_HPP
 
 #include <array>
 #include <cstdint>
@@ -45,10 +46,7 @@ private:
 
         std::uint32_t w[64];
         for (int i = 0; i < 16; ++i) {
-            w[i] = (static_cast<std::uint32_t>(block[i * 4]) << 24) |
-                   (static_cast<std::uint32_t>(block[i * 4 + 1]) << 16) |
-                   (static_cast<std::uint32_t>(block[i * 4 + 2]) << 8) |
-                   (static_cast<std::uint32_t>(block[i * 4 + 3]));
+            w[i] = (static_cast<std::uint32_t>(block[i * 4]) << 24) | (static_cast<std::uint32_t>(block[i * 4 + 1]) << 16) | (static_cast<std::uint32_t>(block[i * 4 + 2]) << 8) | (static_cast<std::uint32_t>(block[i * 4 + 3]));
         }
         for (int i = 16; i < 64; ++i) {
             std::uint32_t s0 = rotr(w[i - 15], 7) ^ rotr(w[i - 15], 18) ^ (w[i - 15] >> 3);
@@ -131,3 +129,5 @@ inline std::string to_hex(const std::array<std::uint8_t, 32>& bytes) {
 }
 
 } // namespace sim::net
+
+#endif // NET_SHA256_HPP
