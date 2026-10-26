@@ -1,0 +1,41 @@
+[simulation (in-process)]
+==============================================================================
+Market report: 33.2s, 5 symbols, 38 clients
+==============================================================================
+orders submitted 10595, trades 5860, volume 957898, notional 322,129,846.04
+end state: 60 resting, 112 waiting, 1 expired, 121 rejected
+cash conservation check: 190,001,475.50 before, 190,001,475.50 after (OK)
+
+Per symbol, before -> after:
+symbol  initial_price  final_price  change_pct  trades  volume   vwap  spread  imbalance  resting_orders  waiting_orders
+  AAPL         332.89       379.48       13.99    1146  180830 359.56     NaN       1.00               6              23
+  AMZN         251.40       308.31       22.64    1165  220358 292.38     NaN      -1.00               7              20
+ BRK-B         504.26       548.56        8.78    1206  122547 516.87    3.60       0.81              14              31
+  GOOG         343.83       330.01       -4.02    1149  187306 345.23     NaN      -1.00               8              25
+   JNJ         252.93       275.67        8.99    1194  246857 262.00    1.65       0.38              25              13
+
+By strategy (P&L in % since first seen):
+               bots  mean_pnl_pct  best_pnl_pct  worst_pnl_pct  trades
+strategy                                                              
+ml                4         +5.56         +5.85          +5.21     603
+meanreversion     4         +5.47         +5.96          +5.09     152
+twap              2         +5.30         +7.06          +3.54     331
+momentum          5         +5.10         +5.22          +5.01     449
+noise            15         +4.93         +7.72          +2.16    3366
+trend             4         +4.69         +4.78          +4.63     278
+marketmaker       4         +4.66         +5.58          +3.81     681
+
+Top 5 / bottom 5 clients by P&L:
+ client       label  initial_net_worth  final_net_worth        pnl  pnl_pct  trades_as_buyer  trades_as_seller
+      1       noise           10000000    10,772,498.15 772,498.15     7.72              253               215
+     33        twap           10000000    10,706,405.10 706,405.10     7.06              171                83
+      6       noise           10000000    10,663,127.61 663,127.61     6.63              266               240
+      9       noise           10000000    10,631,974.86 631,974.86     6.32              218               188
+      8       noise           10000000    10,616,273.39 616,273.39     6.16              248               237
+     11       noise           10000000    10,413,656.31 413,656.31     4.14              193               250
+      7       noise           10000000    10,384,703.68 384,703.68     3.85              216               224
+     23 marketmaker           10000000    10,380,946.97 380,946.97     3.81              171               192
+     34        twap           10000000    10,354,072.42 354,072.42     3.54              160                94
+     14       noise           10000000    10,216,278.41 216,278.41     2.16              195               225
+
+wrote 11 charts and Src_Simulation/output/20261006_001022/plots/report_simu.html

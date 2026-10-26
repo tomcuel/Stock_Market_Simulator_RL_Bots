@@ -1,0 +1,45 @@
+[server + socket bots]
+==============================================================================
+Market report: 31.1s, 8 symbols, 10 clients
+==============================================================================
+orders submitted 1111, trades 288, volume 39132, notional 15,068,939.09
+end state: 3 resting, 3 waiting, 132 expired, 20 rejected
+cash conservation check: 50,008,155.57 before, 50,008,155.57 after (OK)
+
+Per symbol, before -> after:
+symbol  initial_price  final_price  change_pct  trades  volume   vwap  spread  imbalance  resting_orders  waiting_orders
+  AAPL         332.89       333.67        0.24      48    7749 331.40     NaN          0               0               0
+  AMZN         251.40       251.53        0.05      33    6449 250.87     NaN          0               0               0
+ BRK-B         504.26       557.59       10.58      33    3194 521.43     NaN          0               0               0
+  GOOG         343.83       383.00       11.39      33    5542 354.49     NaN          1               1               0
+   JNJ         252.93       287.10       13.51      18    4083 260.94     NaN          0               0               1
+   JPM         332.38       342.28        2.98      22    4357 335.95     NaN          0               0               1
+  META         741.90       825.67       11.29      40    2616 776.90     NaN          1               2               1
+  MSFT         525.18       518.43       -1.29      61    5142 523.44     NaN          0               0               0
+
+By strategy (P&L in % since first seen):
+               bots  mean_pnl_pct  best_pnl_pct  worst_pnl_pct  trades
+strategy                                                              
+ml                1         +3.62         +3.62          +3.62     101
+noise             2         +3.20         +3.24          +3.16     108
+trend             1         +3.12         +3.12          +3.12      35
+momentum          2         +3.09         +3.13          +3.04       6
+launcher          1         +3.05         +3.05          +3.05       0
+twap              1         +3.03         +3.03          +3.03      19
+meanreversion     1         +2.60         +2.60          +2.60       1
+marketmaker       1         +2.49         +2.49          +2.49      18
+
+Top 5 / bottom 5 clients by P&L:
+ client               label  initial_net_worth  final_net_worth        pnl  pnl_pct  trades_as_buyer  trades_as_seller
+      8            bot07_ml           10000000    10,361,816.06 361,816.06     3.62              101                61
+      9         bot08_noise           10000000    10,323,850.99 323,850.99     3.24               61                60
+      2         bot01_noise           10000000    10,315,549.55 315,549.55     3.16               47                64
+      3      bot02_momentum           10000000    10,312,996.01 312,996.01     3.13                5                 2
+      6         bot05_trend           10000000    10,311,840.11 311,840.11     3.12               35                12
+      1            launcher           10000000    10,304,648.98 304,648.98     3.05                0                 0
+     10      bot09_momentum           10000000    10,304,038.08 304,038.08     3.04                1                 1
+      7          bot06_twap           10000000    10,302,505.49 302,505.49     3.03               19                23
+      5 bot04_meanreversion           10000000    10,259,864.54 259,864.54     2.60                1                28
+      4   bot03_marketmaker           10000000    10,249,380.00 249,380.00     2.49               18                37
+
+wrote 11 charts and Src_Simulation/output/20261006_001231/plots/report_bots.html

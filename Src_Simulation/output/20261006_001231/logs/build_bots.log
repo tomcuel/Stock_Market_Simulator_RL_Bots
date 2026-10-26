@@ -1,0 +1,10 @@
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -c src/net/protocol.cpp -o build/net_protocol.o
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -c src/net/auth.cpp -o build/net_auth.o
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -c src/net/persistence.cpp -o build/net_persistence.o
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -c src/net/simulation_server.cpp -o build/net_simulation_server.o
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -c src/net/sim_server_main.cpp -o build/net_sim_server_main.o
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -o sim_server.x build/order_book.o build/matching_engine.o build/order_registry.o build/market_data.o build/market_seed.o build/market_recorder.o build/net_protocol.o build/net_auth.o build/net_persistence.o build/net_simulation_server.o build/net_sim_server_main.o -pthread
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -c src/net/client_connection.cpp -o build/net_client_connection.o
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -c src/net/wire_gateway.cpp -o build/net_wire_gateway.o
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -c src/net/sim_client_main.cpp -o build/net_sim_client_main.o
+g++ -std=c++20 -O2 -Wall -Wextra -Iinclude -MMD -MP -o sim_client.x build/net_protocol.o build/net_client_connection.o build/net_wire_gateway.o build/bot.o build/signal_model.o build/net_sim_client_main.o -pthread
