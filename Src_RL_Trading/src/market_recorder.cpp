@@ -118,6 +118,12 @@ void MarketRecorder::set_client_label(ClientId client, std::string label)
     labels_[client] = std::move(label);
 }
 
+void MarketRecorder::record_phase(int day, const std::string& phase) {
+    double now = elapsed_ms(Clock::now());
+    std::lock_guard<std::mutex> lock(mutex_);
+    phases_.push_back(PhaseRow{day, phase, now});
+}
+
 std::size_t MarketRecorder::recorded_trade_count() const {
     std::lock_guard<std::mutex> lock(mutex_);
     return trades_.size();
@@ -130,6 +136,7 @@ void MarketRecorder::on_event(const Event& event) {
     } 
     else if (auto* rejected = std::get_if<OrderRejectedEvent>(&event)) {
         ++rejections_by_reason_[rejected->reason];
+        ++rejections_by_client_[{rejected->client, rejected->reason}];
     } 
     else if (std::get_if<OrderQueuedEvent>(&event)) {
         ++queued_events_;
@@ -404,6 +411,20 @@ bool MarketRecorder::write_report() {
             total_rejections += count;
         }
     }
+    {
+        auto out = open_csv("rejections_by_client");
+        out << "client,reason,count\n";
+        for (const auto& [key, count] : rejections_by_client_) {
+            out << key.first << "," << key.second << "," << count << "\n";
+        }
+    }
+    if (!phases_.empty()) {
+        auto out = open_csv("session_phases");
+        out << "day,phase,start_ms\n";
+        for (const auto& row : phases_) {
+            out << row.day << "," << row.phase << "," << row.start_ms << "\n";
+        }
+    }
 
     // summary.csv 
     {
@@ -412,6 +433,7 @@ bool MarketRecorder::write_report() {
         auto out = open_csv("summary");
         out << "key,value\n"
             << "duration_s," << duration_s << "\n"
+            << "seed," << config_.seed << "\n"
             << "symbols," << symbols.size() << "\n"
             << "clients," << final_portfolios.size() << "\n"
             << "trades," << trades_.size() << "\n"

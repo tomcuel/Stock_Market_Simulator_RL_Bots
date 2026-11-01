@@ -18,6 +18,8 @@
 //   resting_orders<sfx>.csv     every individual order still resting in the book at the end
 //   waiting_orders<sfx>.csv     every order still waiting for its release band / start date at the end
 //   rejections<sfx>.csv         rejection count per reason
+//   rejections_by_client<sfx>.csv  the same per client (client,reason,count): who was refused, e.g. the value investors apart from the strategies (scripts/plot_market_report.py)
+//   session_phases<sfx>.csv     trading days only: when each phase of each day started (day,phase,start_ms), on the samples' clock, so a chart can tell continuous trading from the auctions and the nights
 //=======================================================================
 #ifndef MARKET_RECORDER_HPP
 #define MARKET_RECORDER_HPP
@@ -43,7 +45,9 @@ struct RecorderConfig {
     std::string output_dir;                               // created if missing
     std::string file_suffix;                              // appended to every file name, e.g. "_simu" -> trades_simu.csv
     std::chrono::milliseconds sample_interval{250};       // price/book/portfolio sampling period
-    std::size_t book_depth{10};                           // price levels summed for bid/ask depth samples
+    std::size_t book_depth{10};
+    // the run's random seed, written to the summary (-1: none): a model trained on this run records it, so the simulator can refuse to evaluate it live on the same market (data leakage)
+    long long seed{-1};                                  // price levels summed for bid/ask depth samples
 };
 
 class MarketRecorder {
@@ -68,6 +72,8 @@ public:
 
     // a short text shown next to client in portfolios_final‹stx>.csv (the "label" column): the strategy name for simulation.x bots, the account username for sim_server.x clients
     void set_client_label(ClientId client, std::string label); 
+    // trading days: the session entered `phase` (PRE_OPEN, OPEN, PRE_CLOSE, CLOSED) of `day` now
+    void record_phase(int day, const std::string& phase);
     const std::string& output_dir() const {return config_.output_dir;}
 
 private:
@@ -116,6 +122,13 @@ private:
     mutable std::mutex mutex_; // guards every recorded collection below
     std::vector<TradeRow> trades_;
     std::map<std::string, std::uint64_t> rejections_by_reason_;
+    std::map<std::pair<ClientId, std::string>, std::uint64_t> rejections_by_client_;
+    struct PhaseRow {
+        int day;
+        std::string phase;
+        double start_ms;
+    };
+    std::vector<PhaseRow> phases_;
     std::uint64_t queued_events_{0};
     std::uint64_t expired_events_{0};
     std::vector<PriceSample> price_samples_;
