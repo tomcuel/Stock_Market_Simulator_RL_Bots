@@ -15,10 +15,12 @@ ENGINE_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(ENGINE_SOURCES))
 
 all: simulation.x sim_server.x sim_client.x
 
-# simulation.x: in-process demo/benchmark (bots call the engine directly, no sockets) strategies (bot.cpp) and the ML signal (signal_model.cpp) only depend on the MarketGateway interface, so the socket client links them too, see below
-STRATEGY_SOURCES = $(SRC_DIR)/bot.cpp $(SRC_DIR)/signal_model.cpp
-SIMULATION_SOURCES = $(ENGINE_SOURCES) $(STRATEGY_SOURCES) $(SRC_DIR)/gateway.cpp $(SRC_DIR)/simulation.cpp $(SRC_DIR)/main.cpp
-SIMULATION_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SIMULATION_SOURCES))
+# simulation.x: in-process simulation in trading days (bots call the engine directly, no sockets). The rule-based strategies (bot.cpp) only depend on the MarketGateway interface, so the socket client links them too, see below
+# the RL bots (rl_bot.cpp, simulation.x only) reach the Python policy server through policy_client.cpp and the client connection, fed by market_feed.cpp
+STRATEGY_SOURCES = $(SRC_DIR)/bot.cpp
+RL_SOURCES = $(SRC_DIR)/rl_bot.cpp $(SRC_DIR)/policy_client.cpp $(SRC_DIR)/market_feed.cpp
+SIMULATION_SOURCES = $(ENGINE_SOURCES) $(STRATEGY_SOURCES) $(RL_SOURCES) $(SRC_DIR)/gateway.cpp $(SRC_DIR)/market_session.cpp $(SRC_DIR)/simulation.cpp $(SRC_DIR)/main.cpp
+SIMULATION_OBJECTS = $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(SIMULATION_SOURCES)) $(BUILD_DIR)/net_protocol.o $(BUILD_DIR)/net_client_connection.o
 simulation.x: $(SIMULATION_OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
@@ -28,7 +30,7 @@ SERVER_OBJECTS = $(ENGINE_OBJECTS) $(BUILD_DIR)/net_protocol.o $(BUILD_DIR)/net_
 sim_server.x: $(SERVER_OBJECTS)
 	$(CXX) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
 
-# sim_client.x: interactive/piped client AND bot client, pure socket protocol, no engine linked in the bots run the same strategy code as simulation.x, through a WireGateway instead of the engine
+# sim_client.x: interactive/piped client AND bot client, pure socket protocol, no engine linked in: the bots run the same rule-based strategy code as simulation.x, through a WireGateway instead of the engine (no RL bot)
 CLIENT_OBJECTS = $(BUILD_DIR)/net_protocol.o $(BUILD_DIR)/net_client_connection.o $(BUILD_DIR)/net_wire_gateway.o \
                  $(patsubst $(SRC_DIR)/%.cpp,$(BUILD_DIR)/%.o,$(STRATEGY_SOURCES)) $(BUILD_DIR)/net_sim_client_main.o
 sim_client.x: $(CLIENT_OBJECTS)
