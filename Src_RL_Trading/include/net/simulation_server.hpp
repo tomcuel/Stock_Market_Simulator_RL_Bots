@@ -1,5 +1,5 @@
 //=======================================================================
-// The server half of Src_Simulation's client-server architecture: a multi-threaded TCP server exposing MatchingEngine/MarketData over the length-prefixed text protocol defined here
+// The server half of Src_RL_Trading's client-server architecture: a multi-threaded TCP server exposing MatchingEngine/MarketData over the length-prefixed text protocol defined here
 // so any process (a human at sim_client.x or a bot running the exact same client code) interacts with the market purely through commands, never by linking against the engine directly 
 // This mirrors Src_SQL's server.cpp/client_account.cpp split, and applies the concurrency lessons from Test_Functionnalities/Sockets and Test_Functionnalities/Mutex/Separated_Mutex 
 // (every subsystem (books, portfolios, prices, the waiting-order registry, the client directory) already has, or gets, its own lock rather than one global one)
@@ -26,6 +26,7 @@
 #define NET_SIMULATION_SERVER_HPP
 
 #include <atomic>
+#include <memory>
 #include <mutex>
 #include <condition_variable>
 #include <string>
@@ -101,6 +102,16 @@ private:
         return !wake_cv_.wait_for(lock, interval, [this] {return !running_.load();});
     }
     std::thread accept_thread_;
+    // one thread per client connection, tracked (not detached): stop() shuts their sockets down and joins them, so no connection thread can outlive the server 
+    // A connection's socket is closed after its thread is joined, never by the thread itself, so its number can't be reused by a new connection while stop() may still shut it down
+    struct Connection {
+        std::thread thread;
+        int socket{-1};
+        std::shared_ptr<std::atomic<bool>> finished;
+    };
+    std::mutex connections_mutex_;
+    std::vector<Connection> connections_;
+    void reap_finished_connections(); // joins and closes the finished ones (connections_mutex_ held)
     std::thread watcher_thread_;
     std::thread persistence_thread_;
     std::thread metrics_thread_;
