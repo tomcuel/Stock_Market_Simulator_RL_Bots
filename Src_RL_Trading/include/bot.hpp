@@ -12,8 +12,9 @@
 //   marketmaker    two-sided quotes around the mid, leaning with inventory (Avellaneda-Stoikov idea: long means lower quotes to sell, short means higher quotes to buy back), requoted every tick, never crossing the mid
 //   meanreversion  z-score of the price against its rolling mean: buys well below, sells well above, with passive LIMIT orders that expire quickly
 //   trend          fast/slow exponential moving average crossover, enters with MARKET orders and keeps a trailing STOP that it retracts and re-places as the price moves its way
+//   value          value investor (simulation.x --value): buys below the symbol's fundamental value and sells above it, each with its own persistent estimation error, passively when the gap is small, at market when it is large (fundamentals.hpp)
 //   twap           execution algorithm: works a large parent order in time slices at the touch, crosses the spread only when behind schedule, logs its slippage vs arrival price
-//   ml             logistic regression signal trained in Python (scripts/train_signal_model.py), inferred in C++ (signal_model.hpp)
+// The RL bots (RLBot, rl_bot.hpp) are TradingStrategies too, kept apart so the socket bots (sim_client.x) never link them
 //=======================================================================
 #ifndef BOT_HPP
 #define BOT_HPP
@@ -28,8 +29,9 @@
 #include <unordered_map>
 #include <vector>
 
+#include "fundamentals.hpp"
 #include "gateway.hpp"
-#include "signal_model.hpp"
+#include "market_session.hpp"
 #include "types.hpp"
 
 namespace sim {
@@ -57,12 +59,12 @@ protected:
     double offset_scale(const Symbol& symbol) const;
 
     // Orders are sized by value, not by share count: `units` lots at `price`, one lot being kLotFraction of the bot's equity when it started (so 20000 with the default 10000000), converted to shares and never less than 1
-    //With share counts, "10 shares" meant 8700 on ^AEX and 425000 on ^DJI, far above a bot's cash, so most buys of expensive symbols were refused while every sell passed, and the order flow was structurally sell-heavy
+    // With share counts, "10 shares" meant 8700 on ^AEX and 425000 on ^DJI, far above a bot's cash, so most buys of expensive symbols were refused while every sell passed, and the order flow was structurally sell-heavy
     static constexpr double kLotFraction = 0.002;
     Quantity lots(Price price, double units) const;
     double lot_value() const {return lot_value_;}
 
-    // records one last price per symbol (keeps the `keep` most recent), used by strategies that need a history: momentum, meanreversion, trend, ml
+    // records one last price per symbol (keeps the `keep` most recent), used by strategies that need a history: momentum, meanreversion, trend
     void observe_all(std::size_t keep);
     const std::deque<double>& history(const Symbol& symbol) {return history_[symbol];}
 
@@ -101,6 +103,28 @@ public:
 
 protected:
     void on_tick() override;
+
+private:
+    // the side leans toward the account's starting mix: a noise trader that sold most of a symbol's shares (or spent most of its cash) buys (sells) it more often
+    // With a fair coin, sells of a symbol whose shares ran out were refused while buys kept drawing on the shared cash: a structural buying pressure that pushed every price up by about 1% a day
+    double buy_probability(const Symbol& symbol, Price price);
+    double start_cash_{-1.0};
+    std::unordered_map<Symbol, double> start_value_; // the symbol's starting holding, valued at the price of the first look
+};
+
+
+class ValueInvestorBot : public TradingStrategy {
+public:
+    ValueInvestorBot(MarketGateway& gateway, std::vector<Symbol> symbols, unsigned seed, std::unordered_map<Symbol, double> volatilities, const FundamentalValues* values)
+        : TradingStrategy(gateway, std::move(symbols), seed, std::move(volatilities)), values_(values) {}
+    const char* name() const override {return "value";}
+
+protected:
+    void on_tick() override;
+
+private:
+    const FundamentalValues* values_;
+    std::unordered_map<Symbol, double> error_; // this investor's persistent log error on each symbol's value
 };
 
 
@@ -121,11 +145,15 @@ class MarketMakerBot : public TradingStrategy {
 public:
     using TradingStrategy::TradingStrategy;
     const char* name() const override {return "marketmaker";}
+    // how far from the mid it quotes, as a fraction of the mid (default 0.5%: a 1% quoted spread). simulation.x --maker-half-spread
+    void set_half_spread(double half_spread) {half_spread_ = std::clamp(half_spread, 0.0001, 0.05);}
+    static constexpr double kHalfSpread = 0.005;
 
 protected:
     void on_tick() override;
 
 private:
+    double half_spread_{kHalfSpread};
     std::unordered_map<Symbol, Quantity> target_position_; // first holding seen: the inventory it quotes around
     std::vector<OrderId> live_quotes_;
 };
@@ -192,52 +220,16 @@ private:
 };
 
 
-// The model learned from DAILY closes (Data/ pipeline), the simulation moves tick by tick: the bot reads the market in bars
-// One bar of bar_interval simulated time plays one trading day: at each bar close it records one close per symbol and decides once per symbol, so "5 bars ahead" means what "5 days ahead" meant in training
-// Between two bar closes it does nothing (bar_interval 0: every tick, the old behavior), scripts/train_signal_model.py --check-run tells which bar length makes the simulated moves look like real days
-class MLSignalBot : public TradingStrategy {
-public:
-    MLSignalBot(MarketGateway& gateway, std::vector<Symbol> symbols, unsigned seed, std::unordered_map<Symbol, double> volatilities, std::shared_ptr<const SignalModel> model, std::chrono::milliseconds bar_interval = std::chrono::milliseconds(1000)) : TradingStrategy(gateway, std::move(symbols), seed, std::move(volatilities)), model_(std::move(model)), bar_interval_(bar_interval) {}
-    const char* name() const override {return "ml";}
-    std::uint64_t bars_seen() const {return bars_;}
-    std::uint64_t positions_opened() const {return opened_;}
-    std::uint64_t horizon_exits() const {return horizon_exits_;} // closed by the bot after horizon() bars
-    std::uint64_t stop_exits() const {return stop_exits_;}       // entirely closed earlier by their protective stop
-    std::size_t open_positions() const {return positions_.size();}
-
-protected:
-    void on_tick() override;
-
-private:
-    struct Position {
-        Side side;
-        Quantity quantity;
-        OrderId stop_id;            // 0 if the stop couldn't be placed
-        std::uint64_t opened_bar;
-        Quantity holding_before;    // the holding just before the entry: what is still open is the difference
-    };
-    void on_bar(const std::vector<Symbol>& symbols);
-    void close_if_due(const Symbol& symbol);
-    void decide(const Symbol& symbol);
-
-    std::shared_ptr<const SignalModel> model_; // loaded once, shared by every ML bot
-    std::chrono::milliseconds bar_interval_;
-    std::int64_t last_bar_index_{-1};
-    std::uint64_t bars_{0};
-    std::unordered_map<Symbol, Position> positions_;
-    std::uint64_t opened_{0};
-    std::uint64_t horizon_exits_{0};
-    std::uint64_t stop_exits_{0};
-    static constexpr int kHoldUntilHorizon = 1000000; // ticks: the stop is retracted by the horizon exit, not by age
-};
-
+// the value investors see each company's hidden fundamental value, which no other bot sees: a
+// n informed benchmark, reported apart from the strategies that only see prices (Simulation's report, scripts/plot_market_report.py, plot_rl_report.py)
+inline bool is_informed_benchmark(const std::string& strategy) {return strategy == "value";}
 
 // every strategy name accepted by make_strategy(), in a stable order
 const std::vector<std::string>& strategy_names();
 
-// builds a strategy by name (see strategy_names()), nullptr for an unknown name or for "ml" without a loaded model
-// ml_bar_interval: the ML bot's bar, one simulated trading day (see MLSignalBot)
-std::unique_ptr<TradingStrategy> make_strategy(const std::string& name, MarketGateway& gateway, std::vector<Symbol> symbols, unsigned seed, std::unordered_map<Symbol, double> volatilities = {}, std::shared_ptr<const SignalModel> model = nullptr, std::chrono::milliseconds ml_bar_interval = std::chrono::milliseconds(1000));
+// builds a rule-based strategy by name (see strategy_names()), nullptr for an unknown name
+// The RL bots need a policy server connection and are built directly (RLBot, rl_bot.hpp), see Simulation::spawn_rl_bots
+std::unique_ptr<TradingStrategy> make_strategy(const std::string& name, MarketGateway& gateway, std::vector<Symbol> symbols, unsigned seed, std::unordered_map<Symbol, double> volatilities = {});
 
 // runs a strategy on its own thread, calling step() every [min_interval, max_interval]
 class BotRunner
@@ -252,6 +244,8 @@ public:
     void start();
     void stop();
     TradingStrategy& strategy() {return *strategy_;}
+    // trading days: the bot only steps while the exchange accepts orders (it sleeps through the night), set before start()
+    void set_session(const MarketSession* session) {session_ = session;}
 
 private:
     std::unique_ptr<TradingStrategy> strategy_;
@@ -260,6 +254,7 @@ private:
     std::mt19937 rng_;
     std::atomic<bool> running_{false};
     std::thread thread_;
+    const MarketSession* session_{nullptr};
 };
 
 } // namespace sim

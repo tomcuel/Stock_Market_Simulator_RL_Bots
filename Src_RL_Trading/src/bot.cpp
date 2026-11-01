@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdlib>
+#include <iomanip>
+#include <sstream>
 
 #include "logger.hpp"
 
@@ -141,10 +143,9 @@ void NoiseTraderBot::on_tick() {
     double scale = offset_scale(symbol);
     // 45% market, 35% limit, 10% stop, 10% limit_stop: every order kind stays exercised
     std::discrete_distribution<int> kind_dist({45, 35, 10, 10});
-    std::bernoulli_distribution buy_or_sell(0.5);
     std::uniform_real_distribution<double> units_dist(1.0, 10.0);
     std::uniform_real_distribution<double> offset_dist(-scale, scale);
-
+    std::bernoulli_distribution buy_or_sell(buy_probability(symbol, reference));
     Side side = buy_or_sell(rng_) ? Side::BUY : Side::SELL;
     OrderRequest request = make_request(side, OrderKind::MARKET, symbol, lots(reference, units_dist(rng_)));
     int max_age = 20;
@@ -180,6 +181,53 @@ void NoiseTraderBot::on_tick() {
         request.expires_in = std::chrono::seconds(expiry_dist(rng_));
     }
     place(request, max_age);
+}
+
+
+double NoiseTraderBot::buy_probability(const Symbol& symbol, Price price) {
+    Portfolio portfolio = gateway_.portfolio();
+    if (start_cash_ < 0.0) {
+        start_cash_ = std::max(1.0, portfolio.cash);
+    }
+    auto start = start_value_.try_emplace(symbol, std::max(1.0, static_cast<double>(portfolio.holding(symbol)) * price)).first->second;
+    double cash_ratio = std::max(1e-3, portfolio.available_cash() / start_cash_);
+    double stock_ratio = std::max(1e-3, static_cast<double>(portfolio.available_shares(symbol)) * price / start);
+    // equal ratios: a fair coin, a symbol sold down to a third of its start against untouched cash: about 0.7
+    return std::clamp(0.5 + 0.4 * std::tanh(0.5 * std::log(cash_ratio / stock_ratio)), 0.1, 0.9);
+}
+
+
+// ---------------------------------------------------------------- value investor
+void ValueInvestorBot::on_tick() {
+    if (!values_) {
+        return;
+    }
+    Symbol symbol = pick_symbol();
+    double sigma = values_->daily_vol(symbol);
+    Price fundamental = values_->value(symbol);
+    Quote quote = gateway_.quote(symbol);
+    Price price = quote.mid();
+    if (fundamental <= 0.0 || price <= 0.0 || sigma <= 0.0) {
+        return;
+    }
+    auto error = error_.find(symbol);
+    if (error == error_.end()) {
+        std::normal_distribution<double> belief(0.0, 0.3 * sigma); // investors disagree, by about a third of a day's move
+        error = error_.emplace(symbol, belief(rng_)).first;
+    }
+    double gap = std::log(fundamental / price) + error->second; // > 0: the stock is cheap for this investor
+    if (std::abs(gap) < 0.25 * sigma) {
+        return; // too close to call
+    }
+    Side side = gap > 0.0 ? Side::BUY : Side::SELL;
+    double units = std::clamp(2.0 + 8.0 * std::abs(gap) / sigma, 1.0, 10.0);
+    if (std::abs(gap) > 1.5 * sigma) {
+        place(make_request(side, OrderKind::MARKET, symbol, lots(price, units)), 1); // far off: no time to wait
+        return;
+    }
+    // patient: a limit a third of the way toward the value, retracted after a few ticks if nobody takes it
+    Price limit = std::max(0.01, price * std::exp(gap / 3.0));
+    place(make_request(side, OrderKind::LIMIT, symbol, lots(price, units), limit), 8);
 }
 
 
@@ -240,7 +288,7 @@ void MarketMakerBot::on_tick() {
     // inventory skew: every lot above the starting position leans both quotes 0.01% lower (so the maker sells it off), every lot below leans them higher
     // The lean is capped at 80% of the half spread, so the bid always stays below the mid and the ask above it: a market maker leans, it never crosses
     // (An uncapped 2% lean made makers post asks below the best bid and dump inventory every tick, which doubled the price swings in the measurements)
-    constexpr double kHalfSpread = 0.005;
+    const double kHalfSpread = half_spread_;
     Portfolio portfolio = gateway_.portfolio();
     Quantity target = target_position_.try_emplace(symbol, portfolio.holding(symbol)).first->second;
     double inventory = static_cast<double>(portfolio.holding(symbol) - target) * mid / lot_value(); // in lots
@@ -460,97 +508,13 @@ void TwapExecutionBot::on_tick() {
 }
 
 
-// ---------------------------------------------------------------- machine learning signal
-void MLSignalBot::on_tick() {
-    if (!model_ || !model_->loaded()) {
-        return;
-    }
-    if (bar_interval_.count() <= 0) {
-        ++bars_; // every tick is a bar (the old behavior)
-        observe_all(kSignalMinHistory + 5);
-        on_bar({pick_symbol()});
-        return;
-    }
-    // the shared grid: the index of the bar `now` falls in, a new index means the previous bar has closed
-    auto index = static_cast<std::int64_t>(std::chrono::steady_clock::now().time_since_epoch() / bar_interval_);
-    if (index == last_bar_index_) {
-        return;
-    }
-    last_bar_index_ = index;
-    ++bars_;
-    observe_all(kSignalMinHistory + 5); // one close per symbol for this bar
-    on_bar(symbols_);
-}
-
-void MLSignalBot::on_bar(const std::vector<Symbol>& symbols) {
-    for (const auto& symbol : symbols) {
-        close_if_due(symbol);
-        decide(symbol);
-    }
-}
-
-void MLSignalBot::close_if_due(const Symbol& symbol) {
-    auto it = positions_.find(symbol);
-    if (it == positions_.end() || bars_ - it->second.opened_bar < static_cast<std::uint64_t>(std::max(1, model_->horizon()))) {
-        return;
-    }
-    const Position& position = it->second;
-    // the stop may be waiting, released but resting unfilled (a released STOP rests at its trigger price), partly filled,
-    // or filled: cancel whatever is left of it, then close exactly what the position still holds
-    if (position.stop_id != 0) {
-        retract(position.stop_id);
-    }
-    Quantity now = gateway_.portfolio().holding(symbol);
-    Quantity moved = position.side == Side::BUY ? now - position.holding_before : position.holding_before - now;
-    Quantity still_open = std::clamp<Quantity>(moved, 0, position.quantity);
-    if (still_open > 0) {
-        place(make_request(opposite(position.side), OrderKind::MARKET, symbol, still_open), 1);
-        ++horizon_exits_;
-    } else {
-        ++stop_exits_; // the stop closed it all before the horizon
-    }
-    positions_.erase(it);
-}
-
-void MLSignalBot::decide(const Symbol& symbol) {
-    if (positions_.count(symbol)) {
-        return; // one position per symbol: it is closed at the horizon (or by its stop) before the next one
-    }
-    auto features = compute_signal_features(history(symbol));
-    if (!features) {
-        return;
-    }
-
-    double p_up = model_->probability_up(*features);
-    constexpr double kMargin = 0.04; // only act on a clear signal
-    if (std::abs(p_up - 0.5) < kMargin) {
-        return;
-    }
-
-    Side side = (p_up > 0.5) ? Side::BUY : Side::SELL;
-    std::uniform_real_distribution<double> units_dist(1.0, 5.0);
-    Quantity holding_before = gateway_.portfolio().holding(symbol);
-    SubmitResult entry = place(make_request(side, OrderKind::MARKET, symbol, lots(history(symbol).back(), units_dist(rng_))), 1);
-    if (!entry.accepted || entry.filled_quantity == 0) {
-        return;
-    }
-    double trail = std::max(0.004, 2.0 * offset_scale(symbol));
-    Price reference = history(symbol).back();
-    Price stop_price = (side == Side::BUY) ? reference * (1.0 - trail) : reference * (1.0 + trail);
-    // the stop lives until the horizon exit retracts it (a max-age retraction would leave the position without protection)
-    SubmitResult stop = place(make_request(opposite(side), OrderKind::STOP, symbol, entry.filled_quantity, stop_price), kHoldUntilHorizon);
-    positions_[symbol] = Position{side, entry.filled_quantity, stop.accepted ? stop.order_id : 0, bars_, holding_before};
-    ++opened_;
-}
-
-
 // ---------------------------------------------------------------- factory and runner
 const std::vector<std::string>& strategy_names() {
-    static const std::vector<std::string> names = {"noise", "momentum", "marketmaker", "meanreversion", "trend", "twap", "ml"};
+    static const std::vector<std::string> names = {"noise", "momentum", "marketmaker", "meanreversion", "trend", "twap"};
     return names;
 }
 
-std::unique_ptr<TradingStrategy> make_strategy(const std::string& name, MarketGateway& gateway, std::vector<Symbol> symbols, unsigned seed, std::unordered_map<Symbol, double> volatilities, std::shared_ptr<const SignalModel> model, std::chrono::milliseconds ml_bar_interval) {
+std::unique_ptr<TradingStrategy> make_strategy(const std::string& name, MarketGateway& gateway, std::vector<Symbol> symbols, unsigned seed, std::unordered_map<Symbol, double> volatilities) {
     if (name == "noise") {
         return std::make_unique<NoiseTraderBot>(gateway, std::move(symbols), seed, std::move(volatilities));
     }
@@ -569,9 +533,6 @@ std::unique_ptr<TradingStrategy> make_strategy(const std::string& name, MarketGa
     if (name == "twap") {
         return std::make_unique<TwapExecutionBot>(gateway, std::move(symbols), seed, std::move(volatilities));
     }
-    if (name == "ml" && model && model->loaded()) {
-        return std::make_unique<MLSignalBot>(gateway, std::move(symbols), seed, std::move(volatilities), std::move(model), ml_bar_interval);
-    }
     return nullptr;
 }
 
@@ -588,7 +549,9 @@ void BotRunner::start() {
     thread_ = std::thread([this]{
         std::uniform_int_distribution<int> jitter(static_cast<int>(min_interval_.count()), static_cast<int>(max_interval_.count()));
         while (running_.load()) {
-            strategy_->step();
+            if (!session_ || session_->accepting_orders()) {
+                strategy_->step();
+            }
             std::this_thread::sleep_for(std::chrono::milliseconds(jitter(rng_)));
         }
     });
