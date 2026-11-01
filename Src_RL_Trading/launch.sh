@@ -1,40 +1,41 @@
 #!/usr/bin/env bash
-# launch.sh: global launcher for Src_Simulation: runs, into one run folder inside the project:
+# launch.sh: global launcher for Src_RL_Trading: runs, into one run folder inside the project:
 #
-#   simu phase:  simulation.x (in-process, bigger/faster)  -> plot_metrics.py -> plot_market_report.py
-#   bots phase:  sim_server.x + socket bots (smaller, through the real wire protocol)-> plot_metrics.py -> plot_market_report.py
+#   simu phase:  simulation.x in trading days (in-process, the calibrated market) + the RL agents' bots (when a trained agent exists), served by the Python policy server (RL_Agents/) and fed each day's bars at the close -> plot_metrics.py -> plot_market_report.py
+#   bots phase:  sim_server.x + rule-based socket bots, no RL (smaller, through the real wire protocol, one session that ends with a closing auction) -> plot_metrics.py -> plot_market_report.py
 # then writes plots/index.html linking both reports: files from the two phases never collide: everything from the simulation ends in _simu, everything from the server/bots ends in _bots
 #
-#   Src_Simulation/output/<timestamp>/          (Src_Simulation/output/latest points to the newest run)
+#   Src_RL_Trading/output/<timestamp>/          (Src_RL_Trading/output/latest points to the newest run)
 #     logs/          simulation_simu.log, server_bots.log, bots/botNN_<strategy>.log, build/plot logs
 #     *_simu.csv     metrics + market report of the simulation
 #     *_bots.csv     metrics + market report of the server/bots session
 #     plots/         metrics_{simu,bots}.png, 0X_*_{simu,bots}.png, report_{simu,bots}.html, index.html
 #
-# Usage (from anywhere; no option is required: the defaults run both phases, ~45s in total):
-#   Src_Simulation/launch.sh                  # both phases (same as: launch.sh all)
-#   Src_Simulation/launch.sh simu             # only the in-process simulation
-#   Src_Simulation/launch.sh bots             # only the server + socket bots session
-#   Src_Simulation/launch.sh simu --simu-duration 600 --symbols 8 --noise 60 --momentum 20 --marketmakers 12
-#   Src_Simulation/launch.sh all --refresh-data small    # re-download real market data first
-#   Src_Simulation/launch.sh simu --refresh-data full --period 10y --history-length 250
-# Then open Src_Simulation/output/latest/plots/index.html
+# Usage (from anywhere; no option is required: the defaults run both phases, ~5 min in total):
+#   Src_RL_Trading/launch.sh                  # both phases (same as: launch.sh all)
+#   Src_RL_Trading/launch.sh simu             # only the in-process simulation
+#   Src_RL_Trading/launch.sh bots             # only the server + socket bots session
+#   Src_RL_Trading/launch.sh simu --days 120 --symbols 8 --noise 60 --momentum 20 --marketmakers 12
+#   Src_RL_Trading/launch.sh all --refresh-data small    # re-download real market data first
+#   Src_RL_Trading/launch.sh simu --refresh-data full --period 10y --history-length 250
+# Then open Src_RL_Trading/output/latest/plots/index.html
 #
 # Options:
 #   (first argument)       which phase to run: all | simu | bots (default: all)
-#   --output-dir DIR       run folder (default: Src_Simulation/output/<YYYYmmdd_HHMMSS>)
-#   --duration SEC         length of BOTH phases (default: simu 40, bots 20)
-#   --simu-duration SEC    length of the simulation phase only
-#   --bots-duration SEC    length of the bots phase only
+#   --output-dir DIR       run folder (default: Src_RL_Trading/output/<YYYYmmdd_HHMMSS>)
+#   --days N               simulation: trading days (default 60 of 4 s: auctions, continuous trading, night), at least 1
+#   --day-ms N             simulation: one trading day (default 4000)
+#   --value N              simulation: value investors trading toward the fundamental values (default 40)
+#   --bots-duration SEC    bots phase: how long the socket bots trade (default 20)
 #   --symbols N            symbols in the simulation, and tickers loaded by the server (default: 5 / 8)
 #   --seed N               RNG seed for both phases (default: 42 / 1)
 #   --noise N              simulation: noise-trader bots (default 15)
 #   --momentum N           simulation: momentum bots (default 5)
-#   --marketmakers N       simulation: market-maker bots (default 4)
+#   --marketmakers N       simulation: market-maker bots (default 12)
+#   --maker-half-spread X  simulation: the market makers quote mid -/+ X (default 0.001)
 #   --meanreversion N      mean-reversion bots (default 4)
 #   --trend N              trend-following bots (default 4)
 #   --twap N               TWAP execution bots (default 2)
-#   --ml N                 machine-learning bots (default 2, only if the model exists, see scripts/train_signal_model.py)
 #   --bots N               bots phase: number of socket bots (default 9)
 #   --port N               bots phase: server port (default 8000)
 #   --refresh-data MODE    small | full | tickers-file: refresh Data/ once before running (needs network, see scripts/refresh_data.sh)
@@ -42,8 +43,10 @@
 #   --interval I           with --refresh-data: bar size 1d | 1h | 1wk | 1mo (default 1d)
 #   --history-length N     with --refresh-data: keep each ticker's N most recent bars (default 1250, about 5 years)
 #   --min-rows N           with --refresh-data: drop tickers with fewer bars (default 30)
-#   --train-ml             retrain the ML bots' model on the fetched real market first (it is trained anyway when ML bots are asked for and no model exists yet)
-#   --ml-bar-ms N          the ML bots' bar: one simulated trading day of N ms (default 1000), also the candle width of the charts: one candle = one simulated trading day
+#   --no-rl                simulation: no RL bots, only the rule-based strategies
+#   --rl-port N            simulation: policy server port (default 7979)
+#   --rl-bots N            simulation: bots per served agent (default 2)
+#   --rl-models "M1 M2"    simulation: the agents to serve (default: rl's ensemble members)
 #   --no-plots             write CSVs and logs only, skip the Python plots
 #   -h, --help             show this help
 #
@@ -71,23 +74,20 @@ REFRESH_ARGS=()
 SIMU_ARGS=()
 BOTS_ARGS=()
 COMMON_ARGS=()
-TRAIN_ML=0
 while [[ $# -gt 0 ]]; do
     case "$1" in
         --output-dir)    OUTPUT_DIR="$2"; shift 2 ;;
         --refresh-data)  REFRESH_DATA="$2"; shift 2 ;;
         --period|--interval|--history-length|--history_length|--min-rows|--min_rows)
             REFRESH_ARGS+=("$1" "$2"); shift 2 ;;
-        --duration)      SIMU_ARGS+=(--duration "$2"); BOTS_ARGS+=(--duration "$2"); shift 2 ;;
-        --simu-duration) SIMU_ARGS+=(--duration "$2"); shift 2 ;;
         --bots-duration) BOTS_ARGS+=(--duration "$2"); shift 2 ;;
         --symbols)       SIMU_ARGS+=(--symbols "$2"); BOTS_ARGS+=(--symbols "$2"); shift 2 ;;
         --seed)          SIMU_ARGS+=(--seed "$2"); BOTS_ARGS+=(--seed "$2"); shift 2 ;;
-        --noise|--momentum|--marketmakers|--meanreversion|--trend|--twap|--ml) SIMU_ARGS+=("$1" "$2"); shift 2 ;;
-        --ml-bar-ms)     SIMU_ARGS+=(--ml-bar-ms "$2"); BOTS_ARGS+=(--ml-bar-ms "$2"); shift 2 ;;
-        --train-ml)      TRAIN_ML=1; shift ;;
+        --noise|--momentum|--marketmakers|--meanreversion|--trend|--twap|--value|--days|--day-ms|--maker-half-spread) SIMU_ARGS+=("$1" "$2"); shift 2 ;;
         --bots|--port)   BOTS_ARGS+=("$1" "$2"); shift 2 ;;
         --no-plots)      COMMON_ARGS+=(--no-plots); shift ;;
+        --no-rl)         SIMU_ARGS+=(--no-rl); shift ;;
+        --rl-port|--rl-bots|--rl-models) SIMU_ARGS+=("$1" "$2"); shift 2 ;;
         -h|--help)       usage; exit 0 ;;
         *) echo "Unknown option: $1 (see --help)" >&2; exit 1 ;;
     esac
@@ -110,12 +110,10 @@ fi
 echo "################ run folder: $(rel "${OUTPUT_DIR}")"
 if [[ "${MODE}" == "all" || "${MODE}" == "simu" ]]; then
     echo "################ phase 1: in-process simulation (simulation.x)"
-    if [[ "${TRAIN_ML}" -eq 1 ]]; then SIMU_ARGS+=(--train-ml); TRAIN_ML=0; fi # the bots phase then finds the fresh model
     "${SCRIPT_DIR}/launch_simulation.sh" --output-dir "${OUTPUT_DIR}" ${SIMU_ARGS[@]+"${SIMU_ARGS[@]}"} ${COMMON_ARGS[@]+"${COMMON_ARGS[@]}"}
 fi
 if [[ "${MODE}" == "all" || "${MODE}" == "bots" ]]; then
     echo "################ phase 2: server + socket bots (sim_server.x + sim_client.x --bot)"
-    if [[ "${TRAIN_ML}" -eq 1 ]]; then BOTS_ARGS+=(--train-ml); fi
     "${SCRIPT_DIR}/launch_bots.sh" --output-dir "${OUTPUT_DIR}" ${BOTS_ARGS[@]+"${BOTS_ARGS[@]}"} ${COMMON_ARGS[@]+"${COMMON_ARGS[@]}"}
 fi
 
@@ -143,5 +141,5 @@ if [[ "$(dirname "${OUTPUT_DIR}")" == "${SIM_DIR}/output" ]]; then
     ln -sfn "$(basename "${OUTPUT_DIR}")" "${SIM_DIR}/output/latest"
 fi
 echo "################ done: $(rel "${OUTPUT_DIR}")"
-[[ -f "${PLOTS_DIR}/index.html" ]] && echo "open ${PLOTS_DIR}/index.html"
+[[ -f "${PLOTS_DIR}/index.html" ]] && echo "open $(rel "${PLOTS_DIR}/index.html")"
 exit 0
