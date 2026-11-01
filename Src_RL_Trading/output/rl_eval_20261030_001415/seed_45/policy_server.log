@@ -1,0 +1,7 @@
+  rl: ppo, needs 21 days
+  rl_always_long: rule, needs 21 days
+  rl_f10: ppo, needs 21 days
+  rl_f11: ppo, needs 21 days
+  rl_f12: ppo, needs 21 days
+  rl_trend_hold: rule, needs 21 days
+policy server listening on port 7993

@@ -1,0 +1,2 @@
+metrics_simu.csv: 253 samples over 254.0s, 155923 orders, 49560 trades, mean latency 12.1us, max 157500us
+saved Src_RL_Trading/output/rl_eval_20261030_001415/seed_44/plots/metrics_simu.png

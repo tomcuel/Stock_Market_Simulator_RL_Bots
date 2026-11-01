@@ -1,0 +1,465 @@
+<!doctype html><html><head><meta charset="utf-8"><title>RL agent verdict</title>
+<style>body{background:#131722;color:#d1d4dc;font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif;margin:24px;max-width:1100px}
+a{color:#42a5f5}h2{border-bottom:1px solid #2a2e39;padding-bottom:6px;margin-top:32px}img{max-width:100%;border:1px solid #2a2e39;border-radius:6px}
+table.t{border-collapse:collapse;font-size:13px;margin:8px 0}table.t th,table.t td{padding:4px 10px;border-bottom:1px solid #2a2e39;text-align:right}
+table.t th{color:#d1d4dc}code{font-size:13px}.note{color:#b2b5be;max-width:900px;line-height:1.45}</style></head><body>
+<h1>RL agent <code>rl</code>: the verdict</h1>
+<p class="note">Trained on Src_RL_Trading/RL_Agents/sim_days/real5_d600: 32 development markets, sealed
+[433, 434, 435, 436, 437, 438, 439, 440]; judged live in <code>rl_eval_20261030_001415</code>.</p>
+<h2>The gate: FAILED</h2><ul><li><code>[FAIL] folds with test return &gt; 0 and PF &gt; 1: 2/12 (need &gt;= 9)</code></li><li><code>[FAIL] worst fold PF 0.51 (need &gt;= 0.9)</code></li><li><code>[PASS] mean test Sharpe +2.65 (need &gt; 0)</code></li></ul>
+<p class="note">A fold's return is its equity curve, which marks the trades still open at the end of the window at the last close;
+its profit factor and mean R count the closed trades only. Where the two disagree (a positive return with a profit factor below 1),
+the return came from trades still open, not from the agent's closed trades.</p>
+<h2>Walk-forward test windows</h2><img src="plots/rl_folds.png"/><table class="dataframe t">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>test days</th>
+      <th>return (bp)</th>
+      <th>Sharpe</th>
+      <th>profit factor</th>
+      <th>closed trades</th>
+      <th>win rate</th>
+      <th>mean R</th>
+      <th>always long (bp)</th>
+      <th>trend-hold (bp)</th>
+    </tr>
+    <tr>
+      <th>fold</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>(234, 264)</td>
+      <td>-0.10</td>
+      <td>-1.82</td>
+      <td>0.75</td>
+      <td>425</td>
+      <td>34%</td>
+      <td>-0.088</td>
+      <td>-0.93</td>
+      <td>-0.52</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>(264, 294)</td>
+      <td>0.43</td>
+      <td>5.20</td>
+      <td>0.64</td>
+      <td>195</td>
+      <td>16%</td>
+      <td>-0.195</td>
+      <td>-0.49</td>
+      <td>-0.25</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>(294, 324)</td>
+      <td>0.10</td>
+      <td>1.87</td>
+      <td>0.77</td>
+      <td>363</td>
+      <td>21%</td>
+      <td>-0.120</td>
+      <td>-0.83</td>
+      <td>-0.41</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>(324, 354)</td>
+      <td>-0.03</td>
+      <td>-0.48</td>
+      <td>0.51</td>
+      <td>248</td>
+      <td>17%</td>
+      <td>-0.302</td>
+      <td>-1.01</td>
+      <td>-0.28</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>(354, 384)</td>
+      <td>0.13</td>
+      <td>2.35</td>
+      <td>0.64</td>
+      <td>139</td>
+      <td>22%</td>
+      <td>-0.209</td>
+      <td>-0.99</td>
+      <td>-0.25</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>(384, 414)</td>
+      <td>0.21</td>
+      <td>3.78</td>
+      <td>0.86</td>
+      <td>173</td>
+      <td>25%</td>
+      <td>-0.062</td>
+      <td>-0.12</td>
+      <td>-0.31</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>(414, 444)</td>
+      <td>0.09</td>
+      <td>4.20</td>
+      <td>1.24</td>
+      <td>46</td>
+      <td>37%</td>
+      <td>0.028</td>
+      <td>-0.66</td>
+      <td>-0.37</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>(444, 474)</td>
+      <td>0.10</td>
+      <td>3.98</td>
+      <td>1.12</td>
+      <td>89</td>
+      <td>29%</td>
+      <td>0.042</td>
+      <td>-0.61</td>
+      <td>-0.37</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>(474, 504)</td>
+      <td>0.11</td>
+      <td>1.38</td>
+      <td>0.75</td>
+      <td>298</td>
+      <td>22%</td>
+      <td>-0.145</td>
+      <td>-0.69</td>
+      <td>-0.54</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>(504, 534)</td>
+      <td>0.30</td>
+      <td>5.76</td>
+      <td>0.99</td>
+      <td>148</td>
+      <td>31%</td>
+      <td>-0.039</td>
+      <td>-0.67</td>
+      <td>-0.36</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>(534, 564)</td>
+      <td>0.04</td>
+      <td>1.21</td>
+      <td>0.56</td>
+      <td>112</td>
+      <td>24%</td>
+      <td>-0.185</td>
+      <td>-0.63</td>
+      <td>-0.59</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>(564, 594)</td>
+      <td>0.34</td>
+      <td>4.40</td>
+      <td>0.75</td>
+      <td>291</td>
+      <td>23%</td>
+      <td>-0.179</td>
+      <td>-0.55</td>
+      <td>-0.37</td>
+    </tr>
+  </tbody>
+</table>
+<img src="plots/rl_oos_equity.png"/>
+<h2>Sealed markets, evaluated once</h2><table class="dataframe t">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>return (bp)</th>
+      <th>Sharpe</th>
+      <th>profit factor</th>
+      <th>trades</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>agent</th>
+      <td>4.93</td>
+      <td>1.57</td>
+      <td>1.12</td>
+      <td>1469</td>
+    </tr>
+    <tr>
+      <th>ensemble</th>
+      <td>2.58</td>
+      <td>1.34</td>
+      <td>1.10</td>
+      <td>2894</td>
+    </tr>
+    <tr>
+      <th>always_long</th>
+      <td>-14.73</td>
+      <td>-4.08</td>
+      <td>0.79</td>
+      <td>2732</td>
+    </tr>
+    <tr>
+      <th>trend_hold</th>
+      <td>-7.72</td>
+      <td>-2.35</td>
+      <td>0.73</td>
+      <td>870</td>
+    </tr>
+    <tr>
+      <th>flat</th>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0.00</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>random</th>
+      <td>-49.92</td>
+      <td>-16.37</td>
+      <td>0.55</td>
+      <td>10645</td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">Buy and hold on the sealed markets: +30.32%.</p>
+<h2>Live, inside the exchange</h2><img src="plots/rl_live_excess.png"/>
+<h3>Strategies that only see prices, ranked</h3><table class="dataframe t">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rank</th>
+      <th>mean excess (k)</th>
+      <th>worst market (k)</th>
+      <th>best market (k)</th>
+      <th>markets above holding</th>
+      <th>markets</th>
+      <th>trades</th>
+      <th>mean_r</th>
+      <th>win_rate</th>
+    </tr>
+    <tr>
+      <th>strategy</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>rl_always_long</th>
+      <td>1</td>
+      <td>43.8</td>
+      <td>31.1</td>
+      <td>60.0</td>
+      <td>5</td>
+      <td>5</td>
+      <td>313</td>
+      <td>0.749</td>
+      <td>0.720</td>
+    </tr>
+    <tr>
+      <th>twap</th>
+      <td>2</td>
+      <td>23.4</td>
+      <td>-234.6</td>
+      <td>234.1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>&lt;NA&gt;</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>rl</th>
+      <td>3</td>
+      <td>21.4</td>
+      <td>13.7</td>
+      <td>32.7</td>
+      <td>5</td>
+      <td>5</td>
+      <td>174</td>
+      <td>0.563</td>
+      <td>0.534</td>
+    </tr>
+    <tr>
+      <th>rl_f12</th>
+      <td>4</td>
+      <td>18.0</td>
+      <td>9.0</td>
+      <td>32.7</td>
+      <td>5</td>
+      <td>5</td>
+      <td>171</td>
+      <td>0.576</td>
+      <td>0.512</td>
+    </tr>
+    <tr>
+      <th>meanreversion</th>
+      <td>5</td>
+      <td>6.7</td>
+      <td>-186.1</td>
+      <td>205.2</td>
+      <td>3</td>
+      <td>5</td>
+      <td>&lt;NA&gt;</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>rl_f11</th>
+      <td>6</td>
+      <td>5.1</td>
+      <td>-0.2</td>
+      <td>14.4</td>
+      <td>4</td>
+      <td>5</td>
+      <td>29</td>
+      <td>0.445</td>
+      <td>0.608</td>
+    </tr>
+    <tr>
+      <th>rl_trend_hold</th>
+      <td>7</td>
+      <td>2.9</td>
+      <td>-20.9</td>
+      <td>16.8</td>
+      <td>3</td>
+      <td>5</td>
+      <td>45</td>
+      <td>0.761</td>
+      <td>0.459</td>
+    </tr>
+    <tr>
+      <th>rl_f10</th>
+      <td>8</td>
+      <td>-0.4</td>
+      <td>-17.1</td>
+      <td>13.1</td>
+      <td>3</td>
+      <td>5</td>
+      <td>105</td>
+      <td>0.051</td>
+      <td>0.326</td>
+    </tr>
+    <tr>
+      <th>momentum</th>
+      <td>9</td>
+      <td>-62.4</td>
+      <td>-79.3</td>
+      <td>-50.7</td>
+      <td>0</td>
+      <td>5</td>
+      <td>&lt;NA&gt;</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>noise</th>
+      <td>10</td>
+      <td>-174.6</td>
+      <td>-221.1</td>
+      <td>-110.3</td>
+      <td>0</td>
+      <td>5</td>
+      <td>&lt;NA&gt;</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>trend</th>
+      <td>11</td>
+      <td>-338.7</td>
+      <td>-581.9</td>
+      <td>-106.0</td>
+      <td>0</td>
+      <td>5</td>
+      <td>&lt;NA&gt;</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <th>marketmaker</th>
+      <td>12</td>
+      <td>-373.8</td>
+      <td>-476.1</td>
+      <td>-273.4</td>
+      <td>0</td>
+      <td>5</td>
+      <td>&lt;NA&gt;</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<h3>Informed benchmark, not ranked</h3><table class="dataframe t">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>mean excess (k)</th>
+      <th>worst market (k)</th>
+      <th>best market (k)</th>
+      <th>markets above holding</th>
+      <th>markets</th>
+      <th>trades</th>
+      <th>mean_r</th>
+      <th>win_rate</th>
+    </tr>
+    <tr>
+      <th>strategy</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>value</th>
+      <td>213.0</td>
+      <td>132.4</td>
+      <td>314.1</td>
+      <td>5</td>
+      <td>5</td>
+      <td>&lt;NA&gt;</td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p class="note">The value investors see each company's hidden fundamental value, the random walk that moves the prices, which no
+other bot and no agent sees: they trade on the news before it is in the price. Their excess is what knowing the value is worth,
+an upper bound, not a strategy the RL agent could match from prices alone.</p>
+<p class="note">The excess is what a strategy added beyond holding its starting account (half in stock): the raw P&amp;L of each
+market's report is mostly the market's own rise.</p>
+<h2>The RL bots, live</h2><p class="note">How did each RL bot&#x27;s account move, day after day (seed_42)? Its excess over holding its starting account, the market above.</p><img src="plots/rl_bots_over_days.png"/><p class="note">Where did they trade (seed_42, the symbol with the most RL trades)? Every entry, its stop and target, its exit by reason.</p><img src="plots/rl_trades_on_candles.png"/><p class="note">Does live match training? Every RL fill of the 5 markets against the environment&#x27;s assumptions: an entry costs half the spread before the close plus 5 bp (11 bp here), a stop-loss 100 bp past the stop, a take-profit its target.</p><img src="plots/rl_execution.png"/><p class="note">How much does each agent trade? Its entries per trading day per bot (orders per intraday decision would need the intraday bot, not built).</p><img src="plots/rl_activity.png"/><h2>More</h2><ul><li><a href="../../RL_Agents/reports/rl/plots/index.html">the training charts</a> (learning curves, PPO diagnostics, folds, out of sample, actions, sealed markets)</li><li><a href="../../RL_Agents/reports/real5_d600/plots/index.html">the calibration charts</a> of the market it trained in</li></ul>
+<h2>Each live market's full report</h2><ul><li><a href="seed_42/plots/report_simu.html">seed_42</a></li><li><a href="seed_43/plots/report_simu.html">seed_43</a></li><li><a href="seed_44/plots/report_simu.html">seed_44</a></li><li><a href="seed_45/plots/report_simu.html">seed_45</a></li><li><a href="seed_46/plots/report_simu.html">seed_46</a></li></ul>
+</body></html>

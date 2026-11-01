@@ -1,0 +1,54 @@
+/Users/tomcuel/Documents/Informatique-Code/GitHub/Stock_Market_Simulator_RL_Bots/Src_RL_Trading/scripts/plot_market_report.py:481: UserWarning: This figure includes Axes that are not compatible with tight_layout, so results might be incorrect.
+  fig.tight_layout()
+[simulation (in-process)]
+==============================================================================
+Market report: 254.1s, 5 symbols, 93 clients
+==============================================================================
+orders submitted 155069, trades 50007, volume 11169599, notional 3,598,939,734.49
+end state: 45 resting, 60 waiting, 8510 expired, 42870 rejected
+cash conservation check: 465,029,081.59 before, 465,029,081.59 after (OK)
+
+Per symbol, before -> after:
+symbol  initial_price  final_price  change_pct  trades  volume   vwap  spread  imbalance  resting_orders  waiting_orders
+  AAPL         336.67       357.63        6.22   10041 2083642 351.99    4.48      -0.44              10              18
+  AMZN         259.92       295.42       13.66   10401 2714724 274.34   15.37       0.29              10              10
+ BRK-B         506.25       504.66       -0.31    9714 1364680 502.45    3.65      -0.14               5              10
+  GOOG         347.37       378.50        8.96   10034 2020502 360.46    2.72      -0.31               8               6
+   JNJ         258.45       221.22      -14.41    9817 2986051 236.69   18.39      -0.47              12              16
+
+Strategies that only see prices, ranked by what they added over holding their starting account (excess and P&L
+in %, Sharpe per sample, worst drawdown of its bots in %):
+                bots  mean_excess_pct  mean_pnl_pct  best_pnl_pct  worst_pnl_pct  sharpe  max_drawdown_pct  trades
+strategy                                                                                                          
+rl_always_long     2            +0.41         +1.82         +1.90          +1.75   +0.01             -1.57      83
+rl                 2            +0.16         +1.58         +1.59          +1.57   +0.01             -1.65      46
+rl_trend_hold      1            +0.16         +1.57         +1.57          +1.57   +0.01             -1.56       6
+rl_f12             2            +0.15         +1.56         +1.57          +1.54   +0.01             -1.67      50
+rl_f11             2            +0.03         +1.45         +1.45          +1.44   +0.01             -1.62      10
+rl_f10             2            -0.11         +1.31         +1.32          +1.29   +0.01             -1.63      19
+twap               2            -0.33         +1.09         +2.95          -0.78   +0.00             -4.91    1597
+momentum           5            -0.51         +0.91         +1.33          +0.64   +0.01             -2.19     845
+meanreversion      4            -1.86         -0.45         +0.88          -1.22   -0.00             -6.08     922
+noise             15            -2.21         -0.80         +1.04          -2.49   -0.01             -4.62   20135
+marketmaker       12            -4.07         -2.66         -2.05          -3.28   -0.02             -4.36   14792
+trend              4            -4.85         -3.44         -1.92          -4.63   -0.02            -12.14    1646
+
+Informed benchmark (sees each company's hidden fundamental value, not ranked with the strategies):
+          bots  mean_excess_pct  mean_pnl_pct  best_pnl_pct  worst_pnl_pct  sharpe  max_drawdown_pct  trades
+strategy                                                                                                    
+value       40            +2.77         +4.18        +14.26          -4.47   +0.03            -14.95    9856
+
+Top 5 / bottom 5 clients by P&L:
+ client       label  initial_net_worth  final_net_worth          pnl  pnl_pct  trades_as_buyer  trades_as_seller
+     57       value           10000000    11,426,446.44 1,426,446.44    14.26              278               222
+     81       value           10000000    11,168,590.59 1,168,590.59    11.69              281               211
+     44       value           10000000    11,021,344.64 1,021,344.64    10.21              337               281
+     77       value           10000000    10,996,796.03   996,796.03     9.97              296               230
+     78       value           10000000    10,989,885.67   989,885.67     9.90              244               173
+     27 marketmaker           10000000     9,672,422.66  -327,577.34    -3.28             1221              1234
+     39       trend           10000000     9,664,279.77  -335,720.23    -3.36              298               316
+     40       trend           10000000     9,614,242.90  -385,757.10    -3.86              488               443
+     48       value           10000000     9,552,826.57  -447,173.43    -4.47              292               245
+     37       trend           10000000     9,537,369.45  -462,630.55    -4.63              406               384
+
+wrote 11 charts and Src_RL_Trading/output/rl_eval_20261030_001415/seed_42/plots/report_simu.html
