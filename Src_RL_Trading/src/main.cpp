@@ -1,28 +1,43 @@
 //=======================================================================
-// simulation.x: in-process market simulation (no sockets): 
-// a MatchingEngine plus a pool of bots (noise traders, momentum traders, market makers) that each trade across all symbols, for a fixed duration
+// simulation.x: in-process market simulation (no sockets), in trading days (see market_session.hpp):
+// a MatchingEngine plus a pool of rule-based bots (noise, momentum, market makers...) that each trade across all symbols,
+// and with --rl-port, the RL agents served by the Python policy server, each one trading as its own RLBots
 // Prints a text report at the end and with --output-dir, writes CSV files for plotting
 //
-// Quick start (from Src_Simulation/, after `make`):
-//   ./simulation.x                                    # 3 symbols, 10s, prints a report, writes no files
-//   ./simulation.x --output-dir output/my_run         # same, plus metrics + market report CSVs:
-//                                                     #   output/my_run/metrics_simu.csv
+// Quick start (from Src_RL_Trading/, after `make`):
+//   ./simulation.x                                    # 3 symbols, 60 trading days of 4 s, prints a report, writes no files
+//   ./simulation.x --days 5 --output-dir output/my_run   # 5 days, plus metrics + market report CSVs:
+//                                                     #   output/my_run/metrics_simu.csv, daily_bars_simu.csv
 //                                                     #   output/my_run/{summary,symbols,trades,...}_simu.csv
-//   ./simulation.x --symbols 8 --duration 300 --noise 60 --momentum 20 --marketmakers 12 --output-dir output/big_run : a much bigger run
+//   ./simulation.x --symbols 8 --days 250 --noise 60 --momentum 20 --marketmakers 12 --output-dir output/big_run : a much bigger run
 // The easiest way to run it with logs + plots is the launcher: ./launch.sh simu (see its header)
 //
 // Options (all optional; defaults give a working run):
 //   --symbols N              symbols to simulate (default 3), taken from --data-seed when available, otherwise from a built-in list of 8 demo tickers
-//   --duration SECONDS       run length (default 10)
+//   --days N                 trading days (default 60, at least 1): each day collects orders for the opening auction, opens,
+//                            trades, collects orders for the closing auction, closes (DAY orders expire) and stays closed
+//                            overnight, see market_session.hpp. The run lasts N x (day + overnight) and writes
+//                            daily_bars_simu.csv, the RL agents decide once per day
+//   --day-ms N               one trading day (default 4000: 60 days in 4 minutes)
+//   --pre-open-ms N          its first part, orders collected for the opening auction (default 10% of the day)
+//   --pre-close-ms N         its last part, orders collected for the closing auction (default 10% of the day)
+//   --overnight-ms N         the market closed between two days (default 100)
+//   --overnight-gap-vol X    standard deviation of the overnight log return, overnight news (default 0: the next day opens at the close)
 //   --noise N                noise-trader bots (default 15)
 //   --momentum N             momentum bots (default 5)
 //   --marketmakers N         market-maker bots (default 4)
 //   --meanreversion N        mean-reversion bots (default 4)
 //   --trend N                trend-following bots (default 4)
 //   --twap N                 TWAP execution bots (default 2)
-//   --ml N                   machine-learning signal bots (default 2, only if --ml-model loads)
-//   --ml-model PATH          model trained by scripts/train_signal_model.py (default models/signal_model.csv)
-//   --ml-bar-ms N            the ML bots' bar: one simulated trading day of N ms, they decide once per bar (default 1000, 0: every tick)
+//   --value N                value investors (default 0): every symbol then gets a fundamental value, a random walk on the ticker's
+//                            real volatility, part of it arriving overnight (the gap at the open), see fundamentals.hpp
+//   --maker-half-spread X    the market makers quote mid -/+ X (default 0.005: a 1% quoted spread)
+//   --overnight-share X      with --value: the share of the daily variance that arrives overnight (default 0.35)
+//   --fundamental-drift X    with --value: the values' drift per day (default 0.0005: +5 bp, the real tickers' mean)
+//   --rl-port N              trade the RL agents served on this port (python -m rl_agents.serve, default 0: none)
+//   --rl-host H              the policy server's address (default 127.0.0.1)
+//   --rl-bots N              bots per served agent (default 2)
+//   --rl-risk-fraction X     an RL bot's risk per trade, the share of the equity its stop-loss loses (default 0.002)
 //   --bot-equity X           starting value of every bot's account (default 10000000)
 //   --cash-fraction F        share of it held as cash, the rest split equally by value across the symbols (default 0.5)
 //   --seed N                 RNG seed, for reproducible runs (default 42)
@@ -51,18 +66,28 @@ const char* kDefaultDataSeedPath = "../Data/Datasets/processed/latest_snapshot.c
 
 void print_usage(const char* program) {
     std::cout << "Usage: " << program << " [options]\n"
-              << "In-process market simulation. With no options: 3 symbols, 10s, text report only.\n\n"
+              << "In-process market simulation in trading days. With no options: 3 symbols, 60 days of 4 s, text report only.\n\n"
               << "  --symbols N              symbols to simulate (default 3)\n"
-              << "  --duration SECONDS       run length (default 10)\n"
+              << "  --days N                 trading days: auctions, continuous trading, night (default 60, at least 1)\n"
+              << "  --day-ms N               one trading day (default 4000)\n"
+              << "  --pre-open-ms N          its first part, orders collected for the opening auction (default 10% of the day)\n"
+              << "  --pre-close-ms N         its last part, orders collected for the closing auction (default 10% of the day)\n"
+              << "  --overnight-ms N         closed between two days (default 100)\n"
+              << "  --overnight-gap-vol X    std of the overnight log return, overnight news (default 0)\n"
               << "  --noise N                noise-trader bots, trading across ALL symbols (default 15)\n"
               << "  --momentum N             momentum bots (default 5)\n"
               << "  --marketmakers N         market-maker bots (default 4)\n"
               << "  --meanreversion N        mean-reversion bots (default 4)\n"
               << "  --trend N                trend-following bots (default 4)\n"
               << "  --twap N                 TWAP execution bots (default 2)\n"
-              << "  --ml N                   machine-learning signal bots (default 2, only if the model loads)\n"
-              << "  --ml-model PATH          model file (default models/signal_model.csv, see scripts/train_signal_model.py)\n"
-              << "  --ml-bar-ms N            ML bots' bar, one simulated trading day (default 1000, 0: every tick)\n"
+              << "  --value N                value investors, trading toward each symbol's fundamental value (default 0)\n"
+              << "  --maker-half-spread X    market makers quote mid -/+ X (default 0.005)\n"
+              << "  --overnight-share X      with --value: share of the daily variance arriving overnight (default 0.35)\n"
+              << "  --fundamental-drift X    with --value: drift of the values per day (default 0.0005)\n"
+              << "  --rl-port N              trade the RL agents served on this port (python -m rl_agents.serve)\n"
+              << "  --rl-host H              policy server address (default 127.0.0.1)\n"
+              << "  --rl-bots N              bots per served agent (default 2)\n"
+              << "  --rl-risk-fraction X     an RL bot's risk per trade, share of equity (default 0.002)\n"
               << "  --bot-equity X           starting value of every bot's account (default 10000000)\n"
               << "  --cash-fraction F        share of it in cash, the rest split equally by value across symbols (default 0.5)\n"
               << "  --seed N                 RNG seed for reproducible runs (default 42)\n"
@@ -95,7 +120,6 @@ sim::LogLevel parse_log_level(const std::string& level) {
 
 int main(int argc, char* argv[]) {
     int num_symbols = 3;
-    int duration_seconds = 10;
     unsigned seed = 42;
     std::string log_level = "INFO";
     std::string data_seed_path = kDefaultDataSeedPath;
@@ -106,9 +130,20 @@ int main(int argc, char* argv[]) {
     int mean_reversion = 4;
     int trend = 4;
     int twap = 2;
-    int ml = 2;
-    std::string ml_model = "models/signal_model.csv";
-    int ml_bar_ms = 1000;
+    int value = 0;
+    double overnight_share = 0.35;
+    double maker_half_spread = sim::MarketMakerBot::kHalfSpread;
+    double fundamental_drift = 0.0005;
+    int days = 60;
+    int day_ms = 4000;
+    int pre_open_ms = -1;  // 10% of the day
+    int pre_close_ms = -1; // 10% of the day
+    int overnight_ms = 100;
+    double overnight_gap_vol = 0.0;
+    std::string rl_host = "127.0.0.1";
+    int rl_port = 0;
+    int rl_bots = 2;
+    double rl_risk_fraction = sim::RLBot::kRiskFraction;
     std::string output_dir;
     bool write_metrics = true;
     bool write_report = true;
@@ -129,9 +164,6 @@ int main(int argc, char* argv[]) {
 
         if (arg == "--symbols") {
             num_symbols = std::max(1, std::atoi(next_value("--symbols").c_str()));
-        } 
-        else if (arg == "--duration") {
-            duration_seconds = std::max(1, std::atoi(next_value("--duration").c_str()));
         } 
         else if (arg == "--seed") {
             seed = static_cast<unsigned>(std::atoi(next_value("--seed").c_str()));
@@ -163,20 +195,51 @@ int main(int argc, char* argv[]) {
         else if (arg == "--twap") {
             twap = std::max(0, std::atoi(next_value("--twap").c_str()));
         } 
-        else if (arg == "--ml") {
-            ml = std::max(0, std::atoi(next_value("--ml").c_str()));
-        } 
-        else if (arg == "--ml-model") {
-            ml_model = next_value("--ml-model");
-        } 
-        else if (arg == "--ml-bar-ms") {
-            ml_bar_ms = std::max(0, std::atoi(next_value("--ml-bar-ms").c_str()));
-        } 
-        else if (arg == "--bot-equity") {
-            bot_equity = std::max(1.0, std::atof(next_value("--bot-equity").c_str()));
-        } 
-        else if (arg == "--cash-fraction") {
-            cash_fraction = std::clamp(std::atof(next_value("--cash-fraction").c_str()), 0.0, 1.0);
+        else if (arg == "--value") {
+            value = std::max(0, std::atoi(next_value("--value").c_str()));
+        }
+        else if (arg == "--maker-half-spread") {
+            maker_half_spread = std::atof(next_value("--maker-half-spread").c_str());
+        }
+        else if (arg == "--overnight-share") {
+            overnight_share = std::clamp(std::atof(next_value("--overnight-share").c_str()), 0.0, 1.0);
+        }
+        else if (arg == "--fundamental-drift") {
+            fundamental_drift = std::atof(next_value("--fundamental-drift").c_str());
+        }
+        else if (arg == "--days") {
+            days = std::atoi(next_value("--days").c_str());
+            if (days < 1) {
+                std::cerr << "--days must be at least 1: trading days are the only mode\n";
+                return EXIT_FAILURE;
+            }
+        }
+        else if (arg == "--day-ms") {
+            day_ms = std::max(100, std::atoi(next_value("--day-ms").c_str()));
+        }
+        else if (arg == "--pre-open-ms") {
+            pre_open_ms = std::max(0, std::atoi(next_value("--pre-open-ms").c_str()));
+        }
+        else if (arg == "--pre-close-ms") {
+            pre_close_ms = std::max(0, std::atoi(next_value("--pre-close-ms").c_str()));
+        }
+        else if (arg == "--overnight-ms") {
+            overnight_ms = std::max(0, std::atoi(next_value("--overnight-ms").c_str()));
+        }
+        else if (arg == "--overnight-gap-vol") {
+            overnight_gap_vol = std::max(0.0, std::atof(next_value("--overnight-gap-vol").c_str()));
+        }
+        else if (arg == "--rl-port") {
+            rl_port = std::max(0, std::atoi(next_value("--rl-port").c_str()));
+        }
+        else if (arg == "--rl-host") {
+            rl_host = next_value("--rl-host");
+        }
+        else if (arg == "--rl-bots") {
+            rl_bots = std::max(0, std::atoi(next_value("--rl-bots").c_str()));
+        }
+        else if (arg == "--rl-risk-fraction") {
+            rl_risk_fraction = std::clamp(std::atof(next_value("--rl-risk-fraction").c_str()), 0.0001, 0.05);
         }
         else if (arg == "--output-dir") {
             output_dir = next_value("--output-dir");
@@ -208,16 +271,26 @@ int main(int argc, char* argv[]) {
 
     sim::SimulationConfig config;
     config.seed = seed;
-    config.duration = std::chrono::seconds(duration_seconds);
     config.noise_traders = noise_traders;
     config.momentum_traders = momentum_traders;
     config.market_makers = market_makers;
     config.mean_reversion_traders = mean_reversion;
     config.trend_followers = trend;
     config.twap_executors = twap;
-    config.ml_traders = ml;
-    config.ml_model_path = ml_model;
-    config.ml_bar_interval = std::chrono::milliseconds(ml_bar_ms);
+    config.value_investors = value;
+    config.maker_half_spread = maker_half_spread;
+    config.fundamental_overnight_share = overnight_share;
+    config.fundamental_drift = fundamental_drift;
+    config.session.days = days;
+    config.session.day = std::chrono::milliseconds(day_ms);
+    config.session.pre_open = std::chrono::milliseconds(pre_open_ms >= 0 ? std::min(pre_open_ms, day_ms / 3) : day_ms / 10);
+    config.session.pre_close = std::chrono::milliseconds(pre_close_ms >= 0 ? std::min(pre_close_ms, day_ms / 3) : day_ms / 10);
+    config.session.overnight = std::chrono::milliseconds(overnight_ms);
+    config.session.overnight_gap_vol = overnight_gap_vol;
+    config.rl_host = rl_host;
+    config.rl_port = rl_port;
+    config.rl_bots_per_model = rl_bots;
+    config.rl_risk_fraction = rl_risk_fraction;
     config.bot_equity = bot_equity;
     config.bot_cash_fraction = cash_fraction;
     config.output_dir = output_dir;
@@ -258,7 +331,7 @@ int main(int argc, char* argv[]) {
         }
     }
 
-    std::cout << "Bots: " << config.noise_traders << " noise, " << config.momentum_traders << " momentum, " << config.market_makers << " market maker, " << config.mean_reversion_traders << " mean reversion, " << config.trend_followers << " trend, " << config.twap_executors << " twap, " << config.ml_traders << " ml (each trading across all " << config.symbols.size() << " symbols)\n";
+    std::cout << "Bots: " << config.noise_traders << " noise, " << config.momentum_traders << " momentum, " << config.market_makers << " market maker, " << config.mean_reversion_traders << " mean reversion, " << config.trend_followers << " trend, " << config.twap_executors << " twap, " << config.value_investors << " value" << (config.rl_port > 0 ? ", plus the RL agents of the policy server" : "") << " (each trading across all " << config.symbols.size() << " symbols)\n";
 
     sim::Simulation simulation(config);
     std::string report = simulation.run();
