@@ -15,7 +15,7 @@ namespace {
 
 // unique-per-test-run temp path, so parallel/repeated test runs never collide on the same file
 std::string temp_snapshot_path(const std::string& tag) {
-    return (nrt::fresh_output_dir("persistence_" + tag) / "snapshot.txt").string(); // under NRT/output/
+    return (nrt::fresh_output_dir("persistence_" + tag) / "snapshot.txt").string(); // under NRT_RL_Trading/output/
 }
 
 } // namespace

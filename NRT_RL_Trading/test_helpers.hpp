@@ -13,7 +13,7 @@ namespace nrt {
 #define NRT_OUTPUT_DIR "output" // fallback when compiled without the Makefile's -DNRT_OUTPUT_DIR
 #endif
 
-// A fresh, empty directory under NRT/output/ for a test that writes files (reports, snapshots...), 
+// A fresh, empty directory under NRT_RL_Trading/output/ for a test that writes files (reports, snapshots...), 
 inline std::filesystem::path fresh_output_dir(const std::string& tag) {
     static std::atomic<int> counter{0};
     std::filesystem::path dir = std::filesystem::path(NRT_OUTPUT_DIR) / (tag + "_" + std::to_string(counter++));

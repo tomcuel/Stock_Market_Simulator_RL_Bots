@@ -1,7 +1,7 @@
 CXX = g++
-SIM_DIR = ../Src_Simulation
+SIM_DIR = ../Src_RL_Trading
 # -MMD -MP: header dependency tracking (build/*.d), a changed header rebuilds its users
-# NRT_OUTPUT_DIR: every file a test writes goes under NRT/output/ (created on demand)
+# NRT_OUTPUT_DIR: every file a test writes goes under NRT_RL_Trading/output/ (created on demand)
 CXXFLAGS = -std=c++20 -O0 -g -Wall -Wextra -I. -I$(SIM_DIR)/include  -MMD -MP -DNRT_OUTPUT_DIR=\"$(CURDIR)/output\"
 LDFLAGS = -pthread
 

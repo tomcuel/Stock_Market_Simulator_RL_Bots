@@ -1,5 +1,5 @@
 //=======================================================================
-// Tests for the trading strategies (bot.hpp) and the ML signal (signal_model.hpp)
+// Tests for the rule-based trading strategies (bot.hpp): the RL bots have their own file, test_rl_bots.cpp
 // Strategies are driven by calling step() directly through an InProcessGateway: deterministic, no background thread, no sleeps
 // test_net_server_integration.cpp runs them over the socket protocol instead
 //=======================================================================
@@ -11,7 +11,6 @@
 #include "matching_engine.hpp"
 #include "notification.hpp"
 #include "nrt_framework.hpp"
-#include "signal_model.hpp"
 #include "test_helpers.hpp"
 
 using namespace sim;
@@ -52,7 +51,7 @@ TEST_CASE(noise_trader_bot_trades_across_multiple_symbols_not_just_one) {
 
     // this is the core regression test for "there should not be a noise_IBEX bot": 
     // a single bot given multiple symbols must actually visit more than one of them, not settle on whichever it picked first
-    //checked here by looking for resting orders (LIMIT/STOP/LIMIT_STOP release into the book, MARKET doesn't rest) left behind on at least 2 distinct symbols
+    // checked here by looking for resting orders (LIMIT/STOP/LIMIT_STOP release into the book, MARKET doesn't rest) left behind on at least 2 distinct symbols
     int symbols_with_activity = 0;
     for (const auto& symbol : symbols) {
         auto snap = engine.snapshot(symbol, 100);
@@ -236,10 +235,6 @@ TEST_CASE(every_strategy_runs_without_overdrawing_the_account) {
     for (std::size_t i = 0; i < names.size(); ++i) {
         gateways.push_back(std::make_unique<InProcessGateway>(engine, static_cast<ClientId>(i + 1)));
         auto bot = make_strategy(names[i], *gateways.back(), symbols, static_cast<unsigned>(i + 1));
-        if (names[i] == "ml") {
-            CHECK(!bot); // no model given: the factory refuses rather than building a bot that never trades
-            continue;
-        }
         CHECK(bot != nullptr);
         CHECK_EQ(std::string(bot->name()), names[i]);
         bots.push_back(std::move(bot));
@@ -259,56 +254,7 @@ TEST_CASE(every_strategy_runs_without_overdrawing_the_account) {
         }
     }
     CHECK(make_strategy("not_a_strategy", *gateways.front(), symbols, 1) == nullptr);
-}
-
-// The ML bot is trained in Python and inferred in C++: the five features must be computed the same way on both sides
-// These values were computed by features_at() in scripts/train_signal_model.py for the series 100 + 3 sin(0.7 i) + 0.5 i, i = 0..19.
-TEST_CASE(signal_features_match_the_python_training_code) {
-    std::deque<double> prices;
-    for (int i = 0; i < 20; ++i) {
-        prices.push_back(100.0 + 3.0 * std::sin(i * 0.7) + 0.5 * i);
-    }
-    auto features = compute_signal_features(prices);
-    CHECK(features.has_value());
-    CHECK_NEAR((*features)[0], 0.022069853007311124, 1e-12); // ret_1
-    CHECK_NEAR((*features)[1], 0.052956722193062022, 1e-12); // ret_5
-    CHECK_NEAR((*features)[2], 0.037738558728800831, 1e-12); // ma_gap_10
-    CHECK_NEAR((*features)[3], 0.013997298342594239, 1e-12); // vol_10
-    CHECK_NEAR((*features)[4], 0.51353988887379554, 1e-12);  // rsi_14
-
-    std::deque<double> uptrend;
-    for (int i = 0; i < 20; ++i) {
-        uptrend.push_back(100.0 + i);
-    }
-    CHECK_NEAR((*compute_signal_features(uptrend))[4], 1.0, 1e-12); // no loss at all: RSI 100
-
-    std::deque<double> too_short(kSignalMinHistory - 1, 100.0);
-    CHECK(!compute_signal_features(too_short).has_value());
-}
-
-TEST_CASE(signal_model_loads_and_predicts_like_the_formula) {
-    auto dir = nrt::fresh_output_dir("signal_model");
-    std::string path = (dir / "model.csv").string();
-    {
-        std::ofstream out(path);
-        out << "# test model\nkind,name,mean,std,weight\nmeta,horizon,7,,\nbias,bias,,,0.5\nfeature,ret_1,0,1,1\nfeature,ret_5,0,1,0\nfeature,ma_gap_10,0,1,0\nfeature,vol_10,0,0,2\nfeature,rsi_14,1,2,-1\n";
-    }
-    SignalModel model;
-    std::string error;
-    CHECK(model.load(path, error));
-    CHECK_EQ(model.horizon(), 7);
-    // logit = 0.5 + 1 x (0.1 - 0) / 1 + 2 x (0.3 - 0) / 1 (a std of 0 counts as 1) - 1 x (0.5 - 1) / 2 = 1.45
-    SignalFeatures f = {0.1, 0.0, 0.0, 0.3, 0.5};
-    CHECK_NEAR(model.probability_up(f), 1.0 / (1.0 + std::exp(-1.45)), 1e-12);
-
-    {
-        std::ofstream out(path);
-        out << "kind,name,mean,std,weight\nbias,bias,,,0\nfeature,ret_5,0,1,1\n";
-    }
-    SignalModel wrong_order;
-    CHECK(!wrong_order.load(path, error)); // features out of order are refused, not silently misread
-    CHECK(error.find("ret_5") != std::string::npos);
-    CHECK(!SignalModel().load((dir / "missing.csv").string(), error));
+    CHECK(make_strategy("ml", *gateways.front(), symbols, 1) == nullptr); // the logistic-regression bot is gone: RL bots only
 }
 
 namespace {

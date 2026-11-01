@@ -6,6 +6,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <algorithm>
 #include <vector>
 
 #include "market_recorder.hpp"
@@ -20,7 +21,7 @@ namespace fs = std::filesystem;
 namespace {
 
 fs::path fresh_temp_dir(const std::string& tag) {
-    return nrt::fresh_output_dir("report_" + tag); // NRT/output/report_<tag>_N
+    return nrt::fresh_output_dir("report_" + tag); // NRT_RL_Trading/output/report_<tag>_N
 }
 
 std::vector<std::string> read_lines(const fs::path& path) {
@@ -123,6 +124,44 @@ TEST_CASE(market_report_contains_trades_resting_and_waiting_orders_and_before_af
     CHECK(saw_aapl);
     CHECK(saw_msft);
 
+    fs::remove_all(dir);
+}
+
+TEST_CASE(market_report_lists_rejections_per_client_and_the_session_phases) {
+    fs::path dir = fresh_temp_dir("rejections_by_client");
+    NotificationBus bus;
+    MatchingEngine engine(bus);
+    engine.register_symbol("AAPL", 100.0);
+    engine.ensure_client(1, 100000.0);
+    engine.ensure_client(2, 100000.0);
+    engine.grant_initial_holdings(1, "AAPL", 10);
+
+    RecorderConfig config;
+    config.output_dir = dir.string();
+    config.file_suffix = "_simu";
+    config.sample_interval = std::chrono::milliseconds(20);
+    MarketRecorder recorder(bus, engine, config);
+    recorder.start();
+    recorder.record_phase(0, "PRE_OPEN");
+    // client 2 sells shares it doesn't have, twice; client 1 buys more than its cash, once
+    CHECK(!engine.submit_order(nrt::make_order(2, Side::SELL, OrderKind::LIMIT, "AAPL", 5, 101.0)).accepted);
+    CHECK(!engine.submit_order(nrt::make_order(2, Side::SELL, OrderKind::LIMIT, "AAPL", 5, 101.0)).accepted);
+    CHECK(!engine.submit_order(nrt::make_order(1, Side::BUY, OrderKind::LIMIT, "AAPL", 5000, 100.0)).accepted);
+    recorder.record_phase(0, "OPEN");
+    recorder.stop();
+    CHECK(recorder.write_report());
+
+    auto rows = read_lines(dir / "rejections_by_client_simu.csv");
+    CHECK_EQ(rows.size(), std::size_t{3}); // header + one row per (client, reason)
+    CHECK_EQ(rows[0], std::string("client,reason,count"));
+    CHECK(std::find(rows.begin(), rows.end(), std::string("1,insufficient cash,1")) != rows.end());
+    CHECK(std::find(rows.begin(), rows.end(), std::string("2,insufficient holdings,2")) != rows.end());
+
+    auto phases = read_lines(dir / "session_phases_simu.csv");
+    CHECK_EQ(phases.size(), std::size_t{3});
+    CHECK(phases[1].rfind("0,PRE_OPEN,", 0) == 0 && phases[2].rfind("0,OPEN,", 0) == 0);
+    double pre_open = std::stod(phases[1].substr(phases[1].rfind(',') + 1)), open = std::stod(phases[2].substr(phases[2].rfind(',') + 1));
+    CHECK(pre_open >= 0.0 && open >= pre_open);
     fs::remove_all(dir);
 }
 
