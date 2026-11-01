@@ -1,0 +1,277 @@
+{
+  "agent": "ppo",
+  "features": [
+    "close_ema5_atr",
+    "close_ema10_atr",
+    "close_ema20_atr",
+    "ema5_ema20_atr",
+    "macd_hist_atr",
+    "roc10_atr",
+    "atr_close",
+    "atr_fast_slow",
+    "bb_width_close",
+    "range_atr",
+    "upper_wick_ratio",
+    "lower_wick_ratio",
+    "body_atr",
+    "ret1_atr",
+    "ret2_atr",
+    "ret3_atr",
+    "ret4_atr",
+    "ret5_atr",
+    "gap_atr",
+    "volume_z",
+    "trades_z",
+    "spread_bps",
+    "depth_imbalance"
+  ],
+  "warmup": 20,
+  "sl_atr": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "tp_r": [
+    1.0,
+    1.5,
+    2.0,
+    3.0
+  ],
+  "env": {
+    "risk_fraction": 0.002,
+    "max_notional": 0.005,
+    "slippage_bps": 5.0,
+    "commission": 0.0,
+    "holding_penalty": 2e-05,
+    "mtm_weight": 0.01,
+    "max_steps": 40,
+    "stop_slippage_bps": 100.0
+  },
+  "gate_passed": false,
+  "gate": [
+    "[FAIL] folds with test return > 0 and PF > 1: 2/12 (need >= 9)",
+    "[FAIL] worst fold PF 0.51 (need >= 0.9)",
+    "[PASS] mean test Sharpe +2.65 (need > 0)"
+  ],
+  "provenance": {
+    "kind": "simulation",
+    "source": "Src_RL_Trading/RL_Agents/sim_days/real5_d600",
+    "seeds": [
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      431,
+      432
+    ],
+    "sealed_seeds": [
+      433,
+      434,
+      435,
+      436,
+      437,
+      438,
+      439,
+      440
+    ],
+    "seed": null
+  },
+  "ppo": {
+    "hidden": [
+      128,
+      64
+    ],
+    "lr": 0.0003,
+    "n_steps": 2048,
+    "batch_size": 256,
+    "n_epochs": 5,
+    "gamma": 0.95,
+    "clip": 0.1,
+    "ent_coef": 0.01,
+    "target_kl": 0.025,
+    "weight_decay": 1e-05,
+    "timesteps": 300000
+  },
+  "name": "rl",
+  "fold": {
+    "fold": 12,
+    "train": [
+      350,
+      530
+    ],
+    "val": [
+      532,
+      562
+    ],
+    "test": [
+      564,
+      594
+    ],
+    "checkpoint": "best eligible checkpoint",
+    "val_score": 0.0024842410600339855,
+    "test_return_pct": 0.0033765747825542647,
+    "test_sharpe": 4.397551804927911,
+    "test_max_dd_pct": 0.0008653233756588008,
+    "test_trades": 291,
+    "test_profit_factor": 0.7482669660253342,
+    "test_win_rate": 0.2268041237113402,
+    "test_mean_r": -0.17917209477011334,
+    "test_exits": {
+      "close": 197,
+      "TP": 57,
+      "SL": 37
+    },
+    "buy_and_hold_pct": 1.7790972546191794,
+    "trend_hold_params": {
+      "threshold": 0.9,
+      "sl_k": 2,
+      "tp_k": 3
+    },
+    "flat_return_pct": 0.0,
+    "always_long_return_pct": -0.005506730700965967,
+    "trend_hold_return_pct": -0.0037232363871653185,
+    "random_return_pct": -0.024213922633453677,
+    "flat_sharpe": 0.0,
+    "always_long_sharpe": -5.125790921769562,
+    "trend_hold_sharpe": -6.556018197698225,
+    "random_sharpe": -36.326130286463105
+  },
+  "holdout": {
+    "agent": {
+      "return_pct": 0.049346624436985564,
+      "sharpe": 1.5717810929766383,
+      "max_dd_pct": 0.012618764238370127,
+      "trades": 1469,
+      "profit_factor": 1.1212821070918557,
+      "win_rate": 0.29475833900612664,
+      "mean_r": 0.08131163206096305,
+      "per_market_return_pct": {
+        "433": 0.11156068116369156,
+        "434": 0.04856700728448349,
+        "435": 0.025088514347459956,
+        "436": -0.006253857479110447,
+        "437": 0.01389684180181927,
+        "438": 0.13578066920418852,
+        "439": 0.03286455571163138,
+        "440": 0.033268583461842915
+      }
+    },
+    "ensemble": {
+      "return_pct": 0.025835579533239894,
+      "sharpe": 1.3431276766829465,
+      "max_dd_pct": 0.009932916329706061,
+      "trades": 2894,
+      "profit_factor": 1.0992810531972472,
+      "win_rate": 0.3009675190048376,
+      "mean_r": 0.06511662411481003
+    },
+    "always_long": {
+      "return_pct": -0.1472813859843991,
+      "sharpe": -4.081495720115201,
+      "max_dd_pct": 0.1487612923828041,
+      "trades": 2732,
+      "profit_factor": 0.7939984728350944,
+      "win_rate": 0.4396046852122987,
+      "mean_r": -0.16571853164118122,
+      "per_market_return_pct": {
+        "433": -0.0589983871811528,
+        "434": -0.13356694503171562,
+        "435": -0.058383499905634295,
+        "436": -0.2265441098974974,
+        "437": -0.25012624232131353,
+        "438": -0.14484077240253246,
+        "439": -0.12072543989699591,
+        "440": -0.1850656912383286
+      }
+    },
+    "trend_hold": {
+      "return_pct": -0.07722234683618101,
+      "sharpe": -2.352743976950671,
+      "max_dd_pct": 0.0803706663600401,
+      "trades": 870,
+      "profit_factor": 0.7301185488474133,
+      "win_rate": 0.2770114942528736,
+      "mean_r": -0.21426970037988624,
+      "per_market_return_pct": {
+        "433": -0.1343761677619737,
+        "434": -0.04609301572842117,
+        "435": 0.031317170329225874,
+        "436": -0.14186404991715085,
+        "437": -0.10245588388627658,
+        "438": -0.04449259076029222,
+        "439": -0.08434567869235465,
+        "440": -0.095468558272227
+      }
+    },
+    "flat": {
+      "return_pct": 0.0,
+      "sharpe": 0.0,
+      "max_dd_pct": 0.0,
+      "trades": 0,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "mean_r": 0.0,
+      "per_market_return_pct": {
+        "433": 0.0,
+        "434": 0.0,
+        "435": 0.0,
+        "436": 0.0,
+        "437": 0.0,
+        "438": 0.0,
+        "439": 0.0,
+        "440": 0.0
+      }
+    },
+    "random": {
+      "return_pct": -0.4991584116340042,
+      "sharpe": -16.369326141877323,
+      "max_dd_pct": 0.4991584116340042,
+      "trades": 10645,
+      "profit_factor": 0.5469035549121012,
+      "win_rate": 0.41766087364960075,
+      "mean_r": -0.17579352783738922,
+      "per_market_return_pct": {
+        "433": -0.5078785185428591,
+        "434": -0.5412682950772685,
+        "435": -0.4278323514365412,
+        "436": -0.5625327820233395,
+        "437": -0.5755008356463143,
+        "438": -0.522722617597382,
+        "439": -0.45563647152004894,
+        "440": -0.39989542122833566
+      }
+    },
+    "buy_and_hold_pct": 30.3200887614221
+  },
+  "ensemble_members": [
+    "rl_f10",
+    "rl_f11",
+    "rl_f12"
+  ]
+}

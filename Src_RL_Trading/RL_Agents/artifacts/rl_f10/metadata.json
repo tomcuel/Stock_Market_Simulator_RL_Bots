@@ -1,0 +1,165 @@
+{
+  "agent": "ppo",
+  "features": [
+    "close_ema5_atr",
+    "close_ema10_atr",
+    "close_ema20_atr",
+    "ema5_ema20_atr",
+    "macd_hist_atr",
+    "roc10_atr",
+    "atr_close",
+    "atr_fast_slow",
+    "bb_width_close",
+    "range_atr",
+    "upper_wick_ratio",
+    "lower_wick_ratio",
+    "body_atr",
+    "ret1_atr",
+    "ret2_atr",
+    "ret3_atr",
+    "ret4_atr",
+    "ret5_atr",
+    "gap_atr",
+    "volume_z",
+    "trades_z",
+    "spread_bps",
+    "depth_imbalance"
+  ],
+  "warmup": 20,
+  "sl_atr": [
+    1.0,
+    1.5,
+    2.0
+  ],
+  "tp_r": [
+    1.0,
+    1.5,
+    2.0,
+    3.0
+  ],
+  "env": {
+    "risk_fraction": 0.002,
+    "max_notional": 0.005,
+    "slippage_bps": 5.0,
+    "commission": 0.0,
+    "holding_penalty": 2e-05,
+    "mtm_weight": 0.01,
+    "max_steps": 40,
+    "stop_slippage_bps": 100.0
+  },
+  "gate_passed": false,
+  "gate": [
+    "[FAIL] folds with test return > 0 and PF > 1: 2/12 (need >= 9)",
+    "[FAIL] worst fold PF 0.51 (need >= 0.9)",
+    "[PASS] mean test Sharpe +2.65 (need > 0)"
+  ],
+  "provenance": {
+    "kind": "simulation",
+    "source": "Src_RL_Trading/RL_Agents/sim_days/real5_d600",
+    "seeds": [
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      431,
+      432
+    ],
+    "sealed_seeds": [
+      433,
+      434,
+      435,
+      436,
+      437,
+      438,
+      439,
+      440
+    ],
+    "seed": null
+  },
+  "ppo": {
+    "hidden": [
+      128,
+      64
+    ],
+    "lr": 0.0003,
+    "n_steps": 2048,
+    "batch_size": 256,
+    "n_epochs": 5,
+    "gamma": 0.95,
+    "clip": 0.1,
+    "ent_coef": 0.01,
+    "target_kl": 0.025,
+    "weight_decay": 1e-05,
+    "timesteps": 300000
+  },
+  "name": "rl_f10",
+  "fold": {
+    "fold": 10,
+    "train": [
+      290,
+      470
+    ],
+    "val": [
+      472,
+      502
+    ],
+    "test": [
+      504,
+      534
+    ],
+    "checkpoint": "best eligible checkpoint",
+    "val_score": -0.0003209662632397414,
+    "test_return_pct": 0.0030327602037028,
+    "test_sharpe": 5.763131392107601,
+    "test_max_dd_pct": 0.0005309984236277469,
+    "test_trades": 148,
+    "test_profit_factor": 0.9894849274949375,
+    "test_win_rate": 0.3108108108108108,
+    "test_mean_r": -0.03850338392800776,
+    "test_exits": {
+      "close": 63,
+      "TP": 45,
+      "SL": 40
+    },
+    "buy_and_hold_pct": 1.767253775943403,
+    "trend_hold_params": {
+      "threshold": 0.9,
+      "sl_k": 2,
+      "tp_k": 3
+    },
+    "flat_return_pct": 0.0,
+    "always_long_return_pct": -0.006714605763680215,
+    "trend_hold_return_pct": -0.0035977142035181764,
+    "random_return_pct": -0.023932559633199624,
+    "flat_sharpe": 0.0,
+    "always_long_sharpe": -9.878675600693978,
+    "trend_hold_sharpe": -4.132886044435547,
+    "random_sharpe": -29.73509283229351
+  }
+}
