@@ -1,6 +1,6 @@
 //=======================================================================
 // Minimal thread-safe leveled logger: no external dependency (no {fmt}, no spdlog):
-// Src_Simulation only relies on the standard library so it stays trivially buildable and unit-testable anywhere a C++20 compiler is available
+// Src_RL_Trading only relies on the standard library so it stays trivially buildable and unit-testable anywhere a C++20 compiler is available
 //=======================================================================
 #ifndef LOGGER_HPP
 #define LOGGER_HPP

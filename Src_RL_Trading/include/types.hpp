@@ -1,7 +1,7 @@
 //=======================================================================
 // Core value types shared across the whole simulation engine.
 // This header has no dependency other than the standard library on purpose:
-// Src_Simulation is meant to be a fast, self-contained C++ matching engine
+// Src_RL_Trading is meant to be a fast, self-contained C++ matching engine
 // with no SQL/network dependency, so it can be unit tested in isolation (see NRT/).
 //=======================================================================
 #ifndef TYPES_HPP
