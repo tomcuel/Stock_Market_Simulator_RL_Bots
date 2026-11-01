@@ -5,10 +5,10 @@ plot_metrics.py: plots the throughput/latency metrics a run recorded over time
 Input: a run folder (or directly a metrics CSV) produced by
     ./simulation.x --output-dir DIR      -> DIR/metrics_simu.csv
     ./sim_server.x --output-dir DIR      -> DIR/metrics_bots.csv
-    ./launch.sh                          -> Src_Simulation/output/<timestamp>/metrics_{simu,bots}.csv
+    ./launch.sh                          -> Src_RL_Trading/output/<timestamp>/metrics_{simu,bots}.csv
 Output: DIR/plots/metrics_<simu|bots>.png  (three panels: orders/sec + trades/sec, submit latency, rejections + waiting STOP/LIMIT_STOP orders): the launchers call this automatically
 
-Usage (from Src_Simulation/):
+Usage (from Src_RL_Trading/):
     python3 scripts/plot_metrics.py output/latest                   # the newest launcher run
     python3 scripts/plot_metrics.py output/latest --suffix bots      # needed when the folder holds both metrics_simu.csv and metrics_bots.csv
     python3 scripts/plot_metrics.py output/my_run/metrics_simu.csv   # a CSV file directly
@@ -35,11 +35,11 @@ KNOWN_SUFFIXES = ("simu", "bots")
 
 def display_path(path) -> str:
     """
-    A path as shown to the user: relative to the project root (the folder holding Src_Simulation/ and NRT/), e.g. Src_Simulation/output/20260925_012005, never absolute
+    A path as shown to the user: relative to the project root (the folder holding Src_RL_Trading/ and Data/), e.g. Src_RL_Trading/output/20260925_012005, never absolute
     """
     resolved = Path(path).resolve()
     for parent in [resolved, *resolved.parents]:
-        if (parent / "Src_Simulation").is_dir() and (parent / "NRT").is_dir():
+        if (parent / "Src_RL_Trading").is_dir() and (parent / "Data").is_dir():
             return str(resolved.relative_to(parent))
     return str(path)
 
@@ -79,7 +79,19 @@ def load_metrics(path: Path) -> pd.DataFrame:
     return df
 
 
-def plot(plt, df: pd.DataFrame, title: str):
+def day_axis(ax, daily: pd.DataFrame | None) -> None:
+    """
+    The time axis in trading days when the run has them (plot_market_report.day_axis: a tick at the start of a day, named by its number: only the labels change), "elapsed seconds" otherwise
+    """
+    if daily is None or daily.empty:
+        ax.set_xlabel("elapsed seconds")
+        return
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from plot_market_report import day_axis as market_day_axis
+    market_day_axis(ax, daily)
+
+
+def plot(plt, df: pd.DataFrame, title: str, daily: pd.DataFrame | None = None):
     fig, axes = plt.subplots(3, 1, figsize=(11, 10), sharex=True)
     fig.suptitle(title, fontsize=13, fontweight="bold")
 
@@ -100,7 +112,7 @@ def plot(plt, df: pd.DataFrame, title: str):
     ax = axes[2]
     ax.plot(df["elapsed_s"], df["orders_rejected"], label="orders rejected (cumulative)", color="#ef5350")
     ax.plot(df["elapsed_s"], df["waiting_orders"], label="waiting orders (current)", color="#ab47bc")
-    ax.set_xlabel("elapsed seconds")
+    day_axis(ax, daily)
     ax.set_ylabel("count")
     ax.set_title("Rejections and the STOP/LIMIT_STOP waiting registry", loc="left")
     ax.legend()
@@ -134,7 +146,9 @@ def main() -> None:
     print(f"{csv_path.name}: {len(df)} samples over {last['elapsed_s']:.1f}s, {int(last['orders_submitted'])} orders, {int(last['trades_executed'])} trades, mean latency {last['mean_latency_us']:.1f}us, max {int(last['max_latency_us'])}us")
 
     label = {"simu": "simulation (in-process)", "bots": "server + socket bots"}.get(suffix, suffix)
-    fig = plot(plt, df, f"Metrics: {label}")
+    daily_path = csv_path.parent / f"daily_bars_{suffix}.csv" # trading days: the time axis is labelled in days
+    daily = pd.read_csv(daily_path) if daily_path.exists() else None
+    fig = plot(plt, df, f"Metrics: {label}", daily)
     fig.savefig(output, dpi=140)
     print(f"saved {display_path(output)}")
     if not headless:

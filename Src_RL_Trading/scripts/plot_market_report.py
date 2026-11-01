@@ -5,21 +5,22 @@ plot_market_report.py: turns an end-of-run market report into trading-terminal s
 Input: a run folder holding the report CSVs, produced by
     ./simulation.x --output-dir DIR      -> DIR/{summary,symbols,trades,...}_simu.csv
     ./sim_server.x --output-dir DIR      -> DIR/{summary,symbols,trades,...}_bots.csv  (on shutdown)
-    ./launch.sh                          -> Src_Simulation/output/<timestamp>/ (both kinds)
+    ./launch.sh                          -> Src_RL_Trading/output/<timestamp>/ (both kinds)
 Output, in DIR/plots/ (the launchers call this automatically):
-    01_price_paths_<sfx>.png      every symbol's price rebased to 100, plus bid-ask spread over time
+    (with trading days, every time axis is labelled in trading days: a tick at the start of a day, named by its number)
+    01_price_paths_<sfx>.png      every symbol's price rebased to 100, plus the bid-ask spread during continuous trading, on a log scale (with trading days, the auctions and the nights are shaded: there the book is crossed or emptied, and its "spread" is not one)
     02_before_after_<sfx>.png     % change per symbol, start vs end
-    03_candles_<sfx>.png          OHLC candlesticks + volume per symbol, built from the trade tape
+    03_candles_<sfx>.png          OHLC candlesticks + volume per symbol: with trading days one candle per day (daily_bars: open = the opening auction, close = the closing auction, x = the trading day), otherwise built from the trade tape in --candle-seconds buckets
     04_depth_<sfx>.png            final order book depth per symbol (cumulative bids vs asks)
     05_book_pressure_<sfx>.png    order book imbalance heatmap (symbols x time)
-    06_order_lifecycle_<sfx>.png  where orders ended up: filled / resting / waiting / expired / rejected
-    07_portfolios_<sfx>.png       client net worth over time, P&L distribution, per-client before vs after
+    06_order_lifecycle_<sfx>.png  where orders ended up: filled / resting / waiting / expired / rejected, the rejections of the strategies apart from the value investors' (the informed benchmark, mostly sells of shares they no longer hold)
+    07_portfolios_<sfx>.png       client net worth over time (the top and bottom clients among the strategies highlighted, the value investors in the grey background), P&L distribution, per-client before vs after
     08_trade_flow_<sfx>.png       volume and notional per symbol, trade sizes, activity over time
     09_waiting_orders_<sfx>.png   every still-waiting STOP/LIMIT_STOP order's release band vs final price
-    10_strategies_<sfx>.png       P&L by strategy, one dot per bot (label column of portfolios_final)
+    10_strategies_<sfx>.png       what each strategy added over holding its starting account, one dot per bot: the strategies that only see prices ranked, the value investors apart (the informed benchmark: they see each company's hidden fundamental value, which moves the prices)
     report_<sfx>.html             summary tables + every chart above (+ metrics_<sfx>.png if present) where <sfx> is "simu" or "bots"
 
-Usage (from Src_Simulation/):
+Usage (from Src_RL_Trading/):
     python3 scripts/plot_market_report.py output/latest --suffix simu   # folder with both kinds: pick one
     python3 scripts/plot_market_report.py output/my_run                 # folder with a single kind
     python3 scripts/plot_market_report.py output/latest --suffix bots --show
@@ -27,7 +28,7 @@ Usage (from Src_Simulation/):
 Options (all optional):
     --suffix simu|bots     which report to plot when the folder holds both
     --output-dir DIR       where to write the charts (default: <run folder>/plots)
-    --candle-seconds S     candle width (default: run duration / 40)
+    --candle-seconds S     candle width for a run without trading days (default: run duration / 40); with trading days the candles are the days themselves
     --highlight N          top/bottom clients highlighted in the portfolio chart (default 3)
     --show                 also open the charts in windows (needs a display)
 """
@@ -41,6 +42,7 @@ import re
 import sys
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
 TITLES = {"simu": "simulation (in-process)", "bots": "server + socket bots"}
@@ -54,17 +56,20 @@ PANEL = "#1e222d"
 GRID = "#2a2e39"
 TEXT = "#d1d4dc"
 
+# the value investors (simulation.x --value) see each company's hidden fundamental value, the variable that moves the prices: an informed benchmark, what knowing the value is worth, shown apart and never ranked with the strategies that only see prices
+INFORMED = {"value"}
+
 
 # ---------------------------------------------------------------------------------------------
 # loading
 # ---------------------------------------------------------------------------------------------
 def display_path(path) -> str:
     """
-    A path as shown to the user: relative to the project root (the folder holding Src_Simulation/ and NRT/), e.g. Src_Simulation/output/20260925_012005, never absolute
+    A path as shown to the user: relative to the project root (the folder holding Src_RL_Trading/ and Data/), e.g. Src_RL_Trading/output/20260925_012005, never absolute
     """
     resolved = Path(path).resolve()
     for parent in [resolved, *resolved.parents]:
-        if (parent / "Src_Simulation").is_dir() and (parent / "NRT").is_dir():
+        if (parent / "Src_RL_Trading").is_dir() and (parent / "Data").is_dir():
             return str(resolved.relative_to(parent))
     return str(path)
 
@@ -100,6 +105,10 @@ def resolve_suffix(report_dir: Path, suffix: str | None) -> str:
 def load_report(report_dir: Path, suffix: str) -> dict[str, pd.DataFrame]:
     names = ["summary", "symbols", "trades", "price_samples", "portfolio_samples", "portfolios_final", "order_book_final", "resting_orders", "waiting_orders", "rejections"]
     data = {name: read_csv(report_dir, f"{name}_{suffix}.csv") for name in names}
+    # written by newer runs only (simulation.x with trading days for the phases): read when present, no warning otherwise
+    for name in ("rejections_by_client", "session_phases", "daily_bars"):
+        path = report_dir / f"{name}_{suffix}.csv"
+        data[name] = pd.read_csv(path) if path.exists() else pd.DataFrame()
     if data["symbols"].empty:
         raise SystemExit(f"{display_path(report_dir)} doesn't look like a market report (symbols_{suffix}.csv missing or empty)")
     for key in ("trades", "price_samples", "portfolio_samples"):
@@ -147,15 +156,67 @@ def symbol_colors(plt, symbols) -> dict[str, tuple]:
 # ---------------------------------------------------------------------------------------------
 # charts
 # ---------------------------------------------------------------------------------------------
+def phase_at(times_ms: np.ndarray, phases: pd.DataFrame) -> np.ndarray:
+    """
+    The session phase in effect at each time (session_phases: when each phase of each day started); CLOSED before the first day opens
+    """
+    if phases.empty:
+        return np.full(len(times_ms), "", dtype=object)
+    p = phases.sort_values("start_ms")
+    starts, names = p["start_ms"].to_numpy(), p["phase"].to_numpy(dtype=object)
+    k = np.searchsorted(starts, times_ms, side="right") - 1
+    return np.where(k >= 0, names[np.clip(k, 0, None)], "CLOSED")
+
+
+def closed_intervals(phases: pd.DataFrame, end_ms: float) -> list[tuple[float, float]]:
+    """
+    The stretches without continuous trading (pre-open, pre-close, night), in seconds
+    """
+    if phases.empty:
+        return []
+    p = phases.sort_values("start_ms").reset_index(drop=True)
+    spans, start = [], 0.0
+    for row in p.itertuples():
+        if row.phase == "OPEN":
+            spans.append((start, row.start_ms))
+            start = None
+        elif start is None:
+            start = row.start_ms
+    if start is not None:
+        spans.append((start, end_ms))
+    return [(a / 1000.0, b / 1000.0) for a, b in spans if b > a]
+
+
+def day_axis(ax, data, label: bool = True) -> None:
+    """Labels a time axis (seconds since the start of the run) in trading days: a tick at the start of every N-th day (its pre-open, from daily_bars' open_ms), about ten per axis, named by the day's number
+    Only the labels change, the data stays in seconds, a run without trading days (the bots phase) keeps "elapsed seconds"
+    """
+    daily = data.get("daily_bars", pd.DataFrame()) if isinstance(data, dict) else data
+    if daily is None or daily.empty or "open_ms" not in daily.columns:
+        if label:
+            ax.set_xlabel("elapsed seconds")
+        return
+    days = daily.drop_duplicates("day").sort_values("day")
+    starts, numbers = days["open_ms"].to_numpy() / 1000.0, days["day"].to_numpy()
+    step = next((k for k in (1, 2, 5, 10, 20, 25, 50, 100, 200, 250, 500) if len(numbers) / k <= 12), 1000)
+    keep = (numbers % step) == 0
+    ax.set_xticks(starts[keep])
+    ax.set_xticklabels([str(int(n)) for n in numbers[keep]])
+    if label:
+        ax.set_xlabel("trading day")
+
+
 def plot_price_paths(plt, data, out: Path):
     ps = data["price_samples"]
     if ps.empty:
         return None
     symbols = sorted(ps["symbol"].unique())
     colors = symbol_colors(plt, symbols)
+    phases = data.get("session_phases", pd.DataFrame())
     fig, (ax_price, ax_spread) = plt.subplots(2, 1, figsize=(12, 8), sharex=True, gridspec_kw={"height_ratios": [3, 1.3]})
     fig.suptitle("Price paths (rebased to 100 at start) and bid-ask spread", fontsize=13, fontweight="bold")
 
+    medians = []
     for sym in symbols:
         s = ps[ps["symbol"] == sym].sort_values("elapsed_s")
         first = s["last_price"].iloc[0]
@@ -163,15 +224,30 @@ def plot_price_paths(plt, data, out: Path):
             continue
         rebased = s["last_price"] / first * 100.0
         ax_price.plot(s["elapsed_s"], rebased, color=colors[sym], linewidth=1.6, label=f"{sym}  {rebased.iloc[-1] - 100:+.2f}%")
-        both = s[(s["best_bid"] > 0) & (s["best_ask"] > 0)]
-        if not both.empty:
-            mid = (both["best_bid"] + both["best_ask"]) / 2.0
-            ax_spread.plot(both["elapsed_s"], (both["best_ask"] - both["best_bid"]) / mid * 10_000, color=colors[sym], linewidth=1.0, alpha=0.85)
+        # the spread is only a spread in continuous trading: in the auctions the book collects orders without matching (it is crossed, bid above ask, most of the time), at night only the GTC orders are left, far apart or on one side only
+        # Outside continuous trading the line is broken (NaN), and a crossed book (spread <= 0) has no logarithm
+        mid = (s["best_bid"] + s["best_ask"]) / 2.0
+        spread = ((s["best_ask"] - s["best_bid"]) / mid * 10_000).where((s["best_bid"] > 0) & (s["best_ask"] > 0))
+        if not phases.empty:
+            spread = spread.where(phase_at(s["elapsed_ms"].to_numpy(), phases) == "OPEN")
+        spread = spread.where(spread > 0)
+        if spread.notna().any():
+            ax_spread.plot(s["elapsed_s"], spread, color=colors[sym], linewidth=0.9, alpha=0.85)
+            medians.append(spread.median())
+    for a, b in closed_intervals(phases, ps["elapsed_ms"].max()):
+        ax_spread.axvspan(a, b, color=MUTED, alpha=0.28, linewidth=0)
     ax_price.axhline(100, color=MUTED, linestyle="--", linewidth=0.8)
     ax_price.set_ylabel("index (start = 100)")
     ax_price.legend(loc="upper left", ncol=min(4, len(symbols)), fontsize=8)
+    ax_spread.set_yscale("log")
+    if medians:
+        median = float(np.median(medians))
+        ax_spread.axhline(median, color=TEXT, linestyle="--", linewidth=0.8)
+        ax_spread.text(0.995, median, f"median {median:.1f} bp", transform=ax_spread.get_yaxis_transform(), ha="right", va="bottom", fontsize=8, color=TEXT)
+    where = "continuous trading only; shaded: the auctions and the nights" if not phases.empty else "two-sided, uncrossed book"
+    ax_spread.set_title(f"spread, log scale ({where})", loc="left", fontsize=9, fontweight="normal")
     ax_spread.set_ylabel("spread (bps of mid)")
-    ax_spread.set_xlabel("elapsed seconds")
+    day_axis(ax_spread, data)
     fig.tight_layout()
     return fig
 
@@ -204,17 +280,29 @@ def build_candles(trades: pd.DataFrame, candle_s: float) -> pd.DataFrame:
 
 
 def plot_candles(plt, data, out: Path, candle_s: float | None):
-    trades = data["trades"]
-    if trades.empty:
-        return None
-    duration = max(trades["elapsed_s"].max(), 1e-3)
-    if candle_s is None:
-        candle_s = max(duration / 40.0, 0.05) # ~40 candles over the run by default
-    candles = build_candles(trades, candle_s)
+    daily = data.get("daily_bars", pd.DataFrame())
+    if not daily.empty:
+        # trading days: one candle per day, the day's own bar (the official open and close come from the auctions), so the chart reads like a real stock's daily chart, gaps at the open included
+        candles = daily.rename(columns={"day": "t"})[["symbol", "t", "open", "high", "low", "close", "volume"]]
+        candles = candles[(candles["open"] > 0) & (candles["close"] > 0)]
+        candle_s, duration, x_label = 1.0, float(candles["t"].max()) + 1.0, "trading day"
+        title = f"Daily candles: one per trading day ({int(duration)} days; open: the opening auction, close: the closing auction) with volume"
+        x0 = -0.5
+    else:
+        trades = data["trades"]
+        if trades.empty:
+            return None
+        duration = max(trades["elapsed_s"].max(), 1e-3)
+        if candle_s is None:
+            candle_s = max(duration / 40.0, 0.05) # ~40 candles over the run by default
+        candles = build_candles(trades, candle_s)
+        x_label = "elapsed seconds"
+        title = f"OHLC candles from the trade tape ({candle_s:.2f}s per candle) with volume"
+        x0 = 0.0
     symbols = sorted(candles["symbol"].unique())
     rows, cols = grid_shape(len(symbols), 2)
     fig = plt.figure(figsize=(7 * cols, 4.2 * rows))
-    fig.suptitle(f"OHLC candles from the trade tape ({candle_s:.2f}s per candle) with volume", fontsize=13, fontweight="bold")
+    fig.suptitle(title, fontsize=13, fontweight="bold")
     outer = fig.add_gridspec(rows, cols, hspace=0.45, wspace=0.18)
     width = candle_s * 0.7
     for i, sym in enumerate(symbols):
@@ -222,21 +310,22 @@ def plot_candles(plt, data, out: Path, candle_s: float | None):
         ax = fig.add_subplot(inner[0])
         ax_vol = fig.add_subplot(inner[1], sharex=ax)
         c = candles[candles["symbol"] == sym]
+        center = 0.0 if not daily.empty else candle_s / 2 # a day's candle sits on its day number
         for _, k in c.iterrows():
             color = UP if k["close"] >= k["open"] else DOWN
-            ax.vlines(k["t"] + candle_s / 2, k["low"], k["high"], color=color, linewidth=0.9)
+            ax.vlines(k["t"] + center, k["low"], k["high"], color=color, linewidth=0.9)
             body_low = min(k["open"], k["close"])
             body_height = max(abs(k["close"] - k["open"]), (k["high"] - k["low"]) * 0.02 + 1e-9)
-            ax.add_patch(plt.Rectangle((k["t"] + candle_s / 2 - width / 2, body_low), width, body_height, facecolor=color, edgecolor=color, linewidth=0.6))
-            ax_vol.bar(k["t"] + candle_s / 2, k["volume"], width=width, color=color, alpha=0.6)
-        ax.set_xlim(0, duration + candle_s)
+            ax.add_patch(plt.Rectangle((k["t"] + center - width / 2, body_low), width, body_height, facecolor=color, edgecolor=color, linewidth=0.6))
+            ax_vol.bar(k["t"] + center, k["volume"], width=width, color=color, alpha=0.6)
+        ax.set_xlim(x0, duration + (0.5 if not daily.empty else candle_s))
         pad = (c["high"].max() - c["low"].min()) * 0.08 or 1.0
         ax.set_ylim(c["low"].min() - pad, c["high"].max() + pad)
         first, last = c["open"].iloc[0], c["close"].iloc[-1]
         ax.set_title(f"{sym}   {last:.2f}  ({(last - first) / first * 100:+.2f}%)", loc="left", color=UP if last >= first else DOWN)
         ax.tick_params(labelbottom=False)
         ax_vol.set_ylabel("vol", fontsize=8)
-        ax_vol.set_xlabel("elapsed seconds", fontsize=8)
+        ax_vol.set_xlabel(x_label, fontsize=8)
     return fig
 
 
@@ -307,9 +396,23 @@ def plot_book_pressure(plt, data, out: Path):
     ax_line.set_ylim(-1, 1)
     ax_line.set_xlim(extent[0], extent[1]) # same time axis as the heatmap above
     ax_line.set_ylabel("market-wide mean imbalance")
-    ax_line.set_xlabel("elapsed seconds")
+    day_axis(ax_heat, data, label=False)
+    day_axis(ax_line, data)
     fig.tight_layout()
     return fig
+
+
+def rejections_by_group(data) -> pd.DataFrame | None:
+    """
+    Rejections per reason, split between the strategies that only see prices and the informed benchmark (the value investors): None when the run has no per-client file
+    """
+    by_client = data.get("rejections_by_client", pd.DataFrame())
+    if by_client.empty:
+        return None
+    final = data["portfolios_final"]
+    labels = final.set_index("client")["label"].map(strategy_of) if not final.empty else pd.Series(dtype=object)
+    group = by_client["client"].map(labels).isin(INFORMED).map({True: "informed", False: "strategies"})
+    return by_client.assign(group=group).pivot_table(index="reason", columns="group", values="count", aggfunc="sum", fill_value=0)
 
 
 def plot_order_lifecycle(plt, data, out: Path):
@@ -321,28 +424,50 @@ def plot_order_lifecycle(plt, data, out: Path):
     expired = summary_value(summary, "orders_expired")
     rejected = summary_value(summary, "orders_rejected")
     queued = summary_value(summary, "orders_queued")
+    groups = rejections_by_group(data)
+    informed = float(groups["informed"].sum()) if groups is not None and "informed" in groups else 0.0
 
-    fig, (ax_status, ax_reject) = plt.subplots(1, 2, figsize=(13, 5), gridspec_kw={"width_ratios": [2, 1.2]})
+    fig = plt.figure(figsize=(16, 5.6))
+    grid = fig.add_gridspec(1, 3, width_ratios=[2, 1.15, 1.15], wspace=0.45)
+    ax_status, ax_reject, ax_informed = fig.add_subplot(grid[0]), fig.add_subplot(grid[1]), fig.add_subplot(grid[2])
     fig.suptitle(f"Order lifecycle: {int(submitted)} orders submitted", fontsize=13, fontweight="bold")
-    labels = ["trades executed", "resting in book\n(end)", "waiting STOP/\nLIMIT_STOP (end)", "ever queued", "expired", "rejected"]
-    values = [filled_trades, resting, waiting, queued, expired, rejected]
+    labels = ["trades\nexecuted", "resting\nin book (end)", "waiting\nSTOP (end)", "ever\nqueued", "expired", "rejected"]
+    values = [filled_trades, resting, waiting, queued, expired, rejected - informed]
     colors = [UP, ACCENT, "#ab47bc", "#7e57c2", "#ffa726", DOWN]
     bars = ax_status.bar(labels, values, color=colors, edgecolor=BG)
+    if informed > 0:
+        # the value investors' rejections stacked on top, in grey: mostly sells of shares they no longer hold (each one keeps its opinion of a stock, sells it out, then keeps trying), not the exchange refusing the strategies
+        ax_status.bar(labels[-1], informed, bottom=values[-1], color=MUTED, alpha=0.55, edgecolor=BG, label="value investors (informed benchmark)")
+        ax_status.legend(fontsize=8, loc="upper right")
     for bar, value in zip(bars, values):
         ax_status.text(bar.get_x() + bar.get_width() / 2, bar.get_height(), f"{int(value)}", ha="center", va="bottom", fontsize=9)
+    if informed > 0:
+        ax_status.text(bars[-1].get_x() + bars[-1].get_width() / 2, values[-1] + informed, f"+{int(informed)} value", ha="center", va="bottom", fontsize=9, color=MUTED)
+    ax_status.tick_params(axis="x", labelsize=8)
     ax_status.set_ylabel("count")
-    ax_status.set_title("completed vs still open at the end", loc="left")
+    ax_status.set_title("completed vs still open at the end" + ("\nrejected: the strategies in red, the value investors in grey" if informed > 0 else ""), loc="left", fontsize=10)
 
-    rejections = data["rejections"]
-    if rejections.empty or rejections["count"].sum() == 0:
-        ax_reject.text(0.5, 0.5, "no rejected orders", transform=ax_reject.transAxes, ha="center", va="center", color=MUTED, fontsize=12)
-        ax_reject.set_xticks([])
-        ax_reject.set_yticks([])
+    def reasons(ax, series: pd.Series | None, color, title: str, empty: str) -> None:
+        if series is None or series.sum() == 0:
+            ax.text(0.5, 0.5, empty, transform=ax.transAxes, ha="center", va="center", color=MUTED, fontsize=11)
+            ax.set_xticks([])
+            ax.set_yticks([])
+        else:
+            r = series[series > 0].sort_values()
+            ax.barh(r.index, r.values, color=color, edgecolor=BG)
+            for y, v in enumerate(r.values):
+                ax.text(v, y, f" {int(v)}", va="center", fontsize=8)
+            ax.set_xlabel("count")
+        ax.set_title(title, loc="left", fontsize=10)
+
+    if groups is not None:
+        reasons(ax_reject, groups.get("strategies"), DOWN, "the strategies' rejections\n(they only see prices)", "no rejected orders")
+        reasons(ax_informed, groups.get("informed"), MUTED, "the value investors' rejections\n(informed benchmark, own scale)", "no value investors\nor no rejection")
     else:
-        r = rejections.sort_values("count")
-        ax_reject.barh(r["reason"], r["count"], color=DOWN)
-        ax_reject.set_xlabel("count")
-    ax_reject.set_title("rejections by reason", loc="left")
+        rejections = data["rejections"]
+        series = rejections.set_index("reason")["count"] if not rejections.empty else None
+        reasons(ax_reject, series, DOWN, "rejections by reason (every client)", "no rejected orders")
+        reasons(ax_informed, None, MUTED, "per client", "this run has no\nrejections_by_client file:\nre-run it to split them")
     fig.tight_layout()
     return fig
 
@@ -359,23 +484,31 @@ def plot_portfolios(plt, data, out: Path, highlight: int):
     ax_hist = fig.add_subplot(gs[1, 0])
     ax_scatter = fig.add_subplot(gs[1, 1])
 
-    ranked = final.sort_values("pnl")
-    losers = set(ranked["client"].head(highlight))
-    winners = set(ranked["client"].tail(highlight))
+    # the top and bottom clients among the strategies that only see prices: the value investors (the informed benchmark) are never ranked, they stay in the grey background with everyone else
+    strategy = final.set_index("client")["label"].map(strategy_of) if "label" in final.columns else pd.Series(dtype=object)
+    ranked = final[~final["client"].map(strategy).isin(INFORMED)].sort_values("pnl")
+    losers = list(ranked["client"].head(highlight))
+    winners = list(ranked["client"].tail(highlight))[::-1]
+    lines = {}
     for client, s in samples.groupby("client"):
         s = s.sort_values("elapsed_s")
         base = s["net_worth"].iloc[0]
-        rel = (s["net_worth"] / base - 1.0) * 100.0 if base else s["net_worth"] * 0
-        if client in winners:
-            ax_line.plot(s["elapsed_s"], rel, color=UP, linewidth=1.8, label=f"client {client}")
-        elif client in losers:
-            ax_line.plot(s["elapsed_s"], rel, color=DOWN, linewidth=1.8, label=f"client {client}")
-        else:
-            ax_line.plot(s["elapsed_s"], rel, color=MUTED, linewidth=0.6, alpha=0.35)
+        lines[client] = (s["elapsed_s"], (s["net_worth"] / base - 1.0) * 100.0 if base else s["net_worth"] * 0)
+    for client, (x, rel) in lines.items():
+        if client not in winners and client not in losers:
+            ax_line.plot(x, rel, color=MUTED, linewidth=0.6, alpha=0.35)
+    def name(client) -> str:
+        label = strategy.get(client, "")
+        return f"client {client}" + (f" ({label})" if isinstance(label, str) and label else "")
+    for group, color in ((winners, UP), (losers, DOWN)): # drawn last, over the grey background
+        for client in group:
+            if client in lines:
+                ax_line.plot(*lines[client], color=color, linewidth=1.8, label=name(client))
     ax_line.axhline(0, color=TEXT, linewidth=0.8)
     ax_line.set_ylabel("net worth change since first seen (%)")
-    ax_line.set_xlabel("elapsed seconds")
-    ax_line.set_title(f"top {highlight} (green) and bottom {highlight} (red) highlighted, everyone else in grey", loc="left", fontsize=9, fontweight="normal")
+    day_axis(ax_line, data)
+    informed_note = ", the value investors (informed benchmark, not ranked) with them" if final["client"].map(strategy).isin(INFORMED).any() else ""
+    ax_line.set_title(f"top {highlight} (green) and bottom {highlight} (red) of the strategies by P&L, everyone else in grey{informed_note}", loc="left", fontsize=9, fontweight="normal")
     ax_line.legend(fontsize=7, ncol=2, loc="upper left")
 
     pnl = final["pnl_pct"]
@@ -428,7 +561,7 @@ def plot_trade_flow(plt, data, out: Path):
     ax = axes[1, 1]
     for sym, t in trades.sort_values("elapsed_s").groupby("symbol"):
         ax.plot(t["elapsed_s"], range(1, len(t) + 1), color=colors.get(sym, ACCENT), linewidth=1.3, label=sym)
-    ax.set_xlabel("elapsed seconds")
+    day_axis(ax, data)
     ax.set_ylabel("cumulative trades")
     ax.set_title("trading activity over time", loc="left")
     ax.legend(fontsize=7)
@@ -478,38 +611,99 @@ def strategy_of(label) -> str:
     return match.group(1) if match else label
 
 
-def strategy_table(final: pd.DataFrame) -> pd.DataFrame:
+def risk_per_client(samples: pd.DataFrame) -> pd.DataFrame:
+    """
+    Per client, from its net worth sampled during the run: the Sharpe ratio of its sample-to-sample
+    returns (per sample, not annualized: a run lasts seconds) and its maximum drawdown in percent
+    """
+    rows = []
+    if samples is None or samples.empty:
+        return pd.DataFrame(columns=["client", "sharpe", "max_drawdown_pct"])
+    for client, g in samples.sort_values("elapsed_ms").groupby("client"):
+        worth = g["net_worth"].to_numpy(dtype=float)
+        worth = worth[worth > 0]
+        if len(worth) < 3:
+            continue
+        r = np.diff(np.log(worth))
+        sharpe = float(r.mean() / r.std()) if r.std() > 0 else 0.0
+        drawdown = float((worth / np.maximum.accumulate(worth) - 1).min() * 100)
+        rows.append({"client": client, "sharpe": sharpe, "max_drawdown_pct": drawdown})
+    return pd.DataFrame(rows)
+
+
+def excess_over_holding(final: pd.DataFrame, symbols: pd.DataFrame) -> pd.Series:
+    """
+    Per client: its final net worth minus what its starting account, held unchanged, is worth at the final prices
+    Every bot starts balanced (half cash, the rest split equally by value across the symbols, at the run's initial prices), so the held account is rebuilt from the initial cash, the initial net worth and the symbols' initial and final prices
+    Exact for simulation.x; for a sim_server.x account registered later in the session, approximate
+    The raw P&L is mostly the market's own move: every bot holds stock from the start
+    """
+    if final.empty or symbols.empty or not {"initial_price", "final_price"} <= set(symbols.columns):
+        return pd.Series(np.nan, index=final.index)
+    growth = (symbols["final_price"] / symbols["initial_price"]).replace([np.inf, -np.inf], np.nan).dropna()
+    if growth.empty:
+        return pd.Series(np.nan, index=final.index)
+    held = final["initial_cash"] + (final["initial_net_worth"] - final["initial_cash"]) * growth.mean()
+    return final["final_net_worth"] - held
+
+
+def strategy_table(final: pd.DataFrame, samples: pd.DataFrame | None = None, symbols: pd.DataFrame | None = None) -> pd.DataFrame:
+    """
+    Per strategy: what its bots added over holding their starting account (excess, the measure that compares strategies), their raw P&L, and the risk metrics of their bots during the run (Sharpe per sample, maximum drawdown)
+    `informed` marks the value investors; the others are sorted by mean excess
+    """
     if final.empty or "label" not in final.columns:
         return pd.DataFrame()
     df = final.assign(strategy=final["label"].map(strategy_of))
+    df["excess_pct"] = 100 * excess_over_holding(df, symbols if symbols is not None else pd.DataFrame()) / df["initial_net_worth"]
     df = df[df["strategy"] != ""]
     if df.empty:
         return pd.DataFrame()
-    return (df.groupby("strategy").agg(bots=("client", "count"), mean_pnl_pct=("pnl_pct", "mean"), best_pnl_pct=("pnl_pct", "max"), worst_pnl_pct=("pnl_pct", "min"), trades=("trades_as_buyer", "sum")).sort_values("mean_pnl_pct", ascending=False))
+    risk = risk_per_client(samples)
+    if not risk.empty:
+        df = df.merge(risk, on="client", how="left")
+    else:
+        df = df.assign(sharpe=np.nan, max_drawdown_pct=np.nan)
+    table = (df.groupby("strategy")
+               .agg(bots=("client", "count"), mean_excess_pct=("excess_pct", "mean"), mean_pnl_pct=("pnl_pct", "mean"),
+                    best_pnl_pct=("pnl_pct", "max"), worst_pnl_pct=("pnl_pct", "min"), sharpe=("sharpe", "mean"),
+                    max_drawdown_pct=("max_drawdown_pct", "min"), trades=("trades_as_buyer", "sum")))
+    table["informed"] = table.index.isin(INFORMED)
+    key = "mean_excess_pct" if table["mean_excess_pct"].notna().any() else "mean_pnl_pct"
+    return table.sort_values(["informed", key], ascending=[True, False])
 
 
 def plot_strategies(plt, data, out: Path):
     final = data["portfolios_final"]
-    table = strategy_table(final)
+    table = strategy_table(final, symbols=data["symbols"])
     if table.empty:
         return None
     df = final.assign(strategy=final["label"].map(strategy_of))
-    order = list(table.index)
-    fig, ax = plt.subplots(figsize=(11, max(3.5, 0.6 * len(order) + 1.5)))
-    fig.suptitle("P&L by strategy: every dot is one bot, the bar is the strategy's mean", fontsize=13, fontweight="bold")
-    for y, strategy in enumerate(order):
-        mean = table.loc[strategy, "mean_pnl_pct"]
-        ax.barh(y, mean, color=UP if mean >= 0 else DOWN, alpha=0.35, edgecolor=BG)
-        points = df.loc[df["strategy"] == strategy, "pnl_pct"]
-        jitter = (pd.Series(range(len(points))) % 5 - 2) * 0.06
-        ax.scatter(points, [y + j for j in jitter], s=22, color=[UP if v >= 0 else DOWN for v in points], edgecolors=BG, zorder=3)
-        # labels in a fixed column just right of the plot area (axes coordinates), so they never collide with the strategy names, whatever the sign of the mean
-        ax.text(1.01, y, f"{mean:+.2f}%  ({int(table.loc[strategy, 'bots'])} bots)", transform=ax.get_yaxis_transform(), va="center", ha="left", fontsize=9, color=UP if mean >= 0 else DOWN)
-    ax.axvline(0, color=TEXT, linewidth=0.8)
-    ax.set_yticks(range(len(order)))
-    ax.set_yticklabels(order)
-    ax.invert_yaxis()
-    ax.set_xlabel("P&L since first seen (%), marked to the final prices")
+    df["excess_pct"] = 100 * excess_over_holding(df, data["symbols"]) / df["initial_net_worth"]
+    measure, label = ("excess_pct", "mean_excess_pct") if table["mean_excess_pct"].notna().any() else ("pnl_pct", "mean_pnl_pct")
+    ranked = [s for s in table.index if not table.loc[s, "informed"]]
+    informed = [s for s in table.index if table.loc[s, "informed"]]
+    groups = [(ranked, "strategies that only see prices, ranked")] + ([(informed, "informed benchmark: sees the hidden fundamental value (not ranked)")] if informed else [])
+    fig, axes = plt.subplots(len(groups), 1, figsize=(11, max(3.5, 0.6 * len(table) + 1.5 + 0.8 * (len(groups) - 1))), sharex=True,
+                             gridspec_kw={"height_ratios": [max(len(g), 1) for g, _ in groups]}, squeeze=False)
+    fig.suptitle("What each strategy added over holding its starting account: every dot is one bot, the bar is the mean",
+                 fontsize=13, fontweight="bold")
+    for ax, (order, title) in zip(axes[:, 0], groups):
+        for y, strategy in enumerate(order):
+            mean = table.loc[strategy, label]
+            ax.barh(y, mean, color=UP if mean >= 0 else DOWN, alpha=0.35, edgecolor=BG)
+            points = df.loc[df["strategy"] == strategy, measure]
+            jitter = (pd.Series(range(len(points))) % 5 - 2) * 0.06
+            ax.scatter(points, [y + j for j in jitter], s=22, color=[UP if v >= 0 else DOWN for v in points], edgecolors=BG, zorder=3)
+            # labels in a fixed column just right of the plot area (axes coordinates), so they never collide with the strategy names, whatever the sign of the mean
+            ax.text(1.01, y, f"{mean:+.2f}%  ({int(table.loc[strategy, 'bots'])} bots)", transform=ax.get_yaxis_transform(), va="center", ha="left", fontsize=9, color=UP if mean >= 0 else DOWN)
+        ax.axvline(0, color=TEXT, linewidth=0.8)
+        ax.set_yticks(range(len(order)))
+        ax.set_yticklabels(order)
+        ax.invert_yaxis()
+        ax.set_title(title, loc="left", fontsize=10, color=MUTED)
+    axes[-1, 0].set_xlabel("excess over holding the starting account (% of it), marked to the final prices" if measure == "excess_pct"
+                           else "P&L since first seen (%), marked to the final prices")
     fig.tight_layout(rect=(0, 0, 0.86, 1)) # room on the right for the label column
     return fig
 
@@ -531,10 +725,14 @@ def print_summary(data) -> None:
     print("\nPer symbol, before -> after:")
     cols = ["symbol", "initial_price", "final_price", "change_pct", "trades", "volume", "vwap", "spread", "imbalance", "resting_orders", "waiting_orders"]
     print(sy[cols].to_string(index=False, float_format=lambda v: f"{v:,.2f}"))
-    table = strategy_table(final)
+    table = strategy_table(final, data.get("portfolio_samples"), sy)
     if not table.empty:
-        print("\nBy strategy (P&L in % since first seen):")
-        print(table.to_string(float_format=lambda v: f"{v:+.2f}"))
+        print("\nStrategies that only see prices, ranked by what they added over holding their starting account (excess and P&L")
+        print("in %, Sharpe per sample, worst drawdown of its bots in %):")
+        print(table[~table["informed"]].drop(columns="informed").to_string(float_format=lambda v: f"{v:+.2f}"))
+        if table["informed"].any():
+            print("\nInformed benchmark (sees each company's hidden fundamental value, not ranked with the strategies):")
+            print(table[table["informed"]].drop(columns="informed").to_string(float_format=lambda v: f"{v:+.2f}"))
     if not final.empty:
         print("\nTop 5 / bottom 5 clients by P&L:")
         ranked = final.sort_values("pnl", ascending=False)
@@ -550,6 +748,18 @@ def write_html(data, out: Path, images: list[str], report_dir: Path, suffix: str
     final = data["portfolios_final"]
     portfolios_table = (final.sort_values("pnl", ascending=False).drop(columns=["holdings"], errors="ignore").to_html(index=False, float_format=lambda v: f"{v:,.2f}", border=0, classes="t")) if not final.empty else ""
     imgs = "".join(f'<figure><img src="{html.escape(name)}" alt="{html.escape(name)}"/></figure>' for name in images)
+    strategies = strategy_table(final, data.get("portfolio_samples"), data["symbols"])
+    strategies_html = ""
+    if not strategies.empty:
+        fmt = lambda v: f"{v:+,.2f}"
+        strategies_html = ("<h2>Strategies that only see prices, ranked</h2><p class=\"n\">By what they added over holding their starting "
+                           "account (excess, in %): the raw P&amp;L is mostly the market's own move, every bot holds stock from the start.</p>"
+                           f"<div class=\"wrap\">{strategies[~strategies['informed']].drop(columns='informed').to_html(float_format=fmt, border=0, classes='t')}</div>")
+        if strategies["informed"].any():
+            strategies_html += ("<h2>Informed benchmark, not ranked</h2><p class=\"n\">The value investors see each company's hidden "
+                                "fundamental value, the variable that moves the prices, which no other bot sees: what knowing the value is "
+                                "worth, not a strategy to beat.</p>"
+                                f"<div class=\"wrap\">{strategies[strategies['informed']].drop(columns='informed').to_html(float_format=fmt, border=0, classes='t')}</div>")
     page = f"""<!doctype html><html><head><meta charset="utf-8"><title>Market report</title>
 <style>
 body {{ background:{BG}; color:{TEXT}; font-family:-apple-system,Segoe UI,Helvetica,Arial,sans-serif; margin:24px; }}
@@ -558,11 +768,12 @@ table.t, table.s {{ border-collapse:collapse; font-size:13px; }}
 table.t th, table.t td, table.s td {{ padding:4px 10px; border-bottom:1px solid {GRID}; text-align:right; }}
 table.t th {{ color:{MUTED}; }} table.s td:first-child {{ text-align:left; color:{MUTED}; }}
 figure {{ margin:18px 0; }} img {{ max-width:100%; border:1px solid {GRID}; border-radius:6px; }}
-.wrap {{ overflow-x:auto; }}
+.wrap {{ overflow-x:auto; }} .n {{ color:{MUTED}; max-width:900px; }}
 </style></head><body>
 <h1>Market report: {html.escape(TITLES.get(suffix, suffix))}</h1><p style="color:{MUTED}">source: {html.escape(display_path(report_dir))} (files *_{html.escape(suffix)}.csv)</p>
 <h2>Summary</h2><table class="s">{rows}</table>
 <h2>Symbols: before vs after</h2><div class="wrap">{symbols_table}</div>
+{strategies_html}
 <h2>Charts</h2>{imgs}
 <h2>Client portfolios</h2><div class="wrap">{portfolios_table}</div>
 </body></html>"""
