@@ -355,4 +355,18 @@ std::vector<Order> OrderBook::remove_if(const std::function<bool(const Order&)>&
     return removed;
 }
 
+void OrderBook::shift_dates(Clock::duration by) {
+    std::unique_lock lock(mutex_);
+    auto shift = [&](auto& side) {
+        for (auto& [price, queue] : side) {
+            for (auto& order : queue) {
+                if (order.not_before) *order.not_before += by;
+                if (order.expires_at) *order.expires_at += by;
+            }
+        }
+    };
+    shift(bids_);
+    shift(asks_);
+}
+
 } // namespace sim

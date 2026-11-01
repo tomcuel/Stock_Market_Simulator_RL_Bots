@@ -55,6 +55,8 @@ public:
     // end of day: removes every resting order and returns them (their reservations are released by the engine)
     std::vector<Order> remove_if(const std::function<bool(const Order&)>& which);
     std::vector<Order> clear() {return remove_if([](const Order&) {return true;});}
+    // the market reopens after `by` closed: every resting order's start and expiry dates move back by it (trading time only)
+    void shift_dates(Clock::duration by);
 
     // Cancels a resting order given its side and price (cheap: goes straight to the right price level): 
     // Returns the removed order (with its remaining quantity), or nothing if it wasn't found, so the engine can release exactly what that order still had reserved

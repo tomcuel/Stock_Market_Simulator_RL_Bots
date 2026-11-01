@@ -3,7 +3,7 @@
 // It owns the order books and portfolios: clients (humans via sim_client.x, or sim_client.x --bot) trade over TCP
 // (Runs until Ctrl-C / SIGTERM)
 //
-// Quick start (from Src_Simulation/, after `make`):
+// Quick start (from Src_RL_Trading/, after `make`):
 //   ./sim_server.x                                  # port 7878, symbols from the data seed, log to stdout
 //   ./sim_server.x --output-dir output/my_session   # also write, on shutdown:
 //                                                   #   output/my_session/metrics_bots.csv
@@ -278,7 +278,7 @@ int main(int argc, char* argv[]) {
             recorder->set_client_label(account.client_id, account.username); // launch_bots.sh names bots botNN_<strategy>
         }
         if (recorder->write_report()) {
-            std::cout << "Market report written to " << sim::display_path(output_dir) << " (plot, from the project root: python3 Src_Simulation/scripts/plot_market_report.py " << sim::display_path(output_dir) << ")\n";
+            std::cout << "Market report written to " << sim::display_path(output_dir) << " (plot, from the project root: python3 Src_RL_Trading/scripts/plot_market_report.py " << sim::display_path(output_dir) << ")\n";
         } else {
             std::cerr << "Failed to write the market report to " << sim::display_path(output_dir) << " (see log)\n";
         }

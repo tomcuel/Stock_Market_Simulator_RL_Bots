@@ -184,9 +184,34 @@ void SimulationServer::stop() {
     if (!config_.persistence_path.empty()) {
         save_snapshot(); // one last save so a graceful shutdown never loses activity since the last periodic save
     }
-    // per-connection threads are detached (see handle_connection's spawn site below): each one  exits on its own once its socket errors out or its next recv() times out (kRecvTimeoutSeconds),
-    // so stop() doesn't block waiting on however many clients happen to be idling at shutdown time
+    // the connection threads: unblock the ones waiting in recv() by shutting their sockets down, then join them all, so none can touch the server once it is gone
+    std::vector<Connection> connections;
+    {
+        std::lock_guard<std::mutex> lock(connections_mutex_);
+        connections.swap(connections_);
+    }
+    for (auto& connection : connections) {
+        ::shutdown(connection.socket, SHUT_RDWR);
+    }
+    for (auto& connection : connections) {
+        if (connection.thread.joinable()) {
+            connection.thread.join();
+        }
+        ::close(connection.socket);
+    }
     LOG_INFO("SimulationServer stopped");
+}
+
+void SimulationServer::reap_finished_connections() {
+    for (auto it = connections_.begin(); it != connections_.end();) {
+        if (it->finished->load()) {
+            it->thread.join();
+            ::close(it->socket);
+            it = connections_.erase(it);
+        } else {
+            ++it;
+        }
+    }
 }
 
 void SimulationServer::accept_loop() {
@@ -210,7 +235,15 @@ void SimulationServer::accept_loop() {
 
         set_recv_timeout(client_socket, kRecvTimeoutSeconds);
         disable_sigpipe(client_socket); // a client vanishing mid-reply must not kill the server
-        std::thread(&SimulationServer::handle_connection, this, client_socket).detach();
+        set_no_delay(client_socket);    // answers leave at once
+        std::lock_guard<std::mutex> lock(connections_mutex_);
+        reap_finished_connections();
+        auto finished = std::make_shared<std::atomic<bool>>(false);
+        std::thread thread([this, client_socket, finished] {
+            handle_connection(client_socket);
+            finished->store(true);
+        });
+        connections_.push_back(Connection{std::move(thread), client_socket, finished});
     }
 }
 
@@ -283,7 +316,7 @@ void SimulationServer::handle_connection(int client_socket) {
                 auto outcome = directory_.register_client(tokens[1], tokens[2], new_id, token);
                 if (outcome == ClientDirectory::RegisterOutcome::OK) {
                     // a balanced starting account: cash plus an equal value of every listed symbol, so a new client can both buy and sell from its first order 
-                    // (Src_Simulation has no separate "IPO" step, like the explicit starting portfolio of Src_SQL's `init`)
+                    // (Src_RL_Trading has no separate "IPO" step, like the explicit starting portfolio of Src_SQL's `init`)
                     // compared to the V1 release, this avoid having 10 actions at 500 and 10 actions at 10, market was unbalanced and the first trade was always a sell, so the first buy was rejected for insufficient cash, hence the bad results on the order book and trades
                     engine_.fund_balanced_account(new_id, config_.starting_equity, config_.starting_cash_fraction);
                     client_id = new_id;
@@ -372,8 +405,7 @@ void SimulationServer::handle_connection(int client_socket) {
         }
         if (!send_framed(client_socket, response)) break;
     }
-
-    ::close(client_socket);
+    // the socket is closed by whoever joins this thread (reap_finished_connections() or stop()), see the header
 }
 
 std::string SimulationServer::dispatch_command(const std::string& line, ClientId client_id) {
@@ -434,7 +466,7 @@ std::string SimulationServer::dispatch_command(const std::string& line, ClientId
 
     if (command == "MARKET" && tokens.size() == 2) {
         const std::string& symbol = tokens[1];
-        auto snap = engine_.snapshot(symbol, 1);
+        auto snap = engine_.snapshot(symbol, 10); // the top 10 levels: best prices and the depth behind them
         // MarketData only knows about prices from actual trades: before the first trade on a symbol, fall back to the engine's registered reference price, so `last` is never misleadingly 0
         // (the same one pre-trade risk checks and STOP/LIMIT_STOP release bands use)
         Price last = market_data_.last_price(symbol);
@@ -447,6 +479,11 @@ std::string SimulationServer::dispatch_command(const std::string& line, ClientId
         if (!snap.asks.empty()) {
             oss << " ask=" << snap.asks.front().price;
         }
+        // quantity resting in the top 10 levels of each side
+        Quantity bid_depth = 0, ask_depth = 0;
+        for (const auto& level : snap.bids) bid_depth += level.quantity;
+        for (const auto& level : snap.asks) ask_depth += level.quantity;
+        oss << " bid_depth=" << bid_depth << " ask_depth=" << ask_depth;
         return oss.str();
     }
 

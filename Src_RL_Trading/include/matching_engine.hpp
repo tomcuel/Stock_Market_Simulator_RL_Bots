@@ -24,6 +24,7 @@ namespace sim {
 class MatchingEngine {
 public:
     explicit MatchingEngine(NotificationBus& bus) : bus_(bus) {}
+    NotificationBus& bus() {return bus_;}
 
     // Registers a tradable symbol with a reference starting price (used as the "last price" until the first real trade happens)
     void register_symbol(const Symbol& symbol, Price initial_price);
@@ -31,7 +32,7 @@ public:
     // Ensures a client has a portfolio, creating one with `initial_cash` if it doesn't exist yet
     void ensure_client(ClientId client, double initial_cash);
 
-    // Credits `quantity` shares of `symbol` directly into a client's portfolio, bypassing the order book. 
+    // Credits `quantity` shares of `symbol` directly into a client's portfolio, bypassing the order book
     // This is an administrative allocation (e.g. an IPO grant or simulation seed inventory), not a trade: it does not go through risk checks, matching, or produce a Trade event
     void grant_initial_holdings(ClientId client, const Symbol& symbol, Quantity quantity);
 
@@ -45,8 +46,7 @@ public:
 
     // Submits an order for matching
     // Performs a pre-trade risk check (cash for buys, holdings for sells) before it ever touches the book or the waiting registry. 
-    // If the order's release band is already satisfied (true immediately for MARKET/plain LIMIT orders, for STOP/LIMIT_STOP, only once the reference price crosses into the requested band) 
-    // and its `not_before` "start date" has passed, it is matched right away
+    // If the order's release band is already satisfied (true immediately for MARKET/plain LIMIT orders, for STOP/LIMIT_STOP, only once the reference price crosses into the requested band) and its `not_before` "start date" has passed, it is matched right away
     // Otherwise it is placed in the waiting registry (`SubmitResult::queued == true`) until try_release_waiting_orders() picks it up
     // Publishes a TradeEvent/OrderAcceptedEvent/OrderQueuedEvent/OrderRejectedEvent to the NotificationBus either way: callers never block on downstream consumers of that event
     SubmitResult submit_order(const OrderRequest& request);
@@ -99,6 +99,12 @@ public:
         market_closed_.store(true);
     }
     bool market_closed() const {return market_closed_.load();}
+    // the next trading day (simulation.x --days): orders are accepted again. The closed hours don't count in an order's clock either:
+    // every dated order (start date, expiry date) is pushed back by the time the market stayed closed
+    void open_market();
+    // overnight news (simulation.x --overnight-gap-vol): moves a symbol's reference price while the market is closed, so the next
+    // session opens from there (the makers quote around it, the GTC orders it crossed meet in the opening auction). Returns the new price
+    Price gap_reference_price(const Symbol& symbol, double factor);
     // the close if the market is closed, otherwise now: the reference for an order's remaining time
     TimePoint trading_clock() const {
         return market_closed_.load() ? TimePoint(Clock::duration(closed_at_ticks_.load())) : Clock::now();
@@ -111,8 +117,7 @@ public:
         Quantity volume{0};  // shares executed by the auction
         bool crossed{false};
     };
-    // The fixing on every symbol (OrderBook::uncross): trades at one price per symbol, settled like any trade, 
-    // and that price becomes the symbol's last price, so the snapshot saved next holds the official closing prices Leaves pre-close (auction mode off)
+    // The fixing on every symbol (OrderBook::uncross): trades at one price per symbol, settled like any trade, and that price becomes the symbol's last price, so the snapshot saved next holds the official closing prices Leaves pre-close (auction mode off)
     std::vector<ClosingPrice> run_closing_auction();
     // The opening auction of a session that restored orders from a snapshot (they may cross each other), same rule
     std::vector<ClosingPrice> run_opening_auction() {return run_closing_auction();}
@@ -120,6 +125,8 @@ public:
     std::size_t expire_day_orders();
     // every order, DAY or not (tests, and a full reset)
     std::size_t expire_all_orders();
+    // after an auction: the MARKET orders it didn't execute (immediate or cancel), returns how many
+    std::size_t expire_market_orders();
 
     // carrying orders from one session to the next (net/persistence.cpp)
     struct OpenOrder {
@@ -128,8 +135,7 @@ public:
     };
     // every open order: book orders in priority order (best price first, oldest first), then waiting orders
     std::vector<OpenOrder> open_orders() const;
-    // puts a saved order back (its reservation is taken again, it does NOT match: the opening auction does), keeps its id,
-    // false (and nothing changes) if the account can no longer afford it
+    // puts a saved order back (its reservation is taken again, it does NOT match: the opening auction does), keeps its id, false (and nothing changes) if the account can no longer afford it
     bool restore_order(const OpenOrder& open);
 
 private:
@@ -184,6 +190,8 @@ private:
     // a SELL never sells for less than -10%, and whatever can't fill inside the collar is discarded (still IOC)
     // It bounds a market buy's worst-case cost, which is what makes it reservable
     static constexpr double kMarketCollar = 0.10;
+    // in an auction (pre-open, pre-close), a MARKET order joins at +-2% of the reference price
+    static constexpr double kAuctionCollar = 0.02;
 };
 
 } // namespace sim

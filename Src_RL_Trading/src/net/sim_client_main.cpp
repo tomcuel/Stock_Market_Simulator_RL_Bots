@@ -10,22 +10,20 @@
 // Bot mode: runs one trading strategy from bot.hpp against the server, through a WireGateway, so every decision the bot makes is a literal protocol command sent over the socket, the exact same thing a human would type
 // It is the same strategy code simulation.x runs in-process
 //   ./sim_client.x bot1 pw --register --bot trend --duration-sec 60
-//   ./sim_client.x bot2 pw --register --bot ml --ml-model models/signal_model.csv
 //
 // Options (all optional):
 //   --host H              server address (default 127.0.0.1)
 //   --port P              server port (default 7878)
 //   --register            create the account instead of logging in
 //   --resume TOKEN        reconnect with a session token instead of username/password
-//   --bot STRATEGY        noise | momentum | marketmaker | meanreversion | trend | twap | ml
+//   --bot STRATEGY        noise | momentum | marketmaker | meanreversion | trend | twap
 //   --symbols S1 S2 ...   symbols the bot trades (default: every symbol the server has)
 //   --duration-sec N      how long the bot trades (default 30)
 //   --min-interval-ms N   shortest pause between two decisions (default 200)
 //   --max-interval-ms N   longest pause between two decisions (default 1000)
 //   --seed N              RNG seed (default 42)
-//   --ml-model PATH       model for --bot ml (default models/signal_model.csv)
-//   --ml-bar-ms N         --bot ml: one simulated trading day of N ms (default 1000)
 //   --quiet               bot mode: don't print every ORDER / CANCEL and its answer
+// (The RL agents trade the trading days of simulation.x, in-process: there is no RL socket bot)
 //=======================================================================
 #include <chrono>
 #include <csignal>
@@ -36,12 +34,12 @@
 #include <random>
 #include <sstream>
 #include <thread>
+#include <unordered_map>
 #include <vector>
 
 #include "bot.hpp"
 #include "net/client_connection.hpp"
 #include "net/wire_gateway.hpp"
-#include "signal_model.hpp"
 
 namespace {
 
@@ -55,10 +53,10 @@ void print_usage(const char* program) {
               << "      reconnect with the session token printed by REGISTER / LOGIN\n"
               << "  " << program << " <username> <password> --bot <strategy> [--register] [options]\n"
               << "      bot mode: runs a strategy from bot.hpp over the socket protocol\n"
-              << "      strategies: noise momentum marketmaker meanreversion trend twap ml\n\n"
+              << "      strategies: noise momentum marketmaker meanreversion trend twap\n\n"
               << "Bot options: --symbols S1 S2 ... (default: all), --duration-sec N (30),\n"
               << "  --min-interval-ms N (200), --max-interval-ms N (1000), --seed N (42),\n"
-              << "  --ml-model PATH (models/signal_model.csv), --ml-bar-ms N (1000), --quiet\n";
+              << "  --quiet\n";
 }
 
 void print_help() {
@@ -129,8 +127,6 @@ struct BotSettings {
     int min_interval_ms{200};
     int max_interval_ms{1000};
     unsigned seed{42};
-    std::string ml_model{"models/signal_model.csv"};
-    int ml_bar_ms{1000};
     bool quiet{false};
 };
 
@@ -151,18 +147,9 @@ int run_bot(ClientConnection& connection, sim::ClientId client, const BotSetting
     }
     std::cout << "\n";
 
-    std::shared_ptr<sim::SignalModel> model;
-    if (settings.strategy == "ml") {
-        model = std::make_shared<sim::SignalModel>();
-        std::string error;
-        if (!model->load(settings.ml_model, error)) {
-            std::cerr << "Cannot run the ml bot: " << error << "\n";
-            return EXIT_FAILURE;
-        }
-    }
-    auto strategy = sim::make_strategy(settings.strategy, gateway, symbols, settings.seed, {}, model, std::chrono::milliseconds(settings.ml_bar_ms));
+    std::unique_ptr<sim::TradingStrategy> strategy = sim::make_strategy(settings.strategy, gateway, symbols, settings.seed);
     if (!strategy) {
-        std::cerr << "Unknown strategy '" << settings.strategy << "' (expected: noise momentum marketmaker meanreversion trend twap ml)\n";
+        std::cerr << "Unknown strategy '" << settings.strategy << "' (expected: noise momentum marketmaker meanreversion trend twap)\n";
         return EXIT_FAILURE;
     }
 
@@ -235,12 +222,6 @@ int main(int argc, char* argv[]) {
         }
         else if (arg == "--seed") {
             bot.seed = static_cast<unsigned>(std::atoi(next().c_str()));
-        }
-        else if (arg == "--ml-model") {
-            bot.ml_model = next();
-        }
-        else if (arg == "--ml-bar-ms") {
-            bot.ml_bar_ms = std::max(0, std::atoi(next().c_str()));
         }
         else if (arg == "--quiet") {
             bot.quiet = true;

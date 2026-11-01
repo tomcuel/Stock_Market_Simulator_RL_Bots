@@ -1,6 +1,6 @@
 //=======================================================================
 // Self-contained SHA-256 implementation: used only for salted password hashing (see net/auth.hpp)
-// pulled in-tree rather than depending on OpenSSL specifically so Src_Simulation keeps its "standard library only" property, 
+// pulled in-tree rather than depending on OpenSSL specifically so Src_RL_Trading keeps its "standard library only" property, 
 // unlike Test_Functionnalities/Password_Cryptage's AES approach, which needs -lssl/-lcrypto (or Src_SQL)
 //=======================================================================
 #ifndef NET_SHA256_HPP

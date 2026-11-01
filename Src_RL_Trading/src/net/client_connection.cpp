@@ -28,6 +28,7 @@ bool ClientConnection::connect(const std::string& host, int port) {
         return false;
     }
 
+    set_no_delay(socket_fd_);
     if (::connect(socket_fd_, reinterpret_cast<sockaddr*>(&address), sizeof(address)) < 0) {
         ::close(socket_fd_);
         socket_fd_ = -1;

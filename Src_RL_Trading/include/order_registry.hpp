@@ -61,6 +61,17 @@ public:
     // Copies of every order currently waiting (all symbols)
     std::vector<Order> all_waiting() const;
 
+    // the market reopens after `by` closed: every waiting order's start and expiry dates move back by it (trading time only)
+    void shift_dates(Clock::duration by) {
+        std::lock_guard<std::mutex> lock(mutex_);
+        for (auto& [symbol, bucket] : waiting_by_symbol_) {
+            for (auto& [id, order] : bucket) {
+                if (order.not_before) *order.not_before += by;
+                if (order.expires_at) *order.expires_at += by;
+            }
+        }
+    }
+
 private:
     using Bucket = std::unordered_map<OrderId, Order>;
 

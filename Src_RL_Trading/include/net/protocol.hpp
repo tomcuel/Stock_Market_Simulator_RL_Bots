@@ -29,6 +29,9 @@ void set_recv_timeout(int socket_fd, int timeout_seconds = kRecvTimeoutSeconds);
 // Makes writes to this socket fail with EPIPE instead of raising SIGPIPE (which would terminate the whole process) when the peer has disconnected
 void disable_sigpipe(int socket_fd);
 
+// TCP_NODELAY: small request / answer messages leave at once instead of being batched (Nagle's algorithm)
+void set_no_delay(int socket_fd);
+
 // Writes `payload` as one framed message
 // Returns false on any socket error (including a partial write it couldn't recover from): callers should treat that as "the connection is dead"
 bool send_framed(int socket_fd, const std::string& payload);

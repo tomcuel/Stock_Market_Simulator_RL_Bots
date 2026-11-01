@@ -338,7 +338,21 @@ SubmitResult MatchingEngine::submit_order(const OrderRequest& request) {
 
     if (started && band_satisfied) {
         if (auction_mode_.load()) {
-            // pre-close: the order rests without matching, the closing auction will execute it
+            // pre-open / pre-close: the order rests without matching, the auction will execute it
+            // A MARKET order takes part at the auction collar (market-on-open / market-on-close), tighter than the continuous one: 
+            // with 10%, a few market orders in a thin pre-open set opening prices 1 to 2% away from the close on average
+            // What the auction doesn't execute expires right after it (expire_market_orders), a MARKET order never rests into continuous trading. 
+            // A buy reserved cash at the continuous collar: the difference is released now, since a reservation is always released at the order's own price
+            if (order.kind == OrderKind::MARKET) {
+                Price reference = last_price(order.symbol);
+                Price auction_price = order.side == Side::BUY ? reference * (1.0 + kAuctionCollar) : std::max(0.01, reference * (1.0 - kAuctionCollar));
+                if (order.side == Side::BUY && order.price > auction_price) {
+                    Order excess = order;
+                    excess.price = order.price - auction_price;
+                    release_reservation(excess, order.quantity);
+                }
+                order.price = auction_price;
+            }
             SubmitResult result;
             result.accepted = true;
             result.order_id = order.id;
@@ -360,8 +374,8 @@ SubmitResult MatchingEngine::submit_order(const OrderRequest& request) {
 }
 
 MatchingEngine::ReleaseSummary MatchingEngine::try_release_waiting_orders(bool full_scan) {
-    if (auction_mode_.load()) {
-        return {}; // pre-close: a released STOP would match continuously, it waits for the next session (or expires)
+    if (auction_mode_.load() || market_closed_.load()) {
+        return {}; // pre-close or closed: a released STOP would match outside continuous trading, it waits for the next session (or expires)
     }
     TimePoint now = Clock::now();
     auto get_reference_price = [this](const Symbol& symbol) { return last_price(symbol); };
@@ -460,6 +474,28 @@ std::vector<MatchingEngine::ClosingPrice> MatchingEngine::run_closing_auction() 
     return closes;
 }
 
+void MatchingEngine::open_market() {
+    if (!market_closed_.load()) {
+        return;
+    }
+    auto closed_for = Clock::now() - TimePoint(Clock::duration(closed_at_ticks_.load()));
+    registry_.shift_dates(closed_for);
+    for (const auto& symbol : symbols()) {
+        book_for(symbol).shift_dates(closed_for);
+    }
+    market_closed_.store(false);
+}
+
+Price MatchingEngine::gap_reference_price(const Symbol& symbol, double factor) {
+    if (!symbol_exists(symbol) || factor <= 0.0) {
+        return last_price(symbol);
+    }
+    std::unique_lock lock(prices_mutex_);
+    Price& price = last_prices_[symbol];
+    price = std::max(0.01, price * factor);
+    return price;
+}
+
 std::size_t MatchingEngine::expire_orders(bool day_only) {
     TimePoint now = Clock::now();
     auto expires = [day_only, now](const Order& order) {
@@ -488,6 +524,18 @@ std::size_t MatchingEngine::expire_orders(bool day_only) {
 
 std::size_t MatchingEngine::expire_day_orders() {
     return expire_orders(true);
+}
+
+std::size_t MatchingEngine::expire_market_orders() {
+    std::size_t expired = 0;
+    for (const auto& symbol : symbols()) {
+        for (const auto& order : book_for(symbol).remove_if([](const Order& o) {return o.kind == OrderKind::MARKET;})) {
+            release_reservation(order, order.quantity);
+            bus_.publish(OrderExpiredEvent{order.id, order.client, order.symbol});
+            ++expired;
+        }
+    }
+    return expired;
 }
 
 std::size_t MatchingEngine::expire_all_orders() {

@@ -3,7 +3,7 @@
 // - accounts (as their already one-way-hashed credentials, never the plaintext password)
 // - portfolios (cash + holdings)
 // - each symbol's last traded price (the official close after a closing auction) are written to a plain-text snapshot file and restored on the next startup
-//   Deliberately a simple line-based format rather than JSON/a binary format, so no extra dependency is needed to read or write it (consistent with the rest of Src_Simulation)
+//   Deliberately a simple line-based format rather than JSON/a binary format, so no extra dependency is needed to read or write it (consistent with the rest of Src_RL_Trading)
 // - the open orders that outlive the day: GTC orders, and orders with their own expiry date still ahead (time in force, see types.hpp)
 //   DAY orders expire at the close (sim_server.x --closing-auction) and are not saved
 // Each saved order keeps its id, its place in the queue (book orders are written in priority order) and the trading time it has left, counted at the close: its clock stops while the market is closed
