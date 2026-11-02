@@ -1,0 +1,66 @@
+==> Building simulation.x
+==> 40 markets of 600 days of 4000 ms into Src_RL_Trading/RL_Agents/sim_days/real5_d600 (seeds 401 to 440, 40 at a time): --symbols 5 --marketmakers 12 --value 40 --maker-half-spread 0.001
+    seed 437: 600 days, 144 trades per symbol per day
+    seed 439: 600 days, 147 trades per symbol per day
+    seed 427: 600 days, 146 trades per symbol per day
+    seed 404: 600 days, 142 trades per symbol per day
+    seed 432: 600 days, 142 trades per symbol per day
+    seed 402: 600 days, 143 trades per symbol per day
+    seed 411: 600 days, 144 trades per symbol per day
+    seed 405: 600 days, 143 trades per symbol per day
+    seed 424: 600 days, 141 trades per symbol per day
+    seed 401: 600 days, 142 trades per symbol per day
+    seed 413: 600 days, 143 trades per symbol per day
+    seed 433: 600 days, 144 trades per symbol per day
+    seed 425: 600 days, 142 trades per symbol per day
+    seed 419: 600 days, 144 trades per symbol per day
+    seed 426: 600 days, 143 trades per symbol per day
+    seed 406: 600 days, 144 trades per symbol per day
+    seed 417: 600 days, 143 trades per symbol per day
+    seed 416: 600 days, 139 trades per symbol per day
+    seed 409: 600 days, 142 trades per symbol per day
+    seed 415: 600 days, 142 trades per symbol per day
+    seed 423: 600 days, 143 trades per symbol per day
+    seed 422: 600 days, 141 trades per symbol per day
+    seed 434: 600 days, 142 trades per symbol per day
+    seed 435: 600 days, 144 trades per symbol per day
+    seed 436: 600 days, 143 trades per symbol per day
+    seed 408: 600 days, 144 trades per symbol per day
+    seed 414: 600 days, 143 trades per symbol per day
+    seed 407: 600 days, 144 trades per symbol per day
+    seed 438: 600 days, 142 trades per symbol per day
+    seed 412: 600 days, 143 trades per symbol per day
+    seed 418: 600 days, 143 trades per symbol per day
+    seed 440: 600 days, 141 trades per symbol per day
+    seed 431: 600 days, 141 trades per symbol per day
+    seed 410: 600 days, 143 trades per symbol per day
+    seed 428: 600 days, 140 trades per symbol per day
+    seed 421: 600 days, 143 trades per symbol per day
+    seed 403: 600 days, 145 trades per symbol per day
+    seed 420: 600 days, 141 trades per symbol per day
+    seed 430: 600 days, 144 trades per symbol per day
+    seed 429: 600 days, 144 trades per symbol per day
+==> Done: 40 markets in Src_RL_Trading/RL_Agents/sim_days/real5_d600
+==> Daily statistics (scripts/market_calibration.py)
+                  real5_d600 (40 markets)  first third  middle third  last third  real5 (12 markets)
+drift_bp                            4.626        4.034         3.539       5.407               4.108
+vol_bp                            129.120      125.188       130.013     128.760             130.779
+autocorr                           -0.028       -0.037        -0.030      -0.017              -0.042
+range_bp                          158.175      160.999       156.463     155.747             165.768
+abs_gap_bp                         59.974       60.511        59.089      60.708              57.972
+overnight_share                     0.334        0.334         0.329       0.338               0.328
+spread_bp                          14.501       14.150        14.152      14.360              14.393
+trades_per_day                    142.668      148.282       140.458     139.902             144.358
+shares_per_trade                  206.490      219.029       207.792     185.593             220.355
+traded_value_m                     10.485       10.803        10.368      10.269              10.592
+day_clock_ms                     4112.122     4111.892      4112.114    4112.295            4117.243
+day_clock_max_ms                 4464.110     4230.911      4456.944    4227.785            4313.240
+checks:
+  [PASS] vol_bp 129.1 against 130.8 in real5: -1.3%
+  [PASS] range_bp 158.2 against 165.8 in real5: -4.6%
+  [PASS] abs_gap_bp 60.0 against 58.0 in real5: +3.5%
+  [PASS] spread_bp 14.5 against 14.4 in real5: +0.7%
+  [PASS] trades_per_day last third against first third: -5.7%
+  [FAIL] shares_per_trade last third against first third: -15.3%
+  [PASS] traded_value_m last third against first third: -4.9%
+    (calibration skipped: python3 with pandas needed)

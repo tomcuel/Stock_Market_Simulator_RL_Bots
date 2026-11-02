@@ -1,0 +1,429 @@
+40 markets from Src_RL_Trading/RL_Agents/sim_days/real5_d600 (600 days, 5 symbols): development seeds [401, 402, 403, 404, 405, 406, 407, 408, 409, 410, 411, 412, 413, 414, 415, 416, 417, 418, 419, 420, 421, 422, 423, 424, 425, 426, 427, 428, 429, 430, 431, 432], sealed [433, 434, 435, 436, 437, 438, 439, 440]
+23 market features + 6 position features, every one kept. Near-duplicate pairs (|r| >= 0.96): none
+  fold 1: train days (20, 200), validation (202, 232), test (234, 264)
+  fold 2: train days (50, 230), validation (232, 262), test (264, 294)
+  fold 3: train days (80, 260), validation (262, 292), test (294, 324)
+  fold 4: train days (110, 290), validation (292, 322), test (324, 354)
+  fold 5: train days (140, 320), validation (322, 352), test (354, 384)
+  fold 6: train days (170, 350), validation (352, 382), test (384, 414)
+  fold 7: train days (200, 380), validation (382, 412), test (414, 444)
+  fold 8: train days (230, 410), validation (412, 442), test (444, 474)
+  fold 9: train days (260, 440), validation (442, 472), test (474, 504)
+  fold 10: train days (290, 470), validation (472, 502), test (504, 534)
+  fold 11: train days (320, 500), validation (502, 532), test (534, 564)
+  fold 12: train days (350, 530), validation (532, 562), test (564, 594)
+
+24 trainings (12 folds x 2 PPO seeds), 8 at a time
+    fold 1 seed 1 [ 20,480] train   -0.90 bp/dd  0.9 bp (1010 trades)  val   -0.52 bp/dd  0.6 bp (1008)  score  -0.01  (ineligible)  entropy 3.56  6s
+    fold 1 seed 2 [ 20,480] train   -1.43 bp/dd  1.4 bp ( 552 trades)  val   -1.25 bp/dd  1.2 bp ( 531)  score  -0.02  (ineligible)  entropy 3.55  6s
+    fold 2 seed 1 [ 20,480] train   -0.83 bp/dd  0.8 bp ( 639 trades)  val   -0.95 bp/dd  1.0 bp ( 594)  score  -0.01  (ineligible)  entropy 3.53  7s
+    fold 2 seed 2 [ 20,480] train   -0.58 bp/dd  0.6 bp ( 500 trades)  val   -0.60 bp/dd  0.6 bp ( 488)  score  -0.01  (ineligible)  entropy 3.55  8s
+    fold 3 seed 1 [ 20,480] train   -0.43 bp/dd  0.4 bp ( 430 trades)  val   -0.34 bp/dd  0.3 bp ( 388)  score  -0.01  (ineligible)  entropy 3.55  8s
+    fold 1 seed 1 [ 40,960] train   -0.46 bp/dd  0.5 bp ( 799 trades)  val   -0.16 bp/dd  0.2 bp ( 805)  score  -0.01  (ineligible)  entropy 3.49  14s
+    fold 3 seed 2 [ 20,480] train   -0.66 bp/dd  0.7 bp ( 546 trades)  val   -0.78 bp/dd  0.8 bp ( 558)  score  -0.01  (ineligible)  entropy 3.56  8s
+    fold 1 seed 2 [ 40,960] train   -0.30 bp/dd  0.3 bp ( 212 trades)  val   -0.27 bp/dd  0.3 bp ( 203)  score  -0.00  (ineligible)  entropy 3.49  14s
+    fold 2 seed 1 [ 40,960] train   -0.74 bp/dd  0.8 bp ( 451 trades)  val   -0.93 bp/dd  1.0 bp ( 458)  score  -0.01  (ineligible)  entropy 3.42  15s
+    fold 4 seed 1 [ 20,480] train   -0.86 bp/dd  0.9 bp ( 844 trades)  val   -1.10 bp/dd  1.1 bp ( 882)  score  -0.02  (ineligible)  entropy 3.56  9s
+    fold 2 seed 2 [ 40,960] train   +0.07 bp/dd  0.1 bp ( 301 trades)  val   -0.23 bp/dd  0.3 bp ( 306)  score  -0.00  (ineligible)  entropy 3.49  17s
+    fold 4 seed 2 [ 20,480] train   -0.46 bp/dd  0.5 bp ( 408 trades)  val   -0.39 bp/dd  0.5 bp ( 406)  score  -0.01  (ineligible)  entropy 3.55  9s
+    fold 3 seed 1 [ 40,960] train   -0.46 bp/dd  0.5 bp ( 386 trades)  val   -0.44 bp/dd  0.4 bp ( 377)  score  -0.01  (ineligible)  entropy 3.46  17s
+    fold 1 seed 1 [ 61,440] train   -0.13 bp/dd  0.3 bp ( 628 trades)  val   -0.22 bp/dd  0.3 bp ( 637)  score  -0.00  (ineligible)  entropy 3.40  22s
+    fold 3 seed 2 [ 40,960] train   +0.04 bp/dd  0.0 bp (   1 trades)  val   -0.01 bp/dd  0.0 bp (   5)  score  -0.00  (ineligible)  entropy 3.50  17s
+    fold 1 seed 2 [ 61,440] train   -0.26 bp/dd  0.3 bp ( 176 trades)  val   +0.08 bp/dd  0.1 bp ( 161)  score  -0.00  (ineligible)  entropy 3.40  23s
+    fold 2 seed 1 [ 61,440] train   -0.28 bp/dd  0.3 bp ( 316 trades)  val   -0.31 bp/dd  0.3 bp ( 302)  score  -0.00  (ineligible)  entropy 3.34  23s
+    fold 4 seed 1 [ 40,960] train   -0.67 bp/dd  0.7 bp ( 507 trades)  val   -0.72 bp/dd  0.7 bp ( 500)  score  -0.01  (ineligible)  entropy 3.50  17s
+    fold 2 seed 2 [ 61,440] train   +0.07 bp/dd  0.1 bp ( 120 trades)  val   -0.14 bp/dd  0.2 bp ( 127)  score  -0.00  (ineligible)  entropy 3.36  24s
+    fold 4 seed 2 [ 40,960] train   -0.16 bp/dd  0.2 bp ( 317 trades)  val   -0.44 bp/dd  0.5 bp ( 305)  score  -0.01  (ineligible)  entropy 3.49  16s
+    fold 3 seed 1 [ 61,440] train   -0.22 bp/dd  0.3 bp ( 178 trades)  val   -0.05 bp/dd  0.2 bp ( 134)  score  -0.00  (ineligible)  entropy 3.40  24s
+    fold 1 seed 1 [ 81,920] train   -0.12 bp/dd  0.2 bp ( 522 trades)  val   -0.04 bp/dd  0.1 bp ( 544)  score  -0.00  (ineligible)  entropy 3.29  29s
+    fold 3 seed 2 [ 61,440] train   +0.00 bp/dd  0.0 bp (  26 trades)  val   +0.05 bp/dd  0.0 bp (  29)  score  -0.00  <- best  entropy 3.36  24s
+    fold 1 seed 2 [ 81,920] train   -0.28 bp/dd  0.3 bp ( 150 trades)  val   -0.10 bp/dd  0.2 bp ( 143)  score  -0.00  (ineligible)  entropy 3.31  30s
+    fold 2 seed 1 [ 81,920] train   +0.06 bp/dd  0.1 bp ( 268 trades)  val   -0.05 bp/dd  0.1 bp ( 268)  score  -0.00  (ineligible)  entropy 3.22  30s
+    fold 4 seed 1 [ 61,440] train   -0.03 bp/dd  0.2 bp ( 360 trades)  val   -0.37 bp/dd  0.4 bp ( 361)  score  -0.01  (ineligible)  entropy 3.46  24s
+    fold 2 seed 2 [ 81,920] train   -0.02 bp/dd  0.1 bp ( 159 trades)  val   -0.18 bp/dd  0.2 bp ( 164)  score  -0.00  (ineligible)  entropy 3.22  32s
+    fold 4 seed 2 [ 61,440] train   -0.09 bp/dd  0.2 bp ( 242 trades)  val   -0.40 bp/dd  0.5 bp ( 261)  score  -0.01  (ineligible)  entropy 3.35  25s
+    fold 3 seed 1 [ 81,920] train   -0.17 bp/dd  0.2 bp ( 174 trades)  val   -0.01 bp/dd  0.2 bp ( 154)  score  -0.00  (ineligible)  entropy 3.28  33s
+    fold 1 seed 1 [102,400] train   +0.01 bp/dd  0.2 bp ( 406 trades)  val   +0.15 bp/dd  0.1 bp ( 420)  score  -0.00  <- best  entropy 3.19  38s
+    fold 3 seed 2 [ 81,920] train   -0.00 bp/dd  0.1 bp (  51 trades)  val   +0.16 bp/dd  0.0 bp (  49)  score  -0.00  (ineligible)  entropy 3.23  33s
+    fold 1 seed 2 [102,400] train   -0.15 bp/dd  0.2 bp (  72 trades)  val   -0.04 bp/dd  0.1 bp (  78)  score  -0.00  (ineligible)  entropy 3.20  39s
+    fold 2 seed 1 [102,400] train   +0.02 bp/dd  0.1 bp ( 181 trades)  val   -0.10 bp/dd  0.2 bp ( 175)  score  -0.00  (ineligible)  entropy 3.16  40s
+    fold 4 seed 1 [ 81,920] train   +0.11 bp/dd  0.1 bp ( 213 trades)  val   -0.07 bp/dd  0.2 bp ( 221)  score  -0.00  (ineligible)  entropy 3.32  34s
+    fold 2 seed 2 [102,400] train   +0.02 bp/dd  0.1 bp (  90 trades)  val   +0.03 bp/dd  0.1 bp (  84)  score  -0.00  <- best  entropy 3.09  41s
+    fold 4 seed 2 [ 81,920] train   +0.04 bp/dd  0.1 bp ( 188 trades)  val   -0.12 bp/dd  0.2 bp ( 212)  score  -0.00  (ineligible)  entropy 3.19  34s
+    fold 3 seed 1 [102,400] train   -0.40 bp/dd  0.4 bp ( 158 trades)  val   -0.03 bp/dd  0.2 bp ( 123)  score  -0.01  (ineligible)  entropy 3.15  41s
+    fold 1 seed 1 [122,880] train   -0.07 bp/dd  0.2 bp ( 161 trades)  val   +0.05 bp/dd  0.1 bp ( 180)  score  -0.00  (ineligible)  entropy 3.02  47s
+    fold 1 seed 2 [122,880] train   -0.10 bp/dd  0.2 bp ( 101 trades)  val   -0.08 bp/dd  0.1 bp ( 112)  score  -0.00  (ineligible)  entropy 3.09  48s
+    fold 3 seed 2 [102,400] train   -0.05 bp/dd  0.1 bp ( 171 trades)  val   +0.26 bp/dd  0.0 bp ( 173)  score  -0.00  (ineligible)  entropy 3.10  42s
+    fold 2 seed 1 [122,880] train   +0.15 bp/dd  0.1 bp ( 101 trades)  val   +0.00 bp/dd  0.1 bp ( 119)  score  -0.00  <- best  entropy 2.99  48s
+    fold 4 seed 1 [102,400] train   +0.00 bp/dd  0.1 bp ( 136 trades)  val   -0.13 bp/dd  0.2 bp ( 143)  score  -0.00  (ineligible)  entropy 3.21  42s
+    fold 2 seed 2 [122,880] train   -0.00 bp/dd  0.1 bp (  84 trades)  val   +0.06 bp/dd  0.1 bp (  75)  score  -0.00  (ineligible)  entropy 2.98  50s
+    fold 4 seed 2 [102,400] train   +0.03 bp/dd  0.1 bp ( 123 trades)  val   -0.28 bp/dd  0.4 bp ( 147)  score  -0.00  (ineligible)  entropy 3.10  42s
+    fold 3 seed 1 [122,880] train   -0.07 bp/dd  0.1 bp ( 113 trades)  val   +0.12 bp/dd  0.2 bp (  95)  score  -0.00  (ineligible)  entropy 3.02  50s
+    fold 1 seed 1 [143,360] train   -0.01 bp/dd  0.2 bp ( 119 trades)  val   +0.06 bp/dd  0.1 bp ( 153)  score  -0.00  (ineligible)  entropy 2.94  56s
+    fold 1 seed 2 [143,360] train   -0.24 bp/dd  0.3 bp ( 165 trades)  val   +0.17 bp/dd  0.1 bp ( 163)  score  -0.00  (ineligible)  entropy 2.92  57s
+    fold 3 seed 2 [122,880] train   -0.26 bp/dd  0.3 bp ( 299 trades)  val   +0.19 bp/dd  0.1 bp ( 274)  score  -0.00  (ineligible)  entropy 2.95  51s
+    fold 2 seed 1 [143,360] train   +0.22 bp/dd  0.1 bp (  97 trades)  val   -0.00 bp/dd  0.1 bp ( 116)  score  -0.00  (ineligible)  entropy 3.00  57s
+    fold 4 seed 1 [122,880] train   +0.18 bp/dd  0.1 bp ( 129 trades)  val   -0.07 bp/dd  0.1 bp ( 120)  score  -0.00  (ineligible)  entropy 3.10  52s
+    fold 2 seed 2 [143,360] train   +0.01 bp/dd  0.1 bp (  69 trades)  val   +0.02 bp/dd  0.0 bp (  65)  score  -0.00  entropy 2.86  59s
+    fold 4 seed 2 [122,880] train   +0.19 bp/dd  0.1 bp ( 153 trades)  val   -0.25 bp/dd  0.4 bp ( 175)  score  -0.00  (ineligible)  entropy 3.00  51s
+    fold 3 seed 1 [143,360] train   +0.04 bp/dd  0.1 bp ( 126 trades)  val   +0.08 bp/dd  0.2 bp ( 119)  score  -0.00  <- best  entropy 2.91  58s
+    fold 1 seed 1 [163,840] train   -0.12 bp/dd  0.2 bp ( 106 trades)  val   +0.14 bp/dd  0.0 bp ( 127)  score  -0.00  (ineligible)  entropy 2.80  64s
+    fold 1 seed 2 [163,840] train   -0.12 bp/dd  0.2 bp ( 242 trades)  val   +0.17 bp/dd  0.1 bp ( 227)  score  -0.00  (ineligible)  entropy 2.83  64s
+    fold 3 seed 2 [143,360] train   -0.12 bp/dd  0.2 bp ( 327 trades)  val   +0.25 bp/dd  0.1 bp ( 289)  score  -0.00  (ineligible)  entropy 2.84  59s
+    fold 2 seed 1 [163,840] train   +0.25 bp/dd  0.1 bp ( 120 trades)  val   +0.06 bp/dd  0.1 bp ( 136)  score  -0.00  <- best  entropy 2.91  64s
+    fold 4 seed 1 [143,360] train   +0.14 bp/dd  0.2 bp ( 106 trades)  val   +0.06 bp/dd  0.1 bp ( 107)  score  +0.00  <- best  entropy 3.01  59s
+    fold 2 seed 2 [163,840] train   +0.06 bp/dd  0.1 bp (  98 trades)  val   -0.07 bp/dd  0.1 bp (  99)  score  -0.00  (ineligible)  entropy 2.80  66s
+    fold 4 seed 2 [143,360] train   +0.20 bp/dd  0.1 bp ( 173 trades)  val   -0.27 bp/dd  0.3 bp ( 198)  score  -0.00  (ineligible)  entropy 2.92  59s
+    fold 3 seed 1 [163,840] train   +0.01 bp/dd  0.1 bp ( 141 trades)  val   +0.10 bp/dd  0.2 bp ( 152)  score  -0.00  entropy 2.83  65s
+    fold 1 seed 1 [184,320] train   -0.07 bp/dd  0.2 bp ( 158 trades)  val   +0.19 bp/dd  0.0 bp ( 172)  score  -0.00  (ineligible)  entropy 2.76  71s
+    fold 1 seed 2 [184,320] train   -0.07 bp/dd  0.3 bp ( 240 trades)  val   +0.29 bp/dd  0.1 bp ( 224)  score  -0.00  (ineligible)  entropy 2.79  71s
+    fold 3 seed 2 [163,840] train   +0.04 bp/dd  0.2 bp ( 291 trades)  val   +0.33 bp/dd  0.1 bp ( 270)  score  -0.00  entropy 2.84  66s
+    fold 2 seed 1 [184,320] train   +0.29 bp/dd  0.1 bp ( 105 trades)  val   +0.09 bp/dd  0.1 bp ( 126)  score  +0.00  <- best  entropy 2.82  71s
+    fold 4 seed 1 [163,840] train   +0.13 bp/dd  0.2 bp ( 147 trades)  val   +0.19 bp/dd  0.1 bp ( 165)  score  +0.00  <- best  entropy 2.91  67s
+    fold 2 seed 2 [184,320] train   +0.28 bp/dd  0.1 bp ( 125 trades)  val   +0.04 bp/dd  0.1 bp ( 123)  score  -0.00  entropy 2.81  73s
+    fold 4 seed 2 [163,840] train   +0.13 bp/dd  0.1 bp ( 164 trades)  val   -0.16 bp/dd  0.2 bp ( 165)  score  -0.00  (ineligible)  entropy 2.80  66s
+    fold 1 seed 1 [204,800] train   -0.15 bp/dd  0.3 bp ( 209 trades)  val   +0.27 bp/dd  0.0 bp ( 230)  score  -0.00  (ineligible)  entropy 2.74  78s
+    fold 3 seed 1 [184,320] train   +0.01 bp/dd  0.1 bp ( 151 trades)  val   +0.12 bp/dd  0.2 bp ( 157)  score  -0.00  entropy 2.77  73s
+    fold 1 seed 2 [204,800] train   -0.04 bp/dd  0.3 bp ( 277 trades)  val   +0.46 bp/dd  0.1 bp ( 274)  score  -0.00  (ineligible)  entropy 2.73  79s
+    fold 2 seed 1 [204,800] train   +0.25 bp/dd  0.1 bp (  86 trades)  val   +0.05 bp/dd  0.1 bp ( 117)  score  -0.00  entropy 2.72  79s
+    fold 3 seed 2 [184,320] train   +0.19 bp/dd  0.2 bp ( 344 trades)  val   +0.38 bp/dd  0.1 bp ( 318)  score  +0.00  <- best  entropy 2.74  75s
+    fold 2 seed 2 [204,800] train   +0.18 bp/dd  0.1 bp ( 163 trades)  val   -0.00 bp/dd  0.1 bp ( 166)  score  -0.00  (ineligible)  entropy 2.77  80s
+    fold 4 seed 1 [184,320] train   +0.23 bp/dd  0.3 bp ( 186 trades)  val   +0.02 bp/dd  0.2 bp ( 230)  score  -0.00  entropy 2.84  75s
+    fold 4 seed 2 [184,320] train   +0.29 bp/dd  0.1 bp ( 125 trades)  val   -0.28 bp/dd  0.3 bp ( 133)  score  -0.00  (ineligible)  entropy 2.80  75s
+    fold 3 seed 1 [204,800] train   -0.04 bp/dd  0.1 bp ( 134 trades)  val   +0.19 bp/dd  0.1 bp ( 123)  score  -0.00  (ineligible)  entropy 2.70  82s
+    fold 1 seed 1 [225,280] train   -0.01 bp/dd  0.3 bp ( 230 trades)  val   +0.40 bp/dd  0.1 bp ( 253)  score  -0.00  (ineligible)  entropy 2.72  87s
+    fold 1 seed 2 [225,280] train   -0.03 bp/dd  0.3 bp ( 273 trades)  val   +0.41 bp/dd  0.1 bp ( 252)  score  -0.00  (ineligible)  entropy 2.71  88s
+    fold 2 seed 1 [225,280] train   +0.25 bp/dd  0.1 bp (  92 trades)  val   +0.15 bp/dd  0.2 bp ( 106)  score  +0.00  <- best  entropy 2.74  88s
+    fold 3 seed 2 [204,800] train   +0.08 bp/dd  0.2 bp ( 397 trades)  val   +0.25 bp/dd  0.2 bp ( 364)  score  -0.00  entropy 2.75  84s
+    fold 2 seed 2 [225,280] train   +0.14 bp/dd  0.1 bp ( 177 trades)  val   +0.07 bp/dd  0.1 bp ( 184)  score  +0.00  <- best  entropy 2.71  89s
+    fold 4 seed 1 [204,800] train   +0.28 bp/dd  0.2 bp ( 235 trades)  val   +0.23 bp/dd  0.1 bp ( 260)  score  +0.00  <- best  entropy 2.81  84s
+    fold 4 seed 2 [204,800] train   +0.20 bp/dd  0.1 bp ( 136 trades)  val   -0.31 bp/dd  0.4 bp ( 144)  score  -0.01  (ineligible)  entropy 2.74  82s
+    fold 3 seed 1 [225,280] train   -0.04 bp/dd  0.2 bp ( 154 trades)  val   +0.21 bp/dd  0.2 bp ( 153)  score  -0.00  (ineligible)  entropy 2.68  89s
+    fold 1 seed 1 [245,760] train   -0.00 bp/dd  0.3 bp ( 278 trades)  val   +0.42 bp/dd  0.1 bp ( 311)  score  -0.00  (ineligible)  entropy 2.71  95s
+    fold 2 seed 1 [245,760] train   +0.23 bp/dd  0.1 bp (  96 trades)  val   +0.08 bp/dd  0.1 bp ( 118)  score  +0.00  entropy 2.68  94s
+    fold 1 seed 2 [245,760] train   +0.05 bp/dd  0.3 bp ( 276 trades)  val   +0.39 bp/dd  0.1 bp ( 252)  score  -0.00  <- best  entropy 2.69  95s
+    fold 3 seed 2 [225,280] train   +0.02 bp/dd  0.2 bp ( 378 trades)  val   +0.38 bp/dd  0.1 bp ( 330)  score  -0.00  entropy 2.70  91s
+    fold 2 seed 2 [245,760] train   +0.29 bp/dd  0.1 bp ( 232 trades)  val   +0.07 bp/dd  0.2 bp ( 231)  score  -0.00  entropy 2.71  96s
+    fold 4 seed 1 [225,280] train   +0.17 bp/dd  0.3 bp ( 220 trades)  val   +0.18 bp/dd  0.1 bp ( 256)  score  +0.00  entropy 2.80  91s
+    fold 4 seed 2 [225,280] train   +0.05 bp/dd  0.2 bp ( 153 trades)  val   -0.29 bp/dd  0.4 bp ( 162)  score  -0.00  (ineligible)  entropy 2.73  89s
+    fold 3 seed 1 [245,760] train   +0.00 bp/dd  0.1 bp ( 148 trades)  val   +0.27 bp/dd  0.2 bp ( 146)  score  -0.00  entropy 2.68  96s
+    fold 1 seed 1 [266,240] train   +0.00 bp/dd  0.3 bp ( 290 trades)  val   +0.28 bp/dd  0.1 bp ( 326)  score  -0.00  entropy 2.67  102s
+    fold 2 seed 1 [266,240] train   +0.21 bp/dd  0.1 bp ( 111 trades)  val   +0.09 bp/dd  0.1 bp ( 127)  score  +0.00  entropy 2.67  101s
+    fold 1 seed 2 [266,240] train   -0.01 bp/dd  0.3 bp ( 272 trades)  val   +0.46 bp/dd  0.1 bp ( 260)  score  -0.00  (ineligible)  entropy 2.63  102s
+    fold 3 seed 2 [245,760] train   +0.29 bp/dd  0.2 bp ( 383 trades)  val   +0.24 bp/dd  0.2 bp ( 327)  score  +0.00  <- best  entropy 2.67  97s
+    fold 2 seed 2 [266,240] train   +0.29 bp/dd  0.2 bp ( 210 trades)  val   +0.16 bp/dd  0.1 bp ( 215)  score  +0.00  <- best  entropy 2.67  103s
+    fold 4 seed 1 [245,760] train   +0.20 bp/dd  0.2 bp ( 205 trades)  val   +0.20 bp/dd  0.1 bp ( 240)  score  +0.00  entropy 2.79  98s
+    fold 4 seed 2 [245,760] train   +0.16 bp/dd  0.1 bp ( 139 trades)  val   -0.32 bp/dd  0.4 bp ( 157)  score  -0.01  (ineligible)  entropy 2.65  96s
+    fold 3 seed 1 [266,240] train   +0.09 bp/dd  0.1 bp ( 132 trades)  val   +0.44 bp/dd  0.2 bp ( 124)  score  +0.00  <- best  entropy 2.65  104s
+    fold 1 seed 1 [286,720] train   -0.03 bp/dd  0.3 bp ( 288 trades)  val   +0.30 bp/dd  0.1 bp ( 317)  score  -0.00  (ineligible)  entropy 2.65  110s
+    fold 2 seed 1 [286,720] train   +0.27 bp/dd  0.1 bp ( 110 trades)  val   +0.05 bp/dd  0.1 bp ( 124)  score  -0.00  entropy 2.67  108s
+    fold 1 seed 2 [286,720] train   -0.12 bp/dd  0.3 bp ( 262 trades)  val   +0.40 bp/dd  0.1 bp ( 258)  score  -0.00  (ineligible)  entropy 2.69  110s
+    fold 3 seed 2 [266,240] train   +0.13 bp/dd  0.2 bp ( 362 trades)  val   +0.38 bp/dd  0.1 bp ( 318)  score  +0.00  entropy 2.65  105s
+    fold 2 seed 2 [286,720] train   +0.32 bp/dd  0.2 bp ( 197 trades)  val   +0.13 bp/dd  0.1 bp ( 215)  score  +0.00  entropy 2.72  110s
+    fold 4 seed 1 [266,240] train   +0.27 bp/dd  0.2 bp ( 180 trades)  val   +0.16 bp/dd  0.1 bp ( 212)  score  +0.00  entropy 2.76  106s
+    fold 4 seed 2 [266,240] train   +0.08 bp/dd  0.1 bp ( 137 trades)  val   -0.31 bp/dd  0.4 bp ( 153)  score  -0.01  (ineligible)  entropy 2.63  103s
+    fold 1 seed 1 [301,056] train   -0.02 bp/dd  0.3 bp ( 291 trades)  val   +0.29 bp/dd  0.1 bp ( 326)  score  -0.00  (ineligible)  entropy 2.65  115s
+    fold 2 seed 1 [301,056] train   +0.29 bp/dd  0.1 bp ( 110 trades)  val   +0.14 bp/dd  0.1 bp ( 125)  score  +0.00  entropy 2.70  113s
+    fold 3 seed 1 [286,720] train   +0.04 bp/dd  0.1 bp ( 140 trades)  val   +0.37 bp/dd  0.1 bp ( 118)  score  -0.00  entropy 2.66  111s
+    fold 1 seed 2 [301,056] train   -0.12 bp/dd  0.3 bp ( 263 trades)  val   +0.43 bp/dd  0.1 bp ( 259)  score  -0.00  (ineligible)  entropy 2.64  116s
+    fold 3 seed 2 [286,720] train   +0.21 bp/dd  0.1 bp ( 382 trades)  val   +0.32 bp/dd  0.2 bp ( 329)  score  +0.00  entropy 2.66  113s
+    fold 2 seed 2 [301,056] train   +0.36 bp/dd  0.2 bp ( 208 trades)  val   +0.17 bp/dd  0.1 bp ( 219)  score  +0.00  <- best  entropy 2.69  116s
+    fold 3 seed 1 [301,056] train   +0.02 bp/dd  0.1 bp ( 143 trades)  val   +0.35 bp/dd  0.1 bp ( 122)  score  -0.00  entropy 2.67  117s
+    fold 4 seed 1 [286,720] train   +0.16 bp/dd  0.3 bp ( 197 trades)  val   +0.11 bp/dd  0.2 bp ( 231)  score  +0.00  entropy 2.71  113s
+    fold 4 seed 2 [286,720] train   +0.11 bp/dd  0.1 bp ( 135 trades)  val   -0.28 bp/dd  0.4 bp ( 150)  score  -0.00  (ineligible)  entropy 2.66  111s
+    fold 5 seed 1 [ 20,480] train   -0.75 bp/dd  0.8 bp ( 861 trades)  val   -0.67 bp/dd  0.7 bp ( 905)  score  -0.01  (ineligible)  entropy 3.55  8s
+    fold 5 seed 2 [ 20,480] train   -1.00 bp/dd  1.0 bp ( 864 trades)  val   -1.00 bp/dd  1.0 bp ( 869)  score  -0.02  (ineligible)  entropy 3.55  8s
+    fold 6 seed 1 [ 20,480] train   -0.85 bp/dd  0.9 bp ( 393 trades)  val   -0.71 bp/dd  0.7 bp ( 444)  score  -0.01  (ineligible)  entropy 3.53  8s
+    fold 3 seed 2 [301,056] train   +0.27 bp/dd  0.1 bp ( 369 trades)  val   +0.34 bp/dd  0.1 bp ( 324)  score  +0.00  <- best  entropy 2.69  119s
+    fold 6 seed 2 [ 20,480] train   -0.26 bp/dd  0.3 bp ( 426 trades)  val   -0.20 bp/dd  0.3 bp ( 399)  score  -0.00  (ineligible)  entropy 3.55  8s
+    fold 4 seed 2 [301,056] train   +0.15 bp/dd  0.1 bp ( 137 trades)  val   -0.30 bp/dd  0.4 bp ( 155)  score  -0.00  (ineligible)  entropy 2.64  117s
+    fold 4 seed 1 [301,056] train   +0.17 bp/dd  0.3 bp ( 189 trades)  val   +0.11 bp/dd  0.2 bp ( 227)  score  +0.00  entropy 2.71  120s
+    fold 7 seed 1 [ 20,480] train   -1.23 bp/dd  1.3 bp (1260 trades)  val   -1.43 bp/dd  1.4 bp (1216)  score  -0.02  (ineligible)  entropy 3.54  8s
+    fold 5 seed 1 [ 40,960] train   -0.06 bp/dd  0.1 bp ( 351 trades)  val   -0.38 bp/dd  0.4 bp ( 364)  score  -0.01  (ineligible)  entropy 3.48  16s
+    fold 5 seed 2 [ 40,960] train   -0.23 bp/dd  0.3 bp ( 262 trades)  val   -0.07 bp/dd  0.2 bp ( 239)  score  -0.00  (ineligible)  entropy 3.49  16s
+    fold 6 seed 1 [ 40,960] train   -0.27 bp/dd  0.3 bp ( 250 trades)  val   -0.04 bp/dd  0.1 bp ( 280)  score  -0.00  (ineligible)  entropy 3.44  16s
+    fold 7 seed 2 [ 20,480] train   -0.97 bp/dd  1.0 bp ( 611 trades)  val   -0.52 bp/dd  0.5 bp ( 597)  score  -0.01  (ineligible)  entropy 3.56  8s
+    fold 6 seed 2 [ 40,960] train   -0.04 bp/dd  0.1 bp ( 329 trades)  val   +0.07 bp/dd  0.2 bp ( 306)  score  -0.00  (ineligible)  entropy 3.47  16s
+    fold 8 seed 2 [ 20,480] train   -0.73 bp/dd  0.7 bp ( 532 trades)  val   -0.49 bp/dd  0.6 bp ( 561)  score  -0.01  (ineligible)  entropy 3.55  8s
+    fold 8 seed 1 [ 20,480] train   -0.93 bp/dd  1.0 bp ( 918 trades)  val   -0.80 bp/dd  0.8 bp ( 914)  score  -0.01  (ineligible)  entropy 3.55  9s
+    fold 7 seed 1 [ 40,960] train   -0.88 bp/dd  0.9 bp ( 906 trades)  val   -0.75 bp/dd  0.8 bp ( 859)  score  -0.01  (ineligible)  entropy 3.48  17s
+    fold 5 seed 1 [ 61,440] train   -0.02 bp/dd  0.1 bp ( 351 trades)  val   -0.09 bp/dd  0.2 bp ( 380)  score  -0.00  (ineligible)  entropy 3.36  28s
+    fold 5 seed 2 [ 61,440] train   -0.09 bp/dd  0.2 bp ( 230 trades)  val   -0.18 bp/dd  0.2 bp ( 190)  score  -0.00  (ineligible)  entropy 3.36  28s
+    fold 6 seed 1 [ 61,440] train   -0.05 bp/dd  0.1 bp (  35 trades)  val   -0.01 bp/dd  0.1 bp (  39)  score  -0.00  (ineligible)  entropy 3.31  28s
+    fold 7 seed 2 [ 40,960] train   -0.21 bp/dd  0.3 bp ( 147 trades)  val   +0.03 bp/dd  0.1 bp ( 135)  score  -0.00  (ineligible)  entropy 3.49  22s
+    fold 6 seed 2 [ 61,440] train   +0.07 bp/dd  0.1 bp ( 180 trades)  val   +0.00 bp/dd  0.1 bp ( 144)  score  -0.00  <- best  entropy 3.36  30s
+    fold 8 seed 2 [ 40,960] train   -0.32 bp/dd  0.3 bp ( 424 trades)  val   -0.65 bp/dd  0.7 bp ( 405)  score  -0.01  (ineligible)  entropy 3.50  22s
+    fold 8 seed 1 [ 40,960] train   -0.69 bp/dd  0.7 bp ( 516 trades)  val   -0.38 bp/dd  0.4 bp ( 522)  score  -0.01  (ineligible)  entropy 3.48  22s
+    fold 7 seed 1 [ 61,440] train   -0.20 bp/dd  0.3 bp ( 491 trades)  val   -0.61 bp/dd  0.6 bp ( 435)  score  -0.01  (ineligible)  entropy 3.42  30s
+    fold 5 seed 1 [ 81,920] train   -0.03 bp/dd  0.1 bp ( 401 trades)  val   -0.07 bp/dd  0.1 bp ( 401)  score  -0.00  (ineligible)  entropy 3.24  38s
+    fold 5 seed 2 [ 81,920] train   -0.15 bp/dd  0.2 bp ( 176 trades)  val   -0.15 bp/dd  0.2 bp ( 166)  score  -0.00  (ineligible)  entropy 3.23  38s
+    fold 6 seed 1 [ 81,920] train   -0.05 bp/dd  0.1 bp (  53 trades)  val   -0.05 bp/dd  0.1 bp (  47)  score  -0.00  (ineligible)  entropy 3.19  37s
+    fold 7 seed 2 [ 61,440] train   -0.12 bp/dd  0.2 bp ( 172 trades)  val   +0.08 bp/dd  0.1 bp ( 128)  score  -0.00  (ineligible)  entropy 3.39  30s
+    fold 6 seed 2 [ 81,920] train   +0.16 bp/dd  0.1 bp ( 274 trades)  val   -0.06 bp/dd  0.2 bp ( 245)  score  -0.00  (ineligible)  entropy 3.23  38s
+    fold 8 seed 2 [ 61,440] train   -0.21 bp/dd  0.2 bp ( 392 trades)  val   -0.33 bp/dd  0.4 bp ( 390)  score  -0.01  (ineligible)  entropy 3.42  30s
+    fold 8 seed 1 [ 61,440] train   -0.16 bp/dd  0.2 bp ( 132 trades)  val   +0.06 bp/dd  0.1 bp ( 119)  score  -0.00  (ineligible)  entropy 3.41  30s
+    fold 7 seed 1 [ 81,920] train   +0.08 bp/dd  0.1 bp ( 183 trades)  val   +0.01 bp/dd  0.1 bp ( 149)  score  -0.00  <- best  entropy 3.31  38s
+    fold 5 seed 2 [102,400] train   +0.01 bp/dd  0.1 bp ( 141 trades)  val   +0.10 bp/dd  0.1 bp ( 132)  score  -0.00  <- best  entropy 3.09  45s
+    fold 5 seed 1 [102,400] train   -0.13 bp/dd  0.2 bp ( 346 trades)  val   +0.04 bp/dd  0.1 bp ( 345)  score  -0.00  (ineligible)  entropy 3.12  46s
+    fold 6 seed 1 [102,400] train   -0.20 bp/dd  0.2 bp (  45 trades)  val   -0.03 bp/dd  0.1 bp (  33)  score  -0.00  (ineligible)  entropy 3.11  45s
+    fold 7 seed 2 [ 81,920] train   -0.30 bp/dd  0.3 bp ( 221 trades)  val   -0.01 bp/dd  0.1 bp ( 183)  score  -0.00  (ineligible)  entropy 3.24  38s
+    fold 6 seed 2 [102,400] train   -0.02 bp/dd  0.2 bp ( 243 trades)  val   -0.07 bp/dd  0.3 bp ( 236)  score  -0.00  (ineligible)  entropy 3.07  46s
+    fold 8 seed 2 [ 81,920] train   -0.16 bp/dd  0.2 bp ( 228 trades)  val   -0.35 bp/dd  0.4 bp ( 249)  score  -0.01  (ineligible)  entropy 3.36  38s
+    fold 8 seed 1 [ 81,920] train   -0.17 bp/dd  0.2 bp ( 205 trades)  val   +0.12 bp/dd  0.1 bp ( 186)  score  -0.00  (ineligible)  entropy 3.31  38s
+    fold 7 seed 1 [102,400] train   +0.02 bp/dd  0.1 bp (  58 trades)  val   +0.03 bp/dd  0.0 bp (  41)  score  -0.00  <- best  entropy 3.22  46s
+    fold 5 seed 2 [122,880] train   -0.07 bp/dd  0.1 bp ( 180 trades)  val   -0.12 bp/dd  0.2 bp ( 165)  score  -0.00  (ineligible)  entropy 2.96  53s
+    fold 5 seed 1 [122,880] train   -0.00 bp/dd  0.1 bp ( 252 trades)  val   +0.03 bp/dd  0.1 bp ( 257)  score  -0.00  (ineligible)  entropy 2.96  54s
+    fold 6 seed 1 [122,880] train   -0.22 bp/dd  0.2 bp (  65 trades)  val   -0.00 bp/dd  0.1 bp (  68)  score  -0.00  (ineligible)  entropy 2.99  52s
+    fold 7 seed 2 [102,400] train   -0.12 bp/dd  0.1 bp (  68 trades)  val   +0.14 bp/dd  0.1 bp (  48)  score  -0.00  (ineligible)  entropy 3.12  45s
+    fold 6 seed 2 [122,880] train   -0.02 bp/dd  0.2 bp ( 212 trades)  val   -0.07 bp/dd  0.2 bp ( 205)  score  -0.00  (ineligible)  entropy 2.98  55s
+    fold 8 seed 2 [102,400] train   -0.20 bp/dd  0.2 bp ( 228 trades)  val   -0.32 bp/dd  0.3 bp ( 260)  score  -0.00  (ineligible)  entropy 3.26  47s
+    fold 8 seed 1 [102,400] train   -0.04 bp/dd  0.1 bp ( 139 trades)  val   +0.03 bp/dd  0.1 bp ( 148)  score  -0.00  (ineligible)  entropy 3.15  47s
+    fold 7 seed 1 [122,880] train   +0.01 bp/dd  0.1 bp (  60 trades)  val   -0.03 bp/dd  0.1 bp (  41)  score  -0.00  (ineligible)  entropy 3.10  55s
+    fold 5 seed 2 [143,360] train   +0.06 bp/dd  0.1 bp ( 190 trades)  val   -0.01 bp/dd  0.1 bp ( 193)  score  -0.00  (ineligible)  entropy 2.92  62s
+    fold 6 seed 1 [143,360] train   -0.05 bp/dd  0.1 bp (  89 trades)  val   -0.01 bp/dd  0.1 bp ( 100)  score  -0.00  (ineligible)  entropy 2.88  61s
+    fold 5 seed 1 [143,360] train   -0.02 bp/dd  0.1 bp ( 198 trades)  val   +0.01 bp/dd  0.1 bp ( 206)  score  -0.00  (ineligible)  entropy 2.89  63s
+    fold 7 seed 2 [122,880] train   -0.08 bp/dd  0.1 bp ( 139 trades)  val   +0.16 bp/dd  0.1 bp ( 117)  score  -0.00  (ineligible)  entropy 2.97  54s
+    fold 6 seed 2 [143,360] train   +0.04 bp/dd  0.1 bp ( 176 trades)  val   -0.02 bp/dd  0.2 bp ( 178)  score  -0.00  (ineligible)  entropy 2.85  63s
+    fold 8 seed 2 [122,880] train   -0.08 bp/dd  0.1 bp ( 175 trades)  val   -0.04 bp/dd  0.1 bp ( 188)  score  -0.00  (ineligible)  entropy 3.14  56s
+    fold 8 seed 1 [122,880] train   -0.09 bp/dd  0.2 bp ( 115 trades)  val   +0.17 bp/dd  0.1 bp ( 132)  score  -0.00  (ineligible)  entropy 3.03  57s
+    fold 7 seed 1 [143,360] train   +0.02 bp/dd  0.1 bp (  63 trades)  val   +0.02 bp/dd  0.0 bp (  43)  score  -0.00  entropy 3.01  65s
+    fold 5 seed 2 [163,840] train   +0.08 bp/dd  0.1 bp ( 208 trades)  val   -0.11 bp/dd  0.2 bp ( 210)  score  -0.00  (ineligible)  entropy 2.78  73s
+    fold 6 seed 1 [163,840] train   -0.13 bp/dd  0.3 bp ( 113 trades)  val   +0.02 bp/dd  0.2 bp ( 123)  score  -0.00  (ineligible)  entropy 2.84  72s
+    fold 5 seed 1 [163,840] train   -0.05 bp/dd  0.1 bp ( 216 trades)  val   +0.09 bp/dd  0.1 bp ( 219)  score  -0.00  (ineligible)  entropy 2.84  74s
+    fold 7 seed 2 [143,360] train   -0.04 bp/dd  0.1 bp ( 141 trades)  val   +0.14 bp/dd  0.1 bp ( 133)  score  -0.00  (ineligible)  entropy 2.92  68s
+    fold 6 seed 2 [163,840] train   -0.09 bp/dd  0.1 bp ( 238 trades)  val   -0.14 bp/dd  0.3 bp ( 231)  score  -0.00  (ineligible)  entropy 2.79  77s
+    fold 8 seed 2 [143,360] train   +0.00 bp/dd  0.1 bp ( 142 trades)  val   +0.08 bp/dd  0.1 bp ( 158)  score  -0.00  <- best  entropy 2.98  69s
+    fold 8 seed 1 [143,360] train   +0.05 bp/dd  0.2 bp ( 130 trades)  val   +0.15 bp/dd  0.1 bp ( 144)  score  -0.00  <- best  entropy 2.93  69s
+    fold 7 seed 1 [163,840] train   -0.04 bp/dd  0.1 bp ( 133 trades)  val   +0.03 bp/dd  0.1 bp ( 128)  score  -0.00  (ineligible)  entropy 2.90  76s
+    fold 5 seed 2 [184,320] train   +0.08 bp/dd  0.1 bp ( 211 trades)  val   +0.06 bp/dd  0.1 bp ( 202)  score  -0.00  <- best  entropy 2.72  84s
+    fold 6 seed 1 [184,320] train   -0.04 bp/dd  0.2 bp ( 123 trades)  val   -0.02 bp/dd  0.2 bp ( 126)  score  -0.00  (ineligible)  entropy 2.78  83s
+    fold 5 seed 1 [184,320] train   -0.09 bp/dd  0.2 bp ( 277 trades)  val   +0.04 bp/dd  0.2 bp ( 256)  score  -0.00  (ineligible)  entropy 2.81  86s
+    fold 7 seed 2 [163,840] train   -0.08 bp/dd  0.2 bp ( 160 trades)  val   +0.45 bp/dd  0.1 bp ( 148)  score  -0.00  (ineligible)  entropy 2.84  77s
+    fold 6 seed 2 [184,320] train   +0.02 bp/dd  0.1 bp ( 195 trades)  val   -0.04 bp/dd  0.3 bp ( 199)  score  -0.00  (ineligible)  entropy 2.71  85s
+    fold 7 seed 1 [184,320] train   -0.07 bp/dd  0.1 bp ( 136 trades)  val   +0.08 bp/dd  0.1 bp ( 127)  score  -0.00  (ineligible)  entropy 2.80  84s
+    fold 8 seed 1 [163,840] train   +0.23 bp/dd  0.1 bp ( 100 trades)  val   +0.16 bp/dd  0.1 bp ( 124)  score  +0.00  <- best  entropy 2.86  77s
+    fold 8 seed 2 [163,840] train   +0.09 bp/dd  0.1 bp ( 136 trades)  val   -0.04 bp/dd  0.1 bp ( 153)  score  -0.00  (ineligible)  entropy 2.96  77s
+    fold 5 seed 2 [204,800] train   +0.12 bp/dd  0.1 bp ( 159 trades)  val   +0.07 bp/dd  0.1 bp ( 169)  score  +0.00  <- best  entropy 2.71  92s
+    fold 6 seed 1 [204,800] train   -0.26 bp/dd  0.3 bp ( 188 trades)  val   -0.13 bp/dd  0.3 bp ( 176)  score  -0.00  (ineligible)  entropy 2.73  93s
+    fold 5 seed 1 [204,800] train   -0.19 bp/dd  0.2 bp ( 277 trades)  val   -0.17 bp/dd  0.2 bp ( 276)  score  -0.00  (ineligible)  entropy 2.76  97s
+    fold 7 seed 2 [184,320] train   -0.18 bp/dd  0.2 bp ( 192 trades)  val   +0.34 bp/dd  0.1 bp ( 165)  score  -0.00  (ineligible)  entropy 2.80  88s
+    fold 6 seed 2 [204,800] train   +0.05 bp/dd  0.1 bp ( 213 trades)  val   -0.09 bp/dd  0.3 bp ( 215)  score  -0.00  (ineligible)  entropy 2.67  96s
+    fold 7 seed 1 [204,800] train   -0.15 bp/dd  0.2 bp ( 146 trades)  val   +0.11 bp/dd  0.1 bp ( 144)  score  -0.00  (ineligible)  entropy 2.78  95s
+    fold 8 seed 1 [184,320] train   +0.12 bp/dd  0.1 bp ( 119 trades)  val   +0.25 bp/dd  0.1 bp ( 136)  score  +0.00  entropy 2.79  87s
+    fold 8 seed 2 [184,320] train   +0.23 bp/dd  0.0 bp (  76 trades)  val   -0.03 bp/dd  0.1 bp (  99)  score  -0.00  (ineligible)  entropy 2.85  88s
+    fold 5 seed 2 [225,280] train   +0.13 bp/dd  0.1 bp ( 201 trades)  val   -0.00 bp/dd  0.1 bp ( 194)  score  -0.00  (ineligible)  entropy 2.76  103s
+    fold 6 seed 1 [225,280] train   -0.35 bp/dd  0.4 bp ( 216 trades)  val   -0.23 bp/dd  0.4 bp ( 206)  score  -0.01  (ineligible)  entropy 2.70  103s
+    fold 5 seed 1 [225,280] train   -0.17 bp/dd  0.3 bp ( 256 trades)  val   -0.13 bp/dd  0.2 bp ( 246)  score  -0.00  (ineligible)  entropy 2.74  107s
+    fold 7 seed 2 [204,800] train   -0.26 bp/dd  0.3 bp ( 201 trades)  val   +0.36 bp/dd  0.1 bp ( 192)  score  -0.00  (ineligible)  entropy 2.75  98s
+    fold 7 seed 1 [225,280] train   -0.09 bp/dd  0.1 bp ( 219 trades)  val   +0.19 bp/dd  0.1 bp ( 218)  score  -0.00  (ineligible)  entropy 2.78  104s
+    fold 6 seed 2 [225,280] train   +0.01 bp/dd  0.1 bp ( 185 trades)  val   -0.12 bp/dd  0.3 bp ( 173)  score  -0.00  (ineligible)  entropy 2.67  106s
+    fold 8 seed 1 [204,800] train   +0.11 bp/dd  0.1 bp ( 121 trades)  val   +0.16 bp/dd  0.1 bp ( 141)  score  +0.00  entropy 2.77  97s
+    fold 8 seed 2 [204,800] train   +0.22 bp/dd  0.1 bp ( 106 trades)  val   +0.04 bp/dd  0.0 bp ( 111)  score  +0.00  <- best  entropy 2.85  97s
+    fold 5 seed 2 [245,760] train   +0.01 bp/dd  0.1 bp ( 210 trades)  val   +0.07 bp/dd  0.1 bp ( 205)  score  -0.00  entropy 2.72  111s
+    fold 6 seed 1 [245,760] train   -0.37 bp/dd  0.4 bp ( 271 trades)  val   -0.26 bp/dd  0.4 bp ( 257)  score  -0.01  (ineligible)  entropy 2.69  111s
+    fold 5 seed 1 [245,760] train   -0.07 bp/dd  0.3 bp ( 235 trades)  val   -0.01 bp/dd  0.2 bp ( 229)  score  -0.00  (ineligible)  entropy 2.69  114s
+    fold 7 seed 2 [225,280] train   -0.32 bp/dd  0.4 bp ( 200 trades)  val   +0.40 bp/dd  0.1 bp ( 183)  score  -0.00  (ineligible)  entropy 2.70  105s
+    fold 8 seed 1 [225,280] train   +0.15 bp/dd  0.2 bp ( 162 trades)  val   +0.27 bp/dd  0.1 bp ( 168)  score  +0.00  entropy 2.63  104s
+    fold 7 seed 1 [245,760] train   -0.24 bp/dd  0.3 bp ( 238 trades)  val   +0.25 bp/dd  0.1 bp ( 222)  score  -0.00  (ineligible)  entropy 2.71  112s
+    fold 6 seed 2 [245,760] train   -0.00 bp/dd  0.2 bp ( 214 trades)  val   -0.12 bp/dd  0.3 bp ( 232)  score  -0.00  (ineligible)  entropy 2.66  114s
+    fold 8 seed 2 [225,280] train   +0.18 bp/dd  0.0 bp (  74 trades)  val   +0.02 bp/dd  0.0 bp (  84)  score  -0.00  entropy 2.77  105s
+    fold 5 seed 2 [266,240] train   +0.05 bp/dd  0.2 bp ( 187 trades)  val   +0.16 bp/dd  0.1 bp ( 192)  score  -0.00  entropy 2.67  119s
+    fold 6 seed 1 [266,240] train   -0.26 bp/dd  0.3 bp ( 261 trades)  val   -0.29 bp/dd  0.4 bp ( 250)  score  -0.01  (ineligible)  entropy 2.63  118s
+    fold 5 seed 1 [266,240] train   +0.04 bp/dd  0.2 bp ( 230 trades)  val   +0.01 bp/dd  0.2 bp ( 237)  score  -0.00  <- best  entropy 2.70  122s
+    fold 7 seed 2 [245,760] train   -0.31 bp/dd  0.4 bp ( 217 trades)  val   +0.26 bp/dd  0.2 bp ( 209)  score  -0.00  (ineligible)  entropy 2.63  113s
+    fold 8 seed 1 [245,760] train   +0.19 bp/dd  0.2 bp ( 171 trades)  val   +0.28 bp/dd  0.1 bp ( 179)  score  +0.00  entropy 2.68  112s
+    fold 7 seed 1 [266,240] train   -0.15 bp/dd  0.2 bp ( 177 trades)  val   +0.28 bp/dd  0.1 bp ( 194)  score  -0.00  (ineligible)  entropy 2.71  119s
+    fold 6 seed 2 [266,240] train   +0.05 bp/dd  0.1 bp ( 228 trades)  val   -0.15 bp/dd  0.3 bp ( 250)  score  -0.00  (ineligible)  entropy 2.62  121s
+    fold 8 seed 2 [245,760] train   +0.23 bp/dd  0.0 bp (  78 trades)  val   +0.15 bp/dd  0.0 bp (  86)  score  +0.00  <- best  entropy 2.72  113s
+    fold 5 seed 2 [286,720] train   +0.05 bp/dd  0.1 bp ( 210 trades)  val   +0.16 bp/dd  0.1 bp ( 202)  score  -0.00  entropy 2.71  126s
+    fold 6 seed 1 [286,720] train   -0.17 bp/dd  0.2 bp ( 254 trades)  val   -0.27 bp/dd  0.4 bp ( 258)  score  -0.00  (ineligible)  entropy 2.61  126s
+    fold 5 seed 1 [286,720] train   -0.01 bp/dd  0.2 bp ( 229 trades)  val   -0.03 bp/dd  0.2 bp ( 232)  score  -0.00  (ineligible)  entropy 2.71  130s
+    fold 7 seed 2 [266,240] train   -0.35 bp/dd  0.4 bp ( 227 trades)  val   +0.27 bp/dd  0.2 bp ( 215)  score  -0.01  (ineligible)  entropy 2.65  120s
+    fold 5 seed 2 [301,056] train   +0.04 bp/dd  0.1 bp ( 209 trades)  val   +0.15 bp/dd  0.1 bp ( 206)  score  -0.00  entropy 2.70  131s
+    fold 8 seed 1 [266,240] train   +0.19 bp/dd  0.2 bp ( 174 trades)  val   +0.22 bp/dd  0.1 bp ( 186)  score  +0.00  entropy 2.69  118s
+    fold 6 seed 1 [301,056] train   -0.24 bp/dd  0.3 bp ( 248 trades)  val   -0.26 bp/dd  0.4 bp ( 253)  score  -0.00  (ineligible)  entropy 2.65  131s
+    fold 7 seed 1 [286,720] train   -0.12 bp/dd  0.2 bp ( 170 trades)  val   +0.24 bp/dd  0.1 bp ( 184)  score  -0.00  (ineligible)  entropy 2.71  126s
+    fold 6 seed 2 [286,720] train   +0.06 bp/dd  0.1 bp ( 229 trades)  val   -0.17 bp/dd  0.4 bp ( 238)  score  -0.00  (ineligible)  entropy 2.66  129s
+    fold 8 seed 2 [266,240] train   +0.26 bp/dd  0.1 bp ( 100 trades)  val   +0.17 bp/dd  0.1 bp ( 102)  score  +0.00  entropy 2.67  120s
+    fold 5 seed 1 [301,056] train   -0.00 bp/dd  0.2 bp ( 224 trades)  val   +0.04 bp/dd  0.2 bp ( 230)  score  -0.00  (ineligible)  entropy 2.70  135s
+    fold 7 seed 1 [301,056] train   -0.12 bp/dd  0.2 bp ( 160 trades)  val   +0.21 bp/dd  0.1 bp ( 176)  score  -0.00  (ineligible)  entropy 2.70  132s
+    fold 9 seed 1 [ 20,480] train   -0.31 bp/dd  0.4 bp ( 476 trades)  val   -0.42 bp/dd  0.4 bp ( 524)  score  -0.01  (ineligible)  entropy 3.55  7s
+    fold 7 seed 2 [286,720] train   -0.30 bp/dd  0.4 bp ( 232 trades)  val   +0.31 bp/dd  0.2 bp ( 210)  score  -0.00  (ineligible)  entropy 2.67  128s
+    fold 6 seed 2 [301,056] train   +0.05 bp/dd  0.1 bp ( 224 trades)  val   -0.15 bp/dd  0.3 bp ( 237)  score  -0.00  (ineligible)  entropy 2.68  134s
+    fold 8 seed 1 [286,720] train   +0.15 bp/dd  0.2 bp ( 201 trades)  val   +0.30 bp/dd  0.1 bp ( 213)  score  +0.00  entropy 2.66  126s
+    fold 9 seed 2 [ 20,480] train   -0.23 bp/dd  0.3 bp ( 262 trades)  val   -0.30 bp/dd  0.3 bp ( 284)  score  -0.00  (ineligible)  entropy 3.55  7s
+    fold 8 seed 2 [286,720] train   +0.26 bp/dd  0.0 bp (  73 trades)  val   +0.15 bp/dd  0.1 bp (  86)  score  +0.00  entropy 2.67  127s
+    fold 10 seed 1 [ 20,480] train   -0.79 bp/dd  0.8 bp ( 556 trades)  val   -0.38 bp/dd  0.4 bp ( 544)  score  -0.01  (ineligible)  entropy 3.55  7s
+    fold 7 seed 2 [301,056] train   -0.29 bp/dd  0.4 bp ( 226 trades)  val   +0.33 bp/dd  0.2 bp ( 212)  score  -0.00  (ineligible)  entropy 2.64  133s
+    fold 8 seed 1 [301,056] train   +0.15 bp/dd  0.2 bp ( 203 trades)  val   +0.30 bp/dd  0.1 bp ( 214)  score  +0.00  entropy 2.72  131s
+    fold 10 seed 2 [ 20,480] train   -0.11 bp/dd  0.2 bp ( 301 trades)  val   -0.59 bp/dd  0.6 bp ( 347)  score  -0.01  (ineligible)  entropy 3.55  7s
+    fold 8 seed 2 [301,056] train   +0.26 bp/dd  0.0 bp (  75 trades)  val   +0.14 bp/dd  0.1 bp (  87)  score  +0.00  entropy 2.66  132s
+    fold 11 seed 1 [ 20,480] train   -0.01 bp/dd  0.1 bp (  60 trades)  val   +0.03 bp/dd  0.1 bp (  72)  score  -0.00  (ineligible)  entropy 3.54  7s
+    fold 9 seed 1 [ 40,960] train   +0.12 bp/dd  0.1 bp ( 506 trades)  val   -0.22 bp/dd  0.3 bp ( 509)  score  -0.00  (ineligible)  entropy 3.50  15s
+    fold 9 seed 2 [ 40,960] train   -0.17 bp/dd  0.2 bp ( 180 trades)  val   -0.09 bp/dd  0.2 bp ( 196)  score  -0.00  (ineligible)  entropy 3.45  15s
+    fold 10 seed 1 [ 40,960] train   +0.01 bp/dd  0.1 bp ( 187 trades)  val   -0.05 bp/dd  0.1 bp ( 166)  score  -0.00  (ineligible)  entropy 3.49  14s
+    fold 11 seed 2 [ 20,480] train   -0.87 bp/dd  0.9 bp ( 584 trades)  val   -0.48 bp/dd  0.5 bp ( 588)  score  -0.01  (ineligible)  entropy 3.56  7s
+    fold 12 seed 1 [ 20,480] train   -0.34 bp/dd  0.4 bp ( 499 trades)  val   -0.97 bp/dd  1.0 bp ( 501)  score  -0.01  (ineligible)  entropy 3.55  7s
+    fold 10 seed 2 [ 40,960] train   -0.03 bp/dd  0.3 bp ( 341 trades)  val   -0.34 bp/dd  0.3 bp ( 385)  score  -0.01  (ineligible)  entropy 3.51  14s
+    fold 12 seed 2 [ 20,480] train   -0.92 bp/dd  0.9 bp ( 549 trades)  val   -0.74 bp/dd  0.7 bp ( 519)  score  -0.01  (ineligible)  entropy 3.55  7s
+    fold 11 seed 1 [ 40,960] train   -0.09 bp/dd  0.1 bp (  79 trades)  val   -0.09 bp/dd  0.1 bp (  85)  score  -0.00  (ineligible)  entropy 3.45  14s
+    fold 9 seed 1 [ 61,440] train   +0.10 bp/dd  0.2 bp ( 634 trades)  val   +0.08 bp/dd  0.2 bp ( 646)  score  -0.00  <- best  entropy 3.41  22s
+    fold 9 seed 2 [ 61,440] train   +0.06 bp/dd  0.1 bp ( 115 trades)  val   -0.24 bp/dd  0.2 bp ( 140)  score  -0.00  (ineligible)  entropy 3.33  22s
+    fold 10 seed 1 [ 61,440] train   -0.15 bp/dd  0.2 bp ( 185 trades)  val   -0.17 bp/dd  0.2 bp ( 161)  score  -0.00  (ineligible)  entropy 3.41  21s
+    fold 11 seed 2 [ 40,960] train   -0.51 bp/dd  0.5 bp ( 522 trades)  val   -0.39 bp/dd  0.4 bp ( 500)  score  -0.01  (ineligible)  entropy 3.49  14s
+    fold 12 seed 1 [ 40,960] train   -0.05 bp/dd  0.2 bp ( 339 trades)  val   -0.33 bp/dd  0.3 bp ( 332)  score  -0.00  (ineligible)  entropy 3.50  14s
+    fold 10 seed 2 [ 61,440] train   -0.02 bp/dd  0.2 bp ( 290 trades)  val   -0.48 bp/dd  0.5 bp ( 310)  score  -0.01  (ineligible)  entropy 3.45  21s
+    fold 12 seed 2 [ 40,960] train   -0.15 bp/dd  0.2 bp ( 316 trades)  val   -0.43 bp/dd  0.5 bp ( 298)  score  -0.01  (ineligible)  entropy 3.48  14s
+    fold 11 seed 1 [ 61,440] train   -0.07 bp/dd  0.1 bp (  82 trades)  val   +0.03 bp/dd  0.1 bp (  94)  score  -0.00  (ineligible)  entropy 3.34  21s
+    fold 9 seed 1 [ 81,920] train   +0.26 bp/dd  0.1 bp ( 444 trades)  val   +0.16 bp/dd  0.2 bp ( 470)  score  +0.00  <- best  entropy 3.34  29s
+    fold 9 seed 2 [ 81,920] train   +0.01 bp/dd  0.1 bp (  54 trades)  val   -0.00 bp/dd  0.1 bp (  54)  score  -0.00  (ineligible)  entropy 3.21  30s
+    fold 10 seed 1 [ 81,920] train   +0.01 bp/dd  0.1 bp (  74 trades)  val   -0.19 bp/dd  0.2 bp (  65)  score  -0.00  (ineligible)  entropy 3.28  30s
+    fold 11 seed 2 [ 61,440] train   -0.27 bp/dd  0.3 bp ( 297 trades)  val   -0.15 bp/dd  0.2 bp ( 313)  score  -0.00  (ineligible)  entropy 3.38  24s
+    fold 12 seed 1 [ 61,440] train   +0.10 bp/dd  0.2 bp ( 276 trades)  val   -0.09 bp/dd  0.2 bp ( 246)  score  -0.00  (ineligible)  entropy 3.41  25s
+    fold 10 seed 2 [ 81,920] train   -0.00 bp/dd  0.2 bp ( 254 trades)  val   -0.21 bp/dd  0.3 bp ( 284)  score  -0.00  (ineligible)  entropy 3.35  32s
+    fold 11 seed 1 [ 81,920] train   -0.05 bp/dd  0.1 bp (  91 trades)  val   +0.03 bp/dd  0.1 bp ( 123)  score  -0.00  (ineligible)  entropy 3.17  31s
+    fold 12 seed 2 [ 61,440] train   -0.03 bp/dd  0.1 bp ( 260 trades)  val   -0.11 bp/dd  0.3 bp ( 271)  score  -0.00  (ineligible)  entropy 3.41  25s
+    fold 9 seed 1 [102,400] train   +0.34 bp/dd  0.1 bp ( 380 trades)  val   +0.17 bp/dd  0.2 bp ( 372)  score  +0.00  entropy 3.22  40s
+    fold 9 seed 2 [102,400] train   +0.12 bp/dd  0.0 bp (  90 trades)  val   +0.02 bp/dd  0.1 bp (  94)  score  -0.00  <- best  entropy 3.10  40s
+    fold 10 seed 1 [102,400] train   +0.06 bp/dd  0.1 bp ( 104 trades)  val   -0.11 bp/dd  0.2 bp ( 104)  score  -0.00  (ineligible)  entropy 3.19  39s
+    fold 11 seed 2 [ 81,920] train   -0.09 bp/dd  0.1 bp ( 117 trades)  val   -0.16 bp/dd  0.2 bp ( 109)  score  -0.00  (ineligible)  entropy 3.23  31s
+    fold 12 seed 1 [ 81,920] train   +0.06 bp/dd  0.1 bp ( 210 trades)  val   +0.00 bp/dd  0.2 bp ( 194)  score  -0.00  <- best  entropy 3.29  32s
+    fold 11 seed 1 [102,400] train   +0.19 bp/dd  0.1 bp ( 107 trades)  val   +0.22 bp/dd  0.0 bp ( 124)  score  +0.00  <- best  entropy 3.04  38s
+    fold 10 seed 2 [102,400] train   +0.23 bp/dd  0.1 bp ( 101 trades)  val   -0.08 bp/dd  0.1 bp ( 124)  score  -0.00  (ineligible)  entropy 3.26  39s
+    fold 12 seed 2 [ 81,920] train   -0.13 bp/dd  0.1 bp ( 234 trades)  val   -0.02 bp/dd  0.2 bp ( 229)  score  -0.00  (ineligible)  entropy 3.30  32s
+    fold 9 seed 1 [122,880] train   +0.33 bp/dd  0.1 bp ( 318 trades)  val   +0.04 bp/dd  0.2 bp ( 331)  score  -0.00  entropy 2.99  47s
+    fold 9 seed 2 [122,880] train   +0.23 bp/dd  0.0 bp ( 129 trades)  val   +0.18 bp/dd  0.0 bp ( 129)  score  +0.00  <- best  entropy 2.94  49s
+    fold 10 seed 1 [122,880] train   -0.04 bp/dd  0.1 bp ( 109 trades)  val   -0.18 bp/dd  0.2 bp ( 108)  score  -0.00  (ineligible)  entropy 3.07  49s
+    fold 11 seed 2 [102,400] train   -0.06 bp/dd  0.1 bp (  47 trades)  val   -0.03 bp/dd  0.1 bp (  37)  score  -0.00  (ineligible)  entropy 3.10  42s
+    fold 12 seed 1 [102,400] train   +0.09 bp/dd  0.2 bp ( 223 trades)  val   -0.26 bp/dd  0.3 bp ( 214)  score  -0.00  (ineligible)  entropy 3.16  43s
+    fold 11 seed 1 [122,880] train   +0.07 bp/dd  0.1 bp ( 111 trades)  val   +0.02 bp/dd  0.1 bp ( 110)  score  -0.00  entropy 2.92  49s
+    fold 10 seed 2 [122,880] train   +0.14 bp/dd  0.2 bp ( 103 trades)  val   -0.17 bp/dd  0.2 bp ( 113)  score  -0.00  (ineligible)  entropy 3.14  50s
+    fold 12 seed 2 [102,400] train   +0.15 bp/dd  0.0 bp ( 148 trades)  val   +0.08 bp/dd  0.1 bp ( 148)  score  +0.00  <- best  entropy 3.19  43s
+    fold 9 seed 1 [143,360] train   +0.41 bp/dd  0.1 bp ( 320 trades)  val   +0.08 bp/dd  0.3 bp ( 324)  score  -0.00  entropy 2.88  58s
+    fold 9 seed 2 [143,360] train   +0.21 bp/dd  0.1 bp ( 128 trades)  val   +0.15 bp/dd  0.1 bp ( 115)  score  +0.00  entropy 2.84  58s
+    fold 10 seed 1 [143,360] train   -0.18 bp/dd  0.3 bp ( 152 trades)  val   -0.35 bp/dd  0.4 bp ( 169)  score  -0.01  (ineligible)  entropy 2.91  56s
+    fold 11 seed 2 [122,880] train   -0.01 bp/dd  0.0 bp (  23 trades)  val   -0.01 bp/dd  0.1 bp (  21)  score  -0.00  (ineligible)  entropy 3.00  49s
+    fold 11 seed 1 [143,360] train   -0.09 bp/dd  0.2 bp ( 136 trades)  val   +0.14 bp/dd  0.1 bp ( 118)  score  -0.00  (ineligible)  entropy 2.83  56s
+    fold 12 seed 1 [122,880] train   +0.15 bp/dd  0.2 bp ( 207 trades)  val   -0.08 bp/dd  0.2 bp ( 198)  score  -0.00  (ineligible)  entropy 2.99  50s
+    fold 10 seed 2 [143,360] train   +0.18 bp/dd  0.1 bp (  61 trades)  val   -0.12 bp/dd  0.2 bp (  70)  score  -0.00  (ineligible)  entropy 2.98  57s
+    fold 12 seed 2 [122,880] train   +0.07 bp/dd  0.1 bp ( 239 trades)  val   -0.06 bp/dd  0.1 bp ( 234)  score  -0.00  (ineligible)  entropy 3.06  50s
+    fold 9 seed 1 [163,840] train   +0.38 bp/dd  0.1 bp ( 347 trades)  val   +0.08 bp/dd  0.2 bp ( 360)  score  -0.00  entropy 2.87  65s
+    fold 9 seed 2 [163,840] train   +0.30 bp/dd  0.1 bp ( 128 trades)  val   +0.18 bp/dd  0.1 bp ( 119)  score  +0.00  entropy 2.76  65s
+    fold 10 seed 1 [163,840] train   +0.29 bp/dd  0.2 bp ( 107 trades)  val   -0.21 bp/dd  0.3 bp ( 118)  score  -0.00  (ineligible)  entropy 2.81  64s
+    fold 11 seed 2 [143,360] train   -0.11 bp/dd  0.2 bp (  57 trades)  val   +0.12 bp/dd  0.1 bp (  60)  score  -0.00  (ineligible)  entropy 2.93  57s
+    fold 11 seed 1 [163,840] train   +0.01 bp/dd  0.2 bp ( 127 trades)  val   -0.01 bp/dd  0.1 bp ( 114)  score  -0.00  (ineligible)  entropy 2.81  63s
+    fold 12 seed 1 [143,360] train   -0.07 bp/dd  0.2 bp ( 180 trades)  val   -0.18 bp/dd  0.2 bp ( 173)  score  -0.00  (ineligible)  entropy 2.92  57s
+    fold 10 seed 2 [163,840] train   -0.00 bp/dd  0.1 bp (  47 trades)  val   -0.07 bp/dd  0.1 bp (  47)  score  -0.00  (ineligible)  entropy 2.93  65s
+    fold 12 seed 2 [143,360] train   +0.16 bp/dd  0.1 bp ( 262 trades)  val   -0.11 bp/dd  0.2 bp ( 262)  score  -0.00  (ineligible)  entropy 2.93  58s
+    fold 9 seed 2 [184,320] train   +0.26 bp/dd  0.1 bp ( 129 trades)  val   +0.12 bp/dd  0.1 bp ( 128)  score  +0.00  entropy 2.73  72s
+    fold 9 seed 1 [184,320] train   +0.42 bp/dd  0.2 bp ( 365 trades)  val   +0.13 bp/dd  0.3 bp ( 400)  score  +0.00  entropy 2.83  73s
+    fold 10 seed 1 [184,320] train   +0.15 bp/dd  0.2 bp ( 116 trades)  val   -0.09 bp/dd  0.2 bp ( 129)  score  -0.00  (ineligible)  entropy 2.79  71s
+    fold 11 seed 2 [163,840] train   -0.13 bp/dd  0.2 bp ( 101 trades)  val   +0.11 bp/dd  0.1 bp ( 107)  score  -0.00  (ineligible)  entropy 2.84  64s
+    fold 12 seed 1 [163,840] train   +0.00 bp/dd  0.2 bp ( 184 trades)  val   -0.16 bp/dd  0.2 bp ( 184)  score  -0.00  (ineligible)  entropy 2.85  64s
+    fold 11 seed 1 [184,320] train   +0.07 bp/dd  0.3 bp ( 192 trades)  val   +0.29 bp/dd  0.1 bp ( 200)  score  -0.00  entropy 2.79  71s
+    fold 10 seed 2 [184,320] train   +0.14 bp/dd  0.1 bp (  96 trades)  val   -0.07 bp/dd  0.1 bp (  92)  score  -0.00  (ineligible)  entropy 2.79  72s
+    fold 9 seed 2 [204,800] train   +0.29 bp/dd  0.1 bp ( 168 trades)  val   +0.35 bp/dd  0.1 bp ( 180)  score  +0.00  <- best  entropy 2.76  78s
+    fold 12 seed 2 [163,840] train   +0.20 bp/dd  0.1 bp ( 309 trades)  val   +0.03 bp/dd  0.1 bp ( 303)  score  -0.00  entropy 2.81  65s
+    fold 9 seed 1 [204,800] train   +0.41 bp/dd  0.2 bp ( 361 trades)  val   +0.18 bp/dd  0.2 bp ( 394)  score  +0.00  entropy 2.77  80s
+    fold 10 seed 1 [204,800] train   +0.17 bp/dd  0.2 bp ( 120 trades)  val   -0.14 bp/dd  0.3 bp ( 124)  score  -0.00  (ineligible)  entropy 2.75  78s
+    fold 11 seed 2 [184,320] train   -0.34 bp/dd  0.3 bp ( 167 trades)  val   +0.18 bp/dd  0.1 bp ( 172)  score  -0.01  (ineligible)  entropy 2.84  71s
+    fold 12 seed 1 [184,320] train   -0.05 bp/dd  0.2 bp ( 157 trades)  val   +0.04 bp/dd  0.1 bp ( 162)  score  -0.00  (ineligible)  entropy 2.75  71s
+    fold 11 seed 1 [204,800] train   +0.02 bp/dd  0.3 bp ( 161 trades)  val   +0.07 bp/dd  0.1 bp ( 173)  score  -0.00  entropy 2.75  78s
+    fold 10 seed 2 [204,800] train   +0.07 bp/dd  0.1 bp ( 137 trades)  val   -0.07 bp/dd  0.1 bp ( 136)  score  -0.00  (ineligible)  entropy 2.74  79s
+    fold 9 seed 2 [225,280] train   +0.31 bp/dd  0.1 bp ( 185 trades)  val   +0.51 bp/dd  0.1 bp ( 184)  score  +0.00  <- best  entropy 2.79  85s
+    fold 12 seed 2 [184,320] train   +0.22 bp/dd  0.1 bp ( 343 trades)  val   +0.09 bp/dd  0.1 bp ( 319)  score  +0.00  <- best  entropy 2.74  72s
+    fold 9 seed 1 [225,280] train   +0.46 bp/dd  0.2 bp ( 350 trades)  val   +0.19 bp/dd  0.2 bp ( 386)  score  +0.00  <- best  entropy 2.75  87s
+    fold 10 seed 1 [225,280] train   +0.11 bp/dd  0.3 bp ( 144 trades)  val   -0.00 bp/dd  0.3 bp ( 147)  score  -0.00  (ineligible)  entropy 2.74  85s
+    fold 11 seed 2 [204,800] train   -0.19 bp/dd  0.2 bp ( 168 trades)  val   +0.03 bp/dd  0.1 bp ( 164)  score  -0.00  (ineligible)  entropy 2.82  78s
+    fold 12 seed 1 [204,800] train   +0.05 bp/dd  0.2 bp ( 194 trades)  val   +0.01 bp/dd  0.1 bp ( 189)  score  -0.00  <- best  entropy 2.71  78s
+    fold 11 seed 1 [225,280] train   +0.09 bp/dd  0.3 bp ( 201 trades)  val   +0.23 bp/dd  0.1 bp ( 202)  score  -0.00  entropy 2.69  84s
+    fold 10 seed 2 [225,280] train   +0.12 bp/dd  0.1 bp ( 108 trades)  val   -0.10 bp/dd  0.2 bp ( 108)  score  -0.00  (ineligible)  entropy 2.73  85s
+    fold 9 seed 2 [245,760] train   +0.16 bp/dd  0.1 bp ( 166 trades)  val   +0.40 bp/dd  0.1 bp ( 156)  score  +0.00  entropy 2.70  92s
+    fold 9 seed 1 [245,760] train   +0.38 bp/dd  0.2 bp ( 358 trades)  val   +0.29 bp/dd  0.2 bp ( 357)  score  +0.00  <- best  entropy 2.79  94s
+    fold 12 seed 2 [204,800] train   +0.24 bp/dd  0.1 bp ( 356 trades)  val   +0.22 bp/dd  0.1 bp ( 330)  score  +0.00  <- best  entropy 2.79  79s
+    fold 10 seed 1 [245,760] train   -0.08 bp/dd  0.3 bp ( 136 trades)  val   -0.07 bp/dd  0.2 bp ( 128)  score  -0.00  (ineligible)  entropy 2.74  92s
+    fold 11 seed 2 [225,280] train   -0.12 bp/dd  0.1 bp ( 126 trades)  val   +0.18 bp/dd  0.0 bp ( 136)  score  -0.00  (ineligible)  entropy 2.77  85s
+    fold 12 seed 1 [225,280] train   +0.11 bp/dd  0.1 bp ( 193 trades)  val   +0.04 bp/dd  0.1 bp ( 189)  score  -0.00  <- best  entropy 2.72  85s
+    fold 11 seed 1 [245,760] train   +0.03 bp/dd  0.3 bp ( 183 trades)  val   +0.17 bp/dd  0.1 bp ( 193)  score  -0.00  entropy 2.69  91s
+    fold 10 seed 2 [245,760] train   -0.00 bp/dd  0.2 bp ( 140 trades)  val   -0.01 bp/dd  0.2 bp ( 135)  score  -0.00  (ineligible)  entropy 2.69  92s
+    fold 9 seed 2 [266,240] train   +0.24 bp/dd  0.2 bp ( 178 trades)  val   +0.26 bp/dd  0.1 bp ( 179)  score  +0.00  entropy 2.71  99s
+    fold 12 seed 2 [225,280] train   +0.19 bp/dd  0.1 bp ( 321 trades)  val   +0.27 bp/dd  0.1 bp ( 300)  score  +0.00  entropy 2.75  86s
+    fold 9 seed 1 [266,240] train   +0.34 bp/dd  0.1 bp ( 295 trades)  val   +0.26 bp/dd  0.2 bp ( 309)  score  +0.00  entropy 2.78  100s
+    fold 10 seed 1 [266,240] train   +0.02 bp/dd  0.2 bp ( 157 trades)  val   +0.04 bp/dd  0.2 bp ( 155)  score  -0.00  <- best  entropy 2.71  98s
+    fold 11 seed 2 [245,760] train   +0.01 bp/dd  0.2 bp ( 157 trades)  val   +0.22 bp/dd  0.1 bp ( 170)  score  -0.00  <- best  entropy 2.79  92s
+    fold 11 seed 1 [266,240] train   +0.11 bp/dd  0.3 bp ( 211 trades)  val   +0.28 bp/dd  0.2 bp ( 211)  score  -0.00  entropy 2.65  98s
+    fold 12 seed 1 [245,760] train   +0.03 bp/dd  0.2 bp ( 189 trades)  val   -0.11 bp/dd  0.2 bp ( 184)  score  -0.00  (ineligible)  entropy 2.66  92s
+    fold 10 seed 2 [266,240] train   +0.06 bp/dd  0.2 bp ( 165 trades)  val   +0.19 bp/dd  0.1 bp ( 156)  score  -0.00  <- best  entropy 2.68  99s
+    fold 9 seed 2 [286,720] train   +0.30 bp/dd  0.1 bp ( 207 trades)  val   +0.30 bp/dd  0.2 bp ( 208)  score  +0.00  entropy 2.69  106s
+    fold 9 seed 1 [286,720] train   +0.50 bp/dd  0.1 bp ( 297 trades)  val   +0.37 bp/dd  0.2 bp ( 299)  score  +0.00  <- best  entropy 2.79  108s
+    fold 12 seed 2 [245,760] train   +0.30 bp/dd  0.1 bp ( 314 trades)  val   +0.29 bp/dd  0.1 bp ( 288)  score  +0.00  <- best  entropy 2.72  94s
+    fold 10 seed 1 [286,720] train   +0.01 bp/dd  0.2 bp ( 158 trades)  val   +0.04 bp/dd  0.2 bp ( 168)  score  -0.00  entropy 2.73  105s
+    fold 11 seed 2 [266,240] train   -0.11 bp/dd  0.3 bp ( 184 trades)  val   +0.40 bp/dd  0.1 bp ( 180)  score  -0.00  (ineligible)  entropy 2.76  99s
+    fold 9 seed 2 [301,056] train   +0.25 bp/dd  0.1 bp ( 210 trades)  val   +0.28 bp/dd  0.2 bp ( 210)  score  +0.00  entropy 2.70  111s
+    fold 10 seed 2 [286,720] train   +0.04 bp/dd  0.2 bp ( 189 trades)  val   +0.03 bp/dd  0.2 bp ( 174)  score  -0.00  entropy 2.74  106s
+    fold 12 seed 1 [266,240] train   +0.11 bp/dd  0.2 bp ( 211 trades)  val   -0.02 bp/dd  0.2 bp ( 199)  score  -0.00  (ineligible)  entropy 2.63  99s
+    fold 11 seed 1 [286,720] train   +0.10 bp/dd  0.3 bp ( 226 trades)  val   +0.19 bp/dd  0.2 bp ( 222)  score  -0.00  entropy 2.66  105s
+    fold 9 seed 1 [301,056] train   +0.46 bp/dd  0.1 bp ( 296 trades)  val   +0.36 bp/dd  0.2 bp ( 289)  score  +0.00  entropy 2.77  113s
+    fold 10 seed 1 [301,056] train   -0.02 bp/dd  0.2 bp ( 161 trades)  val   +0.01 bp/dd  0.2 bp ( 164)  score  -0.00  (ineligible)  entropy 2.73  110s
+    fold 12 seed 2 [266,240] train   +0.43 bp/dd  0.1 bp ( 304 trades)  val   +0.26 bp/dd  0.1 bp ( 306)  score  +0.00  entropy 2.73  100s
+    fold 10 seed 2 [301,056] train   +0.08 bp/dd  0.2 bp ( 186 trades)  val   +0.05 bp/dd  0.2 bp ( 176)  score  -0.00  entropy 2.68  110s
+    fold 11 seed 1 [301,056] train   +0.09 bp/dd  0.3 bp ( 225 trades)  val   +0.18 bp/dd  0.2 bp ( 218)  score  -0.00  entropy 2.68  109s
+    fold 11 seed 2 [286,720] train   -0.05 bp/dd  0.3 bp ( 189 trades)  val   +0.44 bp/dd  0.0 bp ( 179)  score  -0.00  (ineligible)  entropy 2.76  105s
+    fold 12 seed 1 [286,720] train   +0.09 bp/dd  0.2 bp ( 223 trades)  val   -0.03 bp/dd  0.2 bp ( 211)  score  -0.00  (ineligible)  entropy 2.61  104s
+    fold 12 seed 2 [286,720] train   +0.34 bp/dd  0.1 bp ( 305 trades)  val   +0.25 bp/dd  0.1 bp ( 304)  score  +0.00  entropy 2.73  105s
+    fold 11 seed 2 [301,056] train   -0.05 bp/dd  0.3 bp ( 192 trades)  val   +0.43 bp/dd  0.0 bp ( 180)  score  -0.00  (ineligible)  entropy 2.75  108s
+    fold 12 seed 1 [301,056] train   +0.09 bp/dd  0.2 bp ( 216 trades)  val   -0.01 bp/dd  0.2 bp ( 205)  score  -0.00  (ineligible)  entropy 2.65  107s
+    fold 12 seed 2 [301,056] train   +0.32 bp/dd  0.1 bp ( 301 trades)  val   +0.19 bp/dd  0.1 bp ( 302)  score  +0.00  entropy 2.70  108s
+
+== fold 1
+  fold 1 TEST: agent   -0.10 bp Sharpe -1.82 PF 0.75 maxDD 0.2 bp (425 trades, exits {'close': 329, 'TP': 44, 'flip': 27, 'SL': 25}) | always long   -0.93 bp  trend-hold   -0.52 bp  random   -2.09 bp  buy&hold +1.25%
+
+== fold 2
+  fold 2 TEST: agent   +0.43 bp Sharpe +5.20 PF 0.64 maxDD 0.1 bp (195 trades, exits {'close': 141, 'TP': 30, 'SL': 24}) | always long   -0.49 bp  trend-hold   -0.25 bp  random   -2.46 bp  buy&hold +1.48%
+
+== fold 3
+  fold 3 TEST: agent   +0.10 bp Sharpe +1.87 PF 0.77 maxDD 0.1 bp (363 trades, exits {'close': 259, 'TP': 64, 'SL': 40}) | always long   -0.83 bp  trend-hold   -0.41 bp  random   -2.17 bp  buy&hold +1.19%
+
+== fold 4
+  fold 4 TEST: agent   -0.03 bp Sharpe -0.48 PF 0.51 maxDD 0.2 bp (248 trades, exits {'close': 184, 'SL': 34, 'TP': 30}) | always long   -1.01 bp  trend-hold   -0.28 bp  random   -2.09 bp  buy&hold +0.68%
+
+== fold 5
+  fold 5 TEST: agent   +0.13 bp Sharpe +2.35 PF 0.64 maxDD 0.1 bp (139 trades, exits {'close': 91, 'TP': 27, 'SL': 21}) | always long   -0.99 bp  trend-hold   -0.25 bp  random   -2.59 bp  buy&hold +0.93%
+
+== fold 6
+  fold 6 TEST: agent   +0.21 bp Sharpe +3.78 PF 0.86 maxDD 0.1 bp (173 trades, exits {'close': 128, 'TP': 35, 'SL': 9, 'flip': 1}) | always long   -0.12 bp  trend-hold   -0.31 bp  random   -2.39 bp  buy&hold +2.83%
+
+== fold 7
+  fold 7 TEST: agent   +0.09 bp Sharpe +4.20 PF 1.24 maxDD 0.0 bp (46 trades, exits {'close': 30, 'TP': 11, 'SL': 4, 'flip': 1}) | always long   -0.66 bp  trend-hold   -0.37 bp  random   -2.45 bp  buy&hold +1.94%
+
+== fold 8
+  fold 8 TEST: agent   +0.10 bp Sharpe +3.98 PF 1.12 maxDD 0.0 bp (89 trades, exits {'close': 58, 'TP': 24, 'SL': 7}) | always long   -0.61 bp  trend-hold   -0.37 bp  random   -2.02 bp  buy&hold +1.78%
+
+== fold 9
+  fold 9 TEST: agent   +0.11 bp Sharpe +1.38 PF 0.75 maxDD 0.2 bp (298 trades, exits {'close': 215, 'TP': 56, 'SL': 24, 'flip': 3}) | always long   -0.69 bp  trend-hold   -0.54 bp  random   -2.50 bp  buy&hold +1.46%
+
+== fold 10
+  fold 10 TEST: agent   +0.30 bp Sharpe +5.76 PF 0.99 maxDD 0.1 bp (148 trades, exits {'close': 63, 'TP': 45, 'SL': 40}) | always long   -0.67 bp  trend-hold   -0.36 bp  random   -2.39 bp  buy&hold +1.77%
+
+== fold 11
+  fold 11 TEST: agent   +0.04 bp Sharpe +1.21 PF 0.56 maxDD 0.1 bp (112 trades, exits {'close': 92, 'TP': 11, 'SL': 9}) | always long   -0.63 bp  trend-hold   -0.59 bp  random   -2.44 bp  buy&hold +1.58%
+
+== fold 12
+  fold 12 TEST: agent   +0.34 bp Sharpe +4.40 PF 0.75 maxDD 0.1 bp (291 trades, exits {'close': 197, 'TP': 57, 'SL': 37}) | always long   -0.55 bp  trend-hold   -0.37 bp  random   -2.42 bp  buy&hold +1.78%
+
+consistency gate (test windows):
+  [FAIL] folds with test return > 0 and PF > 1: 2/12 (need >= 9)
+  [FAIL] worst fold PF 0.51 (need >= 0.9)
+  [PASS] mean test Sharpe +2.65 (need > 0)
+
+sealed markets [433, 434, 435, 436, 437, 438, 439, 440] (days (21, 600), evaluated once):
+  agent          +4.93 bp  Sharpe +1.57  PF  1.12  maxDD    1.3 bp  1469 trades
+  ensemble       +2.58 bp  Sharpe +1.34  PF  1.10  maxDD    1.0 bp  2894 trades
+  always_long   -14.73 bp  Sharpe -4.08  PF  0.79  maxDD   14.9 bp  2732 trades
+  trend_hold     -7.72 bp  Sharpe -2.35  PF  0.73  maxDD    8.0 bp  870 trades
+  flat           +0.00 bp  Sharpe +0.00  PF  0.00  maxDD    0.0 bp  0 trades
+  random        -49.92 bp  Sharpe -16.37  PF  0.55  maxDD   49.9 bp  10645 trades
+  buy & hold    +30.32%
+
+saved Src_RL_Trading/RL_Agents/artifacts/rl (production, gate FAILED), 12 fold models rl_f1..12, reports in Src_RL_Trading/RL_Agents/reports/rl_*
+training charts: /Users/tomcuel/Documents/Informatique-Code/GitHub/Stock_Market_Simulator_RL_Bots/Src_RL_Trading/RL_Agents/reports/rl/plots/index.html

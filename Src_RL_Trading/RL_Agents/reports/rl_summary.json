@@ -1,0 +1,686 @@
+{
+  "folds": [
+    {
+      "fold": 1,
+      "train": [
+        20,
+        200
+      ],
+      "val": [
+        202,
+        232
+      ],
+      "test": [
+        234,
+        264
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": -0.0007914095277459433,
+      "test_return_pct": -0.0010116989420883016,
+      "test_sharpe": -1.8215213635682983,
+      "test_max_dd_pct": 0.0024325264177171846,
+      "test_trades": 425,
+      "test_profit_factor": 0.7517203890596345,
+      "test_win_rate": 0.3388235294117647,
+      "test_mean_r": -0.08778665087136549,
+      "test_exits": {
+        "close": 329,
+        "TP": 44,
+        "flip": 27,
+        "SL": 25
+      },
+      "buy_and_hold_pct": 1.2505346065318719,
+      "trend_hold_params": {
+        "threshold": 0.3,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.009256693950998596,
+      "trend_hold_return_pct": -0.005195735759866427,
+      "random_return_pct": -0.020850171118058647,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -9.082442305327254,
+      "trend_hold_sharpe": -6.184336891752828,
+      "random_sharpe": -31.275175049576454
+    },
+    {
+      "fold": 2,
+      "train": [
+        50,
+        230
+      ],
+      "val": [
+        232,
+        262
+      ],
+      "test": [
+        264,
+        294
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": 0.0010878288989570025,
+      "test_return_pct": 0.004259241663939761,
+      "test_sharpe": 5.1953318264473225,
+      "test_max_dd_pct": 0.001231751002577642,
+      "test_trades": 195,
+      "test_profit_factor": 0.6394553574166615,
+      "test_win_rate": 0.15897435897435896,
+      "test_mean_r": -0.19467480512998772,
+      "test_exits": {
+        "close": 141,
+        "TP": 30,
+        "SL": 24
+      },
+      "buy_and_hold_pct": 1.4825485206489497,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.004870522506517094,
+      "trend_hold_return_pct": -0.0025210203566827794,
+      "random_return_pct": -0.024589449127276897,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -3.9861645526712364,
+      "trend_hold_sharpe": -3.3631543127894354,
+      "random_sharpe": -42.87091576995471
+    },
+    {
+      "fold": 3,
+      "train": [
+        80,
+        260
+      ],
+      "val": [
+        262,
+        292
+      ],
+      "test": [
+        294,
+        324
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": 0.0020382563908675237,
+      "test_return_pct": 0.0010110374670802003,
+      "test_sharpe": 1.872271524765742,
+      "test_max_dd_pct": 0.0007568980904099918,
+      "test_trades": 363,
+      "test_profit_factor": 0.7740633527666277,
+      "test_win_rate": 0.21487603305785125,
+      "test_mean_r": -0.12023285218119673,
+      "test_exits": {
+        "close": 259,
+        "TP": 64,
+        "SL": 40
+      },
+      "buy_and_hold_pct": 1.1873596373679862,
+      "trend_hold_params": {
+        "threshold": 0.3,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.008339085149078329,
+      "trend_hold_return_pct": -0.004066577237871183,
+      "random_return_pct": -0.0217036427220485,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -10.313601858513923,
+      "trend_hold_sharpe": -4.14918104081885,
+      "random_sharpe": -26.73678712221088
+    },
+    {
+      "fold": 4,
+      "train": [
+        110,
+        290
+      ],
+      "val": [
+        292,
+        322
+      ],
+      "test": [
+        324,
+        354
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": 0.0015743451972152621,
+      "test_return_pct": -0.0003348565181027219,
+      "test_sharpe": -0.4760103102866922,
+      "test_max_dd_pct": 0.002318226326658568,
+      "test_trades": 248,
+      "test_profit_factor": 0.5088874079457607,
+      "test_win_rate": 0.16532258064516128,
+      "test_mean_r": -0.3020589200799274,
+      "test_exits": {
+        "close": 184,
+        "SL": 34,
+        "TP": 30
+      },
+      "buy_and_hold_pct": 0.6818190049356132,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.010058404728296999,
+      "trend_hold_return_pct": -0.002797135350840474,
+      "random_return_pct": -0.020921675647977978,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -12.013586532111908,
+      "trend_hold_sharpe": -3.482866890029751,
+      "random_sharpe": -23.984398093943806
+    },
+    {
+      "fold": 5,
+      "train": [
+        140,
+        320
+      ],
+      "val": [
+        322,
+        352
+      ],
+      "test": [
+        354,
+        384
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": 0.00013777503008627475,
+      "test_return_pct": 0.0012596648594209725,
+      "test_sharpe": 2.354603071750864,
+      "test_max_dd_pct": 0.00063946833623969,
+      "test_trades": 139,
+      "test_profit_factor": 0.6432653642799566,
+      "test_win_rate": 0.22302158273381295,
+      "test_mean_r": -0.20931147159863692,
+      "test_exits": {
+        "close": 91,
+        "TP": 27,
+        "SL": 21
+      },
+      "buy_and_hold_pct": 0.9308539441001302,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.009907665831687673,
+      "trend_hold_return_pct": -0.00250748389402089,
+      "random_return_pct": -0.02585016325588052,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -8.68924581391015,
+      "trend_hold_sharpe": -3.7734372451119254,
+      "random_sharpe": -30.147066320087575
+    },
+    {
+      "fold": 6,
+      "train": [
+        170,
+        350
+      ],
+      "val": [
+        352,
+        382
+      ],
+      "test": [
+        384,
+        414
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": -0.0007046487561168657,
+      "test_return_pct": 0.002051984856743516,
+      "test_sharpe": 3.7824628004638,
+      "test_max_dd_pct": 0.0008905836261367475,
+      "test_trades": 173,
+      "test_profit_factor": 0.8634885536741996,
+      "test_win_rate": 0.2543352601156069,
+      "test_mean_r": -0.06184853658175426,
+      "test_exits": {
+        "close": 128,
+        "TP": 35,
+        "SL": 9,
+        "flip": 1
+      },
+      "buy_and_hold_pct": 2.8265983221730795,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.001225913399938161,
+      "trend_hold_return_pct": -0.003066272476337506,
+      "random_return_pct": -0.02394352181996906,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -1.057917388589625,
+      "trend_hold_sharpe": -3.976929832074892,
+      "random_sharpe": -27.671516427757396
+    },
+    {
+      "fold": 7,
+      "train": [
+        200,
+        380
+      ],
+      "val": [
+        382,
+        412
+      ],
+      "test": [
+        414,
+        444
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": -4.457074576546345e-05,
+      "test_return_pct": 0.0008901378929504489,
+      "test_sharpe": 4.198783609079717,
+      "test_max_dd_pct": 0.0003266603938652801,
+      "test_trades": 46,
+      "test_profit_factor": 1.2391703254126933,
+      "test_win_rate": 0.3695652173913043,
+      "test_mean_r": 0.02837475158117539,
+      "test_exits": {
+        "close": 30,
+        "TP": 11,
+        "SL": 4,
+        "flip": 1
+      },
+      "buy_and_hold_pct": 1.9391587151934793,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.006558410796886349,
+      "trend_hold_return_pct": -0.0037289931203443594,
+      "random_return_pct": -0.024525701682842627,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -7.480405097353833,
+      "trend_hold_sharpe": -5.556187921953173,
+      "random_sharpe": -31.533584408603698
+    },
+    {
+      "fold": 8,
+      "train": [
+        230,
+        410
+      ],
+      "val": [
+        412,
+        442
+      ],
+      "test": [
+        444,
+        474
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": 0.0014084307739098425,
+      "test_return_pct": 0.0010169122845571366,
+      "test_sharpe": 3.9811139943822442,
+      "test_max_dd_pct": 0.00034878490841742585,
+      "test_trades": 89,
+      "test_profit_factor": 1.1185685293114467,
+      "test_win_rate": 0.29213483146067415,
+      "test_mean_r": 0.04210686995288436,
+      "test_exits": {
+        "close": 58,
+        "TP": 24,
+        "SL": 7
+      },
+      "buy_and_hold_pct": 1.7818193545113417,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.006109014940680613,
+      "trend_hold_return_pct": -0.0036720247497123992,
+      "random_return_pct": -0.02022827238329361,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -5.483413751560891,
+      "trend_hold_sharpe": -5.102983586316559,
+      "random_sharpe": -21.339285715925126
+    },
+    {
+      "fold": 9,
+      "train": [
+        260,
+        440
+      ],
+      "val": [
+        442,
+        472
+      ],
+      "test": [
+        474,
+        504
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": 0.0028310699519289153,
+      "test_return_pct": 0.0010688374243894572,
+      "test_sharpe": 1.3801382061856164,
+      "test_max_dd_pct": 0.002213595033532803,
+      "test_trades": 298,
+      "test_profit_factor": 0.7533878235783564,
+      "test_win_rate": 0.2214765100671141,
+      "test_mean_r": -0.14519151445179565,
+      "test_exits": {
+        "close": 215,
+        "TP": 56,
+        "SL": 24,
+        "flip": 3
+      },
+      "buy_and_hold_pct": 1.4615920760513819,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.006915683048314136,
+      "trend_hold_return_pct": -0.005391765129592052,
+      "random_return_pct": -0.02497327187108711,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -6.998292379192438,
+      "trend_hold_sharpe": -7.9204427690788926,
+      "random_sharpe": -37.99421234061196
+    },
+    {
+      "fold": 10,
+      "train": [
+        290,
+        470
+      ],
+      "val": [
+        472,
+        502
+      ],
+      "test": [
+        504,
+        534
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": -0.0003209662632397414,
+      "test_return_pct": 0.0030327602037028,
+      "test_sharpe": 5.763131392107601,
+      "test_max_dd_pct": 0.0005309984236277469,
+      "test_trades": 148,
+      "test_profit_factor": 0.9894849274949375,
+      "test_win_rate": 0.3108108108108108,
+      "test_mean_r": -0.03850338392800776,
+      "test_exits": {
+        "close": 63,
+        "TP": 45,
+        "SL": 40
+      },
+      "buy_and_hold_pct": 1.767253775943403,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.006714605763680215,
+      "trend_hold_return_pct": -0.0035977142035181764,
+      "random_return_pct": -0.023932559633199624,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -9.878675600693978,
+      "trend_hold_sharpe": -4.132886044435547,
+      "random_sharpe": -29.73509283229351
+    },
+    {
+      "fold": 11,
+      "train": [
+        320,
+        500
+      ],
+      "val": [
+        502,
+        532
+      ],
+      "test": [
+        534,
+        564
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": 0.0015446019542509736,
+      "test_return_pct": 0.0003990052289015722,
+      "test_sharpe": 1.2066865932346602,
+      "test_max_dd_pct": 0.0008494462232743995,
+      "test_trades": 112,
+      "test_profit_factor": 0.5551637859369183,
+      "test_win_rate": 0.24107142857142858,
+      "test_mean_r": -0.18545234461148147,
+      "test_exits": {
+        "close": 92,
+        "TP": 11,
+        "SL": 9
+      },
+      "buy_and_hold_pct": 1.5751689680999759,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.006322911807954412,
+      "trend_hold_return_pct": -0.005931588990493175,
+      "random_return_pct": -0.02438225812722017,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -6.853351534245282,
+      "trend_hold_sharpe": -8.966271517961058,
+      "random_sharpe": -34.13958159075536
+    },
+    {
+      "fold": 12,
+      "train": [
+        350,
+        530
+      ],
+      "val": [
+        532,
+        562
+      ],
+      "test": [
+        564,
+        594
+      ],
+      "checkpoint": "best eligible checkpoint",
+      "val_score": 0.0024842410600339855,
+      "test_return_pct": 0.0033765747825542647,
+      "test_sharpe": 4.397551804927911,
+      "test_max_dd_pct": 0.0008653233756588008,
+      "test_trades": 291,
+      "test_profit_factor": 0.7482669660253342,
+      "test_win_rate": 0.2268041237113402,
+      "test_mean_r": -0.17917209477011334,
+      "test_exits": {
+        "close": 197,
+        "TP": 57,
+        "SL": 37
+      },
+      "buy_and_hold_pct": 1.7790972546191794,
+      "trend_hold_params": {
+        "threshold": 0.9,
+        "sl_k": 2,
+        "tp_k": 3
+      },
+      "flat_return_pct": 0.0,
+      "always_long_return_pct": -0.005506730700965967,
+      "trend_hold_return_pct": -0.0037232363871653185,
+      "random_return_pct": -0.024213922633453677,
+      "flat_sharpe": 0.0,
+      "always_long_sharpe": -5.125790921769562,
+      "trend_hold_sharpe": -6.556018197698225,
+      "random_sharpe": -36.326130286463105
+    }
+  ],
+  "gate_passed": false,
+  "gate": [
+    "[FAIL] folds with test return > 0 and PF > 1: 2/12 (need >= 9)",
+    "[FAIL] worst fold PF 0.51 (need >= 0.9)",
+    "[PASS] mean test Sharpe +2.65 (need > 0)"
+  ],
+  "holdout": {
+    "agent": {
+      "return_pct": 0.049346624436985564,
+      "sharpe": 1.5717810929766383,
+      "max_dd_pct": 0.012618764238370127,
+      "trades": 1469,
+      "profit_factor": 1.1212821070918557,
+      "win_rate": 0.29475833900612664,
+      "mean_r": 0.08131163206096305,
+      "per_market_return_pct": {
+        "433": 0.11156068116369156,
+        "434": 0.04856700728448349,
+        "435": 0.025088514347459956,
+        "436": -0.006253857479110447,
+        "437": 0.01389684180181927,
+        "438": 0.13578066920418852,
+        "439": 0.03286455571163138,
+        "440": 0.033268583461842915
+      }
+    },
+    "ensemble": {
+      "return_pct": 0.025835579533239894,
+      "sharpe": 1.3431276766829465,
+      "max_dd_pct": 0.009932916329706061,
+      "trades": 2894,
+      "profit_factor": 1.0992810531972472,
+      "win_rate": 0.3009675190048376,
+      "mean_r": 0.06511662411481003
+    },
+    "always_long": {
+      "return_pct": -0.1472813859843991,
+      "sharpe": -4.081495720115201,
+      "max_dd_pct": 0.1487612923828041,
+      "trades": 2732,
+      "profit_factor": 0.7939984728350944,
+      "win_rate": 0.4396046852122987,
+      "mean_r": -0.16571853164118122,
+      "per_market_return_pct": {
+        "433": -0.0589983871811528,
+        "434": -0.13356694503171562,
+        "435": -0.058383499905634295,
+        "436": -0.2265441098974974,
+        "437": -0.25012624232131353,
+        "438": -0.14484077240253246,
+        "439": -0.12072543989699591,
+        "440": -0.1850656912383286
+      }
+    },
+    "trend_hold": {
+      "return_pct": -0.07722234683618101,
+      "sharpe": -2.352743976950671,
+      "max_dd_pct": 0.0803706663600401,
+      "trades": 870,
+      "profit_factor": 0.7301185488474133,
+      "win_rate": 0.2770114942528736,
+      "mean_r": -0.21426970037988624,
+      "per_market_return_pct": {
+        "433": -0.1343761677619737,
+        "434": -0.04609301572842117,
+        "435": 0.031317170329225874,
+        "436": -0.14186404991715085,
+        "437": -0.10245588388627658,
+        "438": -0.04449259076029222,
+        "439": -0.08434567869235465,
+        "440": -0.095468558272227
+      }
+    },
+    "flat": {
+      "return_pct": 0.0,
+      "sharpe": 0.0,
+      "max_dd_pct": 0.0,
+      "trades": 0,
+      "profit_factor": 0.0,
+      "win_rate": 0.0,
+      "mean_r": 0.0,
+      "per_market_return_pct": {
+        "433": 0.0,
+        "434": 0.0,
+        "435": 0.0,
+        "436": 0.0,
+        "437": 0.0,
+        "438": 0.0,
+        "439": 0.0,
+        "440": 0.0
+      }
+    },
+    "random": {
+      "return_pct": -0.4991584116340042,
+      "sharpe": -16.369326141877323,
+      "max_dd_pct": 0.4991584116340042,
+      "trades": 10645,
+      "profit_factor": 0.5469035549121012,
+      "win_rate": 0.41766087364960075,
+      "mean_r": -0.17579352783738922,
+      "per_market_return_pct": {
+        "433": -0.5078785185428591,
+        "434": -0.5412682950772685,
+        "435": -0.4278323514365412,
+        "436": -0.5625327820233395,
+        "437": -0.5755008356463143,
+        "438": -0.522722617597382,
+        "439": -0.45563647152004894,
+        "440": -0.39989542122833566
+      }
+    },
+    "buy_and_hold_pct": 30.3200887614221
+  },
+  "provenance": {
+    "kind": "simulation",
+    "source": "Src_RL_Trading/RL_Agents/sim_days/real5_d600",
+    "seeds": [
+      401,
+      402,
+      403,
+      404,
+      405,
+      406,
+      407,
+      408,
+      409,
+      410,
+      411,
+      412,
+      413,
+      414,
+      415,
+      416,
+      417,
+      418,
+      419,
+      420,
+      421,
+      422,
+      423,
+      424,
+      425,
+      426,
+      427,
+      428,
+      429,
+      430,
+      431,
+      432
+    ],
+    "sealed_seeds": [
+      433,
+      434,
+      435,
+      436,
+      437,
+      438,
+      439,
+      440
+    ],
+    "seed": null
+  }
+}
