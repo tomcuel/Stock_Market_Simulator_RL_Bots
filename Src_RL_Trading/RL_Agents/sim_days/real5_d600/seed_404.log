@@ -1,0 +1,40 @@
+Seeding 5 symbols from Data/Datasets/processed/latest_snapshot.csv
+Bots: 15 noise, 5 momentum, 12 market maker, 4 mean reversion, 4 trend, 2 twap, 40 value (each trading across all 5 symbols)
+
+=== Simulation report (2479.78s) ===
+output: Src_RL_Trading/RL_Agents/sim_days/real5_d600/seed_404
+  metrics_simu.csv  (plot: python3 scripts/plot_metrics.py Src_RL_Trading/RL_Agents/sim_days/real5_d600/seed_404)
+  market report *_simu.csv  (plot: python3 scripts/plot_market_report.py Src_RL_Trading/RL_Agents/sim_days/real5_d600/seed_404)
+orders_submitted=1663163 orders_accepted=984233 orders_rejected=638501 orders_queued=45247 orders_expired=251 trades_executed=425061 volume_traded=94230289 orders_per_sec=670.689 trades_per_sec=171.411 | submit_latency: count=770339 mean_us=8.88823 max_us=260434 buckets(<us:count)=[10:650237, 50:116528, 100:1759, 500:1572, 1000:135, 5000:65, 50000:31, overflow:12]
+waiting_orders=39 (STOP/LIMIT_STOP orders still waiting for their release band, or a future start date)
+
+-- Trading days (600 days of 4000 ms, pre-open 400 ms, pre-close 400 ms, overnight 100 ms, gap vol 0) --
+AAPL: days=600 first_close=340.071 last_close=256.066 mean_daily_return_bp=-4.73658 daily_vol_bp=132.904 autocorr_1=0.0365917 mean_range_bp=160.029 mean_open_to_close_bp=4.24638 mean_abs_gap_bp=62.7042
+AMZN: days=600 first_close=258.561 last_close=371.952 mean_daily_return_bp=6.07069 daily_vol_bp=141.851 autocorr_1=0.0546514 mean_range_bp=166.898 mean_open_to_close_bp=7.69126 mean_abs_gap_bp=67.8207
+BRK-B: days=600 first_close=509.014 last_close=579.412 mean_daily_return_bp=2.16257 daily_vol_bp=80.0127 autocorr_1=-0.0897633 mean_range_bp=104.066 mean_open_to_close_bp=0.999155 mean_abs_gap_bp=35.7197
+GOOG: days=600 first_close=344.032 last_close=336.033 mean_daily_return_bp=-0.392741 daily_vol_bp=141.062 autocorr_1=-0.000744573 mean_range_bp=174.733 mean_open_to_close_bp=-6.64898 mean_abs_gap_bp=68.6347
+JNJ: days=600 first_close=259.36 last_close=327.78 mean_daily_return_bp=3.90858 daily_vol_bp=90.0121 autocorr_1=-0.0902538 mean_range_bp=118.128 mean_open_to_close_bp=6.02611 mean_abs_gap_bp=41.6295
+
+-- Symbols --
+AAPL: last=256.066 vwap=253.979 volume=24983537 best_ask=256.117
+AMZN: last=371.952 vwap=317.201 volume=19919155 best_bid=371.217
+BRK-B: last=579.412 vwap=559.436 volume=10758224 best_ask=583.664
+GOOG: last=336.033 vwap=356.302 volume=17764216 best_ask=336.713
+JNJ: last=327.78 vwap=291.374 volume=20805157 best_bid=327.323 best_ask=328.238
+
+-- Strategies --
+marketmaker: bots=12 mean_pnl=-1.6396e+06 mean_excess_vs_holding=-2.21128e+06 orders_placed=508265 orders_retracted=449094
+meanreversion: bots=4 mean_pnl=988770 mean_excess_vs_holding=417088 orders_placed=23479 orders_retracted=12498
+momentum: bots=5 mean_pnl=339647 mean_excess_vs_holding=-232035 orders_placed=13011 orders_retracted=3378
+noise: bots=15 mean_pnl=-794532 mean_excess_vs_holding=-1.36621e+06 orders_placed=318577 orders_retracted=24312
+trend: bots=4 mean_pnl=-770487 mean_excess_vs_holding=-1.34217e+06 orders_placed=14417 orders_retracted=6261
+twap: bots=2 mean_pnl=137250 mean_excess_vs_holding=-434433 orders_placed=38762 orders_retracted=12506
+value: bots=40 mean_pnl=1.89063e+06 mean_excess_vs_holding=1.31895e+06 orders_placed=108201 orders_retracted=13003
+
+-- Top 5 clients by net worth --
+client 77: net_worth=1.70441e+07
+client 61: net_worth=1.55548e+07
+client 65: net_worth=1.54247e+07
+client 68: net_worth=1.53517e+07
+client 43: net_worth=1.52592e+07
+
